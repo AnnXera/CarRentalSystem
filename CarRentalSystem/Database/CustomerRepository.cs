@@ -38,7 +38,6 @@ namespace CarRentalSystem.Database
                         FullName = reader["FullName"].ToString(),
                         Gender = reader["Gender"].ToString(),
                         PhoneNumber = reader["PhoneNumber"].ToString(),
-                        DriversLicense = reader["DriversLicense"].ToString(),
                         Address = reader["Address"].ToString(),
                         RegisteredByEmpID = reader["RegisteredBy"] != DBNull.Value
                             ? Convert.ToInt64(reader["RegisteredBy"])
@@ -48,8 +47,8 @@ namespace CarRentalSystem.Database
                             : "N/A"
                     };
 
-                    if (!(reader["CustPicture"] is DBNull))
-                        customer.Picture = (byte[])reader["CustPicture"];
+                    if (!(reader["DriversLicensePic"] is DBNull))
+                        customer.Picture = (byte[])reader["DriversLicensePic"];
 
                     customers.Add(customer);
                 }
@@ -66,15 +65,14 @@ namespace CarRentalSystem.Database
             _db.Open();
 
             string query = @"INSERT INTO Customers 
-                             (FullName, Gender, PhoneNumber, DriversLicense, Address, RegisteredBy, CustPicture)
-                             VALUES (@FullName, @Gender, @PhoneNumber, @DriversLicense, @Address, @RegisteredBy, @Picture)";
+                             (FullName, Gender, PhoneNumber, Address, RegisteredBy, DriversLicensePic)
+                             VALUES (@FullName, @Gender, @PhoneNumber, @Address, @RegisteredBy, @Picture)";
 
             using (var cmd = new MySqlCommand(query, _db.Connection))
             {
                 cmd.Parameters.AddWithValue("@FullName", cs.FullName);
                 cmd.Parameters.AddWithValue("@Gender", cs.Gender);
                 cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
-                cmd.Parameters.AddWithValue("@DriversLicense", cs.DriversLicense);
                 cmd.Parameters.AddWithValue("@Address", cs.Address);
                 cmd.Parameters.AddWithValue("@RegisteredBy", cs.RegisteredByEmpID);
 
@@ -94,8 +92,7 @@ namespace CarRentalSystem.Database
             _db.Open();
 
             string query = @"UPDATE Customers SET 
-                             FullName=@FullName, Gender=@Gender, PhoneNumber=@PhoneNumber,
-                             DriversLicense=@DriversLicense, Address=@Address, CustPicture=@Picture
+                             FullName=@FullName, Gender=@Gender, PhoneNumber=@PhoneNumber, Address=@Address, DriversLicensePic=@Picture
                              WHERE CustID=@CustID";
 
             using (var cmd = new MySqlCommand(query, _db.Connection))
@@ -104,7 +101,6 @@ namespace CarRentalSystem.Database
                 cmd.Parameters.AddWithValue("@FullName", cs.FullName);
                 cmd.Parameters.AddWithValue("@Gender", cs.Gender);
                 cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
-                cmd.Parameters.AddWithValue("@DriversLicense", cs.DriversLicense);
                 cmd.Parameters.AddWithValue("@Address", cs.Address);
 
                 if (cs.Picture != null && cs.Picture.Length > 0)

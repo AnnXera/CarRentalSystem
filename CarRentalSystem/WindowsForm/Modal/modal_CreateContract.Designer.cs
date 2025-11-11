@@ -38,14 +38,11 @@
             this.lblFullName = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblDriversLicense = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblCustomerID = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.cbxSearch = new System.Windows.Forms.ComboBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.picCustomer = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,6 +69,8 @@
             this.btnCreateContractPayment = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.pnlSecurityDeposit = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblDays = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -86,23 +85,23 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.pnlSecurityDeposit = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.picCustomer = new System.Windows.Forms.PictureBox();
             this.pnlCustomer.SuspendLayout();
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.pnlRentalPlanVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCar)).BeginInit();
             this.pnlContractDetails.SuspendLayout();
+            this.pnlSecurityDeposit.SuspendLayout();
             this.pnlReturnDate.SuspendLayout();
             this.pnlStartDate.SuspendLayout();
-            this.pnlSecurityDeposit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlCustomer
             // 
             this.pnlCustomer.BackColor = System.Drawing.Color.White;
+            this.pnlCustomer.Controls.Add(this.picCustomer);
             this.pnlCustomer.Controls.Add(this.lblGender);
             this.pnlCustomer.Controls.Add(this.label30);
             this.pnlCustomer.Controls.Add(this.lblAddress);
@@ -112,12 +111,9 @@
             this.pnlCustomer.Controls.Add(this.lblFullName);
             this.pnlCustomer.Controls.Add(this.label33);
             this.pnlCustomer.Controls.Add(this.panel3);
-            this.pnlCustomer.Controls.Add(this.lblDriversLicense);
-            this.pnlCustomer.Controls.Add(this.label8);
             this.pnlCustomer.Controls.Add(this.lblCustomerID);
             this.pnlCustomer.Controls.Add(this.label3);
             this.pnlCustomer.Controls.Add(this.pnlSearch);
-            this.pnlCustomer.Controls.Add(this.picCustomer);
             this.pnlCustomer.Controls.Add(this.panel2);
             this.pnlCustomer.Controls.Add(this.label1);
             this.pnlCustomer.Controls.Add(this.label2);
@@ -130,7 +126,7 @@
             // 
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(20, 470);
+            this.lblGender.Location = new System.Drawing.Point(20, 537);
             this.lblGender.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(109, 23);
@@ -141,7 +137,7 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(20, 435);
+            this.label30.Location = new System.Drawing.Point(20, 502);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(82, 23);
@@ -152,7 +148,7 @@
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(20, 638);
+            this.lblAddress.Location = new System.Drawing.Point(20, 705);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(116, 23);
@@ -164,7 +160,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 603);
+            this.label10.Location = new System.Drawing.Point(20, 670);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(89, 23);
@@ -175,7 +171,7 @@
             // 
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhoneNumber.Location = new System.Drawing.Point(20, 552);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(20, 619);
             this.lblPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(166, 23);
@@ -186,7 +182,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(20, 517);
+            this.label6.Location = new System.Drawing.Point(20, 584);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(145, 23);
@@ -197,7 +193,7 @@
             // 
             this.lblFullName.AutoSize = true;
             this.lblFullName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullName.Location = new System.Drawing.Point(20, 390);
+            this.lblFullName.Location = new System.Drawing.Point(20, 457);
             this.lblFullName.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(124, 23);
@@ -208,7 +204,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(20, 355);
+            this.label33.Location = new System.Drawing.Point(20, 422);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(103, 23);
@@ -225,33 +221,11 @@
             this.panel3.Size = new System.Drawing.Size(429, 1);
             this.panel3.TabIndex = 4;
             // 
-            // lblDriversLicense
-            // 
-            this.lblDriversLicense.AutoSize = true;
-            this.lblDriversLicense.Font = new System.Drawing.Font("Arial", 12F);
-            this.lblDriversLicense.Location = new System.Drawing.Point(205, 272);
-            this.lblDriversLicense.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.lblDriversLicense.Name = "lblDriversLicense";
-            this.lblDriversLicense.Size = new System.Drawing.Size(172, 23);
-            this.lblDriversLicense.TabIndex = 62;
-            this.lblDriversLicense.Text = "(lblDriversLicense)";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(205, 238);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(186, 25);
-            this.label8.TabIndex = 61;
-            this.label8.Text = "Driver\'s License No:";
-            // 
             // lblCustomerID
             // 
             this.lblCustomerID.AutoSize = true;
             this.lblCustomerID.Font = new System.Drawing.Font("Arial", 12F);
-            this.lblCustomerID.Location = new System.Drawing.Point(205, 203);
+            this.lblCustomerID.Location = new System.Drawing.Point(19, 376);
             this.lblCustomerID.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblCustomerID.Name = "lblCustomerID";
             this.lblCustomerID.Size = new System.Drawing.Size(148, 23);
@@ -262,7 +236,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(205, 169);
+            this.label3.Location = new System.Drawing.Point(19, 342);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 25);
@@ -304,16 +278,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
-            // 
-            // picCustomer
-            // 
-            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.user_image_mockup;
-            this.picCustomer.Location = new System.Drawing.Point(24, 149);
-            this.picCustomer.Name = "picCustomer";
-            this.picCustomer.Size = new System.Drawing.Size(160, 160);
-            this.picCustomer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCustomer.TabIndex = 4;
-            this.picCustomer.TabStop = false;
             // 
             // panel2
             // 
@@ -653,6 +617,29 @@
             this.label28.TabIndex = 88;
             this.label28.Text = "Total Due Now (Deposit + Base): \r\n";
             // 
+            // pnlSecurityDeposit
+            // 
+            this.pnlSecurityDeposit.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnlSecurityDeposit.Controls.Add(this.textBox2);
+            this.pnlSecurityDeposit.Location = new System.Drawing.Point(24, 515);
+            this.pnlSecurityDeposit.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSecurityDeposit.Name = "pnlSecurityDeposit";
+            this.pnlSecurityDeposit.Size = new System.Drawing.Size(429, 55);
+            this.pnlSecurityDeposit.TabIndex = 87;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(13, 16);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(402, 23);
+            this.textBox2.TabIndex = 1;
+            // 
             // lblDays
             // 
             this.lblDays.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -814,28 +801,17 @@
             this.label34.Text = "Contract Details";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlSecurityDeposit
+            // picCustomer
             // 
-            this.pnlSecurityDeposit.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlSecurityDeposit.Controls.Add(this.textBox2);
-            this.pnlSecurityDeposit.Location = new System.Drawing.Point(24, 515);
-            this.pnlSecurityDeposit.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSecurityDeposit.Name = "pnlSecurityDeposit";
-            this.pnlSecurityDeposit.Size = new System.Drawing.Size(429, 55);
-            this.pnlSecurityDeposit.TabIndex = 87;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(13, 16);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(402, 23);
-            this.textBox2.TabIndex = 1;
+            this.picCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.SampleDriver_s_License;
+            this.picCustomer.Location = new System.Drawing.Point(123, 156);
+            this.picCustomer.Margin = new System.Windows.Forms.Padding(5);
+            this.picCustomer.Name = "picCustomer";
+            this.picCustomer.Size = new System.Drawing.Size(240, 152);
+            this.picCustomer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCustomer.TabIndex = 71;
+            this.picCustomer.TabStop = false;
             // 
             // modal_CreateContract
             // 
@@ -856,16 +832,16 @@
             this.pnlCustomer.PerformLayout();
             this.pnlSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).EndInit();
             this.pnlRentalPlanVehicle.ResumeLayout(false);
             this.pnlRentalPlanVehicle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCar)).EndInit();
             this.pnlContractDetails.ResumeLayout(false);
             this.pnlContractDetails.PerformLayout();
-            this.pnlReturnDate.ResumeLayout(false);
-            this.pnlStartDate.ResumeLayout(false);
             this.pnlSecurityDeposit.ResumeLayout(false);
             this.pnlSecurityDeposit.PerformLayout();
+            this.pnlReturnDate.ResumeLayout(false);
+            this.pnlStartDate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -875,7 +851,6 @@
         private System.Windows.Forms.Panel pnlCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox picCustomer;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -888,8 +863,6 @@
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lblDriversLicense;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblCustomerID;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel pnlRentalPlanVehicle;
@@ -932,5 +905,6 @@
         private System.Windows.Forms.ComboBox cbxSearch;
         private System.Windows.Forms.Panel pnlSecurityDeposit;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.PictureBox picCustomer;
     }
 }
