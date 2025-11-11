@@ -68,7 +68,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             rdoMale.Checked = _editingCustomer.Gender == "Male";
             rdoFemale.Checked = _editingCustomer.Gender == "Female";
             txtContactNumber.Text = _editingCustomer.PhoneNumber;
-            txtDriversLicense.Text = _editingCustomer.DriversLicense;
             txtAddress.Text = _editingCustomer.Address;
             picCustomer.Image = ImageHelper.ByteArrayToImage(_editingCustomer.Picture);
             picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
@@ -80,7 +79,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             rdoMale.Checked = false;
             rdoFemale.Checked = false;
             txtContactNumber.Clear();
-            txtDriversLicense.Clear();
             txtAddress.Clear();
             picCustomer.Image = null;
         }
@@ -108,7 +106,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                 Validator.RequireNotEmpty(txtFullName.Text, "Full Name");
                 Validator.ValidateLettersOnly(txtFullName.Text, "Full Name");
                 Validator.ValidatePhoneNumber(txtContactNumber.Text);
-                Validator.ValidateDriversLicense(txtDriversLicense.Text);
                 Validator.RequireNotEmpty(txtAddress.Text, "Address");
                 Validator.RequireGenderSelected(rdoMale.Checked, rdoFemale.Checked);
                 Validator.RequirePictureSelected(picCustomer, "Customer Picture");
@@ -127,7 +124,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                         FullName = txtFullName.Text.Trim(),
                         Gender = rdoMale.Checked ? "Male" : "Female",
                         PhoneNumber = txtContactNumber.Text.Trim(),
-                        DriversLicense = txtDriversLicense.Text.Trim(),
                         Address = txtAddress.Text.Trim(),
                         RegisteredByEmpID = currentEmp.EmpID,
                         Picture = ImageHelper.ImageToByteArray(picCustomer.Image)
@@ -148,7 +144,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                     _editingCustomer.FullName = txtFullName.Text.Trim();
                     _editingCustomer.Gender = rdoMale.Checked ? "Male" : "Female";
                     _editingCustomer.PhoneNumber = txtContactNumber.Text.Trim();
-                    _editingCustomer.DriversLicense = txtDriversLicense.Text.Trim();
                     _editingCustomer.Address = txtAddress.Text.Trim();
                     _editingCustomer.Picture = ImageHelper.ImageToByteArray(picCustomer.Image);
 
