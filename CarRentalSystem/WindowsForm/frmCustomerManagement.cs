@@ -3,13 +3,9 @@ using CarRentalSystem.Utils;
 using CarRentalSystem.WindowsForm.Modal;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarRentalSystem.WindowsForm
@@ -20,7 +16,9 @@ namespace CarRentalSystem.WindowsForm
         public frmCustomerManagement()
         {
             InitializeComponent();
+
             txtSearch.TextChanged += txtSearch_TextChanged;
+            dgvCustomers.CellClick += dgvCustomers_CellClick_1;
 
             LoadPanels();
 
