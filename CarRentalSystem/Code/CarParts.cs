@@ -1,0 +1,51 @@
+﻿using CarRentalSystem.Database;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace CarRentalSystem.Code
+{
+    public class CarParts
+    {
+        public long PartID { get; set; }
+        public long CarID { get; set; }
+        public string PartName { get; set; }
+        public decimal ReplacementCost { get; set; }
+        public string Status { get; set; }
+    }
+
+    public class CarPartsFactory : IModalFactory<CarParts>
+    {
+        private readonly CarPartsRepository _repo;
+
+        public CarPartsFactory()
+        {
+            _repo = new CarPartsRepository();
+        }
+
+        public void Add(CarParts entity)
+        {
+            _repo.AddCarPart(entity);
+        }
+
+        public void Edit(CarParts entity)
+        {
+            _repo.UpdateCarPart(entity);
+        }
+
+        public void Delete(long partId)
+        {
+            _repo.DeleteCarPart(partId);
+        }
+
+        public List<CarParts> ViewAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarParts> ViewByCar(long carId)
+        {
+            return _repo.GetPartsByCarId(carId);
+        }
+    }
+}
