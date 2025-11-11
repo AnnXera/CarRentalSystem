@@ -16,7 +16,6 @@ namespace CarRentalSystem.Code
         public string Gender { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string DriversLicense { get; set; }
         public string Address { get; set; }
         public long RegisteredByEmpID { get; set; }
         public byte[] Picture { get; set; }

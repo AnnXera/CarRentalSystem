@@ -28,7 +28,6 @@ namespace CarRentalSystem.WindowsForm
             lblFullName.Text = "";
             lblGender.Text = "";
             lblPhoneNumber.Text = "";
-            lblDriversLicense.Text = "";
             lblAddress.Text = "";
         }
 
@@ -68,26 +67,24 @@ namespace CarRentalSystem.WindowsForm
 
             customerTable = new DataTable(); // store globally
             customerTable.Columns.Add("CustID", typeof(long));
-            customerTable.Columns.Add("Picture", typeof(Image));
+            customerTable.Columns.Add("DriversLicensePic", typeof(Image));
             customerTable.Columns.Add("FullName");
             customerTable.Columns.Add("Gender");
             customerTable.Columns.Add("PhoneNumber");
-            customerTable.Columns.Add("DriversLicense");
             customerTable.Columns.Add("Address");
             customerTable.Columns.Add("RegisteredBy");
 
             foreach (var c in customers)
             {
                 Image img = ImageHelper.ByteArrayToImage(c.Picture);
-                img = ImageHelper.ResizeImage(img, 160, 160);
+                img = ImageHelper.ResizeImage(img, 359, 228);
 
                 var row = customerTable.NewRow();
                 row["CustID"] = c.CustID;
-                row["Picture"] = img;
+                row["DriversLicensePic"] = img;
                 row["FullName"] = c.FullName;
                 row["Gender"] = c.Gender;
                 row["PhoneNumber"] = c.PhoneNumber;
-                row["DriversLicense"] = c.DriversLicense;
                 row["Address"] = c.Address;
                 row["RegisteredBy"] = c.RegisteredByName;
                 customerTable.Rows.Add(row);
@@ -101,19 +98,18 @@ namespace CarRentalSystem.WindowsForm
 
             // Rename columns
             dgvCustomers.Columns["CustID"].HeaderText = "ID";
-            dgvCustomers.Columns["Picture"].HeaderText = "Picture";
+            dgvCustomers.Columns["DriversLicensePic"].HeaderText = "Driver's License";
             dgvCustomers.Columns["FullName"].HeaderText = "Full Name";
             dgvCustomers.Columns["Gender"].HeaderText = "Gender";
             dgvCustomers.Columns["PhoneNumber"].HeaderText = "Phone Number";
-            dgvCustomers.Columns["DriversLicense"].HeaderText = "Driver’s License";
             dgvCustomers.Columns["Address"].HeaderText = "Address";
             dgvCustomers.Columns["RegisteredBy"].HeaderText = "Registered By";
 
             // Format image column
-            if (dgvCustomers.Columns["Picture"] is DataGridViewImageColumn imgCol)
+            if (dgvCustomers.Columns["DriversLicensePic"] is DataGridViewImageColumn imgCol)
             {
                 imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
-                dgvCustomers.Columns["Picture"].Width = 160;
+                dgvCustomers.Columns["DriversLicensePic"].Width = 359;
             }
 
             // Remove old edit column to avoid duplicates
@@ -143,11 +139,10 @@ namespace CarRentalSystem.WindowsForm
             lblFullName.Text = selectedRow.Cells["FullName"].Value?.ToString();
             lblGender.Text = selectedRow.Cells["Gender"].Value?.ToString();
             lblPhoneNumber.Text = selectedRow.Cells["PhoneNumber"].Value?.ToString();
-            lblDriversLicense.Text = selectedRow.Cells["DriversLicense"].Value?.ToString();
             lblAddress.Text = selectedRow.Cells["Address"].Value?.ToString();
 
             // 🖼️ Show image (from DB or fallback)
-            if (selectedRow.Cells["Picture"].Value is Image img && img != null)
+            if (selectedRow.Cells["DriversLicensePic"].Value is Image img && img != null)
             {
                 picCustomer.Image = img;
             }
@@ -188,9 +183,8 @@ namespace CarRentalSystem.WindowsForm
                     FullName = selectedRow.Cells["FullName"].Value?.ToString(),
                     Gender = selectedRow.Cells["Gender"].Value?.ToString(),
                     PhoneNumber = selectedRow.Cells["PhoneNumber"].Value?.ToString(),
-                    DriversLicense = selectedRow.Cells["DriversLicense"].Value?.ToString(),
                     Address = selectedRow.Cells["Address"].Value?.ToString(),
-                    Picture = ImageHelper.ImageToByteArray(selectedRow.Cells["Picture"].Value as Image)
+                    Picture = ImageHelper.ImageToByteArray(selectedRow.Cells["DriversLicensePic"].Value as Image)
                 };
 
                 // Open modal in "Edit" mode

@@ -67,7 +67,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblFullName.Text = selectedCustomer.FullName;
                 lblGender.Text = selectedCustomer.Gender;
                 lblPhoneNumber.Text = selectedCustomer.PhoneNumber;
-                lblDriversLicense.Text = selectedCustomer.DriversLicense;
                 lblAddress.Text = selectedCustomer.Address;
 
                 if (selectedCustomer.Picture != null && selectedCustomer.Picture.Length > 0)
@@ -75,13 +74,13 @@ namespace CarRentalSystem.WindowsForm.Modal
                     using (var ms = new MemoryStream(selectedCustomer.Picture))
                     {
                         Image img = Image.FromStream(ms);
-                        picCustomer.Image = ImageHelper.ResizeImage(img, 160, 160);
+                        picCustomer.Image = ImageHelper.ResizeImage(img, 240, 152);
                     }
                 }
                 else
                 {
                     Image defaultImg = Properties.Resources.user_image_mockup; 
-                    picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 160, 160);
+                    picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
                 }
 
                 picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
@@ -92,11 +91,10 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblFullName.Text = "";
                 lblGender.Text = "";
                 lblPhoneNumber.Text = "";
-                lblDriversLicense.Text = "";
                 lblAddress.Text = "";
 
                 Image defaultImg = Properties.Resources.user_image_mockup;
-                picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 160, 160);
+                picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
             }
         }
 

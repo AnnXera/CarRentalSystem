@@ -33,36 +33,31 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.btnCustomerImage = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.txtDriversLicense = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.rdoMale = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtContactNumber = new System.Windows.Forms.TextBox();
             this.rdoFemale = new System.Windows.Forms.RadioButton();
             this.lblCustomerID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlBorderUser = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.lblCustomerName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picCustomer = new System.Windows.Forms.PictureBox();
             this.pnlAddEditCustomer.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnlBorderUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.SuspendLayout();
@@ -73,14 +68,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlAddEditCustomer.BackColor = System.Drawing.Color.White;
+            this.pnlAddEditCustomer.Controls.Add(this.label3);
             this.pnlAddEditCustomer.Controls.Add(this.label2);
             this.pnlAddEditCustomer.Controls.Add(this.label7);
             this.pnlAddEditCustomer.Controls.Add(this.btnSave);
             this.pnlAddEditCustomer.Controls.Add(this.btnCancel);
-            this.pnlAddEditCustomer.Controls.Add(this.label6);
             this.pnlAddEditCustomer.Controls.Add(this.panel4);
             this.pnlAddEditCustomer.Controls.Add(this.btnCustomerImage);
-            this.pnlAddEditCustomer.Controls.Add(this.panel3);
             this.pnlAddEditCustomer.Controls.Add(this.label5);
             this.pnlAddEditCustomer.Controls.Add(this.panel8);
             this.pnlAddEditCustomer.Controls.Add(this.rdoMale);
@@ -94,7 +88,7 @@
             this.pnlAddEditCustomer.Location = new System.Drawing.Point(17, 16);
             this.pnlAddEditCustomer.Margin = new System.Windows.Forms.Padding(5);
             this.pnlAddEditCustomer.Name = "pnlAddEditCustomer";
-            this.pnlAddEditCustomer.Size = new System.Drawing.Size(1032, 804);
+            this.pnlAddEditCustomer.Size = new System.Drawing.Size(1032, 721);
             this.pnlAddEditCustomer.TabIndex = 32;
             this.pnlAddEditCustomer.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlAddEditCustomer_Paint);
             // 
@@ -102,7 +96,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 257);
+            this.label2.Location = new System.Drawing.Point(32, 274);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 15, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 28);
@@ -113,7 +107,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(35, 578);
+            this.label7.Location = new System.Drawing.Point(33, 487);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 15, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 28);
@@ -127,7 +121,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(796, 716);
+            this.btnSave.Location = new System.Drawing.Point(796, 633);
             this.btnSave.Margin = new System.Windows.Forms.Padding(27, 22, 27, 22);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(204, 60);
@@ -142,7 +136,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(571, 716);
+            this.btnCancel.Location = new System.Drawing.Point(571, 633);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(27, 22, 27, 22);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(204, 60);
@@ -151,40 +145,18 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(32, 462);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 15, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(194, 28);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Driver\'s License No*\r\n";
-            // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.pictureBox5);
             this.panel4.Controls.Add(this.txtAddress);
-            this.panel4.Location = new System.Drawing.Point(40, 619);
+            this.panel4.Location = new System.Drawing.Point(37, 530);
             this.panel4.Margin = new System.Windows.Forms.Padding(36, 15, 36, 5);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(961, 60);
             this.panel4.TabIndex = 20;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::CarRentalSystem.Properties.Resources.LocationIcon;
-            this.pictureBox5.Location = new System.Drawing.Point(14, 13);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
             // 
             // txtAddress
             // 
@@ -205,57 +177,20 @@
             this.btnCustomerImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomerImage.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomerImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCustomerImage.Location = new System.Drawing.Point(801, 396);
+            this.btnCustomerImage.Location = new System.Drawing.Point(758, 371);
             this.btnCustomerImage.Margin = new System.Windows.Forms.Padding(27, 22, 27, 22);
             this.btnCustomerImage.Name = "btnCustomerImage";
-            this.btnCustomerImage.Size = new System.Drawing.Size(200, 49);
+            this.btnCustomerImage.Size = new System.Drawing.Size(240, 48);
             this.btnCustomerImage.TabIndex = 30;
             this.btnCustomerImage.Text = "Replace Image";
             this.btnCustomerImage.UseVisualStyleBackColor = true;
             this.btnCustomerImage.Click += new System.EventHandler(this.btnCustomerImage_Click);
             // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.pictureBox4);
-            this.panel3.Controls.Add(this.txtDriversLicense);
-            this.panel3.Location = new System.Drawing.Point(39, 502);
-            this.panel3.Margin = new System.Windows.Forms.Padding(36, 15, 36, 5);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(961, 60);
-            this.panel3.TabIndex = 18;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.NoteIcon;
-            this.pictureBox4.Location = new System.Drawing.Point(15, 14);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 0;
-            this.pictureBox4.TabStop = false;
-            // 
-            // txtDriversLicense
-            // 
-            this.txtDriversLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDriversLicense.BackColor = System.Drawing.Color.White;
-            this.txtDriversLicense.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDriversLicense.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDriversLicense.Location = new System.Drawing.Point(63, 20);
-            this.txtDriversLicense.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
-            this.txtDriversLicense.Name = "txtDriversLicense";
-            this.txtDriversLicense.Size = new System.Drawing.Size(882, 23);
-            this.txtDriversLicense.TabIndex = 1;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(33, 345);
+            this.label5.Location = new System.Drawing.Point(32, 364);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 15, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(161, 28);
@@ -277,7 +212,7 @@
             // 
             this.rdoMale.AutoSize = true;
             this.rdoMale.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoMale.Location = new System.Drawing.Point(68, 295);
+            this.rdoMale.Location = new System.Drawing.Point(65, 312);
             this.rdoMale.Margin = new System.Windows.Forms.Padding(5);
             this.rdoMale.Name = "rdoMale";
             this.rdoMale.Size = new System.Drawing.Size(76, 32);
@@ -292,23 +227,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.txtContactNumber);
-            this.panel2.Location = new System.Drawing.Point(37, 385);
+            this.panel2.Location = new System.Drawing.Point(38, 407);
             this.panel2.Margin = new System.Windows.Forms.Padding(36, 15, 36, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(723, 60);
+            this.panel2.Size = new System.Drawing.Size(679, 60);
             this.panel2.TabIndex = 16;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::CarRentalSystem.Properties.Resources.PhoneIcon;
-            this.pictureBox3.Location = new System.Drawing.Point(17, 13);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
             // 
             // txtContactNumber
             // 
@@ -320,14 +244,14 @@
             this.txtContactNumber.Location = new System.Drawing.Point(65, 20);
             this.txtContactNumber.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtContactNumber.Name = "txtContactNumber";
-            this.txtContactNumber.Size = new System.Drawing.Size(641, 23);
+            this.txtContactNumber.Size = new System.Drawing.Size(597, 23);
             this.txtContactNumber.TabIndex = 1;
             // 
             // rdoFemale
             // 
             this.rdoFemale.AutoSize = true;
             this.rdoFemale.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFemale.Location = new System.Drawing.Point(187, 295);
+            this.rdoFemale.Location = new System.Drawing.Point(184, 312);
             this.rdoFemale.Margin = new System.Windows.Forms.Padding(17, 5, 5, 5);
             this.rdoFemale.Name = "rdoFemale";
             this.rdoFemale.Size = new System.Drawing.Size(95, 32);
@@ -364,23 +288,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlBorderUser.Controls.Add(this.pictureBox1);
             this.pnlBorderUser.Controls.Add(this.txtFullName);
-            this.pnlBorderUser.Location = new System.Drawing.Point(37, 185);
+            this.pnlBorderUser.Location = new System.Drawing.Point(37, 194);
             this.pnlBorderUser.Margin = new System.Windows.Forms.Padding(36, 15, 36, 5);
             this.pnlBorderUser.Name = "pnlBorderUser";
-            this.pnlBorderUser.Size = new System.Drawing.Size(723, 60);
+            this.pnlBorderUser.Size = new System.Drawing.Size(680, 60);
             this.pnlBorderUser.TabIndex = 14;
             this.pnlBorderUser.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBorderUser_Paint);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CarRentalSystem.Properties.Resources.UserIcon;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // txtFullName
             // 
@@ -392,7 +305,7 @@
             this.txtFullName.Location = new System.Drawing.Point(65, 19);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(641, 23);
+            this.txtFullName.Size = new System.Drawing.Size(598, 23);
             this.txtFullName.TabIndex = 1;
             // 
             // lblCustomerName
@@ -406,14 +319,58 @@
             this.lblCustomerName.TabIndex = 30;
             this.lblCustomerName.Text = "John Doe (Preload Name)";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(753, 151);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 15, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(161, 28);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Driver\'s License*";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::CarRentalSystem.Properties.Resources.LocationIcon;
+            this.pictureBox5.Location = new System.Drawing.Point(14, 13);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::CarRentalSystem.Properties.Resources.PhoneIcon;
+            this.pictureBox3.Location = new System.Drawing.Point(17, 13);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CarRentalSystem.Properties.Resources.UserIcon;
+            this.pictureBox1.Location = new System.Drawing.Point(17, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(17, 12, 17, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 35);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // picCustomer
             // 
             this.picCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.user_image_mockup;
-            this.picCustomer.Location = new System.Drawing.Point(801, 185);
+            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.SampleDriver_s_License;
+            this.picCustomer.Location = new System.Drawing.Point(758, 192);
             this.picCustomer.Margin = new System.Windows.Forms.Padding(5);
             this.picCustomer.Name = "picCustomer";
-            this.picCustomer.Size = new System.Drawing.Size(200, 200);
+            this.picCustomer.Size = new System.Drawing.Size(240, 152);
             this.picCustomer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picCustomer.TabIndex = 30;
             this.picCustomer.TabStop = false;
@@ -422,7 +379,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 836);
+            this.ClientSize = new System.Drawing.Size(1067, 753);
             this.Controls.Add(this.pnlAddEditCustomer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -433,15 +390,12 @@
             this.pnlAddEditCustomer.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnlBorderUser.ResumeLayout(false);
             this.pnlBorderUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).EndInit();
             this.ResumeLayout(false);
@@ -455,14 +409,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Button btnCustomerImage;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.TextBox txtDriversLicense;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.RadioButton rdoMale;
@@ -477,5 +427,6 @@
         private System.Windows.Forms.PictureBox picCustomer;
         public System.Windows.Forms.Label lblCustomerID;
         public System.Windows.Forms.Label lblCustomerName;
+        private System.Windows.Forms.Label label3;
     }
 }
