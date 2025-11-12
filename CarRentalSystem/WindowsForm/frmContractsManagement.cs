@@ -45,5 +45,13 @@ namespace CarRentalSystem.WindowsForm
                 CreateContract.ShowDialog();
             }
         }
+
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            using (var Payment = new modal_Payment())
+            {
+                Payment.ShowDialog();
+            }
+        }
     }
 }

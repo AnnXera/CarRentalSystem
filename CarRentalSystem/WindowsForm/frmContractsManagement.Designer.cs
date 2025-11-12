@@ -50,6 +50,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlComboBox = new System.Windows.Forms.Panel();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
+            this.btnPayment = new System.Windows.Forms.Button();
             this.pnlContractDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel7.SuspendLayout();
@@ -62,6 +63,7 @@
             this.pnlContractDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContractDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.pnlContractDetails.Controls.Add(this.btnPayment);
             this.pnlContractDetails.Controls.Add(this.lblStatus);
             this.pnlContractDetails.Controls.Add(this.lblDaysRented);
             this.pnlContractDetails.Controls.Add(this.lblReturnDate);
@@ -311,6 +313,21 @@
             this.cbxStatus.TabIndex = 57;
             this.cbxStatus.Text = "All Status";
             // 
+            // btnPayment
+            // 
+            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
+            this.btnPayment.Location = new System.Drawing.Point(1299, 91);
+            this.btnPayment.Margin = new System.Windows.Forms.Padding(5);
+            this.btnPayment.Name = "btnPayment";
+            this.btnPayment.Size = new System.Drawing.Size(234, 53);
+            this.btnPayment.TabIndex = 74;
+            this.btnPayment.Text = "Payment";
+            this.btnPayment.UseVisualStyleBackColor = true;
+            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
+            // 
             // frmContractsManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -361,5 +378,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel pnlComboBox;
         private System.Windows.Forms.ComboBox cbxStatus;
+        private System.Windows.Forms.Button btnPayment;
     }
 }
