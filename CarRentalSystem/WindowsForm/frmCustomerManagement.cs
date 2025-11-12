@@ -125,6 +125,8 @@ namespace CarRentalSystem.WindowsForm
                 ToolTipText = "Edit Customer"
             };
 
+            dgvCustomers.ReadOnly = true;
+
             dgvCustomers.Columns.Insert(0, editColumn);
             dgvCustomers.Refresh();
         }

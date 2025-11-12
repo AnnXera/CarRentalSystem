@@ -108,6 +108,8 @@ namespace CarRentalSystem.WindowsForm
                 dgvCars.Columns.Insert(0, editColumn);
             }
 
+            dgvCars.ReadOnly = true;
+
             dgvCars.Refresh();
         }
 

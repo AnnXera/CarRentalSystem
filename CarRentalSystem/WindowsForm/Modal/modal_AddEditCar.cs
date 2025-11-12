@@ -154,6 +154,8 @@ namespace CarRentalSystem.WindowsForm.Modal
             dgvCarParts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgvCarParts.AllowUserToResizeColumns = false;
             dgvCarParts.AllowUserToResizeRows = false;
+
+            dgvCarParts.ReadOnly = true;
         }
 
         private void LoadCarData()

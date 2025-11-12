@@ -28,20 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlAvailableCar = new System.Windows.Forms.Panel();
             this.dgvCars = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnClearFilter = new System.Windows.Forms.Button();
             this.picCar = new System.Windows.Forms.PictureBox();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlTransmission = new System.Windows.Forms.Panel();
             this.cbxTransmission = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +51,12 @@
             this.cbxRentalPlan = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblCarName = new System.Windows.Forms.Label();
+            this.lblRentalPlan = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblTransmission = new System.Windows.Forms.Label();
+            this.lblSeats = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pnlAvailableCar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCars)).BeginInit();
@@ -65,8 +70,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblSeats);
+            this.panel1.Controls.Add(this.lblTransmission);
+            this.panel1.Controls.Add(this.lblRentalPlan);
+            this.panel1.Controls.Add(this.lblCarName);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.pnlAvailableCar);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnClearFilter);
             this.panel1.Controls.Add(this.picCar);
             this.panel1.Controls.Add(this.pnlSearch);
             this.panel1.Controls.Add(this.pnlTransmission);
@@ -78,7 +88,7 @@
             this.panel1.Controls.Add(this.label20);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(766, 917);
+            this.panel1.Size = new System.Drawing.Size(1106, 1031);
             this.panel1.TabIndex = 0;
             // 
             // pnlAvailableCar
@@ -91,10 +101,10 @@
             this.pnlAvailableCar.Controls.Add(this.label4);
             this.pnlAvailableCar.Controls.Add(this.btnSave);
             this.pnlAvailableCar.Controls.Add(this.btnCancel);
-            this.pnlAvailableCar.Location = new System.Drawing.Point(11, 373);
+            this.pnlAvailableCar.Location = new System.Drawing.Point(11, 489);
             this.pnlAvailableCar.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAvailableCar.Name = "pnlAvailableCar";
-            this.pnlAvailableCar.Size = new System.Drawing.Size(734, 527);
+            this.pnlAvailableCar.Size = new System.Drawing.Size(1074, 525);
             this.pnlAvailableCar.TabIndex = 80;
             // 
             // dgvCars
@@ -106,45 +116,46 @@
             this.dgvCars.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCars.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvCars.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCars.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvCars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCars.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvCars.EnableHeadersVisualStyles = false;
             this.dgvCars.Location = new System.Drawing.Point(16, 55);
             this.dgvCars.Margin = new System.Windows.Forms.Padding(5);
             this.dgvCars.MultiSelect = false;
             this.dgvCars.Name = "dgvCars";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCars.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCars.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvCars.RowHeadersVisible = false;
             this.dgvCars.RowHeadersWidth = 51;
             this.dgvCars.RowTemplate.DividerHeight = 1;
             this.dgvCars.RowTemplate.Height = 40;
             this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvCars.Size = new System.Drawing.Size(702, 403);
+            this.dgvCars.Size = new System.Drawing.Size(1042, 390);
             this.dgvCars.TabIndex = 75;
+            this.dgvCars.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCars_CellClick);
             // 
             // label4
             // 
@@ -169,13 +180,14 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(569, 470);
+            this.btnSave.Location = new System.Drawing.Point(909, 468);
             this.btnSave.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(149, 38);
             this.btnSave.TabIndex = 29;
             this.btnSave.Text = "SELECT";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -183,35 +195,38 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(418, 470);
+            this.btnCancel.Location = new System.Drawing.Point(758, 468);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(144, 38);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button1
+            // btnClearFilter
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(11, 310);
-            this.button1.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 41);
-            this.button1.TabIndex = 79;
-            this.button1.Text = "Clear Filters";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearFilter.ForeColor = System.Drawing.Color.Black;
+            this.btnClearFilter.Location = new System.Drawing.Point(944, 207);
+            this.btnClearFilter.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(141, 55);
+            this.btnClearFilter.TabIndex = 79;
+            this.btnClearFilter.Text = "Clear Filters";
+            this.btnClearFilter.UseVisualStyleBackColor = true;
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
             // picCar
             // 
             this.picCar.Image = global::CarRentalSystem.Properties.Resources.CarSamplePic;
-            this.picCar.Location = new System.Drawing.Point(482, 180);
+            this.picCar.Location = new System.Drawing.Point(11, 290);
             this.picCar.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.picCar.Name = "picCar";
-            this.picCar.Size = new System.Drawing.Size(262, 171);
-            this.picCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCar.Size = new System.Drawing.Size(274, 171);
+            this.picCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picCar.TabIndex = 78;
             this.picCar.TabStop = false;
             // 
@@ -222,10 +237,10 @@
             this.pnlSearch.BackColor = System.Drawing.Color.White;
             this.pnlSearch.Controls.Add(this.pictureBox4);
             this.pnlSearch.Controls.Add(this.txtSearch);
-            this.pnlSearch.Location = new System.Drawing.Point(10, 180);
+            this.pnlSearch.Location = new System.Drawing.Point(10, 91);
             this.pnlSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(459, 55);
+            this.pnlSearch.Size = new System.Drawing.Size(1075, 55);
             this.pnlSearch.TabIndex = 77;
             // 
             // pictureBox4
@@ -239,23 +254,10 @@
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSearch.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(59, 18);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(387, 23);
-            this.txtSearch.TabIndex = 1;
-            // 
             // pnlTransmission
             // 
             this.pnlTransmission.Controls.Add(this.cbxTransmission);
-            this.pnlTransmission.Location = new System.Drawing.Point(340, 90);
+            this.pnlTransmission.Location = new System.Drawing.Point(352, 207);
             this.pnlTransmission.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTransmission.Name = "pnlTransmission";
             this.pnlTransmission.Size = new System.Drawing.Size(250, 55);
@@ -277,7 +279,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(335, 52);
+            this.label3.Location = new System.Drawing.Point(347, 169);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 25);
@@ -287,7 +289,7 @@
             // pnlSeats
             // 
             this.pnlSeats.Controls.Add(this.cbxSeats);
-            this.pnlSeats.Location = new System.Drawing.Point(608, 90);
+            this.pnlSeats.Location = new System.Drawing.Point(632, 207);
             this.pnlSeats.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSeats.Name = "pnlSeats";
             this.pnlSeats.Size = new System.Drawing.Size(136, 55);
@@ -309,7 +311,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(603, 52);
+            this.label2.Location = new System.Drawing.Point(627, 169);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 25);
@@ -319,7 +321,7 @@
             // pnlRentalPlan
             // 
             this.pnlRentalPlan.Controls.Add(this.cbxRentalPlan);
-            this.pnlRentalPlan.Location = new System.Drawing.Point(10, 90);
+            this.pnlRentalPlan.Location = new System.Drawing.Point(10, 207);
             this.pnlRentalPlan.Margin = new System.Windows.Forms.Padding(4);
             this.pnlRentalPlan.Name = "pnlRentalPlan";
             this.pnlRentalPlan.Size = new System.Drawing.Size(311, 55);
@@ -331,7 +333,7 @@
             this.cbxRentalPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbxRentalPlan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxRentalPlan.FormattingEnabled = true;
-            this.cbxRentalPlan.Location = new System.Drawing.Point(17, 10);
+            this.cbxRentalPlan.Location = new System.Drawing.Point(17, 12);
             this.cbxRentalPlan.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.cbxRentalPlan.Name = "cbxRentalPlan";
             this.cbxRentalPlan.Size = new System.Drawing.Size(276, 31);
@@ -341,7 +343,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(6, 52);
+            this.label1.Location = new System.Drawing.Point(6, 169);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 25);
@@ -362,6 +364,76 @@
             this.label20.Text = "Select";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(6, 51);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(107, 25);
+            this.label5.TabIndex = 81;
+            this.label5.Text = "Car Brand:";
+            // 
+            // lblCarName
+            // 
+            this.lblCarName.AutoSize = true;
+            this.lblCarName.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarName.Location = new System.Drawing.Point(313, 290);
+            this.lblCarName.Name = "lblCarName";
+            this.lblCarName.Size = new System.Drawing.Size(156, 35);
+            this.lblCarName.TabIndex = 82;
+            this.lblCarName.Text = "Car Name";
+            // 
+            // lblRentalPlan
+            // 
+            this.lblRentalPlan.AutoSize = true;
+            this.lblRentalPlan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalPlan.ForeColor = System.Drawing.Color.DimGray;
+            this.lblRentalPlan.Location = new System.Drawing.Point(315, 345);
+            this.lblRentalPlan.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblRentalPlan.Name = "lblRentalPlan";
+            this.lblRentalPlan.Size = new System.Drawing.Size(130, 24);
+            this.lblRentalPlan.TabIndex = 83;
+            this.lblRentalPlan.Text = "Rental Plan: ";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearch.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(59, 18);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(1003, 23);
+            this.txtSearch.TabIndex = 1;
+            // 
+            // lblTransmission
+            // 
+            this.lblTransmission.AutoSize = true;
+            this.lblTransmission.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTransmission.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTransmission.Location = new System.Drawing.Point(315, 388);
+            this.lblTransmission.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblTransmission.Name = "lblTransmission";
+            this.lblTransmission.Size = new System.Drawing.Size(144, 24);
+            this.lblTransmission.TabIndex = 84;
+            this.lblTransmission.Text = "Transmission:";
+            // 
+            // lblSeats
+            // 
+            this.lblSeats.AutoSize = true;
+            this.lblSeats.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeats.ForeColor = System.Drawing.Color.DimGray;
+            this.lblSeats.Location = new System.Drawing.Point(315, 431);
+            this.lblSeats.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblSeats.Name = "lblSeats";
+            this.lblSeats.Size = new System.Drawing.Size(70, 24);
+            this.lblSeats.TabIndex = 85;
+            this.lblSeats.Text = "Seats:";
+            // 
             // modal_SelectRentalAndCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -370,7 +442,7 @@
             this.AutoScrollMargin = new System.Drawing.Size(10, 0);
             this.AutoScrollMinSize = new System.Drawing.Size(10, 0);
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(790, 941);
+            this.ClientSize = new System.Drawing.Size(1154, 752);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "modal_SelectRentalAndCar";
@@ -400,11 +472,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClearFilter;
         private System.Windows.Forms.PictureBox picCar;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel pnlTransmission;
         private System.Windows.Forms.ComboBox cbxTransmission;
         private System.Windows.Forms.Label label3;
@@ -415,5 +486,11 @@
         private System.Windows.Forms.ComboBox cbxRentalPlan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCarName;
+        private System.Windows.Forms.Label lblRentalPlan;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label lblSeats;
+        private System.Windows.Forms.Label lblTransmission;
     }
 }

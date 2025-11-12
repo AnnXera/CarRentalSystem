@@ -1,27 +1,27 @@
 ﻿using CarRentalSystem.Code;
+using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_CreateContract : Form
     {
+        private Cars selectedCar;
+        private RentalPlan selectedRentalPlan;
+
         public modal_CreateContract()
         {
             InitializeComponent();
             LoadPanles();
             LoadComboBox();
-
-            cbxSearch.SelectedIndexChanged += (s, e) => SelectedCustomer();
+            ClearLabel();
+            EventChanges();
         }
 
         private void LoadPanles() 
@@ -41,6 +41,30 @@ namespace CarRentalSystem.WindowsForm.Modal
                 pnlSecurityDeposit,
                 pnlStartDate
             });
+        }
+
+        private void ClearLabel()
+        {
+            lblCustomerID.Text = "";
+            lblFullName.Text = "";
+            lblGender.Text = "";
+            lblPhoneNumber.Text = "";
+            lblAddress.Text = "";
+            Image defaultImg = Properties.Resources.user_image_mockup;
+            picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
+
+            lblRentalPlan.Text = "";
+            lblCarName.Text = "";
+            lblPlateNumber.Text = "";
+            lblSeats.Text = "";
+            lblTransmission.Text = "";
+            lblFuelType.Text = "";
+            lblCarNo.Text = "";
+            Image defaultCarImg = Properties.Resources.CarSamplePic;
+            picCar.Image = ImageHelper.ResizeImage(defaultCarImg, 429, 276);
+
+            lblDays.Text = "0";
+            lblBaseRate.Text = "0.00";
         }
 
         private void LoadComboBox()
@@ -98,11 +122,92 @@ namespace CarRentalSystem.WindowsForm.Modal
             }
         }
 
+        private void EventChanges()
+        {
+            cbxSearch.SelectedIndexChanged += (s, e) => SelectedCustomer();
+            dtpStartDate.ValueChanged += (s, e) => UpdateTotalCost();
+            dtpReturnDate.ValueChanged += (s, e) => UpdateTotalCost();
+            txtSecurityDeposit.TextChanged += (s, e) => UpdateTotalDue();
+        }
+
+        private void UpdateTotalCost()
+        {
+            if (selectedRentalPlan == null) return;
+
+            int days = (dtpReturnDate.Value.Date - dtpStartDate.Value.Date).Days + 1;
+            if (days < 1) days = 1;
+
+            lblDays.Text = $"{days}";
+
+            decimal totalBase = selectedRentalPlan.DailyRate * days;
+            lblBaseRate.Text = $"{totalBase:C}";
+
+            UpdateTotalDue();
+        }
+
+        private void UpdateTotalDue()
+        {
+            decimal baseRate = 0;
+            decimal securityDeposit = 0;
+
+            // Parse base rate from label (remove currency symbol)
+            if (!string.IsNullOrEmpty(lblBaseRate.Text))
+            {
+                decimal.TryParse(lblBaseRate.Text, System.Globalization.NumberStyles.Currency, null, out baseRate);
+            }
+
+            // Parse security deposit from textbox
+            if (!string.IsNullOrEmpty(txtSecurityDeposit.Text))
+            {
+                decimal.TryParse(txtSecurityDeposit.Text, out securityDeposit);
+            }
+
+            decimal total = baseRate + securityDeposit;
+            lblTotalDue.Text = total.ToString("C"); // show as currency
+        }
 
         private void btnSelectVehicle_Click(object sender, EventArgs e)
         {
-            var modalSelectRentalAndCar = new modal_SelectRentalAndCar();
-            modalSelectRentalAndCar.ShowDialog();
+            using (var selectCarModal = new modal_SelectRentalAndCar())
+            {
+                if (selectCarModal.ShowDialog() == DialogResult.OK)
+                {
+                    selectedCar = selectCarModal.SelectedCar;
+
+                    if (selectedCar != null)
+                    {
+                        // Update car labels
+                        lblCarName.Text = selectedCar.CarDescription;
+                        lblCarNo.Text = $"{selectedCar.CarID}";
+                        lblPlateNumber.Text = selectedCar.PlateNumber;
+                        lblSeats.Text = $"{selectedCar.Seats}";
+                        lblTransmission.Text = $"{selectedCar.Transmission}";
+                        lblRentalPlan.Text = $"{selectedCar.PlanName}";
+                        lblFuelType.Text = $"{selectedCar.FuelType}";
+
+                        // Show car picture
+                        if (selectedCar.CarPicture != null && selectedCar.CarPicture.Length > 0)
+                        {
+                            using (var ms = new MemoryStream(selectedCar.CarPicture))
+                            {
+                                picCar.Image = Image.FromStream(ms);
+                                picCar.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                        }
+
+                        // Update Base Rate based on selected car's rental plan
+                        var planRepo = new RentalPlanRepository();
+                        selectedRentalPlan = planRepo.GetAllPlans()
+                                                     .FirstOrDefault(p => p.PlanID == selectedCar.PlanID);
+
+                        if (selectedRentalPlan != null)
+                        {
+                            lblBaseRate.Text = $"{selectedRentalPlan.DailyRate:C}";
+                            UpdateTotalCost(); 
+                        }
+                    }
+                }
+            }
         }
     }
 }
