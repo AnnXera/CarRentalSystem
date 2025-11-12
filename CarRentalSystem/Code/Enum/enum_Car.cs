@@ -11,8 +11,7 @@ namespace CarRentalSystem.Code.Enum
         public enum TransmissionType
         {
             Automatic,
-            Manual,
-            CVT
+            Manual
         }
 
         public enum FuelType
@@ -48,6 +47,16 @@ namespace CarRentalSystem.Code.Enum
             Volkswagen,
             Isuzu,
             Mazda
+        }
+
+        public enum SeatCount
+        {
+            Two = 2,
+            Four = 4,
+            Five = 5,
+            Seven = 7,
+            Eight = 8,
+            Ten = 10
         }
 
     }

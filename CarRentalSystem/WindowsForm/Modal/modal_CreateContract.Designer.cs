@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlCustomer = new System.Windows.Forms.Panel();
+            this.picCustomer = new System.Windows.Forms.PictureBox();
             this.lblGender = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -47,16 +48,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlRentalPlanVehicle = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblSeats = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblFuelType = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblTransmission = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblPlateNumber = new System.Windows.Forms.Label();
             this.label90 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCarName = new System.Windows.Forms.Label();
+            this.lblRentalPlan = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -67,10 +68,10 @@
             this.label20 = new System.Windows.Forms.Label();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
             this.btnCreateContractPayment = new System.Windows.Forms.Button();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblTotalDue = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pnlSecurityDeposit = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtSecurityDeposit = new System.Windows.Forms.TextBox();
             this.lblDays = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -85,8 +86,11 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.picCustomer = new System.Windows.Forms.PictureBox();
+            this.lblCarNo = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblBaseRate = new System.Windows.Forms.Label();
             this.pnlCustomer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pnlRentalPlanVehicle.SuspendLayout();
@@ -95,7 +99,6 @@
             this.pnlSecurityDeposit.SuspendLayout();
             this.pnlReturnDate.SuspendLayout();
             this.pnlStartDate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlCustomer
@@ -121,6 +124,18 @@
             this.pnlCustomer.Name = "pnlCustomer";
             this.pnlCustomer.Size = new System.Drawing.Size(470, 814);
             this.pnlCustomer.TabIndex = 0;
+            // 
+            // picCustomer
+            // 
+            this.picCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.SampleDriver_s_License;
+            this.picCustomer.Location = new System.Drawing.Point(123, 156);
+            this.picCustomer.Margin = new System.Windows.Forms.Padding(5);
+            this.picCustomer.Name = "picCustomer";
+            this.picCustomer.Size = new System.Drawing.Size(240, 152);
+            this.picCustomer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCustomer.TabIndex = 71;
+            this.picCustomer.TabStop = false;
             // 
             // lblGender
             // 
@@ -317,16 +332,18 @@
             // pnlRentalPlanVehicle
             // 
             this.pnlRentalPlanVehicle.BackColor = System.Drawing.Color.White;
-            this.pnlRentalPlanVehicle.Controls.Add(this.label15);
+            this.pnlRentalPlanVehicle.Controls.Add(this.lblCarNo);
+            this.pnlRentalPlanVehicle.Controls.Add(this.label8);
+            this.pnlRentalPlanVehicle.Controls.Add(this.lblSeats);
             this.pnlRentalPlanVehicle.Controls.Add(this.label14);
-            this.pnlRentalPlanVehicle.Controls.Add(this.label13);
+            this.pnlRentalPlanVehicle.Controls.Add(this.lblFuelType);
             this.pnlRentalPlanVehicle.Controls.Add(this.label12);
             this.pnlRentalPlanVehicle.Controls.Add(this.lblTransmission);
             this.pnlRentalPlanVehicle.Controls.Add(this.label11);
             this.pnlRentalPlanVehicle.Controls.Add(this.lblPlateNumber);
             this.pnlRentalPlanVehicle.Controls.Add(this.label90);
-            this.pnlRentalPlanVehicle.Controls.Add(this.label9);
-            this.pnlRentalPlanVehicle.Controls.Add(this.label5);
+            this.pnlRentalPlanVehicle.Controls.Add(this.lblCarName);
+            this.pnlRentalPlanVehicle.Controls.Add(this.lblRentalPlan);
             this.pnlRentalPlanVehicle.Controls.Add(this.label4);
             this.pnlRentalPlanVehicle.Controls.Add(this.label7);
             this.pnlRentalPlanVehicle.Controls.Add(this.panel5);
@@ -340,48 +357,48 @@
             this.pnlRentalPlanVehicle.Size = new System.Drawing.Size(470, 814);
             this.pnlRentalPlanVehicle.TabIndex = 71;
             // 
-            // label15
+            // lblSeats
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(277, 483);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(75, 23);
-            this.label15.TabIndex = 81;
-            this.label15.Text = "(Seats)";
+            this.lblSeats.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblSeats.AutoSize = true;
+            this.lblSeats.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeats.Location = new System.Drawing.Point(99, 643);
+            this.lblSeats.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblSeats.Name = "lblSeats";
+            this.lblSeats.Size = new System.Drawing.Size(75, 23);
+            this.lblSeats.TabIndex = 81;
+            this.lblSeats.Text = "(Seats)";
             // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(277, 448);
+            this.label14.Location = new System.Drawing.Point(20, 642);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(67, 23);
             this.label14.TabIndex = 80;
             this.label14.Text = "Seats:";
             // 
-            // label13
+            // lblFuelType
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(277, 732);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(104, 23);
-            this.label13.TabIndex = 79;
-            this.label13.Text = "(FuelType)";
+            this.lblFuelType.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblFuelType.AutoSize = true;
+            this.lblFuelType.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFuelType.Location = new System.Drawing.Point(139, 737);
+            this.lblFuelType.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblFuelType.Name = "lblFuelType";
+            this.lblFuelType.Size = new System.Drawing.Size(104, 23);
+            this.lblFuelType.TabIndex = 79;
+            this.lblFuelType.Text = "(FuelType)";
             // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(277, 697);
+            this.label12.Location = new System.Drawing.Point(20, 737);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(102, 23);
@@ -393,7 +410,7 @@
             this.lblTransmission.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblTransmission.AutoSize = true;
             this.lblTransmission.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransmission.Location = new System.Drawing.Point(22, 732);
+            this.lblTransmission.Location = new System.Drawing.Point(164, 690);
             this.lblTransmission.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblTransmission.Name = "lblTransmission";
             this.lblTransmission.Size = new System.Drawing.Size(138, 23);
@@ -405,7 +422,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(22, 697);
+            this.label11.Location = new System.Drawing.Point(20, 690);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(130, 23);
@@ -417,7 +434,7 @@
             this.lblPlateNumber.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblPlateNumber.AutoSize = true;
             this.lblPlateNumber.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlateNumber.Location = new System.Drawing.Point(20, 646);
+            this.lblPlateNumber.Location = new System.Drawing.Point(164, 593);
             this.lblPlateNumber.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
             this.lblPlateNumber.Name = "lblPlateNumber";
             this.lblPlateNumber.Size = new System.Drawing.Size(137, 23);
@@ -429,43 +446,43 @@
             this.label90.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label90.AutoSize = true;
             this.label90.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.Location = new System.Drawing.Point(20, 611);
+            this.label90.Location = new System.Drawing.Point(20, 593);
             this.label90.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(135, 23);
             this.label90.TabIndex = 74;
             this.label90.Text = "Plate Number:";
             // 
-            // label9
+            // lblCarName
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 565);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(56, 23);
-            this.label9.TabIndex = 73;
-            this.label9.Text = "(Car)";
+            this.lblCarName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblCarName.AutoSize = true;
+            this.lblCarName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarName.Location = new System.Drawing.Point(80, 502);
+            this.lblCarName.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblCarName.Name = "lblCarName";
+            this.lblCarName.Size = new System.Drawing.Size(56, 23);
+            this.lblCarName.TabIndex = 73;
+            this.lblCarName.Text = "(Car)";
             // 
-            // label5
+            // lblRentalPlan
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 483);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 23);
-            this.label5.TabIndex = 72;
-            this.label5.Text = "(RentalPlan)";
+            this.lblRentalPlan.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblRentalPlan.AutoSize = true;
+            this.lblRentalPlan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalPlan.Location = new System.Drawing.Point(150, 547);
+            this.lblRentalPlan.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblRentalPlan.Name = "lblRentalPlan";
+            this.lblRentalPlan.Size = new System.Drawing.Size(118, 23);
+            this.lblRentalPlan.TabIndex = 72;
+            this.lblRentalPlan.Text = "(RentalPlan)";
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 530);
+            this.label4.Location = new System.Drawing.Point(20, 502);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 23);
@@ -477,7 +494,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(20, 448);
+            this.label7.Location = new System.Drawing.Point(20, 547);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 23);
@@ -557,8 +574,9 @@
             // pnlContractDetails
             // 
             this.pnlContractDetails.BackColor = System.Drawing.Color.White;
+            this.pnlContractDetails.Controls.Add(this.lblBaseRate);
             this.pnlContractDetails.Controls.Add(this.btnCreateContractPayment);
-            this.pnlContractDetails.Controls.Add(this.label29);
+            this.pnlContractDetails.Controls.Add(this.lblTotalDue);
             this.pnlContractDetails.Controls.Add(this.label28);
             this.pnlContractDetails.Controls.Add(this.pnlSecurityDeposit);
             this.pnlContractDetails.Controls.Add(this.lblDays);
@@ -593,17 +611,17 @@
             this.btnCreateContractPayment.Text = "CREATE CONTRACT / ACCEPT PAYMENT";
             this.btnCreateContractPayment.UseVisualStyleBackColor = true;
             // 
-            // label29
+            // lblTotalDue
             // 
-            this.label29.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(18, 652);
-            this.label29.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(186, 31);
-            this.label29.TabIndex = 89;
-            this.label29.Text = "- - - - - - - - - -";
+            this.lblTotalDue.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTotalDue.AutoSize = true;
+            this.lblTotalDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDue.Location = new System.Drawing.Point(18, 652);
+            this.lblTotalDue.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
+            this.lblTotalDue.Name = "lblTotalDue";
+            this.lblTotalDue.Size = new System.Drawing.Size(186, 31);
+            this.lblTotalDue.TabIndex = 89;
+            this.lblTotalDue.Text = "- - - - - - - - - -";
             // 
             // label28
             // 
@@ -620,25 +638,25 @@
             // pnlSecurityDeposit
             // 
             this.pnlSecurityDeposit.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlSecurityDeposit.Controls.Add(this.textBox2);
+            this.pnlSecurityDeposit.Controls.Add(this.txtSecurityDeposit);
             this.pnlSecurityDeposit.Location = new System.Drawing.Point(24, 515);
             this.pnlSecurityDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSecurityDeposit.Name = "pnlSecurityDeposit";
             this.pnlSecurityDeposit.Size = new System.Drawing.Size(429, 55);
             this.pnlSecurityDeposit.TabIndex = 87;
             // 
-            // textBox2
+            // txtSecurityDeposit
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtSecurityDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(13, 16);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(402, 23);
-            this.textBox2.TabIndex = 1;
+            this.txtSecurityDeposit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSecurityDeposit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSecurityDeposit.Location = new System.Drawing.Point(13, 16);
+            this.txtSecurityDeposit.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.txtSecurityDeposit.Name = "txtSecurityDeposit";
+            this.txtSecurityDeposit.Size = new System.Drawing.Size(402, 23);
+            this.txtSecurityDeposit.TabIndex = 1;
             // 
             // lblDays
             // 
@@ -801,17 +819,43 @@
             this.label34.Text = "Contract Details";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // picCustomer
+            // lblCarNo
             // 
-            this.picCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.picCustomer.Image = global::CarRentalSystem.Properties.Resources.SampleDriver_s_License;
-            this.picCustomer.Location = new System.Drawing.Point(123, 156);
-            this.picCustomer.Margin = new System.Windows.Forms.Padding(5);
-            this.picCustomer.Name = "picCustomer";
-            this.picCustomer.Size = new System.Drawing.Size(240, 152);
-            this.picCustomer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picCustomer.TabIndex = 71;
-            this.picCustomer.TabStop = false;
+            this.lblCarNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblCarNo.AutoSize = true;
+            this.lblCarNo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarNo.Location = new System.Drawing.Point(122, 457);
+            this.lblCarNo.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblCarNo.Name = "lblCarNo";
+            this.lblCarNo.Size = new System.Drawing.Size(86, 23);
+            this.lblCarNo.TabIndex = 83;
+            this.lblCarNo.Text = "(CarNo.)";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(20, 457);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 23);
+            this.label8.TabIndex = 82;
+            this.label8.Text = "Car No.:";
+            // 
+            // lblBaseRate
+            // 
+            this.lblBaseRate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblBaseRate.AutoSize = true;
+            this.lblBaseRate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseRate.Location = new System.Drawing.Point(261, 392);
+            this.lblBaseRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseRate.Name = "lblBaseRate";
+            this.lblBaseRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblBaseRate.Size = new System.Drawing.Size(88, 23);
+            this.lblBaseRate.TabIndex = 91;
+            this.lblBaseRate.Text = "baserate";
+            this.lblBaseRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // modal_CreateContract
             // 
@@ -830,6 +874,7 @@
             this.Text = "modal_CreateContract";
             this.pnlCustomer.ResumeLayout(false);
             this.pnlCustomer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).EndInit();
             this.pnlSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnlRentalPlanVehicle.ResumeLayout(false);
@@ -841,7 +886,6 @@
             this.pnlSecurityDeposit.PerformLayout();
             this.pnlReturnDate.ResumeLayout(false);
             this.pnlStartDate.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -875,14 +919,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblPlateNumber;
         private System.Windows.Forms.Label label90;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCarName;
+        private System.Windows.Forms.Label lblRentalPlan;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblSeats;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblFuelType;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel pnlContractDetails;
         private System.Windows.Forms.Panel pnlReturnDate;
@@ -900,11 +944,14 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnCreateContractPayment;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblTotalDue;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox cbxSearch;
         private System.Windows.Forms.Panel pnlSecurityDeposit;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtSecurityDeposit;
         private System.Windows.Forms.PictureBox picCustomer;
+        private System.Windows.Forms.Label lblCarNo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblBaseRate;
     }
 }
