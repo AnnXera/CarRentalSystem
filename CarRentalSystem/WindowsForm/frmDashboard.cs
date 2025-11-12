@@ -46,8 +46,8 @@ namespace CarRentalSystem.WindowsForm
                 new UIHelper.SidebarButtonConfig
                 {
                     Button = btnFleet,
-                    ActiveIcon = Properties.Resources.Icon___Fleet___Default,
-                    InactiveIcon = Properties.Resources.Icon___Fleet___Active
+                    ActiveIcon = Properties.Resources.Icon___Cars___Default,
+                    InactiveIcon = Properties.Resources.Icon___Cars__Active
                 },
                 new UIHelper.SidebarButtonConfig
                 {
@@ -136,11 +136,11 @@ namespace CarRentalSystem.WindowsForm
 
         private void btnFleet_Click(object sender, EventArgs e)
         {
-            lblDashboard.Text = "Fleet Management";
+            lblDashboard.Text = "Car Management";
 
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnFleet, Properties.Resources.Icon___Fleet___Default);
+            UIHelper.SetActiveButton(btnFleet, Properties.Resources.Icon___Cars___Default);
 
             // Hide existing dashboard panels
             ShowDashboardPanels(false);

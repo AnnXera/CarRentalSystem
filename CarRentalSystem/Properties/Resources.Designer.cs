@@ -93,6 +93,26 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Icon___Cars___Default {
+            get {
+                object obj = ResourceManager.GetObject("Icon - Cars - Default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon___Cars__Active {
+            get {
+                object obj = ResourceManager.GetObject("Icon - Cars- Active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon___Customer___Active {
             get {
                 object obj = ResourceManager.GetObject("Icon - Customer - Active", resourceCulture);

@@ -259,6 +259,8 @@
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />
     <Content Include="Resources\EditIcon.png" />
+    <Content Include="Resources\Icon - Cars - Default.png" />
+    <Content Include="Resources\Icon - Cars- Active.png" />
     <Content Include="Resources\Icon - Customer - Active.png" />
     <Content Include="Resources\Icon - Customer - Default.png" />
     <Content Include="Resources\Icon - Dashboard - Active.png" />
