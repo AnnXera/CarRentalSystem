@@ -18,6 +18,7 @@ namespace CarRentalSystem.WindowsForm
             InitializeComponent();
             LoginAccess();
             LoadPanels();
+            Timer();
         }
 
         private void LoginAccess()
@@ -33,11 +34,31 @@ namespace CarRentalSystem.WindowsForm
             }
         }
 
+        private void Timer()
+        {
+            Timer timer = new Timer();
+            timer.Interval = 1000; // 1 second
+            timer.Tick += (s, e) =>
+            {
+                lblTodayDate.Text = DateTime.Now.ToString("ddd, MMM dd, yyyy, hh:mm tt");
+            };
+            timer.Start();
+        }
+
         private void LoadPanels()
         {
             var panels = new List<Panel> 
             { 
-                pnlQuickActions
+                pnlQuickActions,
+                pnlOverView,
+                pnlAdminOverview,
+                pnlAvgDailyRate,
+                pnlFleetUtilization,
+                pnlOverviewVehicles,
+                pnlRentalsDue,
+                pnlReturnsDueToday,
+                pnlRevenue,
+                pnlVehiclesAvailable
             };
 
             UIHelper.ApplyRoundedPanels(panels, 8, false);

@@ -23,13 +23,15 @@ namespace CarRentalSystem.Utils
             // Admin can access everything
             if (loggedInEmployee.Role == "Admin")
             {
-                ShowControlIfExists(form, "btnEmployeeManagement", true);
+                ShowControlIfExists(form, "pnlAdminOverview", true);
                 ShowControlIfExists(form, "btnRentalPlans", true);
                 ShowControlIfExists(form, "btnSystemLog", true);
+                ShowControlIfExists(form, "btnUserMgmt", true);
             }
             else
             {
                 // Hide restricted buttons for non-admin users
+                ShowControlIfExists(form, "pnlAdminOverview", false);
                 ShowControlIfExists(form, "btnUserMgmt", false);
                 ShowControlIfExists(form, "btnRentalPlans", false);
                 ShowControlIfExists(form, "btnSystemLog", false);
