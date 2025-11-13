@@ -48,7 +48,7 @@ namespace CarRentalSystem.Utils
             {
                 if (cfg.Button == null || cfg.InactiveIcon == null) continue;
 
-                cfg.Button.BackColor = Color.White;
+                cfg.Button.BackColor = Color.FromArgb(24, 24, 24);
                 cfg.Button.Image = cfg.InactiveIcon;
             }
         }
@@ -57,7 +57,7 @@ namespace CarRentalSystem.Utils
         {
             if (activeButton == null) return;
 
-            activeButton.BackColor = Color.FromArgb(19, 42, 63); 
+            activeButton.BackColor = Color.FromArgb(0, 108, 245); 
             if (activeIcon != null)
                 activeButton.Image = activeIcon;
         }

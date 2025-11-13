@@ -265,25 +265,30 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\AddIcon.png" />
     <Content Include="Resources\Car Logo 24x24.png" />
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />
     <Content Include="Resources\EditIcon.png" />
-    <Content Include="Resources\Icon - Cars - Default.png" />
-    <Content Include="Resources\Icon - Cars- Active.png" />
+    <Content Include="Resources\Icon - Cars - Default %281%29.png" />
+    <Content Include="Resources\Icon - Cars- Active %281%29.png" />
     <Content Include="Resources\Icon - Customer - Active.png" />
-    <Content Include="Resources\Icon - Customer - Default.png" />
+    <Content Include="Resources\Icon - Customers- Default.png" />
     <Content Include="Resources\Icon - Dashboard - Active.png" />
     <Content Include="Resources\Icon - Dashboard - Default.png" />
-    <Content Include="Resources\Icon - Fleet - Active.png" />
-    <Content Include="Resources\Icon - Fleet - Default.png" />
     <Content Include="Resources\Icon - Logout.png" />
     <Content Include="Resources\Icon - New Rental.png" />
     <Content Include="Resources\Icon - Process Return.png" />
+    <Content Include="Resources\Icon - RentalPlans - Active.png" />
+    <Content Include="Resources\Icon - RentalPlans - Default.png" />
     <Content Include="Resources\Icon - Reports - Active.png" />
-    <Content Include="Resources\Icon - Reports - Inactive.png" />
+    <Content Include="Resources\Icon - Reports - Default.png" />
+    <Content Include="Resources\Icon - SystemLog - Active.png" />
+    <Content Include="Resources\Icon - SystemLog - Default.png" />
     <Content Include="Resources\Icon - Transaction - Active.png" />
     <Content Include="Resources\Icon - Transaction - Default.png" />
+    <Content Include="Resources\Icon - UserManagement - Active.png" />
+    <Content Include="Resources\Icon - UserManagement - Default.png" />
     <Content Include="Resources\Icon Contract - Active.png" />
     <Content Include="Resources\Icon Contract - Inactive.png" />
     <Content Include="Resources\LocationIcon.png" />

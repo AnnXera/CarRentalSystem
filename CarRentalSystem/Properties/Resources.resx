@@ -163,4 +163,52 @@
   <data name="Car Logo 24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Car Logo 24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Icon - Dashboard - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Dashboard - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Dashboard - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Dashboard - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Cars - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Cars - Default (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Cars- Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Cars- Active (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Customer - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Customer - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Customers- Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Customers- Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - RentalPlans - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - RentalPlans - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - RentalPlans - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - RentalPlans - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Reports - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Reports - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Reports - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Reports - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - SystemLog - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - SystemLog - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - SystemLog - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - SystemLog - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Transaction - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Transaction - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - Transaction - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - Transaction - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - UserManagement - Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - UserManagement - Active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon - UserManagement - Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon - UserManagement - Default.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

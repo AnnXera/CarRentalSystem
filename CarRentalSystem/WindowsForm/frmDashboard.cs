@@ -19,44 +19,11 @@ namespace CarRentalSystem.WindowsForm
         {
             InitializeComponent();
 
-            sidebarButtons = new List<UIHelper.SidebarButtonConfig>
-            {
-                new UIHelper.SidebarButtonConfig
-                {
-                    Button = btnDashboard,
-                    ActiveIcon = Properties.Resources,
-                    InactiveIcon = Properties.Resources
-                },
-                new UIHelper.SidebarButtonConfig
-                {
-                    Button = btnCustomer,
-                    ActiveIcon = Properties.Resources.Icon___Customer___Default,
-                    InactiveIcon = Properties.Resources.Icon___Customer___Active
-                },
-                new UIHelper.SidebarButtonConfig
-                {
-                    Button = btnFleet,
-                    ActiveIcon = Properties.Resources.Icon___Cars___Default,
-                    InactiveIcon = Properties.Resources.Icon___Cars__Active
-                },
-                new UIHelper.SidebarButtonConfig
-                {
-                    Button = btnTransactions,
-                    ActiveIcon = Properties.Resources.Icon_Contract___Active,
-                    InactiveIcon = Properties.Resources.Icon_Contract___Inactive
-                },
-                new UIHelper.SidebarButtonConfig
-                {
-                    Button = btnReport,
-                    ActiveIcon = Properties.Resources.Icon___Reports___Active,
-                    InactiveIcon = Properties.Resources.Icon___Reports___Inactive
-                }
-            };
+            LoadButtons();
 
-            // highlight Dashboard as active on startup
             if (sidebarButtons == null) return;
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnDashboard, Properties.Resources.Icon___Dashboard___Default);
+            UIHelper.SetActiveButton(btnDashboard, Properties.Resources.Icon___Dashboard___Active);
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
@@ -80,11 +47,49 @@ namespace CarRentalSystem.WindowsForm
             dashboardPanel.Show();
         }
 
+        private void LoadButtons()
+        {
+            sidebarButtons = new List<UIHelper.SidebarButtonConfig>
+            {
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnDashboard,
+                    ActiveIcon = Properties.Resources.Icon___Dashboard___Active,
+                    InactiveIcon = Properties.Resources.Icon___Dashboard___Default,
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnCustomer,
+                    ActiveIcon = Properties.Resources.Icon___Customer___Active,
+                    InactiveIcon = Properties.Resources.Icon___Customers__Default
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnFleet,
+                    ActiveIcon = Properties.Resources.Icon___Cars__Active,
+                    InactiveIcon = Properties.Resources.Icon___Cars___Default
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnTransactions,
+                    ActiveIcon = Properties.Resources.Icon___Transaction___Active,
+                    InactiveIcon = Properties.Resources.Icon___Transaction___Default
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnReport,
+                    ActiveIcon = Properties.Resources.Icon___Reports___Active,
+                    InactiveIcon = Properties.Resources.Icon___Reports___Default
+                }
+            };
+
+            btnTransactions.BackgroundImageLayout = ImageLayout.Zoom;
+        }
         private void btnTransactions_Click(object sender, EventArgs e)
         {
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnTransactions, Properties.Resources.Icon_Contract___Active);
+            UIHelper.SetActiveButton(btnTransactions, Properties.Resources.Icon___Transaction___Active);
 
             pnlMainDashboard.Controls
                 .OfType<frmContractsManagement>()
@@ -109,7 +114,7 @@ namespace CarRentalSystem.WindowsForm
         {
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnFleet, Properties.Resources.Icon___Cars___Default);
+            UIHelper.SetActiveButton(btnFleet, Properties.Resources.Icon___Cars__Active);
 
             // If there's already a fleet form, remove it to avoid duplicates
             pnlMainDashboard.Controls
@@ -134,7 +139,7 @@ namespace CarRentalSystem.WindowsForm
         {
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnCustomer, Properties.Resources.Icon___Customer___Default);
+            UIHelper.SetActiveButton(btnCustomer, Properties.Resources.Icon___Customer___Active);
 
             // If there's already a customer form, remove it to avoid duplicates
             pnlMainDashboard.Controls
