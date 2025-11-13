@@ -64,6 +64,7 @@
             this.btnCustomerAddEdit.Text = "New Contract";
             this.btnCustomerAddEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCustomerAddEdit.UseVisualStyleBackColor = true;
+            this.btnCustomerAddEdit.Click += new System.EventHandler(this.btnCustomerAddEdit_Click);
             // 
             // label1
             // 

@@ -42,5 +42,10 @@ namespace CarRentalSystem.WindowsForm
 
             UIHelper.ApplyRoundedPanels(panels, 8, false);
         }
+
+        private void btnCustomerAddEdit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
