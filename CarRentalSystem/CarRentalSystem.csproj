@@ -153,6 +153,12 @@
     <Compile Include="WindowsForm\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\frmMainDashboardPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\frmMainDashboardPanel.Designer.cs">
+      <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsForm\Modal\modal_AddEditCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     <EmbeddedResource Include="WindowsForm\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\frmMainDashboardPanel.resx">
+      <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\modal_AddEditCar.resx">
       <DependentUpon>modal_AddEditCar.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +265,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Car Logo 24x24.png" />
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />
     <Content Include="Resources\EditIcon.png" />
@@ -268,6 +278,8 @@
     <Content Include="Resources\Icon - Fleet - Active.png" />
     <Content Include="Resources\Icon - Fleet - Default.png" />
     <Content Include="Resources\Icon - Logout.png" />
+    <Content Include="Resources\Icon - New Rental.png" />
+    <Content Include="Resources\Icon - Process Return.png" />
     <Content Include="Resources\Icon - Reports - Active.png" />
     <Content Include="Resources\Icon - Reports - Inactive.png" />
     <Content Include="Resources\Icon - Transaction - Active.png" />

@@ -19,23 +19,13 @@ namespace CarRentalSystem.WindowsForm
         {
             InitializeComponent();
 
-            var loggedInEmployee = SessionManager.LoggedInEmployee;
-            AccessManager.ApplyAccessRules(this, loggedInEmployee);
-
-            if (SessionManager.IsLoggedIn)
-            {
-                var emp = SessionManager.LoggedInEmployee;
-                lblUserName.Text = emp.Username;
-                lblRole.Text = emp.Role;
-            }
-
             sidebarButtons = new List<UIHelper.SidebarButtonConfig>
             {
                 new UIHelper.SidebarButtonConfig
                 {
                     Button = btnDashboard,
-                    ActiveIcon = Properties.Resources.Icon___Dashboard___Default,
-                    InactiveIcon = Properties.Resources.Icon___Dashboard___Active
+                    ActiveIcon = Properties.Resources,
+                    InactiveIcon = Properties.Resources
                 },
                 new UIHelper.SidebarButtonConfig
                 {
@@ -77,43 +67,24 @@ namespace CarRentalSystem.WindowsForm
             btnTransactions.Text = "";
             btnReport.Text = "";
 
-            lblDashboard.Text = "Dashboard";
-
-            // Group all dashboard panels and apply design at once
-            var panels = new List<Panel>
+            frmMainDashboardPanel dashboardPanel = new frmMainDashboardPanel
             {
-                pnlMainDashboard,
-                pnlFleetOverView,
-                pnlAdmin,
-                pnlAverageDailyRate,
-                pnlFleetOverView,
-                pnlFleetUtilization,
-                pnlOverdueVehicles,
-                pnlRentalsDueToday,
-                pnlReturnsDueToday,
-                pnlRevenue,
-                pnlVehiclesAvailable
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
             };
 
-            UIHelper.ApplyRoundedPanels(panels, 15, false);
-        }
-
-        private void ShowDashboardPanels(bool visible)
-        {
-            pnlAdmin.Visible = visible;
-            pnlFleetOverView.Visible = visible;
+            // Add the form to your main container panel
+            pnlMainDashboard.Controls.Add(dashboardPanel);
+            dashboardPanel.BringToFront();
+            dashboardPanel.Show();
         }
 
         private void btnTransactions_Click(object sender, EventArgs e)
         {
-            lblDashboard.Text = "Contracts";
-
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
             UIHelper.SetActiveButton(btnTransactions, Properties.Resources.Icon_Contract___Active);
-
-            // Hide existing dashboard panels
-            ShowDashboardPanels(false);
 
             pnlMainDashboard.Controls
                 .OfType<frmContractsManagement>()
@@ -136,14 +107,9 @@ namespace CarRentalSystem.WindowsForm
 
         private void btnFleet_Click(object sender, EventArgs e)
         {
-            lblDashboard.Text = "Car Management";
-
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
             UIHelper.SetActiveButton(btnFleet, Properties.Resources.Icon___Cars___Default);
-
-            // Hide existing dashboard panels
-            ShowDashboardPanels(false);
 
             // If there's already a fleet form, remove it to avoid duplicates
             pnlMainDashboard.Controls
@@ -166,14 +132,9 @@ namespace CarRentalSystem.WindowsForm
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            lblDashboard.Text = "Customer Management";
-
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
             UIHelper.SetActiveButton(btnCustomer, Properties.Resources.Icon___Customer___Default);
-
-            // Hide existing dashboard panels
-            ShowDashboardPanels(false);
 
             // If there's already a customer form, remove it to avoid duplicates
             pnlMainDashboard.Controls
@@ -196,20 +157,26 @@ namespace CarRentalSystem.WindowsForm
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            lblDashboard.Text = "Dashboard";
-
             UIHelper.ResetSidebarButtons(sidebarButtons);
             UIHelper.SetActiveButton(btnDashboard, Properties.Resources.Icon___Dashboard___Default);
 
             // Remove any subforms like customer management
             pnlMainDashboard.Controls
-                .OfType<Form>()
-                .Where(f => f.Name != "pnlAdmin" && f.Name != "pnlFleetOverView")
+                .OfType<frmMainDashboardPanel>()
                 .ToList()
                 .ForEach(f => pnlMainDashboard.Controls.Remove(f));
 
+            frmMainDashboardPanel dashboardPanel = new frmMainDashboardPanel
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
             // Show the dashboard panels again
-            ShowDashboardPanels(true);
+            pnlMainDashboard.Controls.Add(dashboardPanel);
+            dashboardPanel.BringToFront();
+            dashboardPanel.Show();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

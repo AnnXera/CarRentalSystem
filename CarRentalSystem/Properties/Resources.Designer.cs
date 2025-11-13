@@ -63,6 +63,16 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Car_Logo_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("Car Logo 24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Car_rental_logo {
             get {
                 object obj = ResourceManager.GetObject("Car rental logo", resourceCulture);
@@ -133,26 +143,6 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Icon___Dashboard___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Dashboard - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Dashboard___Default {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Dashboard - Default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Icon___Fleet___Active {
             get {
                 object obj = ResourceManager.GetObject("Icon - Fleet - Active", resourceCulture);
@@ -176,6 +166,26 @@ namespace CarRentalSystem.Properties {
         internal static System.Drawing.Bitmap Icon___Logout {
             get {
                 object obj = ResourceManager.GetObject("Icon - Logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon___New_Rental {
+            get {
+                object obj = ResourceManager.GetObject("Icon - New Rental", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon___Process_Return {
+            get {
+                object obj = ResourceManager.GetObject("Icon - Process Return", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

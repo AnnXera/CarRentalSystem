@@ -132,6 +132,5 @@ namespace CarRentalSystem.Utils
                 pnl.Invalidate(); // force repaint immediately
             }
         }
-
     }
 }
