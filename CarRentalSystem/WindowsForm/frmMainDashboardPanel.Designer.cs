@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlQuickActions = new System.Windows.Forms.Panel();
-            this.btnCustomerAddEdit = new System.Windows.Forms.Button();
+            this.btnNewContract = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -61,7 +64,13 @@
             this.pnlAvgDailyRate = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dgvActiveRentals = new System.Windows.Forms.DataGridView();
+            this.pnlSearchActiveRentals = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.txtSearchActiveRentals = new System.Windows.Forms.TextBox();
             this.pnlQuickActions.SuspendLayout();
+            this.pnlOverView.SuspendLayout();
             this.pnlVehiclesAvailable.SuspendLayout();
             this.pnlRentalsDue.SuspendLayout();
             this.pnlReturnsDueToday.SuspendLayout();
@@ -70,6 +79,9 @@
             this.pnlRevenue.SuspendLayout();
             this.pnlFleetUtilization.SuspendLayout();
             this.pnlAvgDailyRate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).BeginInit();
+            this.pnlSearchActiveRentals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlQuickActions
@@ -77,7 +89,7 @@
             this.pnlQuickActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlQuickActions.BackColor = System.Drawing.Color.White;
-            this.pnlQuickActions.Controls.Add(this.btnCustomerAddEdit);
+            this.pnlQuickActions.Controls.Add(this.btnNewContract);
             this.pnlQuickActions.Controls.Add(this.label1);
             this.pnlQuickActions.Controls.Add(this.lblRole);
             this.pnlQuickActions.Controls.Add(this.lblUserName);
@@ -86,21 +98,21 @@
             this.pnlQuickActions.Size = new System.Drawing.Size(790, 137);
             this.pnlQuickActions.TabIndex = 0;
             // 
-            // btnCustomerAddEdit
+            // btnNewContract
             // 
-            this.btnCustomerAddEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCustomerAddEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomerAddEdit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomerAddEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCustomerAddEdit.Location = new System.Drawing.Point(20, 67);
-            this.btnCustomerAddEdit.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCustomerAddEdit.Name = "btnCustomerAddEdit";
-            this.btnCustomerAddEdit.Size = new System.Drawing.Size(208, 48);
-            this.btnCustomerAddEdit.TabIndex = 73;
-            this.btnCustomerAddEdit.Text = "New Contract";
-            this.btnCustomerAddEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCustomerAddEdit.UseVisualStyleBackColor = true;
-            this.btnCustomerAddEdit.Click += new System.EventHandler(this.btnCustomerAddEdit_Click);
+            this.btnNewContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNewContract.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewContract.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnNewContract.Location = new System.Drawing.Point(20, 67);
+            this.btnNewContract.Margin = new System.Windows.Forms.Padding(5);
+            this.btnNewContract.Name = "btnNewContract";
+            this.btnNewContract.Size = new System.Drawing.Size(208, 48);
+            this.btnNewContract.TabIndex = 73;
+            this.btnNewContract.Text = "New Contract";
+            this.btnNewContract.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNewContract.UseVisualStyleBackColor = true;
+            this.btnNewContract.Click += new System.EventHandler(this.btnNewContract_Click);
             // 
             // label1
             // 
@@ -171,6 +183,9 @@
             this.pnlOverView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlOverView.BackColor = System.Drawing.Color.White;
+            this.pnlOverView.Controls.Add(this.pnlSearchActiveRentals);
+            this.pnlOverView.Controls.Add(this.dgvActiveRentals);
+            this.pnlOverView.Controls.Add(this.label13);
             this.pnlOverView.Location = new System.Drawing.Point(788, 187);
             this.pnlOverView.Name = "pnlOverView";
             this.pnlOverView.Size = new System.Drawing.Size(790, 841);
@@ -439,6 +454,104 @@
             this.label12.TabIndex = 7;
             this.label12.Text = "Avg Daily Rate";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(16, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 24);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Active Rentals";
+            // 
+            // dgvActiveRentals
+            // 
+            this.dgvActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvActiveRentals.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvActiveRentals.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvActiveRentals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvActiveRentals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvActiveRentals.EnableHeadersVisualStyles = false;
+            this.dgvActiveRentals.Location = new System.Drawing.Point(20, 132);
+            this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvActiveRentals.MultiSelect = false;
+            this.dgvActiveRentals.Name = "dgvActiveRentals";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvActiveRentals.RowHeadersVisible = false;
+            this.dgvActiveRentals.RowHeadersWidth = 51;
+            this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
+            this.dgvActiveRentals.RowTemplate.Height = 40;
+            this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvActiveRentals.Size = new System.Drawing.Size(751, 690);
+            this.dgvActiveRentals.TabIndex = 75;
+            this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
+            // 
+            // pnlSearchActiveRentals
+            // 
+            this.pnlSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlSearchActiveRentals.Controls.Add(this.pictureBox4);
+            this.pnlSearchActiveRentals.Controls.Add(this.txtSearchActiveRentals);
+            this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
+            this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
+            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(751, 55);
+            this.pnlSearchActiveRentals.TabIndex = 76;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.SearchIcon;
+            this.pictureBox4.Location = new System.Drawing.Point(11, 9);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(40, 37);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
+            // 
+            // txtSearchActiveRentals
+            // 
+            this.txtSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearchActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearchActiveRentals.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
+            this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
+            this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
+            this.txtSearchActiveRentals.Size = new System.Drawing.Size(670, 28);
+            this.txtSearchActiveRentals.TabIndex = 1;
+            // 
             // frmMainDashboardPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -463,6 +576,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlQuickActions.ResumeLayout(false);
             this.pnlQuickActions.PerformLayout();
+            this.pnlOverView.ResumeLayout(false);
+            this.pnlOverView.PerformLayout();
             this.pnlVehiclesAvailable.ResumeLayout(false);
             this.pnlVehiclesAvailable.PerformLayout();
             this.pnlRentalsDue.ResumeLayout(false);
@@ -479,6 +594,10 @@
             this.pnlFleetUtilization.PerformLayout();
             this.pnlAvgDailyRate.ResumeLayout(false);
             this.pnlAvgDailyRate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).EndInit();
+            this.pnlSearchActiveRentals.ResumeLayout(false);
+            this.pnlSearchActiveRentals.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,7 +609,7 @@
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnCustomerAddEdit;
+        private System.Windows.Forms.Button btnNewContract;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTodayDate;
@@ -519,5 +638,10 @@
         private System.Windows.Forms.Panel pnlAvgDailyRate;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView dgvActiveRentals;
+        private System.Windows.Forms.Panel pnlSearchActiveRentals;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TextBox txtSearchActiveRentals;
     }
 }

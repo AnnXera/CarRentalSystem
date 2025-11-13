@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Utils;
+using CarRentalSystem.WindowsForm.Modal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,15 +59,24 @@ namespace CarRentalSystem.WindowsForm
                 pnlRentalsDue,
                 pnlReturnsDueToday,
                 pnlRevenue,
-                pnlVehiclesAvailable
+                pnlVehiclesAvailable,
+                pnlSearchActiveRentals,
             };
 
             UIHelper.ApplyRoundedPanels(panels, 8, false);
         }
 
-        private void btnCustomerAddEdit_Click(object sender, EventArgs e)
+        private void btnNewContract_Click(object sender, EventArgs e)
         {
+            using (var CreateContract = new modal_CreateContract())
+            {
+                CreateContract.ShowDialog();
+            }
+        }
 
+        private void dgvActiveRentals_Paint(object sender, PaintEventArgs e)
+        {
+            UIHelper.DrawRoundedControl(sender, e, 8);
         }
     }
 }
