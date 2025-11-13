@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Code\CarParts.cs" />
     <Compile Include="Code\Cars.cs" />
+    <Compile Include="Code\Contracts.cs" />
     <Compile Include="Code\Customer.cs" />
     <Compile Include="Code\Employee.cs" />
     <Compile Include="Code\Enum\enum_Car.cs" />
