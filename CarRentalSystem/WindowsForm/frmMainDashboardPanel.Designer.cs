@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlQuickActions = new System.Windows.Forms.Panel();
+            this.btnCustomerAddEdit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRole = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.btnCustomerAddEdit = new System.Windows.Forms.Button();
             this.pnlQuickActions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,22 @@
             this.pnlQuickActions.Name = "pnlQuickActions";
             this.pnlQuickActions.Size = new System.Drawing.Size(638, 162);
             this.pnlQuickActions.TabIndex = 0;
+            // 
+            // btnCustomerAddEdit
+            // 
+            this.btnCustomerAddEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCustomerAddEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomerAddEdit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomerAddEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnCustomerAddEdit.Location = new System.Drawing.Point(20, 84);
+            this.btnCustomerAddEdit.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCustomerAddEdit.Name = "btnCustomerAddEdit";
+            this.btnCustomerAddEdit.Size = new System.Drawing.Size(274, 54);
+            this.btnCustomerAddEdit.TabIndex = 73;
+            this.btnCustomerAddEdit.Text = "New Contract";
+            this.btnCustomerAddEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCustomerAddEdit.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -80,21 +96,6 @@
             this.lblUserName.Size = new System.Drawing.Size(155, 33);
             this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "UserName";
-            // 
-            // btnCustomerAddEdit
-            // 
-            this.btnCustomerAddEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCustomerAddEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomerAddEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomerAddEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCustomerAddEdit.Location = new System.Drawing.Point(20, 84);
-            this.btnCustomerAddEdit.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
-            this.btnCustomerAddEdit.Name = "btnCustomerAddEdit";
-            this.btnCustomerAddEdit.Size = new System.Drawing.Size(274, 54);
-            this.btnCustomerAddEdit.TabIndex = 73;
-            this.btnCustomerAddEdit.Text = "New Contract";
-            this.btnCustomerAddEdit.UseVisualStyleBackColor = true;
             // 
             // frmMainDashboardPanel
             // 
