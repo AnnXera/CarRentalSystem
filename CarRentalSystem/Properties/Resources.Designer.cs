@@ -103,66 +103,6 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Icon___Cars___Default {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Cars - Default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Cars__Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Cars- Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Customer___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Customer - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Customer___Default {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Customer - Default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Fleet___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Fleet - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Fleet___Default {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Fleet - Default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Icon___Logout {
             get {
                 object obj = ResourceManager.GetObject("Icon - Logout", resourceCulture);
@@ -186,66 +126,6 @@ namespace CarRentalSystem.Properties {
         internal static System.Drawing.Bitmap Icon___Process_Return {
             get {
                 object obj = ResourceManager.GetObject("Icon - Process Return", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Reports___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Reports - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Reports___Inactive {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Reports - Inactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Transaction___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Transaction - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon___Transaction___Default {
-            get {
-                object obj = ResourceManager.GetObject("Icon - Transaction - Default", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon_Contract___Active {
-            get {
-                object obj = ResourceManager.GetObject("Icon Contract - Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Icon_Contract___Inactive {
-            get {
-                object obj = ResourceManager.GetObject("Icon Contract - Inactive", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
