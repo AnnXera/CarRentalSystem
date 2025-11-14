@@ -27,6 +27,8 @@ namespace CarRentalSystem.WindowsForm.Modal
             EventChanges();
 
             KeyHandlers();
+
+            this.Text = "Create New Contract";
         }
 
         private void LoadDesigns()
