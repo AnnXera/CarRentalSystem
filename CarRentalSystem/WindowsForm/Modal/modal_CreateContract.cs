@@ -21,32 +21,30 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_CreateContract()
         {
             InitializeComponent();
-            LoadPanles();
+            LoadDesigns();
             LoadComboBox();
             ClearLabel();
             EventChanges();
 
             KeyHandlers();
-
         }
 
-        private void LoadPanles() 
+        private void LoadDesigns()
         {
-            var panels = new List<Panel> 
-            { 
+            var panels = new List<Panel>
+            {
                 pnlContractDetails,
                 pnlCustomer,
-                pnlRentalPlanVehicle
-            };
-            UIHelper.ApplyRoundedPanels(panels, 8);
-
-            UIHelper.ApplyBorderInsideToPanels(new List<Panel>
-            {
+                pnlRentalPlanVehicle,
                 pnlSearch,
+                pnlPaymentMethod,
                 pnlReturnDate,
                 pnlSecurityDeposit,
                 pnlStartDate
-            });
+            };
+            UIHelper.ApplyRoundedPanels(panels, 8);
+
+            var dtpStartDate = UIHelper.CreateBorderlessDatePicker();
         }
 
         private void ClearLabel()
@@ -56,7 +54,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblGender.Text = "";
             lblPhoneNumber.Text = "";
             lblAddress.Text = "";
-            Image defaultImg = Properties.Resources.user_image_mockup;
+            Image defaultImg = Properties.Resources.SampleDriver_s_License;
             picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
 
             lblRentalPlan.Text = "";
@@ -72,7 +70,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblDays.Text = "0";
             lblBaseRate.Text = "0.00";
         }
-
 
         private void KeyHandlers()
         {
@@ -141,7 +138,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 }
                 else
                 {
-                    Image defaultImg = Properties.Resources.user_image_mockup; 
+                    Image defaultImg = Properties.Resources.SampleDriver_s_License; 
                     picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
                 }
 
@@ -155,7 +152,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblPhoneNumber.Text = "";
                 lblAddress.Text = "";
 
-                Image defaultImg = Properties.Resources.user_image_mockup;
+                Image defaultImg = Properties.Resources.SampleDriver_s_License;
                 picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
             }
         }
@@ -163,9 +160,9 @@ namespace CarRentalSystem.WindowsForm.Modal
         private void EventChanges()
         {
             cbxSearch.SelectedIndexChanged += (s, e) => SelectedCustomer();
+            txtSecurityDeposit.TextChanged += (s, e) => UpdateTotalDue();
             dtpStartDate.ValueChanged += (s, e) => UpdateTotalCost();
             dtpReturnDate.ValueChanged += (s, e) => UpdateTotalCost();
-            txtSecurityDeposit.TextChanged += (s, e) => UpdateTotalDue();
         }
 
         private void UpdateTotalCost()
@@ -175,13 +172,14 @@ namespace CarRentalSystem.WindowsForm.Modal
             int days = (dtpReturnDate.Value.Date - dtpStartDate.Value.Date).Days + 1;
             if (days < 1) days = 1;
 
-            lblDays.Text = $"{days}";
+            lblDays.Text = days.ToString();
 
             decimal totalBase = selectedRentalPlan.DailyRate * days;
             lblBaseRate.Text = $"{totalBase:C}";
 
             UpdateTotalDue();
         }
+
 
         private void UpdateTotalDue()
         {
@@ -266,6 +264,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 
                 DateTime startDate = dtpStartDate.Value.Date;
                 DateTime returnDate = dtpReturnDate.Value.Date;
+
                 int daysRented = (returnDate - startDate).Days + 1;
                 if (daysRented < 1) daysRented = 1;
 

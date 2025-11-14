@@ -272,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\AddIcon.png" />
+    <Content Include="Resources\CalendarIcon.png" />
     <Content Include="Resources\Car Logo 24x24.png" />
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />

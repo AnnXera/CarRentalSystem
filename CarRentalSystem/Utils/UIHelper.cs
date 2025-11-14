@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CarRentalSystem.Utils
 {
-    internal class UIHelper
+    public class UIHelper
     {
         // Draw border inside a control's client area
         public static void DrawBorderInside(Control control, PaintEventArgs e, int borderWidth = 1)
@@ -162,6 +162,45 @@ namespace CarRentalSystem.Utils
                     textBox.Font = placeholderFont;
                 }
             };
+        }
+
+        public static BorderlessDateTimePicker CreateBorderlessDatePicker(int width = 150, int height = 28)
+        {
+            var dtp = new BorderlessDateTimePicker
+            {
+                Format = DateTimePickerFormat.Short,
+                Width = width,
+                Height = height,
+                Font = new Font("Segoe UI", 10),
+                ForeColor = Color.Black,
+                BackColor = Color.White
+            };
+
+            return dtp;
+        }
+
+    }
+
+    public class BorderlessDateTimePicker : DateTimePicker
+    {
+        public BorderlessDateTimePicker()
+        {
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.CalendarForeColor = Color.Black;
+            this.CalendarMonthBackground = Color.White;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            // Text
+            using (SolidBrush brush = new SolidBrush(this.ForeColor))
+            {
+                e.Graphics.DrawString(this.Text, this.Font, brush, 0, 2);
+            }
+
+            // Drop-down arrow
+            Rectangle dropDownRect = new Rectangle(this.Width - 18, 0, 18, this.Height);
+            ControlPaint.DrawComboButton(e.Graphics, dropDownRect, ButtonState.Normal);
         }
     }
 }

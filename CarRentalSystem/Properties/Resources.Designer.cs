@@ -73,6 +73,16 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CalendarIcon {
+            get {
+                object obj = ResourceManager.GetObject("CalendarIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Car_Logo_24x24 {
             get {
                 object obj = ResourceManager.GetObject("Car Logo 24x24", resourceCulture);
