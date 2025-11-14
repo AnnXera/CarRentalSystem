@@ -89,7 +89,9 @@ namespace CarRentalSystem.WindowsForm.Modal
         public void LoadCars()
         {
             var factory = new CarFactory();
-            var cars = factory.ViewAll();
+            var cars = factory.ViewAll()
+                      .Where(c => c.Status == "Available") // <-- filter only available cars
+                      .ToList();
 
             dgvCars.AllowUserToAddRows = false;
             dgvCars.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

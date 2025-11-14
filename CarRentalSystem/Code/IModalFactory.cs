@@ -8,7 +8,7 @@ namespace CarRentalSystem.Code
 {
     internal interface IModalFactory<T>
     {
-        void Add(T entity);
+        long Add(T entity);
         void Edit(T entity);
         List<T> ViewAll();
     }

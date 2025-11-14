@@ -15,10 +15,13 @@ namespace CarRentalSystem.Database
             _db = SQLDBHelper.Instance;
         }
 
-        public void AddCarPart(CarParts part)
+        public long AddCarPart(CarParts part)
         {
-            string query = @"INSERT INTO CarParts (CarID, PartName, ReplacementCost, Status)
-                     VALUES (@CarID, @PartName, @ReplacementCost, @Status)";
+            string query = @"
+        INSERT INTO CarParts (CarID, PartName, ReplacementCost, Status)
+        VALUES (@CarID, @PartName, @ReplacementCost, @Status);
+        SELECT LAST_INSERT_ID();";  // Return the new ID
+
             try
             {
                 _db.Open();
@@ -28,11 +31,22 @@ namespace CarRentalSystem.Database
                     cmd.Parameters.AddWithValue("@PartName", part.PartName);
                     cmd.Parameters.AddWithValue("@ReplacementCost", part.ReplacementCost);
                     cmd.Parameters.AddWithValue("@Status", part.Status);
-                    cmd.ExecuteNonQuery();
+
+                    var newId = cmd.ExecuteScalar();
+                    return Convert.ToInt64(newId);
                 }
             }
-            finally { _db.Close(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding car part: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                _db.Close();
+            }
         }
+
 
         public void UpdateCarPart(CarParts part)
         {

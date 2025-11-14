@@ -23,9 +23,9 @@ namespace CarRentalSystem.Code
             _repo = new CarPartsRepository();
         }
 
-        public void Add(CarParts entity)
+        public long Add(CarParts entity)
         {
-            _repo.AddCarPart(entity);
+            return _repo.AddCarPart(entity);
         }
 
         public void Edit(CarParts entity)

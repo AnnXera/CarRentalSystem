@@ -37,9 +37,9 @@ namespace CarRentalSystem.Code
             return _repo.GetAllCustomers();
         }
 
-        public void Add(Customer cs)
+        public long Add(Customer cs)
         {
-            _repo.AddCustomer(cs);
+           return _repo.AddCustomer(cs);
         }
 
         public void Edit(Customer cs)
