@@ -77,7 +77,5 @@ namespace CarRentalSystem.Database
             _db.Close();
             return contracts;
         }
-
-
     }
 }
