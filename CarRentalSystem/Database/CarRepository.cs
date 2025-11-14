@@ -65,7 +65,7 @@ namespace CarRentalSystem.Database
                             EngineType = reader.GetString("EngineType"),
                             FuelType = reader.GetString("FuelType"),
                             Transmission = reader.GetString("Transmission"),
-                            CurrentMileage = reader.GetDecimal("CurrentMileage"),
+                            CurrentMileage = reader.GetInt64("CurrentMileage"),
                             ReplacementValue = reader.GetDecimal("ReplacementValue"),
                             Status = reader.GetString("Status"),
                         };
@@ -124,7 +124,7 @@ namespace CarRentalSystem.Database
                                 EngineType = reader.GetString("EngineType"),
                                 FuelType = reader.GetString("FuelType"),
                                 Transmission = reader.GetString("Transmission"),
-                                CurrentMileage = reader.GetDecimal("CurrentMileage"),
+                                CurrentMileage = reader.GetInt64("CurrentMileage"),
                                 ReplacementValue = reader.GetDecimal("ReplacementValue"),
                                 Status = reader.GetString("Status"),
                             };
@@ -294,30 +294,15 @@ namespace CarRentalSystem.Database
             }
         }
 
-        public void UpdateCarStatus(long carId, string status)
+        public void UpdateStatus(long carId, string status, MySqlTransaction transaction = null)
         {
-            string query = @"UPDATE Car SET Status = @Status WHERE CarID = @CarID;";
-
-            try
+            string sql = "UPDATE Car SET Status = @Status WHERE CarID = @CarID";
+            using (var cmd = new MySqlCommand(sql, _db.Connection, transaction))
             {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@CarID", carId);
-                    cmd.Parameters.AddWithValue("@Status", status);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error updating car status: " + ex.Message);
-            }
-            finally
-            {
-                _db.Close();
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@CarID", carId);
+                cmd.ExecuteNonQuery();
             }
         }
-
-
     }
 }

@@ -136,6 +136,16 @@ namespace CarRentalSystem.Utils
                 throw new Exception($"{fieldName} must be a valid year.");
         }
 
+        // ---------------- Specific Validations ----------------
+        public static void ValidateMinimumSecurityDeposit(string value, decimal minimum = 10000, string fieldName = "Security Deposit")
+        {
+            if (!decimal.TryParse(value, out decimal result))
+                throw new Exception($"{fieldName} must be a valid decimal number.");
+
+            if (result < minimum)
+                throw new Exception($"{fieldName} must be at least {minimum:C}.");
+        }
+
         // ---------------- Misc ----------------
         public static void ValidateRange(int value, int min, int max, string fieldName)
         {
@@ -147,6 +157,12 @@ namespace CarRentalSystem.Utils
         {
             if (date == default)
                 throw new Exception($"{fieldName} is required.");
+        }
+
+        public static void ValidateNotPastDate(DateTime date, string fieldName)
+        {
+            if (date.Date < DateTime.Today)
+                throw new Exception($"{fieldName} cannot be before today.");
         }
     }
 }

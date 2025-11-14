@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalSystem.WindowsForm;
 
 namespace CarRentalSystem.Code.Enum
 {
@@ -30,7 +31,7 @@ namespace CarRentalSystem.Code.Enum
             Refund
         }
 
-        public enum SecurityDeposit
+        public enum SecurityDepositStatus
         {
             Held,
             Refunded,

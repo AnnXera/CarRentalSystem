@@ -76,7 +76,6 @@
             this.pnlSecurityDeposit = new System.Windows.Forms.Panel();
             this.txtSecurityDeposit = new System.Windows.Forms.TextBox();
             this.lblDays = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -89,6 +88,9 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
             this.pnlCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -99,6 +101,7 @@
             this.pnlSecurityDeposit.SuspendLayout();
             this.pnlReturnDate.SuspendLayout();
             this.pnlStartDate.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCustomer
@@ -598,13 +601,14 @@
             // pnlContractDetails
             // 
             this.pnlContractDetails.BackColor = System.Drawing.Color.White;
+            this.pnlContractDetails.Controls.Add(this.panel1);
+            this.pnlContractDetails.Controls.Add(this.label5);
             this.pnlContractDetails.Controls.Add(this.lblBaseRate);
             this.pnlContractDetails.Controls.Add(this.btnCreateContractPayment);
             this.pnlContractDetails.Controls.Add(this.lblTotalDue);
             this.pnlContractDetails.Controls.Add(this.label28);
             this.pnlContractDetails.Controls.Add(this.pnlSecurityDeposit);
             this.pnlContractDetails.Controls.Add(this.lblDays);
-            this.pnlContractDetails.Controls.Add(this.label26);
             this.pnlContractDetails.Controls.Add(this.label27);
             this.pnlContractDetails.Controls.Add(this.label25);
             this.pnlContractDetails.Controls.Add(this.label24);
@@ -655,7 +659,7 @@
             this.lblTotalDue.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTotalDue.AutoSize = true;
             this.lblTotalDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalDue.Location = new System.Drawing.Point(18, 652);
+            this.lblTotalDue.Location = new System.Drawing.Point(19, 692);
             this.lblTotalDue.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
             this.lblTotalDue.Name = "lblTotalDue";
             this.lblTotalDue.Size = new System.Drawing.Size(186, 31);
@@ -667,7 +671,7 @@
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(18, 603);
+            this.label28.Location = new System.Drawing.Point(19, 643);
             this.label28.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(423, 32);
@@ -678,7 +682,7 @@
             // 
             this.pnlSecurityDeposit.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlSecurityDeposit.Controls.Add(this.txtSecurityDeposit);
-            this.pnlSecurityDeposit.Location = new System.Drawing.Point(24, 515);
+            this.pnlSecurityDeposit.Location = new System.Drawing.Point(25, 474);
             this.pnlSecurityDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSecurityDeposit.Name = "pnlSecurityDeposit";
             this.pnlSecurityDeposit.Size = new System.Drawing.Size(429, 55);
@@ -709,24 +713,12 @@
             this.lblDays.TabIndex = 84;
             this.lblDays.Text = "(Automatic when picking the start and return date)";
             // 
-            // label26
-            // 
-            this.label26.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(20, 433);
-            this.label26.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(134, 23);
-            this.label26.TabIndex = 50;
-            this.label26.Text = "- - - - - - - - - -";
-            // 
             // label27
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(19, 474);
+            this.label27.Location = new System.Drawing.Point(20, 433);
             this.label27.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(160, 23);
@@ -858,6 +850,42 @@
             this.label34.Text = "Contract Details";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(20, 539);
+            this.label5.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 23);
+            this.label5.TabIndex = 92;
+            this.label5.Text = "Payment Method:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbxPaymentMethod);
+            this.panel1.Location = new System.Drawing.Point(24, 570);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(429, 55);
+            this.panel1.TabIndex = 57;
+            // 
+            // cbxPaymentMethod
+            // 
+            this.cbxPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxPaymentMethod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxPaymentMethod.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPaymentMethod.FormattingEnabled = true;
+            this.cbxPaymentMethod.Location = new System.Drawing.Point(17, 11);
+            this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.cbxPaymentMethod.Name = "cbxPaymentMethod";
+            this.cbxPaymentMethod.Size = new System.Drawing.Size(399, 31);
+            this.cbxPaymentMethod.TabIndex = 29;
+            // 
             // modal_CreateContract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -887,6 +915,7 @@
             this.pnlSecurityDeposit.PerformLayout();
             this.pnlReturnDate.ResumeLayout(false);
             this.pnlStartDate.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -940,7 +969,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label lblDays;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
@@ -954,5 +982,8 @@
         private System.Windows.Forms.Label lblCarNo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblBaseRate;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cbxPaymentMethod;
+        private System.Windows.Forms.Label label5;
     }
 }

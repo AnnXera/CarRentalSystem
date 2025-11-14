@@ -26,7 +26,7 @@ namespace CarRentalSystem.Code
         public string EngineType { get; set; }
         public string FuelType { get; set; }
         public string Transmission { get; set; }
-        public decimal CurrentMileage { get; set; }
+        public long CurrentMileage { get; set; }
         public decimal ReplacementValue { get; set; }
         public string Status { get; set; }
     }
@@ -55,9 +55,9 @@ namespace CarRentalSystem.Code
             return _repo.GetAllCars();
         }
 
-        public void UpdateStatus(long carId, string status)
+        public void UpdateStatus(long carId, string status, MySql.Data.MySqlClient.MySqlTransaction transaction = null)
         {
-            _repo.UpdateCarStatus(carId, status);
+            _repo.UpdateStatus(carId, status, transaction);
         }
 
         public long AddAndReturnID(Cars entity)

@@ -14,38 +14,29 @@ namespace CarRentalSystem.Database
             _db = SQLDBHelper.Instance;
         }
 
-        public long AddSecurityDeposit(SecurityDeposit deposit)
+        public long AddSecurityDeposit(SecurityDeposit deposit, MySqlTransaction transaction = null)
         {
-            string sql = @"
-                INSERT INTO SecurityDeposit 
-                    (ContractID, DepositAmount, Status, DepositDate)
-                VALUES 
-                    (@ContractID, @Amount, @Status, @DepositDate);
-                SELECT LAST_INSERT_ID();";
-
+            string sql = @"INSERT INTO SecurityDeposit 
+                   (ContractID, DepositAmount, Status, DepositDate)
+                   VALUES (@ContractID, @Amount, @Status, @DepositDate);
+                   SELECT LAST_INSERT_ID();";
             try
             {
-                _db.Open();
-                using (var cmd = new MySqlCommand(sql, _db.Connection))
+                using (var cmd = new MySqlCommand(sql, _db.Connection, transaction))
                 {
                     cmd.Parameters.AddWithValue("@ContractID", deposit.ContractID);
                     cmd.Parameters.AddWithValue("@Amount", deposit.Amount);
                     cmd.Parameters.AddWithValue("@Status", deposit.Status);
-                    cmd.Parameters.AddWithValue("@DepositDate", deposit.DepositDate.Date); // only date portion
+                    cmd.Parameters.AddWithValue("@DepositDate", deposit.DepositDate);
 
-                    var id = cmd.ExecuteScalar();
-                    return Convert.ToInt64(id);
+                    return Convert.ToInt64(cmd.ExecuteScalar());
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error adding security deposit: " + ex.Message);
-                return -1;
-            }
-            finally
-            {
-                _db.Close();
+                throw new Exception("Error adding security deposit: " + ex.Message);
             }
         }
+
     }
 }

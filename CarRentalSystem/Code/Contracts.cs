@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Database;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace CarRentalSystem.Code
         public long Add(Contracts entity)
         {
             return _repo.CreateContract(entity);
+        }
+
+        public long Add(Contracts entity, MySqlTransaction transaction = null)
+        {
+            return _repo.CreateContract(entity, transaction);
         }
 
         public void Edit(Contracts entity)

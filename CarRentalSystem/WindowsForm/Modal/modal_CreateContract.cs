@@ -1,12 +1,15 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
+using CarRentalSystem.Services;
 using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Payment;
 
 namespace CarRentalSystem.WindowsForm.Modal
 {
@@ -22,6 +25,9 @@ namespace CarRentalSystem.WindowsForm.Modal
             LoadComboBox();
             ClearLabel();
             EventChanges();
+
+            KeyHandlers();
+
         }
 
         private void LoadPanles() 
@@ -67,6 +73,21 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblBaseRate.Text = "0.00";
         }
 
+
+        private void KeyHandlers()
+        {
+            txtSecurityDeposit.KeyPress += (s, e) => InputHandler.AllowDecimal(e, txtSecurityDeposit);
+        }
+
+        private void ValidateFields()
+        {
+            Validator.RequireComboBoxSelected(cbxSearch, "Customer");
+            Validator.ValidatePositiveDecimal(txtSecurityDeposit.Text, "Security Deposit");
+            Validator.ValidateMinimumSecurityDeposit(txtSecurityDeposit.Text);
+            Validator.ValidateNotPastDate(dtpStartDate.Value, "Start Date");
+            Validator.RequireComboBoxSelected(cbxPaymentMethod, "Payment Method");
+        }
+
         private void LoadComboBox()
         {
             //Customer ComboBox
@@ -81,6 +102,10 @@ namespace CarRentalSystem.WindowsForm.Modal
             cbxSearch.DropDownStyle = ComboBoxStyle.DropDown;
             cbxSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbxSearch.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            // Payment Method ComboBox
+            cbxPaymentMethod.DataSource = Enum.GetValues(typeof(PaymentMethod));
+            cbxPaymentMethod.SelectedIndex = -1;
         }
 
         private void SelectedCustomer()
@@ -212,89 +237,62 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnCreateContractPayment_Click(object sender, EventArgs e)
         {
-            //Validation
-            if (selectedCar == null)
+            try
             {
-                MessageBox.Show("Please select a vehicle first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                ValidateFields();
+
+                if (string.IsNullOrWhiteSpace(lblCustomerID.Text))
+                    throw new Exception("Please select a customer.");
+
+                if (!SessionManager.IsLoggedIn)
+                    throw new Exception("No employee is logged in.");
+
+                long custId = long.Parse(lblCustomerID.Text);
+                long carId = long.Parse(lblCarNo.Text);
+                long empId = SessionManager.LoggedInEmployee.EmpID;
+
+                DateTime startDate = dtpStartDate.Value.Date;
+                DateTime returnDate = dtpReturnDate.Value.Date;
+                int daysRented = (returnDate - startDate).Days + 1;
+                if (daysRented < 1) daysRented = 1;
+
+                decimal securityDepositAmount = decimal.Parse(txtSecurityDeposit.Text);
+                decimal baseRate = 0;
+                decimal.TryParse(lblBaseRate.Text, System.Globalization.NumberStyles.Currency, null, out baseRate);
+
+                var contract = new Contracts
+                {
+                    CustID = custId,
+                    EmpID = empId,
+                    CarID = carId,
+                    StartDate = startDate,
+                    ReturnDate = returnDate,
+                    DaysRented = daysRented,
+                    StartMileage = selectedCar.CurrentMileage,
+                    Status = "Pending"
+                };
+
+                var deposit = new SecurityDeposit
+                {
+                    Amount = securityDepositAmount,
+                    Status = "Held",
+                    DepositDate = DateTime.Now.Date
+                };
+
+                string paymentMethod = cbxPaymentMethod.SelectedItem.ToString();
+
+                // Call service
+                var contractService = new ContractService();
+                contractService.CreateContractWithBilling(contract, deposit, paymentMethod, baseRate, lblFullName.Text);
+
+                MessageBox.Show("Contract created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-
-            if (string.IsNullOrEmpty(lblCustomerID.Text))
+            catch (Exception ex)
             {
-                MessageBox.Show("Please select a customer.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            if (!SessionManager.IsLoggedIn)
-            {
-                MessageBox.Show("No employee is logged in.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            //Gather data
-            long custId = long.Parse(lblCustomerID.Text);
-            long carId = selectedCar.CarID;
-            long empId = SessionManager.LoggedInEmployee.EmpID;
-
-            DateTime startDate = dtpStartDate.Value.Date;
-            DateTime returnDate = dtpReturnDate.Value.Date;
-            int daysRented = (returnDate - startDate).Days + 1;
-            if (daysRented < 1) daysRented = 1;
-
-            long startMileage = (long)selectedCar.CurrentMileage;
-
-            decimal securityDepositAmount = 0;
-            decimal.TryParse(txtSecurityDeposit.Text, out securityDepositAmount);
-
-            //Create contract object
-            var newContract = new Contracts
-            {
-                CustID = custId,
-                EmpID = empId,
-                CarID = carId,
-                StartDate = startDate,
-                ReturnDate = returnDate,
-                DaysRented = daysRented,
-                StartMileage = startMileage,
-                Status = "Pending"
-            };
-
-            //Save Contract using Factory (returns inserted ID)
-            var contractFactory = new ContractFactory();
-            long contractId = contractFactory.Add(newContract); // Add() now returns ID
-            if (contractId <= 0)
-            {
-                MessageBox.Show("Failed to create contract.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //Save Security Deposit with DepositDate
-            var depositRepo = new SecurityDepositRepository();
-            var deposit = new SecurityDeposit
-            {
-                ContractID = contractId,
-                Amount = securityDepositAmount,
-                Status = "Held",
-                DepositDate = DateTime.Now.Date
-            };
-            long depositId = depositRepo.AddSecurityDeposit(deposit); // returns ID
-            if (depositId <= 0)
-            {
-                MessageBox.Show("Failed to add security deposit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //Update car status to "Rented"
-            var carFactory = new CarFactory();
-            carFactory.UpdateStatus(selectedCar.CarID, "Rented");
-
-            //Success message
-            MessageBox.Show($"Contract created successfully!\nContract ID: {contractId}\nDeposit ID: {depositId}",
-                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //Close the form
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }

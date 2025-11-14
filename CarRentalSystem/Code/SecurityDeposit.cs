@@ -12,7 +12,7 @@ namespace CarRentalSystem.Code
         public long DepositID { get; set; }
         public long ContractID { get; set; }
         public decimal Amount { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } // Held, Used, Refunded
         public DateTime DepositDate { get; set; }
     }
 
@@ -27,6 +27,11 @@ namespace CarRentalSystem.Code
         public long Add(SecurityDeposit entity)
         {
             return _repo.AddSecurityDeposit(entity);
+        }
+
+        public long Add(Code.SecurityDeposit entity, MySql.Data.MySqlClient.MySqlTransaction transaction)
+        {
+            return _repo.AddSecurityDeposit(entity, transaction);
         }
 
         public void Edit(SecurityDeposit entity)
