@@ -45,9 +45,9 @@ namespace CarRentalSystem.WindowsForm
                 txtSearch,
                 "Type search...",
                 Color.Gray,                                       // Placeholder text color
-                new Font("Arial", 12, FontStyle.Italic),          // Placeholder font
+                new Font("Segoe UI", 12, FontStyle.Italic),          // Placeholder font
                 Color.Black,                                      // Typing color
-                new Font("Arial", 12, FontStyle.Regular)       // Typing font
+                new Font("Segoe UI", 12, FontStyle.Regular)       // Typing font
             );
         }
 

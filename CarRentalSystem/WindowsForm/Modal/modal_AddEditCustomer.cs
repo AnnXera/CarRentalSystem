@@ -20,9 +20,22 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_AddEditCustomer()
         {
             InitializeComponent();
+            LoadPanelTxtCbx();
             SetupForNewCustomer();
 
             txtFullName.TextChanged += TxtFullName_TextChanged;
+        }
+
+        private void LoadPanelTxtCbx()
+        {
+            var panels = new List<Panel>
+            {
+                pnlAddEditCustomer,
+                pnlFullName,
+                pnlPhoneNumber,
+                pnlAddress
+            };
+            UIHelper.ApplyRoundedPanels(panels, 8);
         }
 
         private void SetupForNewCustomer()
@@ -118,7 +131,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 
                 if (_editingCustomer == null)
                 {
-                    // ➕ Add new customer
+                    //Add new customer
                     var customer = new Customer
                     {
                         FullName = txtFullName.Text.Trim(),
@@ -140,7 +153,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 }
                 else
                 {
-                    // ✏️ Edit existing customer
+                    //Edit existing customer
                     _editingCustomer.FullName = txtFullName.Text.Trim();
                     _editingCustomer.Gender = rdoMale.Checked ? "Male" : "Female";
                     _editingCustomer.PhoneNumber = txtContactNumber.Text.Trim();
@@ -174,31 +187,6 @@ namespace CarRentalSystem.WindowsForm.Modal
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pnlBorderUser_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void pnlAddEditCustomer_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawRoundedControl(sender, e, 40);
         }
     }
 }

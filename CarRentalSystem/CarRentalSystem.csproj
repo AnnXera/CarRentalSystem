@@ -294,12 +294,15 @@
     <Content Include="Resources\Icon Contract - Inactive.png" />
     <Content Include="Resources\IconSearch2.png" />
     <Content Include="Resources\LocationIcon.png" />
+    <Content Include="Resources\LocationIcon2.png" />
     <Content Include="Resources\LockIcon.png" />
     <Content Include="Resources\NoteIcon.png" />
     <Content Include="Resources\PhoneIcon.png" />
+    <Content Include="Resources\PhoneIcon2.png" />
     <Content Include="Resources\SearchIcon.png" />
     <Content Include="Resources\user image mockup.png" />
     <Content Include="Resources\UserIcon.png" />
+    <Content Include="Resources\UserIcon2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
