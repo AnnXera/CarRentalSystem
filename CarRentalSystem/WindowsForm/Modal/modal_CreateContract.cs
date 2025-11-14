@@ -90,22 +90,35 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void LoadComboBox()
         {
-            //Customer ComboBox
-            var factory = new CustomerFactory();
-            var customers = factory.ViewAll();
+            // Get all customers
+            var customerFactory = new CustomerFactory();
+            var allCustomers = customerFactory.ViewAll();
 
-            cbxSearch.DataSource = customers;
-            cbxSearch.DisplayMember = "FullName"; 
-            cbxSearch.ValueMember = "CustID";     
+            // Get all contracts that are pending or active
+            var contractFactory = new ContractFactory();
+            var activeContracts = contractFactory.ViewAll()
+                                                 .Where(c => c.Status == "Pending" || c.Status == "Active")
+                                                 .Select(c => c.CustID)
+                                                 .ToList();
+
+            // Filter out customers with pending/active contracts
+            var availableCustomers = allCustomers
+                                     .Where(c => !activeContracts.Contains(c.CustID))
+                                     .ToList();
+
+            // Bind filtered list to ComboBox
+            cbxSearch.DataSource = availableCustomers;
+            cbxSearch.DisplayMember = "FullName";
+            cbxSearch.ValueMember = "CustID";
             cbxSearch.SelectedIndex = -1;
-            
+
             cbxSearch.DropDownStyle = ComboBoxStyle.DropDown;
             cbxSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbxSearch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             // Payment Method ComboBox
             cbxPaymentMethod.DataSource = Enum.GetValues(typeof(PaymentMethod));
-            cbxPaymentMethod.SelectedIndex = -1;
+            cbxPaymentMethod.SelectedIndex = -1; // No default selected
         }
 
         private void SelectedCustomer()

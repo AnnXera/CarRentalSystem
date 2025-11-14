@@ -48,6 +48,36 @@ namespace CarRentalSystem.Database
             }
         }
 
+        public List<Contracts> GetAllContracts()
+        {
+            var contracts = new List<Contracts>();
+            string sql = "SELECT * FROM Contracts";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(sql, _db.Connection))
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    contracts.Add(new Contracts
+                    {
+                        ContractID = reader.GetInt64("ContractID"),
+                        CustID = reader.GetInt64("CustID"),
+                        EmpID = reader.GetInt64("EmpID"),
+                        CarID = reader.GetInt64("CarID"),
+                        StartDate = reader.GetDateTime("StartDate"),
+                        ReturnDate = reader.GetDateTime("ReturnDate"),
+                        DaysRented = reader.GetInt32("DaysRented"),
+                        StartMileage = reader.GetInt64("StartMileage"),
+                        EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage")) ? (long?)null : reader.GetInt64("EndMileage"),
+                        Status = reader.GetString("Status")
+                    });
+                }
+            }
+            _db.Close();
+            return contracts;
+        }
+
 
     }
 }
