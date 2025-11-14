@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlQuickActions = new System.Windows.Forms.Panel();
             this.btnNewContract = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,10 +40,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblTodayDate = new System.Windows.Forms.Label();
             this.pnlOverView = new System.Windows.Forms.Panel();
+            this.pnlSearchActiveRentals = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.txtSearchActiveRentals = new System.Windows.Forms.TextBox();
+            this.dgvActiveRentals = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pnlVehiclesAvailable = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.pnlRentalsDue = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,33 +60,28 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pnlAdminOverview = new System.Windows.Forms.Panel();
-            this.pnlRevenue = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.pnlFleetUtilization = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.pnlAvgDailyRate = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.dgvActiveRentals = new System.Windows.Forms.DataGridView();
-            this.pnlSearchActiveRentals = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.txtSearchActiveRentals = new System.Windows.Forms.TextBox();
+            this.pnlFleetUtilization = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pnlRevenue = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.pnlQuickActions.SuspendLayout();
             this.pnlOverView.SuspendLayout();
+            this.pnlSearchActiveRentals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).BeginInit();
             this.pnlVehiclesAvailable.SuspendLayout();
             this.pnlRentalsDue.SuspendLayout();
             this.pnlReturnsDueToday.SuspendLayout();
             this.pnlOverviewVehicles.SuspendLayout();
             this.pnlAdminOverview.SuspendLayout();
-            this.pnlRevenue.SuspendLayout();
-            this.pnlFleetUtilization.SuspendLayout();
             this.pnlAvgDailyRate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).BeginInit();
-            this.pnlSearchActiveRentals.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.pnlFleetUtilization.SuspendLayout();
+            this.pnlRevenue.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlQuickActions
@@ -95,7 +95,7 @@
             this.pnlQuickActions.Controls.Add(this.lblUserName);
             this.pnlQuickActions.Location = new System.Drawing.Point(788, 20);
             this.pnlQuickActions.Name = "pnlQuickActions";
-            this.pnlQuickActions.Size = new System.Drawing.Size(790, 137);
+            this.pnlQuickActions.Size = new System.Drawing.Size(769, 137);
             this.pnlQuickActions.TabIndex = 0;
             // 
             // btnNewContract
@@ -129,7 +129,7 @@
             this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(603, 59);
+            this.lblRole.Location = new System.Drawing.Point(582, 59);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(50, 23);
             this.lblRole.TabIndex = 1;
@@ -140,7 +140,7 @@
             this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(602, 26);
+            this.lblUserName.Location = new System.Drawing.Point(581, 26);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(126, 27);
             this.lblUserName.TabIndex = 0;
@@ -152,7 +152,7 @@
             this.label2.Font = new System.Drawing.Font("Arial", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(319, 40);
+            this.label2.Size = new System.Drawing.Size(307, 38);
             this.label2.TabIndex = 1;
             this.label2.Text = "Car Rental System";
             // 
@@ -188,8 +188,106 @@
             this.pnlOverView.Controls.Add(this.label13);
             this.pnlOverView.Location = new System.Drawing.Point(788, 187);
             this.pnlOverView.Name = "pnlOverView";
-            this.pnlOverView.Size = new System.Drawing.Size(790, 841);
+            this.pnlOverView.Size = new System.Drawing.Size(769, 841);
             this.pnlOverView.TabIndex = 4;
+            // 
+            // pnlSearchActiveRentals
+            // 
+            this.pnlSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlSearchActiveRentals.Controls.Add(this.pictureBox4);
+            this.pnlSearchActiveRentals.Controls.Add(this.txtSearchActiveRentals);
+            this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
+            this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
+            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(730, 55);
+            this.pnlSearchActiveRentals.TabIndex = 76;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.SearchIcon;
+            this.pictureBox4.Location = new System.Drawing.Point(11, 9);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(40, 37);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
+            // 
+            // txtSearchActiveRentals
+            // 
+            this.txtSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSearchActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearchActiveRentals.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
+            this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
+            this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
+            this.txtSearchActiveRentals.Size = new System.Drawing.Size(649, 28);
+            this.txtSearchActiveRentals.TabIndex = 1;
+            // 
+            // dgvActiveRentals
+            // 
+            this.dgvActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvActiveRentals.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvActiveRentals.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvActiveRentals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvActiveRentals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvActiveRentals.EnableHeadersVisualStyles = false;
+            this.dgvActiveRentals.Location = new System.Drawing.Point(20, 132);
+            this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvActiveRentals.MultiSelect = false;
+            this.dgvActiveRentals.Name = "dgvActiveRentals";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvActiveRentals.RowHeadersVisible = false;
+            this.dgvActiveRentals.RowHeadersWidth = 51;
+            this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
+            this.dgvActiveRentals.RowTemplate.Height = 40;
+            this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvActiveRentals.Size = new System.Drawing.Size(730, 690);
+            this.dgvActiveRentals.TabIndex = 75;
+            this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(16, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(145, 24);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Active Rentals";
             // 
             // label4
             // 
@@ -211,17 +309,6 @@
             this.pnlVehiclesAvailable.Size = new System.Drawing.Size(361, 167);
             this.pnlVehiclesAvailable.TabIndex = 6;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(12, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(176, 24);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Vehicles Available";
-            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -233,6 +320,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(322, 1);
             this.panel3.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Gray;
+            this.label5.Location = new System.Drawing.Point(12, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(176, 24);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Vehicles Available";
             // 
             // pnlRentalsDue
             // 
@@ -355,38 +453,38 @@
             this.pnlAdminOverview.Size = new System.Drawing.Size(790, 437);
             this.pnlAdminOverview.TabIndex = 32;
             // 
-            // pnlRevenue
+            // pnlAvgDailyRate
             // 
-            this.pnlRevenue.BackColor = System.Drawing.Color.White;
-            this.pnlRevenue.Controls.Add(this.panel2);
-            this.pnlRevenue.Controls.Add(this.label10);
-            this.pnlRevenue.Location = new System.Drawing.Point(20, 52);
-            this.pnlRevenue.Name = "pnlRevenue";
-            this.pnlRevenue.Size = new System.Drawing.Size(746, 182);
-            this.pnlRevenue.TabIndex = 30;
+            this.pnlAvgDailyRate.BackColor = System.Drawing.Color.White;
+            this.pnlAvgDailyRate.Controls.Add(this.panel9);
+            this.pnlAvgDailyRate.Controls.Add(this.label12);
+            this.pnlAvgDailyRate.Location = new System.Drawing.Point(405, 254);
+            this.pnlAvgDailyRate.Name = "pnlAvgDailyRate";
+            this.pnlAvgDailyRate.Size = new System.Drawing.Size(361, 167);
+            this.pnlAvgDailyRate.TabIndex = 32;
             // 
-            // panel2
+            // panel9
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Gray;
-            this.panel2.ForeColor = System.Drawing.Color.Silver;
-            this.panel2.Location = new System.Drawing.Point(16, 50);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(707, 1);
-            this.panel2.TabIndex = 27;
+            this.panel9.BackColor = System.Drawing.Color.Gray;
+            this.panel9.ForeColor = System.Drawing.Color.Silver;
+            this.panel9.Location = new System.Drawing.Point(16, 50);
+            this.panel9.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(322, 1);
+            this.panel9.TabIndex = 27;
             // 
-            // label10
+            // label12
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Gray;
-            this.label10.Location = new System.Drawing.Point(12, 15);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 24);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Revenue(MTD)";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Gray;
+            this.label12.Location = new System.Drawing.Point(12, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(146, 24);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Avg Daily Rate";
             // 
             // pnlFleetUtilization
             // 
@@ -421,136 +519,38 @@
             this.label11.TabIndex = 7;
             this.label11.Text = "Fleet Utilization";
             // 
-            // pnlAvgDailyRate
+            // pnlRevenue
             // 
-            this.pnlAvgDailyRate.BackColor = System.Drawing.Color.White;
-            this.pnlAvgDailyRate.Controls.Add(this.panel9);
-            this.pnlAvgDailyRate.Controls.Add(this.label12);
-            this.pnlAvgDailyRate.Location = new System.Drawing.Point(405, 254);
-            this.pnlAvgDailyRate.Name = "pnlAvgDailyRate";
-            this.pnlAvgDailyRate.Size = new System.Drawing.Size(361, 167);
-            this.pnlAvgDailyRate.TabIndex = 32;
+            this.pnlRevenue.BackColor = System.Drawing.Color.White;
+            this.pnlRevenue.Controls.Add(this.panel2);
+            this.pnlRevenue.Controls.Add(this.label10);
+            this.pnlRevenue.Location = new System.Drawing.Point(20, 52);
+            this.pnlRevenue.Name = "pnlRevenue";
+            this.pnlRevenue.Size = new System.Drawing.Size(746, 182);
+            this.pnlRevenue.TabIndex = 30;
             // 
-            // panel9
+            // panel2
             // 
-            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel9.BackColor = System.Drawing.Color.Gray;
-            this.panel9.ForeColor = System.Drawing.Color.Silver;
-            this.panel9.Location = new System.Drawing.Point(16, 50);
-            this.panel9.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(322, 1);
-            this.panel9.TabIndex = 27;
+            this.panel2.BackColor = System.Drawing.Color.Gray;
+            this.panel2.ForeColor = System.Drawing.Color.Silver;
+            this.panel2.Location = new System.Drawing.Point(16, 50);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(707, 1);
+            this.panel2.TabIndex = 27;
             // 
-            // label12
+            // label10
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(12, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(146, 24);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Avg Daily Rate";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(16, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(145, 24);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Active Rentals";
-            // 
-            // dgvActiveRentals
-            // 
-            this.dgvActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvActiveRentals.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvActiveRentals.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvActiveRentals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActiveRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvActiveRentals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvActiveRentals.EnableHeadersVisualStyles = false;
-            this.dgvActiveRentals.Location = new System.Drawing.Point(20, 132);
-            this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvActiveRentals.MultiSelect = false;
-            this.dgvActiveRentals.Name = "dgvActiveRentals";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActiveRentals.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvActiveRentals.RowHeadersVisible = false;
-            this.dgvActiveRentals.RowHeadersWidth = 51;
-            this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
-            this.dgvActiveRentals.RowTemplate.Height = 40;
-            this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvActiveRentals.Size = new System.Drawing.Size(751, 690);
-            this.dgvActiveRentals.TabIndex = 75;
-            this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
-            // 
-            // pnlSearchActiveRentals
-            // 
-            this.pnlSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlSearchActiveRentals.Controls.Add(this.pictureBox4);
-            this.pnlSearchActiveRentals.Controls.Add(this.txtSearchActiveRentals);
-            this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
-            this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
-            this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
-            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(751, 55);
-            this.pnlSearchActiveRentals.TabIndex = 76;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.SearchIcon;
-            this.pictureBox4.Location = new System.Drawing.Point(11, 9);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(40, 37);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
-            // 
-            // txtSearchActiveRentals
-            // 
-            this.txtSearchActiveRentals.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtSearchActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSearchActiveRentals.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
-            this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
-            this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
-            this.txtSearchActiveRentals.Size = new System.Drawing.Size(670, 28);
-            this.txtSearchActiveRentals.TabIndex = 1;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Gray;
+            this.label10.Location = new System.Drawing.Point(12, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(150, 24);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Revenue(MTD)";
             // 
             // frmMainDashboardPanel
             // 
@@ -578,6 +578,10 @@
             this.pnlQuickActions.PerformLayout();
             this.pnlOverView.ResumeLayout(false);
             this.pnlOverView.PerformLayout();
+            this.pnlSearchActiveRentals.ResumeLayout(false);
+            this.pnlSearchActiveRentals.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).EndInit();
             this.pnlVehiclesAvailable.ResumeLayout(false);
             this.pnlVehiclesAvailable.PerformLayout();
             this.pnlRentalsDue.ResumeLayout(false);
@@ -588,16 +592,12 @@
             this.pnlOverviewVehicles.PerformLayout();
             this.pnlAdminOverview.ResumeLayout(false);
             this.pnlAdminOverview.PerformLayout();
-            this.pnlRevenue.ResumeLayout(false);
-            this.pnlRevenue.PerformLayout();
-            this.pnlFleetUtilization.ResumeLayout(false);
-            this.pnlFleetUtilization.PerformLayout();
             this.pnlAvgDailyRate.ResumeLayout(false);
             this.pnlAvgDailyRate.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveRentals)).EndInit();
-            this.pnlSearchActiveRentals.ResumeLayout(false);
-            this.pnlSearchActiveRentals.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.pnlFleetUtilization.ResumeLayout(false);
+            this.pnlFleetUtilization.PerformLayout();
+            this.pnlRevenue.ResumeLayout(false);
+            this.pnlRevenue.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

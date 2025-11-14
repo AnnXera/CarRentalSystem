@@ -20,7 +20,9 @@ namespace CarRentalSystem.WindowsForm
             txtSearch.TextChanged += txtSearch_TextChanged;
             dgvCustomers.CellClick += dgvCustomers_CellClick_1;
 
-            LoadPanels();
+            LoadPanelTxtCbx();
+            LoadCustomers();
+            EventHandler();
 
             lblCustomerID.Text = "";
             lblFullName.Text = "";
@@ -29,26 +31,28 @@ namespace CarRentalSystem.WindowsForm
             lblAddress.Text = "";
         }
 
-        private void LoadPanels ()
+        private void LoadPanelTxtCbx ()
         {
             var panels = new List<Panel>
             {
                 pnlCustomerDetails,
-                pnlCustomerSnapshot
-            };
-            UIHelper.ApplyRoundedPanels(panels, 10);
-
-            UIHelper.ApplyBorderInsideToPanels(new List<Panel>
-            {
                 pnlSearch,
                 pnlCustomerView
-            });
+            };
+            UIHelper.ApplyRoundedPanels(panels, 8);
+
+            UIHelper.SetPlaceholder(
+                txtSearch,
+                "Type search...",
+                Color.Gray,                                       // Placeholder text color
+                new Font("Arial", 12, FontStyle.Italic),          // Placeholder font
+                Color.Black,                                      // Typing color
+                new Font("Arial", 12, FontStyle.Regular)       // Typing font
+            );
         }
 
-        private void frmCustomerManagement_Load(object sender, EventArgs e)
+        private void EventHandler()
         {
-            LoadCustomers();
-
             dgvCustomers.CellClick += dgvCustomers_CellClick;
         }
 
@@ -228,6 +232,11 @@ namespace CarRentalSystem.WindowsForm
             dv.RowFilter = string.Format("FullName LIKE '%{0}%'", searchValue);
 
             dgvCustomers.DataSource = dv;
+        }
+
+        private void dgvCustomers_Paint(object sender, PaintEventArgs e)
+        {
+            UIHelper.DrawRoundedControl(sender, e, 8);
         }
     }
 }

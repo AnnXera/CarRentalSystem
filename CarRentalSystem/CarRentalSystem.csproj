@@ -292,6 +292,7 @@
     <Content Include="Resources\Icon - UserManagement - Default.png" />
     <Content Include="Resources\Icon Contract - Active.png" />
     <Content Include="Resources\Icon Contract - Inactive.png" />
+    <Content Include="Resources\IconSearch2.png" />
     <Content Include="Resources\LocationIcon.png" />
     <Content Include="Resources\LockIcon.png" />
     <Content Include="Resources\NoteIcon.png" />

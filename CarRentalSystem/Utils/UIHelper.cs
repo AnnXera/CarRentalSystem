@@ -132,5 +132,36 @@ namespace CarRentalSystem.Utils
                 pnl.Invalidate(); // force repaint immediately
             }
         }
+
+        // Apply placeholder text behavior to TextBox
+        public static void SetPlaceholder(TextBox textBox, string placeholder, Color placeholderColor, Font placeholderFont, Color typingColor, Font typingFont)
+        {
+            // Apply initial placeholder
+            textBox.Text = placeholder;
+            textBox.ForeColor = placeholderColor;
+            textBox.Font = placeholderFont;
+
+            // Enter event
+            textBox.Enter += (s, e) =>
+            {
+                if (textBox.Text == placeholder)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = typingColor;
+                    textBox.Font = typingFont;
+                }
+            };
+
+            // Leave event
+            textBox.Leave += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholder;
+                    textBox.ForeColor = placeholderColor;
+                    textBox.Font = placeholderFont;
+                }
+            };
+        }
     }
 }
