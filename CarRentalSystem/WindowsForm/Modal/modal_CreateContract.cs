@@ -32,7 +32,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 pnlCustomer,
                 pnlRentalPlanVehicle
             };
-            UIHelper.ApplyRoundedPanels(panels, 10);
+            UIHelper.ApplyRoundedPanels(panels, 8);
 
             UIHelper.ApplyBorderInsideToPanels(new List<Panel>
             {

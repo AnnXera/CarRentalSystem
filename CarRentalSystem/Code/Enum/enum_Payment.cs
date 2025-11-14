@@ -14,5 +14,20 @@ namespace CarRentalSystem.Code.Enum
             Card,
             EWallet
         }
+
+        public enum PaymentStatus
+        {
+            Pending,
+            Completed,
+            Partial,
+            Refunded
+        }
+
+        public enum TransactionType
+        {
+            Payment,
+            Deposit,
+            Refund
+        }
     }
 }
