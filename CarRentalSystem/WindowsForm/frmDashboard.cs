@@ -33,6 +33,9 @@ namespace CarRentalSystem.WindowsForm
             btnFleet.Text = "";
             btnTransactions.Text = "";
             btnReport.Text = "";
+            btnSystemLog.Text = "";
+            btnRentalPlans.Text = "";
+            btnEmployeeManagement.Text = "";
 
             frmMainDashboardPanel dashboardPanel = new frmMainDashboardPanel
             {
@@ -80,6 +83,24 @@ namespace CarRentalSystem.WindowsForm
                     Button = btnReport,
                     ActiveIcon = Properties.Resources.Icon___Reports___Active,
                     InactiveIcon = Properties.Resources.Icon___Reports___Default
+                },
+                new UIHelper.SidebarButtonConfig
+                { 
+                    Button = btnEmployeeManagement,
+                    ActiveIcon = Properties.Resources.Icon___UserManagement___Active,
+                    InactiveIcon = Properties.Resources.Icon___UserManagement___Default
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnSystemLog,
+                    ActiveIcon = Properties.Resources.Icon___SystemLog___Active,
+                    InactiveIcon = Properties.Resources.Icon___SystemLog___Default
+                },
+                new UIHelper.SidebarButtonConfig
+                {
+                    Button = btnRentalPlans,
+                    ActiveIcon = Properties.Resources.Icon___RentalPlans___Active,
+                    InactiveIcon = Properties.Resources.Icon___RentalPlans___Default
                 }
             };
 
