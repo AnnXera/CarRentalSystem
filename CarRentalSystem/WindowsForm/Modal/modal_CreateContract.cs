@@ -209,5 +209,92 @@ namespace CarRentalSystem.WindowsForm.Modal
                 }
             }
         }
+
+        private void btnCreateContractPayment_Click(object sender, EventArgs e)
+        {
+            //Validation
+            if (selectedCar == null)
+            {
+                MessageBox.Show("Please select a vehicle first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(lblCustomerID.Text))
+            {
+                MessageBox.Show("Please select a customer.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!SessionManager.IsLoggedIn)
+            {
+                MessageBox.Show("No employee is logged in.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //Gather data
+            long custId = long.Parse(lblCustomerID.Text);
+            long carId = selectedCar.CarID;
+            long empId = SessionManager.LoggedInEmployee.EmpID;
+
+            DateTime startDate = dtpStartDate.Value.Date;
+            DateTime returnDate = dtpReturnDate.Value.Date;
+            int daysRented = (returnDate - startDate).Days + 1;
+            if (daysRented < 1) daysRented = 1;
+
+            long startMileage = (long)selectedCar.CurrentMileage;
+
+            decimal securityDepositAmount = 0;
+            decimal.TryParse(txtSecurityDeposit.Text, out securityDepositAmount);
+
+            //Create contract object
+            var newContract = new Contracts
+            {
+                CustID = custId,
+                EmpID = empId,
+                CarID = carId,
+                StartDate = startDate,
+                ReturnDate = returnDate,
+                DaysRented = daysRented,
+                StartMileage = startMileage,
+                Status = "Pending"
+            };
+
+            //Save Contract using Factory (returns inserted ID)
+            var contractFactory = new ContractFactory();
+            long contractId = contractFactory.Add(newContract); // Add() now returns ID
+            if (contractId <= 0)
+            {
+                MessageBox.Show("Failed to create contract.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //Save Security Deposit with DepositDate
+            var depositRepo = new SecurityDepositRepository();
+            var deposit = new SecurityDeposit
+            {
+                ContractID = contractId,
+                Amount = securityDepositAmount,
+                Status = "Held",
+                DepositDate = DateTime.Now.Date
+            };
+            long depositId = depositRepo.AddSecurityDeposit(deposit); // returns ID
+            if (depositId <= 0)
+            {
+                MessageBox.Show("Failed to add security deposit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //Update car status to "Rented"
+            var carFactory = new CarFactory();
+            carFactory.UpdateStatus(selectedCar.CarID, "Rented");
+
+            //Success message
+            MessageBox.Show($"Contract created successfully!\nContract ID: {contractId}\nDeposit ID: {depositId}",
+                            "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //Close the form
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

@@ -294,5 +294,30 @@ namespace CarRentalSystem.Database
             }
         }
 
+        public void UpdateCarStatus(long carId, string status)
+        {
+            string query = @"UPDATE Car SET Status = @Status WHERE CarID = @CarID;";
+
+            try
+            {
+                _db.Open();
+                using (var cmd = new MySqlCommand(query, _db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@CarID", carId);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating car status: " + ex.Message);
+            }
+            finally
+            {
+                _db.Close();
+            }
+        }
+
+
     }
 }

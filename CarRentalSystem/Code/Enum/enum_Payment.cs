@@ -29,5 +29,12 @@ namespace CarRentalSystem.Code.Enum
             Deposit,
             Refund
         }
+
+        public enum SecurityDeposit
+        {
+            Held,
+            Refunded,
+            Forfeited
+        }
     }
 }

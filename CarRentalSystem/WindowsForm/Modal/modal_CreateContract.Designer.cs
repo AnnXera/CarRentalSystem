@@ -48,6 +48,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlRentalPlanVehicle = new System.Windows.Forms.Panel();
+            this.lblCarNo = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblSeats = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblFuelType = new System.Windows.Forms.Label();
@@ -67,6 +69,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
+            this.lblBaseRate = new System.Windows.Forms.Label();
             this.btnCreateContractPayment = new System.Windows.Forms.Button();
             this.lblTotalDue = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -86,9 +89,6 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.lblCarNo = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblBaseRate = new System.Windows.Forms.Label();
             this.pnlCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -357,6 +357,30 @@
             this.pnlRentalPlanVehicle.Size = new System.Drawing.Size(470, 814);
             this.pnlRentalPlanVehicle.TabIndex = 71;
             // 
+            // lblCarNo
+            // 
+            this.lblCarNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblCarNo.AutoSize = true;
+            this.lblCarNo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarNo.Location = new System.Drawing.Point(122, 457);
+            this.lblCarNo.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblCarNo.Name = "lblCarNo";
+            this.lblCarNo.Size = new System.Drawing.Size(86, 23);
+            this.lblCarNo.TabIndex = 83;
+            this.lblCarNo.Text = "(CarNo.)";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(20, 457);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 23);
+            this.label8.TabIndex = 82;
+            this.label8.Text = "Car No.:";
+            // 
             // lblSeats
             // 
             this.lblSeats.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -596,6 +620,20 @@
             this.pnlContractDetails.Size = new System.Drawing.Size(470, 814);
             this.pnlContractDetails.TabIndex = 82;
             // 
+            // lblBaseRate
+            // 
+            this.lblBaseRate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblBaseRate.AutoSize = true;
+            this.lblBaseRate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseRate.Location = new System.Drawing.Point(261, 392);
+            this.lblBaseRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseRate.Name = "lblBaseRate";
+            this.lblBaseRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblBaseRate.Size = new System.Drawing.Size(88, 23);
+            this.lblBaseRate.TabIndex = 91;
+            this.lblBaseRate.Text = "baserate";
+            this.lblBaseRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnCreateContractPayment
             // 
             this.btnCreateContractPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -610,6 +648,7 @@
             this.btnCreateContractPayment.TabIndex = 90;
             this.btnCreateContractPayment.Text = "CREATE CONTRACT / ACCEPT PAYMENT";
             this.btnCreateContractPayment.UseVisualStyleBackColor = true;
+            this.btnCreateContractPayment.Click += new System.EventHandler(this.btnCreateContractPayment_Click);
             // 
             // lblTotalDue
             // 
@@ -818,44 +857,6 @@
             this.label34.TabIndex = 1;
             this.label34.Text = "Contract Details";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblCarNo
-            // 
-            this.lblCarNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblCarNo.AutoSize = true;
-            this.lblCarNo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarNo.Location = new System.Drawing.Point(122, 457);
-            this.lblCarNo.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.lblCarNo.Name = "lblCarNo";
-            this.lblCarNo.Size = new System.Drawing.Size(86, 23);
-            this.lblCarNo.TabIndex = 83;
-            this.lblCarNo.Text = "(CarNo.)";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 457);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 23);
-            this.label8.TabIndex = 82;
-            this.label8.Text = "Car No.:";
-            // 
-            // lblBaseRate
-            // 
-            this.lblBaseRate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblBaseRate.AutoSize = true;
-            this.lblBaseRate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBaseRate.Location = new System.Drawing.Point(261, 392);
-            this.lblBaseRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBaseRate.Name = "lblBaseRate";
-            this.lblBaseRate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblBaseRate.Size = new System.Drawing.Size(88, 23);
-            this.lblBaseRate.TabIndex = 91;
-            this.lblBaseRate.Text = "baserate";
-            this.lblBaseRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // modal_CreateContract
             // 

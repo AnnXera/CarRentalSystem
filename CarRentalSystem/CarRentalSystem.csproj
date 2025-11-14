@@ -107,6 +107,7 @@
     <Compile Include="Code\Enum\enum_Payment.cs" />
     <Compile Include="Code\IModalFactory.cs" />
     <Compile Include="Code\RentalPlan.cs" />
+    <Compile Include="Code\SecurityDeposit.cs" />
     <Compile Include="Database\BillingLogRepository.cs" />
     <Compile Include="Database\BillingRepository.cs" />
     <Compile Include="Database\CarPartsRepository.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Database\Contract Repository.cs" />
     <Compile Include="Database\CustomerRepository.cs" />
     <Compile Include="Database\RentalPlanRepository.cs" />
+    <Compile Include="Database\SecurityDepositRepository.cs" />
     <Compile Include="Database\SQLDBHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

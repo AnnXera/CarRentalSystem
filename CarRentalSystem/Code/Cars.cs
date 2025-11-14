@@ -40,9 +40,9 @@ namespace CarRentalSystem.Code
             _repo = new CarRepository();
         }
 
-        public void Add(Cars entity)
+        public long Add(Cars entity)
         {
-            _repo.AddCar(entity);
+            return _repo.AddCar(entity);
         }
 
         public void Edit(Cars entity)
@@ -53,6 +53,11 @@ namespace CarRentalSystem.Code
         public List<Cars> ViewAll()
         {
             return _repo.GetAllCars();
+        }
+
+        public void UpdateStatus(long carId, string status)
+        {
+            _repo.UpdateCarStatus(carId, status);
         }
 
         public long AddAndReturnID(Cars entity)

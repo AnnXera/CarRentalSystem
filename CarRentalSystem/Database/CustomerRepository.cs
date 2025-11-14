@@ -1,11 +1,12 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using CarRentalSystem.Code;
-using System.Collections.Generic;
+﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalSystem.Database
 {
@@ -58,33 +59,44 @@ namespace CarRentalSystem.Database
             return customers;
         }
 
-
-
-        public void AddCustomer(Customer cs)
+        public long AddCustomer(Customer cs)
         {
-            _db.Open();
-
-            string query = @"INSERT INTO Customers 
-                             (FullName, Gender, PhoneNumber, Address, RegisteredBy, DriversLicensePic)
-                             VALUES (@FullName, @Gender, @PhoneNumber, @Address, @RegisteredBy, @Picture)";
-
-            using (var cmd = new MySqlCommand(query, _db.Connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@FullName", cs.FullName);
-                cmd.Parameters.AddWithValue("@Gender", cs.Gender);
-                cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Address", cs.Address);
-                cmd.Parameters.AddWithValue("@RegisteredBy", cs.RegisteredByEmpID);
+                _db.Open();
 
-                if (cs.Picture != null && cs.Picture.Length > 0)
-                    cmd.Parameters.AddWithValue("@Picture", cs.Picture);
-                else
-                    cmd.Parameters.AddWithValue("@Picture", DBNull.Value);
+                string query = @"INSERT INTO Customers 
+                         (FullName, Gender, PhoneNumber, Address, RegisteredBy, DriversLicensePic)
+                         VALUES (@FullName, @Gender, @PhoneNumber, @Address, @RegisteredBy, @Picture);
+                         SELECT LAST_INSERT_ID();";
 
-                cmd.ExecuteNonQuery();
+                using (var cmd = new MySqlCommand(query, _db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@FullName", cs.FullName);
+                    cmd.Parameters.AddWithValue("@Gender", cs.Gender);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Address", cs.Address);
+                    cmd.Parameters.AddWithValue("@RegisteredBy", cs.RegisteredByEmpID);
+
+                    if (cs.Picture != null && cs.Picture.Length > 0)
+                        cmd.Parameters.AddWithValue("@Picture", cs.Picture);
+                    else
+                        cmd.Parameters.AddWithValue("@Picture", DBNull.Value);
+
+                    // ExecuteScalar returns the LAST_INSERT_ID
+                    var newId = cmd.ExecuteScalar();
+                    return Convert.ToInt64(newId);
+                }
             }
-
-            _db.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding customer: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                _db.Close();
+            }
         }
 
         public void UpdateCustomer(Customer cs)
