@@ -23,6 +23,8 @@ namespace CarRentalSystem.WindowsForm.Modal
             LoadPanelTxtCbx();
             SetupForNewCustomer();
 
+            this.Text = "Add New Customer";
+
             txtFullName.TextChanged += TxtFullName_TextChanged;
         }
 
@@ -67,6 +69,9 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_AddEditCustomer(Customer customer) : this()
         {
             _editingCustomer = customer;
+
+            this.Text = "Edit Customer";
+
             LoadCustomerData();
         }
 
