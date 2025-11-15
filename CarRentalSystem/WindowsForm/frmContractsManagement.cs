@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Contracts;
 
 namespace CarRentalSystem.WindowsForm
 {
@@ -18,13 +19,32 @@ namespace CarRentalSystem.WindowsForm
         {
             InitializeComponent();
             buttonProcessDisabled();
+            LoadDesign();
+        }
 
-            var panels = new List<Panel> 
-            { 
-                pnlContractDetails
+        private void LoadDesign()
+        {
+            var panels = new List<Panel>
+            {
+                pnlContractDetails,
+                pnlContractsOverview,
+                pnlSearch,
+                pnlComboBox
             };
 
-            UIHelper.ApplyRoundedPanels(panels, 10);
+            UIHelper.ApplyRoundedPanels(panels, 8);
+
+            UIHelper.SetPlaceholder(
+                txtSearch,
+                "Type search...",
+                Color.Gray,                                       // Placeholder text color
+                new Font("Segoe UI", 12, FontStyle.Italic),          // Placeholder font
+                Color.Black,                                      // Typing color
+                new Font("Segoe UI", 12, FontStyle.Regular)       // Typing font
+            );
+
+            cbxStatus.DataSource = Enum.GetValues(typeof(ContractStatus));
+            cbxStatus.SelectedIndex = -1;
         }
 
         private void buttonProcessDisabled()

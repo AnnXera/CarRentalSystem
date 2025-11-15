@@ -30,19 +30,19 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.pnlPayment = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblAmount = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtAmountReceived = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnConfirmPayment = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.lblCustomerName = new System.Windows.Forms.Label();
-            this.lblCarName = new System.Windows.Forms.Label();
             this.lblRentalName = new System.Windows.Forms.Label();
+            this.lblCarName = new System.Windows.Forms.Label();
+            this.lblCustomerName = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnConfirmPayment = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtAmountReceived = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlPayment.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,104 +77,37 @@
             this.pnlPayment.Size = new System.Drawing.Size(770, 414);
             this.pnlPayment.TabIndex = 1;
             // 
-            // label2
+            // lblRentalName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 135);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Amount Due:";
+            this.lblRentalName.AutoSize = true;
+            this.lblRentalName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalName.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblRentalName.Location = new System.Drawing.Point(33, 50);
+            this.lblRentalName.Name = "lblRentalName";
+            this.lblRentalName.Size = new System.Drawing.Size(179, 27);
+            this.lblRentalName.TabIndex = 54;
+            this.lblRentalName.Text = "(lblRentalPlan)";
             // 
-            // lblAmount
+            // lblCarName
             // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmount.Location = new System.Drawing.Point(644, 135);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblAmount.Size = new System.Drawing.Size(109, 23);
-            this.lblAmount.TabIndex = 1;
-            this.lblAmount.Text = "(lblAmount)";
-            this.lblAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblCarName.AutoSize = true;
+            this.lblCarName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarName.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCarName.Location = new System.Drawing.Point(33, 87);
+            this.lblCarName.Name = "lblCarName";
+            this.lblCarName.Size = new System.Drawing.Size(157, 27);
+            this.lblCarName.TabIndex = 53;
+            this.lblCarName.Text = "(lblCarName)";
             // 
-            // label3
+            // lblCustomerName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 179);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 23);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Payment Method:";
-            // 
-            // cbxPaymentMethod
-            // 
-            this.cbxPaymentMethod.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxPaymentMethod.FormattingEnabled = true;
-            this.cbxPaymentMethod.Location = new System.Drawing.Point(453, 179);
-            this.cbxPaymentMethod.Name = "cbxPaymentMethod";
-            this.cbxPaymentMethod.Size = new System.Drawing.Size(296, 31);
-            this.cbxPaymentMethod.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 238);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 23);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Amount Received:";
-            // 
-            // txtAmountReceived
-            // 
-            this.txtAmountReceived.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAmountReceived.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountReceived.Location = new System.Drawing.Point(453, 238);
-            this.txtAmountReceived.Name = "txtAmountReceived";
-            this.txtAmountReceived.Size = new System.Drawing.Size(296, 30);
-            this.txtAmountReceived.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 290);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(183, 23);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Remaining Balance:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(549, 290);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(204, 23);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "(lblRemainingBalance)";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnConfirmPayment
-            // 
-            this.btnConfirmPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirmPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmPayment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmPayment.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(521, 351);
-            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
-            this.btnConfirmPayment.Name = "btnConfirmPayment";
-            this.btnConfirmPayment.Size = new System.Drawing.Size(228, 44);
-            this.btnConfirmPayment.TabIndex = 50;
-            this.btnConfirmPayment.Text = "CONFIRM PAYMENT";
-            this.btnConfirmPayment.UseVisualStyleBackColor = false;
-            this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
+            this.lblCustomerName.AutoSize = true;
+            this.lblCustomerName.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomerName.Location = new System.Drawing.Point(11, 10);
+            this.lblCustomerName.Name = "lblCustomerName";
+            this.lblCustomerName.Size = new System.Drawing.Size(275, 33);
+            this.lblCustomerName.TabIndex = 52;
+            this.lblCustomerName.Text = "(lblCustomerName)";
             // 
             // btnCancel
             // 
@@ -193,37 +126,104 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lblCustomerName
+            // btnConfirmPayment
             // 
-            this.lblCustomerName.AutoSize = true;
-            this.lblCustomerName.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerName.Location = new System.Drawing.Point(11, 10);
-            this.lblCustomerName.Name = "lblCustomerName";
-            this.lblCustomerName.Size = new System.Drawing.Size(275, 33);
-            this.lblCustomerName.TabIndex = 52;
-            this.lblCustomerName.Text = "(lblCustomerName)";
+            this.btnConfirmPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirmPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmPayment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmPayment.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmPayment.Location = new System.Drawing.Point(521, 351);
+            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
+            this.btnConfirmPayment.Name = "btnConfirmPayment";
+            this.btnConfirmPayment.Size = new System.Drawing.Size(228, 44);
+            this.btnConfirmPayment.TabIndex = 50;
+            this.btnConfirmPayment.Text = "CONFIRM PAYMENT";
+            this.btnConfirmPayment.UseVisualStyleBackColor = false;
+            this.btnConfirmPayment.Click += new System.EventHandler(this.btnConfirmPayment_Click);
             // 
-            // lblCarName
+            // label6
             // 
-            this.lblCarName.AutoSize = true;
-            this.lblCarName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarName.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblCarName.Location = new System.Drawing.Point(33, 87);
-            this.lblCarName.Name = "lblCarName";
-            this.lblCarName.Size = new System.Drawing.Size(157, 27);
-            this.lblCarName.TabIndex = 53;
-            this.lblCarName.Text = "(lblCarName)";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(549, 290);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label6.Size = new System.Drawing.Size(204, 23);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "(lblRemainingBalance)";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblRentalName
+            // label5
             // 
-            this.lblRentalName.AutoSize = true;
-            this.lblRentalName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRentalName.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblRentalName.Location = new System.Drawing.Point(33, 50);
-            this.lblRentalName.Name = "lblRentalName";
-            this.lblRentalName.Size = new System.Drawing.Size(179, 27);
-            this.lblRentalName.TabIndex = 54;
-            this.lblRentalName.Text = "(lblRentalPlan)";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 290);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(183, 23);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Remaining Balance:";
+            // 
+            // txtAmountReceived
+            // 
+            this.txtAmountReceived.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAmountReceived.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountReceived.Location = new System.Drawing.Point(453, 238);
+            this.txtAmountReceived.Name = "txtAmountReceived";
+            this.txtAmountReceived.Size = new System.Drawing.Size(296, 30);
+            this.txtAmountReceived.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 238);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(169, 23);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Amount Received:";
+            // 
+            // cbxPaymentMethod
+            // 
+            this.cbxPaymentMethod.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPaymentMethod.FormattingEnabled = true;
+            this.cbxPaymentMethod.Location = new System.Drawing.Point(453, 179);
+            this.cbxPaymentMethod.Name = "cbxPaymentMethod";
+            this.cbxPaymentMethod.Size = new System.Drawing.Size(296, 31);
+            this.cbxPaymentMethod.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(21, 179);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(165, 23);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Payment Method:";
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.Location = new System.Drawing.Point(644, 135);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblAmount.Size = new System.Drawing.Size(109, 23);
+            this.lblAmount.TabIndex = 1;
+            this.lblAmount.Text = "(lblAmount)";
+            this.lblAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 23);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Amount Due:";
             // 
             // modal_Payment
             // 
@@ -235,6 +235,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "modal_Payment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "modal_Payment";
             this.pnlPayment.ResumeLayout(false);
             this.pnlPayment.PerformLayout();

@@ -106,6 +106,7 @@
     <Compile Include="Code\Customer.cs" />
     <Compile Include="Code\Employee.cs" />
     <Compile Include="Code\Enum\enum_Car.cs" />
+    <Compile Include="Code\Enum\enum_Contracts.cs" />
     <Compile Include="Code\Enum\enum_Payment.cs" />
     <Compile Include="Code\IModalFactory.cs" />
     <Compile Include="Code\RentalPlan.cs" />

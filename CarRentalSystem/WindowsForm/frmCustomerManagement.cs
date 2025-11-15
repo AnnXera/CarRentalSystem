@@ -37,7 +37,7 @@ namespace CarRentalSystem.WindowsForm
             {
                 pnlCustomerDetails,
                 pnlSearch,
-                pnlCustomerView
+                pnlCustomerView,
             };
             UIHelper.ApplyRoundedPanels(panels, 8);
 
