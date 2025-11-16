@@ -55,24 +55,6 @@ namespace CarRentalSystem.Code
             return _repo.GetAllCars();
         }
 
-        public void UpdateStatus(long carId, string status, MySql.Data.MySqlClient.MySqlTransaction transaction = null)
-        {
-            _repo.UpdateStatus(carId, status, transaction);
-        }
-
-        public long AddAndReturnID(Cars entity)
-        {
-            try
-            {
-                return _repo.AddAndReturnID(entity);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding car: " + ex.Message);
-                return 0;
-            }
-        }
-
     }
 
 }

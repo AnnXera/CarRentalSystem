@@ -20,60 +20,40 @@ namespace CarRentalSystem.Database
         {
             var cars = new List<Cars>();
 
-            string query = @"
-                SELECT 
-                    c.CarID,
-                    c.PlanID,
-                    rp.PlanName,
-                    c.CarPicture,
-                    c.Brand,
-                    c.Model,
-                    c.Year,
-                    c.Seats,
-                    c.PlateNumber,
-                    c.VIN,
-                    c.EngineType,
-                    c.FuelType,
-                    c.Transmission,
-                    c.CurrentMileage,
-                    c.ReplacementValue,
-                    c.Status
-                FROM Car c
-                LEFT JOIN RentalPlans rp ON c.PlanID = rp.PlanID;
-            ";
-
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new MySqlCommand("GetAllCars", _db.Connection))
                 {
-                    while (reader.Read())
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        var car = new Cars
+                        while (reader.Read())
                         {
-                            CarID = reader.GetInt64("CarID"),
-                            PlanID = reader.GetInt64("PlanID"),
-                            PlanName = reader.IsDBNull(reader.GetOrdinal("PlanName")) ? "" : reader.GetString("PlanName"),
-                            CarPicture = reader.IsDBNull(reader.GetOrdinal("CarPicture")) ? null : (byte[])reader["CarPicture"],
-                            Brand = reader.GetString("Brand"),
-                            Model = reader.GetString("Model"),
-                            Year = reader.GetInt32("Year"),
-                            Seats = reader.GetInt32("Seats"),
-                            PlateNumber = reader.GetString("PlateNumber"),
-                            VIN = reader.GetString("VIN"),
-                            EngineType = reader.GetString("EngineType"),
-                            FuelType = reader.GetString("FuelType"),
-                            Transmission = reader.GetString("Transmission"),
-                            CurrentMileage = reader.GetInt64("CurrentMileage"),
-                            ReplacementValue = reader.GetDecimal("ReplacementValue"),
-                            Status = reader.GetString("Status"),
-                        };
+                            var car = new Cars
+                            {
+                                CarID = reader.GetInt64("CarID"),
+                                PlanID = reader.GetInt64("PlanID"),
+                                PlanName = reader.IsDBNull(reader.GetOrdinal("PlanName")) ? "" : reader.GetString("PlanName"),
+                                CarPicture = reader.IsDBNull(reader.GetOrdinal("CarPicture")) ? null : (byte[])reader["CarPicture"],
+                                Brand = reader.GetString("Brand"),
+                                Model = reader.GetString("Model"),
+                                Year = reader.GetInt32("Year"),
+                                Seats = reader.GetInt32("Seats"),
+                                PlateNumber = reader.GetString("PlateNumber"),
+                                VIN = reader.GetString("VIN"),
+                                EngineType = reader.GetString("EngineType"),
+                                FuelType = reader.GetString("FuelType"),
+                                Transmission = reader.GetString("Transmission"),
+                                CurrentMileage = reader.GetInt64("CurrentMileage"),
+                                ReplacementValue = reader.GetDecimal("ReplacementValue"),
+                                Status = reader.GetString("Status")
+                            };
 
-                        // Combine Year + Brand + Model
-                        car.CarDescription = $"{car.Year} {car.Brand} {car.Model}";
-
-                        cars.Add(car);
+                            car.CarDescription = $"{car.Year} {car.Brand} {car.Model}";
+                            cars.Add(car);
+                        }
                     }
                 }
             }
@@ -144,44 +124,37 @@ namespace CarRentalSystem.Database
 
         public long AddCar(Cars car)
         {
-            string query = @"
-                        INSERT INTO Car
-                            (PlanID, CarPicture, VIN, PlateNumber, Brand, Model, Year,
-                             Transmission, Seats, EngineType, FuelType, CurrentMileage,
-                             ReplacementValue, Status)
-                        VALUES
-                            (@PlanID, @CarPicture, @VIN, @PlateNumber, @Brand, @Model, @Year,
-                             @Transmission, @Seats, @EngineType, @FuelType, @CurrentMileage,
-                             @ReplacementValue, @Status);
-                        SELECT LAST_INSERT_ID();";
-
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
+                using (var cmd = new MySqlCommand("AddCar", _db.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@PlanID", car.PlanID);
-                    cmd.Parameters.AddWithValue("@CarPicture", car.CarPicture ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@VIN", car.VIN);
-                    cmd.Parameters.AddWithValue("@PlateNumber", car.PlateNumber);
-                    cmd.Parameters.AddWithValue("@Brand", car.Brand);
-                    cmd.Parameters.AddWithValue("@Model", car.Model);
-                    cmd.Parameters.AddWithValue("@Year", car.Year);
-                    cmd.Parameters.AddWithValue("@Transmission", car.Transmission);
-                    cmd.Parameters.AddWithValue("@Seats", car.Seats);
-                    cmd.Parameters.AddWithValue("@EngineType", car.EngineType);
-                    cmd.Parameters.AddWithValue("@FuelType", car.FuelType);
-                    cmd.Parameters.AddWithValue("@CurrentMileage", car.CurrentMileage);
-                    cmd.Parameters.AddWithValue("@ReplacementValue", car.ReplacementValue);
-                    cmd.Parameters.AddWithValue("@Status", car.Status);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    return Convert.ToInt64(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@p_PlanID", car.PlanID);
+                    cmd.Parameters.AddWithValue("@p_CarPicture", car.CarPicture ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_VIN", car.VIN);
+                    cmd.Parameters.AddWithValue("@p_PlateNumber", car.PlateNumber);
+                    cmd.Parameters.AddWithValue("@p_Brand", car.Brand);
+                    cmd.Parameters.AddWithValue("@p_Model", car.Model);
+                    cmd.Parameters.AddWithValue("@p_Year", car.Year);
+                    cmd.Parameters.AddWithValue("@p_Transmission", car.Transmission);
+                    cmd.Parameters.AddWithValue("@p_Seats", car.Seats);
+                    cmd.Parameters.AddWithValue("@p_EngineType", car.EngineType);
+                    cmd.Parameters.AddWithValue("@p_FuelType", car.FuelType);
+                    cmd.Parameters.AddWithValue("@p_CurrentMileage", car.CurrentMileage);
+                    cmd.Parameters.AddWithValue("@p_ReplacementValue", car.ReplacementValue);
+                    cmd.Parameters.AddWithValue("@p_Status", car.Status);
+
+                    var outParam = new MySqlParameter("@p_NewCarID", MySqlDbType.Int64)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outParam);
+
+                    cmd.ExecuteNonQuery();
+                    return (long)outParam.Value;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding car: " + ex.Message);
-                return -1;
             }
             finally
             {
@@ -191,117 +164,35 @@ namespace CarRentalSystem.Database
 
         public void UpdateCar(Cars car)
         {
-            string query = @"
-                    UPDATE Car
-                    SET 
-                        PlanID = @PlanID,
-                        CarPicture = @CarPicture,
-                        VIN = @VIN,
-                        PlateNumber = @PlateNumber,
-                        Brand = @Brand,
-                        Model = @Model,
-                        Year = @Year,
-                        Transmission = @Transmission,
-                        Seats = @Seats,
-                        EngineType = @EngineType,
-                        FuelType = @FuelType,
-                        CurrentMileage = @CurrentMileage,
-                        ReplacementValue = @ReplacementValue,
-                        Status = @Status
-                    WHERE CarID = @CarID;";
-
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
+                using (var cmd = new MySqlCommand("UpdateCar", _db.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@CarID", car.CarID);
-                    cmd.Parameters.AddWithValue("@PlanID", car.PlanID);
-                    cmd.Parameters.AddWithValue("@CarPicture", car.CarPicture ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@VIN", car.VIN);
-                    cmd.Parameters.AddWithValue("@PlateNumber", car.PlateNumber);
-                    cmd.Parameters.AddWithValue("@Brand", car.Brand);
-                    cmd.Parameters.AddWithValue("@Model", car.Model);
-                    cmd.Parameters.AddWithValue("@Year", car.Year);
-                    cmd.Parameters.AddWithValue("@Transmission", car.Transmission);
-                    cmd.Parameters.AddWithValue("@Seats", car.Seats);
-                    cmd.Parameters.AddWithValue("@EngineType", car.EngineType);
-                    cmd.Parameters.AddWithValue("@FuelType", car.FuelType);
-                    cmd.Parameters.AddWithValue("@CurrentMileage", car.CurrentMileage);
-                    cmd.Parameters.AddWithValue("@ReplacementValue", car.ReplacementValue);
-                    cmd.Parameters.AddWithValue("@Status", car.Status);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@p_CarID", car.CarID);
+                    cmd.Parameters.AddWithValue("@p_PlanID", car.PlanID);
+                    cmd.Parameters.AddWithValue("@p_CarPicture", car.CarPicture ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_VIN", car.VIN);
+                    cmd.Parameters.AddWithValue("@p_PlateNumber", car.PlateNumber);
+                    cmd.Parameters.AddWithValue("@p_Brand", car.Brand);
+                    cmd.Parameters.AddWithValue("@p_Model", car.Model);
+                    cmd.Parameters.AddWithValue("@p_Year", car.Year);
+                    cmd.Parameters.AddWithValue("@p_Transmission", car.Transmission);
+                    cmd.Parameters.AddWithValue("@p_Seats", car.Seats);
+                    cmd.Parameters.AddWithValue("@p_EngineType", car.EngineType);
+                    cmd.Parameters.AddWithValue("@p_FuelType", car.FuelType);
+                    cmd.Parameters.AddWithValue("@p_CurrentMileage", car.CurrentMileage);
+                    cmd.Parameters.AddWithValue("@p_ReplacementValue", car.ReplacementValue);
+                    cmd.Parameters.AddWithValue("@p_Status", car.Status);
 
                     cmd.ExecuteNonQuery();
                 }
-
-                MessageBox.Show("Car updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error updating car: " + ex.Message);
             }
             finally
             {
                 _db.Close();
-            }
-        }
-
-        public long AddAndReturnID(Cars car)
-        {
-            string query = @"
-                        INSERT INTO Car
-                            (PlanID, CarPicture, VIN, PlateNumber, Brand, Model, Year, 
-                             Transmission, Seats, EngineType, FuelType, CurrentMileage, 
-                             ReplacementValue, Status)
-                        VALUES
-                            (@PlanID, @CarPicture, @VIN, @PlateNumber, @Brand, @Model, @Year,
-                             @Transmission, @Seats, @EngineType, @FuelType, @CurrentMileage,
-                             @ReplacementValue, @Status);
-                        SELECT LAST_INSERT_ID();";
-
-            try
-            {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@PlanID", car.PlanID);
-                    cmd.Parameters.AddWithValue("@CarPicture", car.CarPicture ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@VIN", car.VIN);
-                    cmd.Parameters.AddWithValue("@PlateNumber", car.PlateNumber);
-                    cmd.Parameters.AddWithValue("@Brand", car.Brand);
-                    cmd.Parameters.AddWithValue("@Model", car.Model);
-                    cmd.Parameters.AddWithValue("@Year", car.Year);
-                    cmd.Parameters.AddWithValue("@Transmission", car.Transmission);
-                    cmd.Parameters.AddWithValue("@Seats", car.Seats);
-                    cmd.Parameters.AddWithValue("@EngineType", car.EngineType);
-                    cmd.Parameters.AddWithValue("@FuelType", car.FuelType);
-                    cmd.Parameters.AddWithValue("@CurrentMileage", car.CurrentMileage);
-                    cmd.Parameters.AddWithValue("@ReplacementValue", car.ReplacementValue);
-                    cmd.Parameters.AddWithValue("@Status", car.Status);
-
-                    var newId = cmd.ExecuteScalar();
-                    return Convert.ToInt64(newId);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding car: " + ex.Message);
-                return 0;
-            }
-            finally
-            {
-                _db.Close();
-            }
-        }
-
-        public void UpdateStatus(long carId, string status, MySqlTransaction transaction = null)
-        {
-            string sql = "UPDATE Car SET Status = @Status WHERE CarID = @CarID";
-            using (var cmd = new MySqlCommand(sql, _db.Connection, transaction))
-            {
-                cmd.Parameters.AddWithValue("@Status", status);
-                cmd.Parameters.AddWithValue("@CarID", carId);
-                cmd.ExecuteNonQuery();
             }
         }
     }

@@ -5,7 +5,7 @@ using CarRentalSystem.Database;
 
 namespace CarRentalSystem.Code
 {
-    internal class Employee
+    public class Employee
     {
         public long EmpID { get; set; }
         public string FullName { get; set; }

@@ -3,6 +3,7 @@ using CarRentalSystem.Database;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,34 +25,28 @@ namespace CarRentalSystem.Database
             var customers = new List<Customer>();
             _db.Open();
 
-            string query = @"SELECT c.*, e.FullName AS RegisteredByName
-                             FROM Customers c
-                             LEFT JOIN Employee e ON c.RegisteredBy = e.EmpID";
-
-            using (var cmd = new MySqlCommand(query, _db.Connection))
-            using (var reader = cmd.ExecuteReader())
+            using (var cmd = new MySqlCommand("GetAllCustomers", _db.Connection))
             {
-                while (reader.Read())
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                using (var reader = cmd.ExecuteReader())
                 {
-                    var customer = new Customer
+                    while (reader.Read())
                     {
-                        CustID = Convert.ToInt64(reader["CustID"]),
-                        FullName = reader["FullName"].ToString(),
-                        Gender = reader["Gender"].ToString(),
-                        PhoneNumber = reader["PhoneNumber"].ToString(),
-                        Address = reader["Address"].ToString(),
-                        RegisteredByEmpID = reader["RegisteredBy"] != DBNull.Value
-                            ? Convert.ToInt64(reader["RegisteredBy"])
-                            : 0,
-                        RegisteredByName = reader["RegisteredByName"] != DBNull.Value
-                            ? reader["RegisteredByName"].ToString()
-                            : "N/A"
-                    };
+                        var customer = new Customer
+                        {
+                            CustID = Convert.ToInt64(reader["CustID"]),
+                            FullName = reader["FullName"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            PhoneNumber = reader["PhoneNumber"].ToString(),
+                            Address = reader["Address"].ToString(),
+                            RegisteredByEmpID = reader["RegisteredBy"] != DBNull.Value ? Convert.ToInt64(reader["RegisteredBy"]) : 0,
+                            RegisteredByName = reader["RegisteredByName"] != DBNull.Value ? reader["RegisteredByName"].ToString() : "N/A",
+                            Picture = reader["DriversLicensePic"] is DBNull ? null : (byte[])reader["DriversLicensePic"]
+                        };
 
-                    if (!(reader["DriversLicensePic"] is DBNull))
-                        customer.Picture = (byte[])reader["DriversLicensePic"];
-
-                    customers.Add(customer);
+                        customers.Add(customer);
+                    }
                 }
             }
 
@@ -61,64 +56,48 @@ namespace CarRentalSystem.Database
 
         public long AddCustomer(Customer cs)
         {
-            try
+            long newId = -1;
+            _db.Open();
+
+            using (var cmd = new MySqlCommand("AddCustomer", _db.Connection))
             {
-                _db.Open();
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                string query = @"INSERT INTO Customers 
-                         (FullName, Gender, PhoneNumber, Address, RegisteredBy, DriversLicensePic)
-                         VALUES (@FullName, @Gender, @PhoneNumber, @Address, @RegisteredBy, @Picture);
-                         SELECT LAST_INSERT_ID();";
+                cmd.Parameters.AddWithValue("@p_FullName", cs.FullName);
+                cmd.Parameters.AddWithValue("@p_Gender", cs.Gender);
+                cmd.Parameters.AddWithValue("@p_PhoneNumber", cs.PhoneNumber);
+                cmd.Parameters.AddWithValue("@p_Address", cs.Address);
+                cmd.Parameters.AddWithValue("@p_RegisteredBy", cs.RegisteredByEmpID);
+                cmd.Parameters.AddWithValue("@p_Picture", cs.Picture ?? (object)DBNull.Value);
 
-                using (var cmd = new MySqlCommand(query, _db.Connection))
+                var outParam = new MySqlParameter("@p_NewCustID", MySqlDbType.Int64)
                 {
-                    cmd.Parameters.AddWithValue("@FullName", cs.FullName);
-                    cmd.Parameters.AddWithValue("@Gender", cs.Gender);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@Address", cs.Address);
-                    cmd.Parameters.AddWithValue("@RegisteredBy", cs.RegisteredByEmpID);
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outParam);
 
-                    if (cs.Picture != null && cs.Picture.Length > 0)
-                        cmd.Parameters.AddWithValue("@Picture", cs.Picture);
-                    else
-                        cmd.Parameters.AddWithValue("@Picture", DBNull.Value);
+                cmd.ExecuteNonQuery();
+                newId = Convert.ToInt64(outParam.Value);
+            }
 
-                    // ExecuteScalar returns the LAST_INSERT_ID
-                    var newId = cmd.ExecuteScalar();
-                    return Convert.ToInt64(newId);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding customer: " + ex.Message);
-                return -1;
-            }
-            finally
-            {
-                _db.Close();
-            }
+            _db.Close();
+            return newId;
         }
 
         public void UpdateCustomer(Customer cs)
         {
             _db.Open();
 
-            string query = @"UPDATE Customers SET 
-                             FullName=@FullName, Gender=@Gender, PhoneNumber=@PhoneNumber, Address=@Address, DriversLicensePic=@Picture
-                             WHERE CustID=@CustID";
-
-            using (var cmd = new MySqlCommand(query, _db.Connection))
+            using (var cmd = new MySqlCommand("UpdateCustomer", _db.Connection))
             {
-                cmd.Parameters.AddWithValue("@CustID", cs.CustID);
-                cmd.Parameters.AddWithValue("@FullName", cs.FullName);
-                cmd.Parameters.AddWithValue("@Gender", cs.Gender);
-                cmd.Parameters.AddWithValue("@PhoneNumber", cs.PhoneNumber);
-                cmd.Parameters.AddWithValue("@Address", cs.Address);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                if (cs.Picture != null && cs.Picture.Length > 0)
-                    cmd.Parameters.AddWithValue("@Picture", cs.Picture);
-                else
-                    cmd.Parameters.AddWithValue("@Picture", DBNull.Value);
+                cmd.Parameters.AddWithValue("@p_CustID", cs.CustID);
+                cmd.Parameters.AddWithValue("@p_FullName", cs.FullName);
+                cmd.Parameters.AddWithValue("@p_Gender", cs.Gender);
+                cmd.Parameters.AddWithValue("@p_PhoneNumber", cs.PhoneNumber);
+                cmd.Parameters.AddWithValue("@p_Address", cs.Address);
+                cmd.Parameters.AddWithValue("@p_Picture", cs.Picture ?? (object)DBNull.Value);
 
                 cmd.ExecuteNonQuery();
             }
@@ -128,19 +107,26 @@ namespace CarRentalSystem.Database
 
         public long GetNextCustomerId()
         {
-            _db.Open();
             long nextId = 1;
+            _db.Open();
 
-            string query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Customers'";
-            using (var cmd = new MySqlCommand(query, _db.Connection))
+            using (var cmd = new MySqlCommand("GetNextCustomerId", _db.Connection))
             {
-                var result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
-                    nextId = Convert.ToInt64(result);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var outParam = new MySqlParameter("@p_NextID", MySqlDbType.Int64)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outParam);
+
+                cmd.ExecuteNonQuery();
+                nextId = Convert.ToInt64(outParam.Value);
             }
 
             _db.Close();
             return nextId;
         }
+
     }
 }

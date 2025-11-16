@@ -33,11 +33,6 @@ namespace CarRentalSystem.Code
             _repo.UpdateCarPart(entity);
         }
 
-        public void Delete(long partId)
-        {
-            _repo.DeleteCarPart(partId);
-        }
-
         public List<CarParts> ViewAll()
         {
             throw new NotImplementedException();

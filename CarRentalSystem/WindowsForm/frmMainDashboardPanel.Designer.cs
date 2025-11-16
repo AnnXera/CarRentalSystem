@@ -69,6 +69,7 @@
             this.pnlRevenue = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnProcessContract = new System.Windows.Forms.Button();
             this.pnlQuickActions.SuspendLayout();
             this.pnlOverView.SuspendLayout();
             this.pnlSearchActiveRentals.SuspendLayout();
@@ -89,6 +90,7 @@
             this.pnlQuickActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlQuickActions.BackColor = System.Drawing.Color.White;
+            this.pnlQuickActions.Controls.Add(this.btnProcessContract);
             this.pnlQuickActions.Controls.Add(this.btnNewContract);
             this.pnlQuickActions.Controls.Add(this.label1);
             this.pnlQuickActions.Controls.Add(this.lblRole);
@@ -102,14 +104,16 @@
             // 
             this.btnNewContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNewContract.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewContract.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewContract.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnNewContract.Image = global::CarRentalSystem.Properties.Resources.AddIcon;
             this.btnNewContract.Location = new System.Drawing.Point(20, 67);
             this.btnNewContract.Margin = new System.Windows.Forms.Padding(5);
             this.btnNewContract.Name = "btnNewContract";
-            this.btnNewContract.Size = new System.Drawing.Size(208, 48);
+            this.btnNewContract.Size = new System.Drawing.Size(225, 48);
             this.btnNewContract.TabIndex = 73;
             this.btnNewContract.Text = "New Contract";
+            this.btnNewContract.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNewContract.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNewContract.UseVisualStyleBackColor = true;
             this.btnNewContract.Click += new System.EventHandler(this.btnNewContract_Click);
@@ -206,7 +210,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.SearchIcon;
+            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
             this.pictureBox4.Location = new System.Drawing.Point(11, 9);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox4.Name = "pictureBox4";
@@ -552,6 +556,23 @@
             this.label10.TabIndex = 7;
             this.label10.Text = "Revenue(MTD)";
             // 
+            // btnProcessContract
+            // 
+            this.btnProcessContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnProcessContract.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcessContract.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcessContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnProcessContract.Image = global::CarRentalSystem.Properties.Resources.AddIcon;
+            this.btnProcessContract.Location = new System.Drawing.Point(255, 67);
+            this.btnProcessContract.Margin = new System.Windows.Forms.Padding(5);
+            this.btnProcessContract.Name = "btnProcessContract";
+            this.btnProcessContract.Size = new System.Drawing.Size(226, 48);
+            this.btnProcessContract.TabIndex = 74;
+            this.btnProcessContract.Text = "Process Contract";
+            this.btnProcessContract.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnProcessContract.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProcessContract.UseVisualStyleBackColor = true;
+            // 
             // frmMainDashboardPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -643,5 +664,6 @@
         private System.Windows.Forms.Panel pnlSearchActiveRentals;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.TextBox txtSearchActiveRentals;
+        private System.Windows.Forms.Button btnProcessContract;
     }
 }

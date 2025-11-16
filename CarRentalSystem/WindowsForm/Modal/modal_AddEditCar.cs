@@ -32,11 +32,13 @@ namespace CarRentalSystem.WindowsForm.Modal
             {
                 LoadCarData(); // Load existing car info
                 btnSave.Text = "Update";
+                this.Text = "Edit Car";
             }
             else
             {
                 ClearForm();
                 btnSave.Text = "Add";
+                this.Text = "Add New Car";
             }
         }
 
@@ -296,9 +298,10 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             try
             {
+                // 1. Validate form
                 ValidateCarForm();
 
-                var carFactory = new CarFactory();
+                // 2. Prepare car object
                 var car = new Cars
                 {
                     CarID = _carId,
@@ -310,7 +313,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                     ReplacementValue = decimal.Parse(txtReplacementValue.Text),
                     EngineType = txtEngineType.Text.Trim(),
                     PlanID = (long)cbxRentalPlan.SelectedValue,
-                    CurrentMileage = 0,
+                    CurrentMileage = 0, // initial mileage
                     CarPicture = ImageHelper.ImageToByteArray(picCar.Image),
                     Transmission = cbxTransmission.SelectedItem.ToString(),
                     FuelType = cbxFuelType.SelectedItem.ToString(),
@@ -318,18 +321,21 @@ namespace CarRentalSystem.WindowsForm.Modal
                     Brand = cbxBrand.SelectedItem.ToString()
                 };
 
+                var carFactory = new CarFactory();
                 long carId;
 
+                // 3. Add or Update car using SP
                 if (_isEditMode)
                 {
-                    carFactory.Edit(car);
+                    carFactory.Edit(car);  // calls UpdateCar SP
                     carId = _carId;
                 }
                 else
                 {
-                    carId = carFactory.AddAndReturnID(car);
+                    carId = carFactory.Add(car); // calls AddCar SP
                 }
 
+                // 4. Handle car parts
                 var partsFactory = new CarPartsFactory();
                 var existingParts = partsFactory.ViewByCar(carId);
                 var currentParts = new List<CarParts>();
@@ -356,6 +362,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                     currentParts.Add(part);
                 }
 
+                // Add or update parts
                 foreach (var part in currentParts)
                 {
                     if (part.PartID > 0)
@@ -364,17 +371,12 @@ namespace CarRentalSystem.WindowsForm.Modal
                         partsFactory.Add(part);
                 }
 
-                foreach (var oldPart in existingParts)
-                {
-                    if (!currentParts.Any(p => p.PartID == oldPart.PartID))
-                        partsFactory.Delete(oldPart.PartID);
-                }
-
+                // 5. Show success message
                 MessageBox.Show(_isEditMode ? "Car updated successfully!" : "Car added successfully!",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // 6. Clear form or close
                 ClearForm();
-
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)

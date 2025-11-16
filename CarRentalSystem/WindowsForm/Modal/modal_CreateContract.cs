@@ -1,6 +1,5 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
-using CarRentalSystem.Services;
 using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
@@ -274,6 +273,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 decimal baseRate = 0;
                 decimal.TryParse(lblBaseRate.Text, System.Globalization.NumberStyles.Currency, null, out baseRate);
 
+                // Create contract object
                 var contract = new Contracts
                 {
                     CustID = custId,
@@ -286,6 +286,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                     Status = "Pending"
                 };
 
+                // Create deposit object
                 var deposit = new SecurityDeposit
                 {
                     Amount = securityDepositAmount,
@@ -293,13 +294,16 @@ namespace CarRentalSystem.WindowsForm.Modal
                     DepositDate = DateTime.Now.Date
                 };
 
-                string paymentMethod = cbxPaymentMethod.SelectedItem.ToString();
+                string paymentMethod = cbxPaymentMethod.SelectedItem?.ToString() ?? "Cash";
+                string customerName = lblFullName.Text;
 
-                // Call service
-                var contractService = new ContractService();
-                contractService.CreateContractWithBilling(contract, deposit, paymentMethod, baseRate, lblFullName.Text);
+                // Call ContractFactory to insert
+                var factory = new ContractFactory();
+                long newContractID = factory.Add(contract, deposit, baseRate, paymentMethod, customerName);
 
-                MessageBox.Show("Contract created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Contract created successfully! Contract ID: {newContractID}",
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

@@ -30,10 +30,12 @@
         {
             this.label3 = new System.Windows.Forms.Label();
             this.pnlAddEditPart = new System.Windows.Forms.Panel();
+            this.cbxStatus = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPart = new System.Windows.Forms.Label();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.txtPartName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pnlCarName = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cbxStatus = new System.Windows.Forms.ComboBox();
             this.pnlAddEditPart.SuspendLayout();
             this.panel4.SuspendLayout();
             this.pnlCarName.SuspendLayout();
@@ -76,6 +76,26 @@
             this.pnlAddEditPart.Name = "pnlAddEditPart";
             this.pnlAddEditPart.Size = new System.Drawing.Size(717, 286);
             this.pnlAddEditPart.TabIndex = 77;
+            // 
+            // cbxStatus
+            // 
+            this.cbxStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxStatus.FormattingEnabled = true;
+            this.cbxStatus.Location = new System.Drawing.Point(149, 160);
+            this.cbxStatus.Name = "cbxStatus";
+            this.cbxStatus.Size = new System.Drawing.Size(233, 31);
+            this.cbxStatus.TabIndex = 83;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(13, 163);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(72, 23);
+            this.lblStatus.TabIndex = 82;
+            this.lblStatus.Text = "Status:";
             // 
             // btnCancel
             // 
@@ -112,26 +132,26 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
-            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.lblPart);
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(717, 52);
             this.panel4.TabIndex = 80;
             // 
-            // label1
+            // lblPart
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label1.Location = new System.Drawing.Point(248, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(249, 33);
-            this.label1.TabIndex = 76;
-            this.label1.Text = "Add / Update Part";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPart.AutoSize = true;
+            this.lblPart.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPart.ForeColor = System.Drawing.Color.White;
+            this.lblPart.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPart.Location = new System.Drawing.Point(248, 9);
+            this.lblPart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPart.Name = "lblPart";
+            this.lblPart.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblPart.Size = new System.Drawing.Size(249, 33);
+            this.lblPart.TabIndex = 76;
+            this.lblPart.Text = "Add / Update Part";
+            this.lblPart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtCost
             // 
@@ -207,26 +227,6 @@
             this.panel3.Size = new System.Drawing.Size(666, 1);
             this.panel3.TabIndex = 79;
             // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(13, 163);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(72, 23);
-            this.lblStatus.TabIndex = 82;
-            this.lblStatus.Text = "Status:";
-            // 
-            // cbxStatus
-            // 
-            this.cbxStatus.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxStatus.FormattingEnabled = true;
-            this.cbxStatus.Location = new System.Drawing.Point(149, 160);
-            this.cbxStatus.Name = "cbxStatus";
-            this.cbxStatus.Size = new System.Drawing.Size(233, 31);
-            this.cbxStatus.TabIndex = 83;
-            // 
             // modal_AddEditCarParts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -263,7 +263,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtPartName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlCarName;
         private System.Windows.Forms.Panel panel3;
