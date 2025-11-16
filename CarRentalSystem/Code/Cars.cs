@@ -60,19 +60,6 @@ namespace CarRentalSystem.Code
             _repo.UpdateStatus(carId, status, transaction);
         }
 
-        public long AddAndReturnID(Cars entity)
-        {
-            try
-            {
-                return _repo.AddAndReturnID(entity);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding car: " + ex.Message);
-                return 0;
-            }
-        }
-
     }
 
 }
