@@ -57,5 +57,38 @@ namespace CarRentalSystem.Database
             return newEmpId;
         }
 
+        public List<Employee> GetAllEmployees()
+        {
+            var list = new List<Employee>();
+            try
+            {
+                _db.Open();
+                using (var cmd = new MySqlCommand("GetAllEmployees", _db.Connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new Employee
+                            {
+                                EmpID = Convert.ToInt64(reader["EmpID"]),
+                                FullName = reader["FullName"].ToString(),
+                                Username = reader["Username"].ToString(),
+                                Role = reader["Role"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+            return list;
+        }
+
+
     }
 }

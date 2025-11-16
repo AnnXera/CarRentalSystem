@@ -81,7 +81,6 @@
             this.pnlContractDetails.Controls.Add(this.label3);
             this.pnlContractDetails.Controls.Add(this.label2);
             this.pnlContractDetails.Controls.Add(this.label1);
-            this.pnlContractDetails.Controls.Add(this.btnProcessReturn);
             this.pnlContractDetails.Location = new System.Drawing.Point(12, 12);
             this.pnlContractDetails.Name = "pnlContractDetails";
             this.pnlContractDetails.Size = new System.Drawing.Size(1535, 268);
@@ -93,7 +92,7 @@
             this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
-            this.btnPayment.Location = new System.Drawing.Point(1337, 93);
+            this.btnPayment.Location = new System.Drawing.Point(1337, 10);
             this.btnPayment.Margin = new System.Windows.Forms.Padding(5, 0, 10, 5);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(188, 60);
@@ -258,13 +257,14 @@
             this.btnProcessReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProcessReturn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProcessReturn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
-            this.btnProcessReturn.Location = new System.Drawing.Point(1337, 20);
+            this.btnProcessReturn.Location = new System.Drawing.Point(1041, 20);
             this.btnProcessReturn.Margin = new System.Windows.Forms.Padding(5, 20, 10, 10);
             this.btnProcessReturn.Name = "btnProcessReturn";
-            this.btnProcessReturn.Size = new System.Drawing.Size(188, 60);
+            this.btnProcessReturn.Size = new System.Drawing.Size(226, 60);
             this.btnProcessReturn.TabIndex = 60;
             this.btnProcessReturn.Text = "Process Return";
             this.btnProcessReturn.UseVisualStyleBackColor = true;
+            this.btnProcessReturn.Click += new System.EventHandler(this.btnProcessReturn_Click);
             // 
             // btnNewRental
             // 
@@ -383,6 +383,7 @@
             this.pnlContractsOverview.BackColor = System.Drawing.Color.White;
             this.pnlContractsOverview.Controls.Add(this.dataGridView1);
             this.pnlContractsOverview.Controls.Add(this.btnNewRental);
+            this.pnlContractsOverview.Controls.Add(this.btnProcessReturn);
             this.pnlContractsOverview.Controls.Add(this.pnlSearch);
             this.pnlContractsOverview.Controls.Add(this.pnlComboBox);
             this.pnlContractsOverview.Location = new System.Drawing.Point(12, 299);

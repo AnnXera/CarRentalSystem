@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Utils;
+using CarRentalSystem.WindowsForm.AdminForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -207,7 +208,98 @@ namespace CarRentalSystem.WindowsForm
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                var emp = SessionManager.LoggedInEmployee;
+                if (emp != null)
+                {
+                    // Log logout action
+                    SystemLogger.Log(
+                        "Logout",
+                        $"Employee {emp.FullName} (ID: {emp.EmpID}) logged out.",
+                        emp.EmpID
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optional: handle logging errors
+                MessageBox.Show($"Failed to log logout action: {ex.Message}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                // Exit the application
+                Application.Exit();
+            }
+        }
+
+        private void btnEmployeeManagement_Click(object sender, EventArgs e)
+        {
+            UIHelper.ResetSidebarButtons(sidebarButtons);
+            UIHelper.SetActiveButton(btnEmployeeManagement, Properties.Resources.Icon___UserManagement___Active);
+
+            pnlMainDashboard.Controls
+                .OfType<frmEmployeeManagement>()
+                .ToList()
+                .ForEach(f => pnlMainDashboard.Controls.Remove(f));
+
+            // Add Employee Management form
+            frmEmployeeManagement employeeForm = new frmEmployeeManagement
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            pnlMainDashboard.Controls.Add(employeeForm);
+            employeeForm.BringToFront();
+            employeeForm.Show();
+        }
+
+        private void btnRentalPlans_Click(object sender, EventArgs e)
+        {
+            UIHelper.ResetSidebarButtons(sidebarButtons);
+            UIHelper.SetActiveButton(btnRentalPlans, Properties.Resources.Icon___RentalPlans___Active);
+
+            pnlMainDashboard.Controls
+                .OfType<frmRentalPlanManagement>()
+                .ToList()
+                .ForEach(f => pnlMainDashboard.Controls.Remove(f));
+
+            // Add Rental Plan Management form
+            frmRentalPlanManagement rentalPlanForm = new frmRentalPlanManagement
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            pnlMainDashboard.Controls.Add(rentalPlanForm);
+            rentalPlanForm.BringToFront();
+            rentalPlanForm.Show();
+        }
+
+        private void btnSystemLog_Click(object sender, EventArgs e)
+        {
+            UIHelper.ResetSidebarButtons(sidebarButtons);
+            UIHelper.SetActiveButton(btnSystemLog, Properties.Resources.Icon___SystemLog___Active);
+
+            pnlMainDashboard.Controls
+                .OfType<frmSystemLog>()
+                .ToList()
+                .ForEach(f => pnlMainDashboard.Controls.Remove(f));
+
+            // Add System Log form
+            frmSystemLog systemLogForm = new frmSystemLog
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            pnlMainDashboard.Controls.Add(systemLogForm);
+            systemLogForm.BringToFront();
+            systemLogForm.Show();
         }
     }
 }
