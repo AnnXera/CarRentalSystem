@@ -301,7 +301,15 @@ namespace CarRentalSystem.WindowsForm.Modal
                 var factory = new ContractFactory();
                 long newContractID = factory.Add(contract, deposit, baseRate, paymentMethod, customerName);
 
-                MessageBox.Show($"Contract created successfully! Contract ID: {newContractID}",
+                // Log contract creation
+                SystemLogger.Log(
+                    "Create Contract",
+                    $"{SessionManager.LoggedInEmployee.FullName} created a contract for customer {customerName}.",
+                    SessionManager.LoggedInEmployee.EmpID
+                );
+
+
+                MessageBox.Show($"Contract created successfully!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.DialogResult = DialogResult.OK;

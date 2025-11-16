@@ -149,8 +149,12 @@ namespace CarRentalSystem.WindowsForm.Modal
 
                     repo.AddCustomer(customer);
 
+                    SystemLogger.Log("Add Customer",
+                             $"{currentEmp.FullName} added customer {customer.FullName}.",
+                             currentEmp.EmpID);
+
                     MessageBox.Show(
-                        $"Customer '{customer.FullName}' successfully registered by {currentEmp.FullName}!",
+                        $"Customer '{customer.FullName}' successfully registered.",
                         "Success",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
@@ -166,6 +170,10 @@ namespace CarRentalSystem.WindowsForm.Modal
                     _editingCustomer.Picture = ImageHelper.ImageToByteArray(picCustomer.Image);
 
                     repo.UpdateCustomer(_editingCustomer);
+
+                    SystemLogger.Log("Edit Customer",
+                             $"{currentEmp.FullName} updated customer {_editingCustomer.FullName}.",
+                             currentEmp.EmpID);
 
                     MessageBox.Show(
                         $"Customer '{_editingCustomer.FullName}' successfully updated!",

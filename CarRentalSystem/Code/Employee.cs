@@ -2,6 +2,7 @@
 using System;
 using CarRentalSystem.Utils;
 using CarRentalSystem.Database;
+using System.Collections.Generic;
 
 namespace CarRentalSystem.Code
 {
@@ -39,6 +40,13 @@ namespace CarRentalSystem.Code
                         };
 
                         db.Close();
+
+                        SystemLogger.Log(
+                            "Login",
+                            $"Employee {emp.FullName} ({emp.Username}) logged in.",
+                            emp.EmpID
+                        );
+
                         return emp;
                     }
                     else
@@ -48,6 +56,28 @@ namespace CarRentalSystem.Code
                     }
                 }
             }
+        }
+
+    }
+
+    public class EmployeeFactory : IModalFactory<Employee>
+    {
+        private readonly EmployeeRepository _repo;
+        public EmployeeFactory()
+        {
+            _repo = new EmployeeRepository();
+        }
+        public List<Employee> ViewAll()
+        {
+            return _repo.GetAllEmployees();
+        }
+        public long Add(Employee emp)
+        {
+            return _repo.AddEmployee(emp);
+        }
+        public void Edit(Employee emp)
+        {
+            throw new NotImplementedException();
         }
     }
 }

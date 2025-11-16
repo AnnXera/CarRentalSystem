@@ -18,7 +18,6 @@ namespace CarRentalSystem.WindowsForm
         public frmContractsManagement()
         {
             InitializeComponent();
-            buttonProcessDisabled();
             LoadDesign();
         }
 
@@ -47,12 +46,6 @@ namespace CarRentalSystem.WindowsForm
             cbxStatus.SelectedIndex = -1;
         }
 
-        private void buttonProcessDisabled()
-        {
-            btnProcessReturn.Enabled = false;
-            btnProcessReturn.ForeColor = Color.Gray;
-        }
-
         private void dataGridView1_Paint(object sender, PaintEventArgs e)
         {
             UIHelper.DrawRoundedControl(sender, e, 10);
@@ -71,6 +64,14 @@ namespace CarRentalSystem.WindowsForm
             using (var Payment = new modal_Payment())
             {
                 Payment.ShowDialog();
+            }
+        }
+
+        private void btnProcessReturn_Click(object sender, EventArgs e)
+        {
+            using (var ReturnProcess = new modal_ProcessReturn())
+            {
+                ReturnProcess.ShowDialog();
             }
         }
     }
