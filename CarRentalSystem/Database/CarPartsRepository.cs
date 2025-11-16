@@ -17,108 +17,78 @@ namespace CarRentalSystem.Database
 
         public long AddCarPart(CarParts part)
         {
-            string query = @"
-        INSERT INTO CarParts (CarID, PartName, ReplacementCost, Status)
-        VALUES (@CarID, @PartName, @ReplacementCost, @Status);
-        SELECT LAST_INSERT_ID();";  // Return the new ID
+            long newId = -1;
+            _db.Open();
 
-            try
+            using (var cmd = new MySqlCommand("AddCarPart", _db.Connection))
             {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@p_CarID", part.CarID);
+                cmd.Parameters.AddWithValue("@p_PartName", part.PartName);
+                cmd.Parameters.AddWithValue("@p_ReplacementCost", part.ReplacementCost);
+                cmd.Parameters.AddWithValue("@p_Status", part.Status);
+
+                var outParam = new MySqlParameter("@p_NewPartID", MySqlDbType.Int64)
                 {
-                    cmd.Parameters.AddWithValue("@CarID", part.CarID);
-                    cmd.Parameters.AddWithValue("@PartName", part.PartName);
-                    cmd.Parameters.AddWithValue("@ReplacementCost", part.ReplacementCost);
-                    cmd.Parameters.AddWithValue("@Status", part.Status);
+                    Direction = System.Data.ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outParam);
 
-                    var newId = cmd.ExecuteScalar();
-                    return Convert.ToInt64(newId);
-                }
+                cmd.ExecuteNonQuery();
+                newId = Convert.ToInt64(outParam.Value);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding car part: " + ex.Message);
-                return -1;
-            }
-            finally
-            {
-                _db.Close();
-            }
+
+            _db.Close();
+            return newId;
         }
-
 
         public void UpdateCarPart(CarParts part)
         {
-            string query = @"UPDATE CarParts 
-                     SET PartName = @PartName, ReplacementCost = @ReplacementCost, Status = @Status
-                     WHERE PartsID = @PartsID";
-            try
-            {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@PartName", part.PartName);
-                    cmd.Parameters.AddWithValue("@ReplacementCost", part.ReplacementCost);
-                    cmd.Parameters.AddWithValue("@Status", part.Status);
-                    cmd.Parameters.AddWithValue("@PartsID", part.PartID);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            finally { _db.Close(); }
-        }
+            _db.Open();
 
-        public void DeleteCarPart(long partId)
-        {
-            string query = "DELETE FROM CarParts WHERE PartsID = @PartID";
-            try
+            using (var cmd = new MySqlCommand("UpdateCarPart", _db.Connection))
             {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@PartID", partId);
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@p_PartID", part.PartID);
+                cmd.Parameters.AddWithValue("@p_PartName", part.PartName);
+                cmd.Parameters.AddWithValue("@p_ReplacementCost", part.ReplacementCost);
+                cmd.Parameters.AddWithValue("@p_Status", part.Status);
+
+                cmd.ExecuteNonQuery();
             }
-            finally { _db.Close(); }
+
+            _db.Close();
         }
 
         public List<CarParts> GetPartsByCarId(long carId)
         {
             var parts = new List<CarParts>();
-            string query = "SELECT * FROM CarParts WHERE CarID = @CarID;";
+            _db.Open();
 
-            try
+            using (var cmd = new MySqlCommand("GetPartsByCarId", _db.Connection))
             {
-                _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@p_CarID", carId);
+
+                using (var reader = cmd.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@CarID", carId);
-                    using (var reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        parts.Add(new CarParts
                         {
-                            parts.Add(new CarParts
-                            {
-                                PartID = reader.GetInt64("PartsID"),
-                                CarID = reader.GetInt64("CarID"),
-                                PartName = reader.GetString("PartName"),
-                                ReplacementCost = reader.GetDecimal("ReplacementCost"),
-                                Status = reader.GetString("Status")
-                            });
-                        }
+                            PartID = reader.GetInt64("PartsID"),
+                            CarID = reader.GetInt64("CarID"),
+                            PartName = reader.GetString("PartName"),
+                            ReplacementCost = reader.GetDecimal("ReplacementCost"),
+                            Status = reader.GetString("Status")
+                        });
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error retrieving car parts: " + ex.Message);
-            }
-            finally
-            {
-                _db.Close();
-            }
 
+            _db.Close();
             return parts;
         }
     }

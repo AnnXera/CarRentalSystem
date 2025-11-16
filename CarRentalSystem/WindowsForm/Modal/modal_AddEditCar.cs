@@ -371,13 +371,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                         partsFactory.Add(part);
                 }
 
-                // Delete removed parts
-                foreach (var oldPart in existingParts)
-                {
-                    if (!currentParts.Any(p => p.PartID == oldPart.PartID))
-                        partsFactory.Delete(oldPart.PartID);
-                }
-
                 // 5. Show success message
                 MessageBox.Show(_isEditMode ? "Car updated successfully!" : "Car added successfully!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
