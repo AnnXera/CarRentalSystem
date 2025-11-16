@@ -17,10 +17,19 @@ namespace CarRentalSystem.WindowsForm.Modal
             InitializeComponent();
             _isEditMode = isEditMode;
 
-            if (!_isEditMode)
+            if (_isEditMode)
             {
-                lblStatus.Visible = false;
+                lblPart.Text = "Edit Car Part";
+                btnSave.Text = "UPDATE";
+                this.Text = "Edit Car";
+            }
+            else
+            {
+                lblPart.Text = "Add New Car Part";
+                btnSave.Text = "ADD";
+                this.Text = "Add New Car";
                 cbxStatus.Visible = false;
+                lblStatus.Visible = false;
             }
         }
 
