@@ -70,6 +70,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
             this.pnlReturnDate = new System.Windows.Forms.Panel();
+            this.dtpReturnDate = new System.Windows.Forms.DateTimePicker();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pnlPaymentMethod = new System.Windows.Forms.Panel();
             this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
@@ -85,12 +86,11 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.pnlStartDate = new System.Windows.Forms.Panel();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpReturnDate = new System.Windows.Forms.DateTimePicker();
             this.pnlCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCustomer)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -320,11 +320,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(379, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 15, 10, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 31);
+            this.label1.Size = new System.Drawing.Size(50, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "1/3";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -332,11 +332,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(10, 15);
             this.label2.Margin = new System.Windows.Forms.Padding(10, 15, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 31);
+            this.label2.Size = new System.Drawing.Size(197, 31);
             this.label2.TabIndex = 1;
             this.label2.Text = "Customer Details";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -577,7 +577,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(375, 15);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 15, 10, 0);
             this.label19.Name = "label19";
@@ -589,11 +589,11 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(10, 15);
             this.label20.Margin = new System.Windows.Forms.Padding(10, 15, 0, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(321, 31);
+            this.label20.Size = new System.Drawing.Size(334, 31);
             this.label20.TabIndex = 1;
             this.label20.Text = "Select Rental Plan and Vehicle";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -638,6 +638,17 @@
             this.pnlReturnDate.Name = "pnlReturnDate";
             this.pnlReturnDate.Size = new System.Drawing.Size(395, 46);
             this.pnlReturnDate.TabIndex = 46;
+            // 
+            // dtpReturnDate
+            // 
+            this.dtpReturnDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpReturnDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpReturnDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpReturnDate.Location = new System.Drawing.Point(6, 6);
+            this.dtpReturnDate.Name = "dtpReturnDate";
+            this.dtpReturnDate.Size = new System.Drawing.Size(383, 34);
+            this.dtpReturnDate.TabIndex = 1;
             // 
             // panel6
             // 
@@ -830,6 +841,17 @@
             this.pnlStartDate.Size = new System.Drawing.Size(395, 46);
             this.pnlStartDate.TabIndex = 45;
             // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStartDate.Location = new System.Drawing.Point(6, 7);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(383, 34);
+            this.dtpStartDate.TabIndex = 0;
+            // 
             // label21
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -860,7 +882,7 @@
             // 
             this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.Location = new System.Drawing.Point(375, 15);
             this.label32.Margin = new System.Windows.Forms.Padding(0, 15, 10, 0);
             this.label32.Name = "label32";
@@ -872,36 +894,14 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.Location = new System.Drawing.Point(10, 15);
             this.label34.Margin = new System.Windows.Forms.Padding(10, 15, 0, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(180, 31);
+            this.label34.Size = new System.Drawing.Size(186, 31);
             this.label34.TabIndex = 1;
             this.label34.Text = "Contract Details";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dtpStartDate
-            // 
-            this.dtpStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStartDate.Location = new System.Drawing.Point(6, 7);
-            this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(383, 34);
-            this.dtpStartDate.TabIndex = 0;
-            // 
-            // dtpReturnDate
-            // 
-            this.dtpReturnDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpReturnDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpReturnDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpReturnDate.Location = new System.Drawing.Point(6, 6);
-            this.dtpReturnDate.Name = "dtpReturnDate";
-            this.dtpReturnDate.Size = new System.Drawing.Size(383, 34);
-            this.dtpReturnDate.TabIndex = 1;
             // 
             // modal_CreateContract
             // 

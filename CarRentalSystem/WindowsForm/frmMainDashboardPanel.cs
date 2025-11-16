@@ -48,8 +48,8 @@ namespace CarRentalSystem.WindowsForm
 
         private void LoadPanels()
         {
-            var panels = new List<Panel> 
-            { 
+            var panels = new List<Panel>
+            {
                 pnlQuickActions,
                 pnlOverView,
                 pnlAdminOverview,
@@ -77,6 +77,14 @@ namespace CarRentalSystem.WindowsForm
         private void dgvActiveRentals_Paint(object sender, PaintEventArgs e)
         {
             UIHelper.DrawRoundedControl(sender, e, 8);
+        }
+
+        private void btnProcessContract_Click(object sender, EventArgs e)
+        {
+            using (var ProcessContract = new modal_ProcessReturn())
+            {
+                ProcessContract.ShowDialog();
+            }
         }
     }
 }
