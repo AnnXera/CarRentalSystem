@@ -309,8 +309,6 @@
     <Content Include="Resources\UserIcon.png" />
     <Content Include="Resources\UserIcon2.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

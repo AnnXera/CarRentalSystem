@@ -20,60 +20,40 @@ namespace CarRentalSystem.Database
         {
             var cars = new List<Cars>();
 
-            string query = @"
-                SELECT 
-                    c.CarID,
-                    c.PlanID,
-                    rp.PlanName,
-                    c.CarPicture,
-                    c.Brand,
-                    c.Model,
-                    c.Year,
-                    c.Seats,
-                    c.PlateNumber,
-                    c.VIN,
-                    c.EngineType,
-                    c.FuelType,
-                    c.Transmission,
-                    c.CurrentMileage,
-                    c.ReplacementValue,
-                    c.Status
-                FROM Car c
-                LEFT JOIN RentalPlans rp ON c.PlanID = rp.PlanID;
-            ";
-
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand(query, _db.Connection))
-                using (var reader = cmd.ExecuteReader())
+                using (var cmd = new MySqlCommand("GetAllCars", _db.Connection))
                 {
-                    while (reader.Read())
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        var car = new Cars
+                        while (reader.Read())
                         {
-                            CarID = reader.GetInt64("CarID"),
-                            PlanID = reader.GetInt64("PlanID"),
-                            PlanName = reader.IsDBNull(reader.GetOrdinal("PlanName")) ? "" : reader.GetString("PlanName"),
-                            CarPicture = reader.IsDBNull(reader.GetOrdinal("CarPicture")) ? null : (byte[])reader["CarPicture"],
-                            Brand = reader.GetString("Brand"),
-                            Model = reader.GetString("Model"),
-                            Year = reader.GetInt32("Year"),
-                            Seats = reader.GetInt32("Seats"),
-                            PlateNumber = reader.GetString("PlateNumber"),
-                            VIN = reader.GetString("VIN"),
-                            EngineType = reader.GetString("EngineType"),
-                            FuelType = reader.GetString("FuelType"),
-                            Transmission = reader.GetString("Transmission"),
-                            CurrentMileage = reader.GetInt64("CurrentMileage"),
-                            ReplacementValue = reader.GetDecimal("ReplacementValue"),
-                            Status = reader.GetString("Status"),
-                        };
+                            var car = new Cars
+                            {
+                                CarID = reader.GetInt64("CarID"),
+                                PlanID = reader.GetInt64("PlanID"),
+                                PlanName = reader.IsDBNull(reader.GetOrdinal("PlanName")) ? "" : reader.GetString("PlanName"),
+                                CarPicture = reader.IsDBNull(reader.GetOrdinal("CarPicture")) ? null : (byte[])reader["CarPicture"],
+                                Brand = reader.GetString("Brand"),
+                                Model = reader.GetString("Model"),
+                                Year = reader.GetInt32("Year"),
+                                Seats = reader.GetInt32("Seats"),
+                                PlateNumber = reader.GetString("PlateNumber"),
+                                VIN = reader.GetString("VIN"),
+                                EngineType = reader.GetString("EngineType"),
+                                FuelType = reader.GetString("FuelType"),
+                                Transmission = reader.GetString("Transmission"),
+                                CurrentMileage = reader.GetInt64("CurrentMileage"),
+                                ReplacementValue = reader.GetDecimal("ReplacementValue"),
+                                Status = reader.GetString("Status")
+                            };
 
-                        // Combine Year + Brand + Model
-                        car.CarDescription = $"{car.Year} {car.Brand} {car.Model}";
-
-                        cars.Add(car);
+                            car.CarDescription = $"{car.Year} {car.Brand} {car.Model}";
+                            cars.Add(car);
+                        }
                     }
                 }
             }
@@ -213,17 +193,6 @@ namespace CarRentalSystem.Database
             finally
             {
                 _db.Close();
-            }
-        }
-
-        public void UpdateStatus(long carId, string status, MySqlTransaction transaction = null)
-        {
-            string sql = "UPDATE Car SET Status = @Status WHERE CarID = @CarID";
-            using (var cmd = new MySqlCommand(sql, _db.Connection, transaction))
-            {
-                cmd.Parameters.AddWithValue("@Status", status);
-                cmd.Parameters.AddWithValue("@CarID", carId);
-                cmd.ExecuteNonQuery();
             }
         }
     }

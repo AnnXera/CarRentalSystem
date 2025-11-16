@@ -55,11 +55,6 @@ namespace CarRentalSystem.Code
             return _repo.GetAllCars();
         }
 
-        public void UpdateStatus(long carId, string status, MySql.Data.MySqlClient.MySqlTransaction transaction = null)
-        {
-            _repo.UpdateStatus(carId, status, transaction);
-        }
-
     }
 
 }

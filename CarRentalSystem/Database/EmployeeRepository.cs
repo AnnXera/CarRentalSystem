@@ -17,29 +17,45 @@ namespace CarRentalSystem.Database
         }
 
         // Additional methods for EmployeeRepository can be added here
-        /*public long AddEmployee(Employee emp)
+        public long AddEmployee(Employee emp)
         {
-            string sql = @"INSERT INTO Employee 
-                   (FullName, Username, Password, Role)
-                   VALUES (@FullName, @Username, @Password, @Role);
-                   SELECT LAST_INSERT_ID();";
+            long newEmpId = 0;
+
             try
             {
-                if (_db.Connection.State != System.Data.ConnectionState.Open)
-                    _db.Open();
-                using (var cmd = new MySqlCommand(sql, _db.Connection))
+                _db.Open();
+                using (var cmd = new MySqlCommand("AddEmployee", _db.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@FullName", emp.FullName);
-                    cmd.Parameters.AddWithValue("@Username", emp.Username);
-                    cmd.Parameters.AddWithValue("@Password", emp.Password); // Assume password is already hashed
-                    cmd.Parameters.AddWithValue("@Role", emp.Role);
-                    return Convert.ToInt64(cmd.ExecuteScalar());
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@p_FullName", emp.FullName);
+                    cmd.Parameters.AddWithValue("@p_Username", emp.Username);
+                    cmd.Parameters.AddWithValue("@p_Password", emp.Password);
+                    cmd.Parameters.AddWithValue("@p_Role", emp.Role);
+
+                    // output parameter
+                    var outputParam = new MySqlParameter("@p_NewEmpID", MySqlDbType.Int64)
+                    {
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    cmd.ExecuteNonQuery();
+
+                    newEmpId = Convert.ToInt64(outputParam.Value);
                 }
             }
             catch (Exception ex)
             {
                 throw new Exception("Error adding employee: " + ex.Message);
             }
-        }*/
+            finally
+            {
+                _db.Close();
+            }
+
+            return newEmpId;
+        }
+
     }
 }
