@@ -19,7 +19,6 @@ namespace CarRentalSystem.Code
         public string Address { get; set; }
         public long RegisteredByEmpID { get; set; }
         public byte[] Picture { get; set; }
-
         public string RegisteredByName { get; set; }
     }
 
