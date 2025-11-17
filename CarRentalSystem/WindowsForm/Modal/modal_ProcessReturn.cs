@@ -13,10 +13,21 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_ProcessReturn : Form
     {
+        private int _contractId;
         public modal_ProcessReturn()
         {
             InitializeComponent();
             LoadPanels();
+        }
+
+        public modal_ProcessReturn(int contractId) : this()
+        {
+            _contractId = contractId;
+            LoadContractDetails(contractId);
+        }
+        private void LoadContractDetails(int contractId)
+        {
+
         }
 
         private void LoadPanels()
@@ -41,7 +52,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnFinalizePayment_Click(object sender, EventArgs e)
         {
-            var paymentModal = new modal_Payment();
+            var paymentModal = new modal_Payment(_contractId);
             paymentModal.ShowDialog();
         }
     }

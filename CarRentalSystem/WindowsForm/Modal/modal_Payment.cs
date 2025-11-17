@@ -14,7 +14,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_Payment : Form
     {
-        public modal_Payment()
+        public modal_Payment(int selectedContractId)
         {
             InitializeComponent();
 

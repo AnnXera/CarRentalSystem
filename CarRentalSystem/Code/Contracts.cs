@@ -23,6 +23,9 @@ namespace CarRentalSystem.Code
         public long? EndMileage { get; set; }
 
         public string Status { get; set; }
+        public string CustomerName { get; internal set; }
+        public string CarDescription { get; internal set; }
+        public string PlanName { get; internal set; }
     }
 
     public class ContractFactory : IModalFactory<Contracts>
