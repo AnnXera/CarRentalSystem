@@ -97,13 +97,12 @@ namespace CarRentalSystem.Database
             return newContractID;
         }
 
-        public List<Contracts> GetAllContracts()
+        public List<Contracts> GetActiveContractCustomers()
         {
-            var contracts = new List<Contracts>();
-            string sql = "GetAllContracts";
-
+            List<Contracts> list = new List<Contracts>();
             _db.Open();
-            using (var cmd = new MySqlCommand(sql, _db.Connection))
+
+            using (var cmd = new MySqlCommand("GetActiveContractCustomers", _db.Connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -111,34 +110,26 @@ namespace CarRentalSystem.Database
                 {
                     while (reader.Read())
                     {
-                        contracts.Add(new Contracts
+                        list.Add(new Contracts
                         {
                             ContractID = reader.GetInt64("ContractID"),
                             CustID = reader.GetInt64("CustID"),
-                            CustName = reader.GetString("CustomerName"),
-
-                            EmpID = reader.GetInt64("EmpID"),
-                            EmpName = reader.GetString("EmployeeName"),
-
-                            CarID = reader.GetInt64("CarID"),
+                            CustomerName = reader.GetString("CustomerName"),
                             CarName = reader.GetString("CarName"),
-
-                            StartDate = reader.GetDateTime("StartDate"),
-                            ReturnDate = reader.GetDateTime("ReturnDate"),
-                            DaysRented = reader.GetInt32("DaysRented"),
-                            StartMileage = reader.GetInt64("StartMileage"),
-                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage"))
-                                        ? (long?)null
-                                        : reader.GetInt64("EndMileage"),
-
-                            Status = reader.GetString("Status")
+                            EmployeeName = reader.GetString("EmployeeName"),
+                            DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount"))
+                                ? 0 : reader.GetDecimal("DepositAmount"),
+                            BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate"))
+                                ? 0 : reader.GetDecimal("BaseRate")
                         });
                     }
                 }
             }
+
             _db.Close();
-            return contracts;
+            return list;
         }
+
 
     }
 }

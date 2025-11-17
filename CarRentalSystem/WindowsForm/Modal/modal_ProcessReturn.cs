@@ -1,4 +1,5 @@
-﻿using CarRentalSystem.Utils;
+﻿using CarRentalSystem.Code;
+using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,10 +40,37 @@ namespace CarRentalSystem.WindowsForm.Modal
             });
         }
 
+        private void LoadCustomerDropdown()
+        {
+            var factory = new ContractFactory();
+            var activeContracts = factory.GetActiveContracts();
+
+            cbxSearch.DataSource = activeContracts;
+            cbxSearch.DisplayMember = "CustomerName";
+            cbxSearch.ValueMember = "ContractID";
+            cbxSearch.SelectedIndex = -1;
+
+            cbxSearch.DropDownStyle = ComboBoxStyle.DropDown;
+            cbxSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbxSearch.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
         private void btnFinalizePayment_Click(object sender, EventArgs e)
         {
             var paymentModal = new modal_Payment();
             paymentModal.ShowDialog();
+        }
+
+        private void cbxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSearch.SelectedItem is Contracts selected)
+            {
+                lblFullName.Text = selected.CustomerName;
+                lblCarName.Text = selected.CarName;
+                lblRegisteredEmployee.Text = selected.EmployeeName;
+                lblSecurityDeposit.Text = selected.DepositAmount.ToString("N2");
+                lblBaseRate.Text = (selected.BaseRate ?? 0).ToString("N2");
+            }
         }
     }
 }
