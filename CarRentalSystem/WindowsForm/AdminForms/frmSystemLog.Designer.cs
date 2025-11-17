@@ -32,8 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlSystemLogView = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.dgvSystemLog = new System.Windows.Forms.DataGridView();
             this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -41,17 +39,20 @@
             this.pnlAction = new System.Windows.Forms.Panel();
             this.cbxAction = new System.Windows.Forms.ComboBox();
             this.pnlEndDate = new System.Windows.Forms.Panel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.pnlStartDate = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.pnlEmployee = new System.Windows.Forms.Panel();
             this.cbxEmployeeNames = new System.Windows.Forms.ComboBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.dgvSystemLog = new System.Windows.Forms.DataGridView();
+            this.btnClearFilter = new System.Windows.Forms.Button();
             this.pnlSystemLogView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystemLog)).BeginInit();
             this.pnlAction.SuspendLayout();
             this.pnlEndDate.SuspendLayout();
             this.pnlStartDate.SuspendLayout();
             this.pnlEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSystemLog)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlSystemLogView
@@ -60,6 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSystemLogView.BackColor = System.Drawing.Color.White;
+            this.pnlSystemLogView.Controls.Add(this.btnClearFilter);
             this.pnlSystemLogView.Controls.Add(this.label17);
             this.pnlSystemLogView.Controls.Add(this.label15);
             this.pnlSystemLogView.Controls.Add(this.label14);
@@ -74,67 +76,6 @@
             this.pnlSystemLogView.Name = "pnlSystemLogView";
             this.pnlSystemLogView.Size = new System.Drawing.Size(1535, 765);
             this.pnlSystemLogView.TabIndex = 77;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(9, 12);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(15, 15, 0, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(239, 54);
-            this.lblTitle.TabIndex = 75;
-            this.lblTitle.Text = "System Log";
-            // 
-            // dgvSystemLog
-            // 
-            this.dgvSystemLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSystemLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.dgvSystemLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvSystemLog.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvSystemLog.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 10, 0, 0);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSystemLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvSystemLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSystemLog.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvSystemLog.EnableHeadersVisualStyles = false;
-            this.dgvSystemLog.Location = new System.Drawing.Point(18, 316);
-            this.dgvSystemLog.Margin = new System.Windows.Forms.Padding(5, 0, 20, 20);
-            this.dgvSystemLog.MultiSelect = false;
-            this.dgvSystemLog.Name = "dgvSystemLog";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSystemLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvSystemLog.RowHeadersVisible = false;
-            this.dgvSystemLog.RowHeadersWidth = 51;
-            this.dgvSystemLog.RowTemplate.DividerHeight = 1;
-            this.dgvSystemLog.RowTemplate.Height = 40;
-            this.dgvSystemLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvSystemLog.Size = new System.Drawing.Size(1497, 429);
-            this.dgvSystemLog.TabIndex = 74;
-            this.dgvSystemLog.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvSystemLog_Paint);
             // 
             // label17
             // 
@@ -212,48 +153,48 @@
             // pnlEndDate
             // 
             this.pnlEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.pnlEndDate.Controls.Add(this.dateTimePicker2);
+            this.pnlEndDate.Controls.Add(this.dtpEndDate);
             this.pnlEndDate.Location = new System.Drawing.Point(478, 124);
             this.pnlEndDate.Margin = new System.Windows.Forms.Padding(0, 4, 20, 4);
             this.pnlEndDate.Name = "pnlEndDate";
             this.pnlEndDate.Size = new System.Drawing.Size(440, 55);
             this.pnlEndDate.TabIndex = 96;
             // 
-            // dateTimePicker2
+            // dtpEndDate
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtpEndDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Arial", 12F);
-            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(17, 10);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(401, 34);
-            this.dateTimePicker2.TabIndex = 1;
+            this.dtpEndDate.CalendarFont = new System.Drawing.Font("Arial", 12F);
+            this.dtpEndDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpEndDate.Location = new System.Drawing.Point(17, 10);
+            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(401, 34);
+            this.dtpEndDate.TabIndex = 1;
             // 
             // pnlStartDate
             // 
             this.pnlStartDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.pnlStartDate.Controls.Add(this.dateTimePicker1);
+            this.pnlStartDate.Controls.Add(this.dtpStartDate);
             this.pnlStartDate.Location = new System.Drawing.Point(18, 124);
             this.pnlStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 20, 20);
             this.pnlStartDate.Name = "pnlStartDate";
             this.pnlStartDate.Size = new System.Drawing.Size(440, 55);
             this.pnlStartDate.TabIndex = 93;
             // 
-            // dateTimePicker1
+            // dtpStartDate
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtpStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Arial", 12F);
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(17, 10);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(401, 34);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dtpStartDate.CalendarFont = new System.Drawing.Font("Arial", 12F);
+            this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStartDate.Location = new System.Drawing.Point(17, 10);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(401, 34);
+            this.dtpStartDate.TabIndex = 1;
             // 
             // pnlEmployee
             // 
@@ -281,6 +222,82 @@
             this.cbxEmployeeNames.TabIndex = 57;
             this.cbxEmployeeNames.Text = "All Users";
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(9, 12);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(15, 15, 0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(239, 54);
+            this.lblTitle.TabIndex = 75;
+            this.lblTitle.Text = "System Log";
+            // 
+            // dgvSystemLog
+            // 
+            this.dgvSystemLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSystemLog.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.dgvSystemLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSystemLog.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvSystemLog.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 10, 0, 10);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSystemLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvSystemLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSystemLog.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvSystemLog.EnableHeadersVisualStyles = false;
+            this.dgvSystemLog.Location = new System.Drawing.Point(18, 316);
+            this.dgvSystemLog.Margin = new System.Windows.Forms.Padding(5, 0, 20, 20);
+            this.dgvSystemLog.MultiSelect = false;
+            this.dgvSystemLog.Name = "dgvSystemLog";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSystemLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvSystemLog.RowHeadersVisible = false;
+            this.dgvSystemLog.RowHeadersWidth = 51;
+            this.dgvSystemLog.RowTemplate.DividerHeight = 1;
+            this.dgvSystemLog.RowTemplate.Height = 40;
+            this.dgvSystemLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvSystemLog.Size = new System.Drawing.Size(1497, 429);
+            this.dgvSystemLog.TabIndex = 74;
+            this.dgvSystemLog.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvSystemLog_Paint);
+            // 
+            // btnClearFilter
+            // 
+            this.btnClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearFilter.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearFilter.ForeColor = System.Drawing.Color.Black;
+            this.btnClearFilter.Location = new System.Drawing.Point(1374, 243);
+            this.btnClearFilter.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
+            this.btnClearFilter.Name = "btnClearFilter";
+            this.btnClearFilter.Size = new System.Drawing.Size(141, 55);
+            this.btnClearFilter.TabIndex = 102;
+            this.btnClearFilter.Text = "Clear Filters";
+            this.btnClearFilter.UseVisualStyleBackColor = true;
+            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
+            // 
             // frmSystemLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -295,11 +312,11 @@
             this.Text = "frmSystemLog";
             this.pnlSystemLogView.ResumeLayout(false);
             this.pnlSystemLogView.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystemLog)).EndInit();
             this.pnlAction.ResumeLayout(false);
             this.pnlEndDate.ResumeLayout(false);
             this.pnlStartDate.ResumeLayout(false);
             this.pnlEmployee.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSystemLog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,12 +331,13 @@
         private System.Windows.Forms.Panel pnlAction;
         private System.Windows.Forms.ComboBox cbxAction;
         private System.Windows.Forms.Panel pnlEndDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Panel pnlStartDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.Panel pnlEmployee;
         private System.Windows.Forms.ComboBox cbxEmployeeNames;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dgvSystemLog;
+        private System.Windows.Forms.Button btnClearFilter;
     }
 }

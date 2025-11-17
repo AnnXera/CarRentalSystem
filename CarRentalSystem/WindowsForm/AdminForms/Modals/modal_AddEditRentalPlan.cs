@@ -32,6 +32,8 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
             this.Text = "Edit Rental Plan";
             lblTitle.Text = "Edit Rental Plan";
             btnSaveRentalPlan.Text = "Update";
+
+            LoadRentalPlanData();
         }
 
         private void AddMode()
@@ -39,42 +41,6 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
             this.Text = "Add New Rental Plan";
             lblTitle.Text = "Add New Rental Plan";
             btnSaveRentalPlan.Text = "Save";
-
-            UIHelper.SetPlaceholder(
-                txtPlanName,
-                "Input Plan Name",
-                Color.Gray,
-                new Font("Segoe UI", 12, FontStyle.Italic),
-                Color.Black,
-                new Font("Segoe UI", 12, FontStyle.Regular)
-            );
-
-            UIHelper.SetPlaceholder(
-                txtDailyRate,
-                "Input Daily Rate",
-                Color.Gray,
-                new Font("Segoe UI", 12, FontStyle.Italic),
-                Color.Black,
-                new Font("Segoe UI", 12, FontStyle.Regular)
-            );
-
-            UIHelper.SetPlaceholder(
-                txtMileageLimit,
-                "No limit if left blank...",
-                Color.Gray,
-                new Font("Segoe UI", 12, FontStyle.Italic),
-                Color.Black,
-                new Font("Segoe UI", 12, FontStyle.Regular)
-            );
-
-            UIHelper.SetPlaceholder(
-                txtDescription,
-                "Optional Description",
-                Color.Gray,
-                new Font("Segoe UI", 12, FontStyle.Italic),
-                Color.Black,
-                new Font("Segoe UI", 12, FontStyle.Regular)
-            );
         }
 
         private void LoadDesign()
@@ -85,9 +51,21 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
                 pnlDailyRate,
                 pnlDescription,
                 pnlMileageLimit,
-                pnlPlanName
+                pnlPlanName,
+                pnlExcessFee
             };
             UIHelper.ApplyRoundedPanels(panels, 8);
+        }
+
+        private void LoadRentalPlanData()
+        {
+            if (_isEditMode == null) return;
+
+            txtPlanName.Text = _isEditMode.PlanName;
+            txtDailyRate.Text = _isEditMode.DailyRate.ToString();
+            txtMileageLimit.Text = _isEditMode.MileageLimitPerDay?.ToString() ?? string.Empty;
+            txtDescription.Text = _isEditMode.Description;
+            txtExcessLimit.Text = _isEditMode.ExcessFeePerKm.ToString();
         }
 
         private void KeyHandlers()
@@ -102,12 +80,8 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
         {
             // Not Empty
             Validator.RequireNotEmpty(txtPlanName.Text, "Plan Name");
-            Validator.RequireNotEmpty(txtMileageLimit.Text, "Mileage Limit");
             Validator.RequireNotEmpty(txtDailyRate.Text, "Daily Rate");
             Validator.RequireNotEmpty(txtExcessLimit.Text, "Excess Fee Per Limit");
-
-            // Integer
-            Validator.ValidatePositiveInteger(txtMileageLimit.Text, "Mileage Limit");
 
             //Integer with Decimal
             Validator.ValidateDecimal(txtDailyRate.Text, "Daily Rate");
@@ -134,33 +108,69 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
                 {
                     if (rentalPlanFactory.CheckPlanName(txtPlanName.Text.Trim()))
                     {
-                        MessageBox.Show("This plan name is already taken. Please choose another.",
-                                        "Duplicate Plan Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("This plan name is already taken.", "Duplicate Plan Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     var rentalPlan = new RentalPlan
                     {
                         PlanName = txtPlanName.Text.Trim(),
-                        DailyRate = decimal.Parse(txtDailyRate.Text.Trim()),
-                        MileageLimitPerDay = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (int?)null : int.Parse(txtMileageLimit.Text.Trim()),
+                        DailyRate = decimal.Parse(txtDailyRate.Text),
+                        MileageLimitPerDay = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text),
                         Description = txtDescription.Text.Trim(),
-                        ExcessFeePerKm = decimal.Parse(txtExcessLimit.Text.Trim())
+                        ExcessFeePerKm = decimal.Parse(txtExcessLimit.Text)
                     };
 
                     rentalPlanFactory.Add(rentalPlan);
+
+                    SystemLogger.Log("Add Rental Plan",
+                             $"{currentEmp.FullName} created a Rental Plan '{rentalPlan.PlanName}'.",
+                             currentEmp.EmpID);
+
+                    MessageBox.Show("Rental Plan added successfully!",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 else
                 {
+                    if (rentalPlanFactory.CheckPlanName(txtPlanName.Text.Trim(), _isEditMode.PlanID))
+                    {
+                        MessageBox.Show("This plan name is already taken.", "Duplicate Plan Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
+                    _isEditMode.PlanName = txtPlanName.Text.Trim();
+                    _isEditMode.DailyRate = decimal.Parse(txtDailyRate.Text);
+                    _isEditMode.MileageLimitPerDay = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text);
+                    _isEditMode.Description = txtDescription.Text.Trim();
+                    _isEditMode.ExcessFeePerKm = decimal.Parse(txtExcessLimit.Text);
+
+                    rentalPlanFactory.Edit(_isEditMode);
+
+                    SystemLogger.Log("Edit Rental Plan",
+                             $"{currentEmp.FullName} edited the Rental Plan '{_isEditMode.PlanName}'.",
+                             currentEmp.EmpID);
+
+                    MessageBox.Show("Rental Plan updated successfully!",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
             }
 
             catch
             {
-
+                MessageBox.Show("Failed to save Rental Plan. Please check your inputs and try again.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

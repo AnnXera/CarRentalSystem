@@ -38,7 +38,7 @@ namespace CarRentalSystem.Code
 
         public void Edit(RentalPlan rentalPlan)
         {
-            throw new NotImplementedException();
+            _repo.EditRentalPlan(rentalPlan);
         }
 
         public void Delete(RentalPlan rentalPlan)
@@ -46,9 +46,9 @@ namespace CarRentalSystem.Code
             throw new NotImplementedException();
         }
 
-        public bool CheckPlanName(string rentalPlan)
+        public bool CheckPlanName(string planName, long? excludePlanID = null)
         {
-            return _repo.IsPlanNameTaken(rentalPlan);
+            return _repo.IsPlanNameTaken(planName, excludePlanID);
         }
     }
 }

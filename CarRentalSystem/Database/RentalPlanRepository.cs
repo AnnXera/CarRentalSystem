@@ -48,14 +48,26 @@ namespace CarRentalSystem.Database
             return plans;
         }
 
-        public bool IsPlanNameTaken(string planName)
+        public bool IsPlanNameTaken(string planName, long? excludePlanID = null)
         {
             bool taken = false;
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM RentalPlans WHERE PlanName = @PlanName", _db.Connection))
+                using (var cmd = new MySqlCommand())
                 {
+                    cmd.Connection = _db.Connection;
+
+                    if (excludePlanID.HasValue)
+                    {
+                        cmd.CommandText = "SELECT COUNT(*) FROM RentalPlans WHERE PlanName = @PlanName AND PlanID != @PlanID";
+                        cmd.Parameters.AddWithValue("@PlanID", excludePlanID.Value);
+                    }
+                    else
+                    {
+                        cmd.CommandText = "SELECT COUNT(*) FROM RentalPlans WHERE PlanName = @PlanName";
+                    }
+
                     cmd.Parameters.AddWithValue("@PlanName", planName);
                     taken = Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                 }
@@ -66,7 +78,6 @@ namespace CarRentalSystem.Database
             }
             return taken;
         }
-
 
         public long AddRentalPlan(RentalPlan plan)
         {
@@ -112,5 +123,38 @@ namespace CarRentalSystem.Database
 
             return newPlanId;
         }
+
+        public void EditRentalPlan(RentalPlan plan)
+        {
+            try
+            {
+                _db.Open();
+
+                using (var cmd = new MySqlCommand("EditRentalPlan", _db.Connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Input parameters
+                    cmd.Parameters.AddWithValue("@p_PlanID", plan.PlanID);
+                    cmd.Parameters.AddWithValue("@p_PlanName", plan.PlanName);
+                    cmd.Parameters.AddWithValue("@p_MileageLimitPerDay", plan.MileageLimitPerDay.HasValue ? plan.MileageLimitPerDay.Value : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_ExcessFeePerKm", plan.ExcessFeePerKm);
+                    cmd.Parameters.AddWithValue("@p_DailyRate", plan.DailyRate);
+                    cmd.Parameters.AddWithValue("@p_Description", plan.Description);
+
+                    // Execute the stored procedure
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error editing rental plan: " + ex.Message);
+            }
+            finally
+            {
+                _db.Close();
+            }
+        }
+
     }
 }
