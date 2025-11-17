@@ -43,7 +43,7 @@ namespace CarRentalSystem.Code
 
                         SystemLogger.Log(
                             "Login",
-                            $"Employee {emp.FullName} ({emp.Username}) logged in.",
+                            $"{emp.FullName} ({emp.Username}) logged in.",
                             emp.EmpID
                         );
 
