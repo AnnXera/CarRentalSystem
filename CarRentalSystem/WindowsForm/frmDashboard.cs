@@ -21,10 +21,22 @@ namespace CarRentalSystem.WindowsForm
             InitializeComponent();
 
             LoadButtons();
+            LoginAccess();
 
             if (sidebarButtons == null) return;
             UIHelper.ResetSidebarButtons(sidebarButtons);
             UIHelper.SetActiveButton(btnDashboard, Properties.Resources.Icon___Dashboard___Active);
+        }
+
+        private void LoginAccess()
+        {
+            var loggedInEmployee = SessionManager.LoggedInEmployee;
+            AccessManager.ApplyAccessRules(this, loggedInEmployee);
+
+            if (SessionManager.IsLoggedIn)
+            {
+                var emp = SessionManager.LoggedInEmployee;
+            }
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)

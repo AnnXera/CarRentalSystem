@@ -115,10 +115,10 @@ namespace CarRentalSystem.Database
                         {
                             ContractID = reader.GetInt64("ContractID"),
                             CustID = reader.GetInt64("CustID"),
-                            CustName = reader.GetString("CustomerName"),
+                            CustomerName = reader.GetString("CustomerName"),
 
                             EmpID = reader.GetInt64("EmpID"),
-                            EmpName = reader.GetString("EmployeeName"),
+                            EmployeeName = reader.GetString("EmployeeName"),
 
                             CarID = reader.GetInt64("CarID"),
                             CarName = reader.GetString("CarName"),
@@ -140,5 +140,43 @@ namespace CarRentalSystem.Database
             return contracts;
         }
 
+        public List<Contracts> GetActiveContractCustomers()
+        {
+            List<Contracts> list = new List<Contracts>();
+            try
+            {
+                _db.Open();
+
+                using (var cmd = new MySqlCommand("GetActiveContractCustomers", _db.Connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new Contracts
+                            {
+                                ContractID = reader.GetInt64("ContractID"),
+                                CustID = reader.GetInt64("CustID"),
+                                CustomerName = reader.GetString("CustomerName"),
+                                CarName = reader.GetString("CarName"),
+                                EmployeeName = reader.GetString("EmployeeName"),
+                                DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount"),
+                                BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
+                                CarPicture = reader["CarPicture"] as byte[],                // image from DB
+                                DriversLicensePic = reader["DriversLicensePic"] as byte[]   // image from DB
+                            });
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return list;
+        }
     }
 }

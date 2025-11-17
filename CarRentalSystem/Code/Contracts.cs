@@ -10,22 +10,54 @@ namespace CarRentalSystem.Code
 {
     public class Contracts
     {
+        // CONTRACT
         public long ContractID { get; set; }
-        public long CustID { get; set; }
-        public string CustName { get; set; }
-        public long EmpID { get; set; }
-        public string EmpName { get; set; }
-        public long CarID { get; set; }
-        public string CarName { get; set; }
-
         public DateTime StartDate { get; set; }
         public DateTime ReturnDate { get; set; }
-
         public int DaysRented { get; set; }
         public long StartMileage { get; set; }
         public long? EndMileage { get; set; }
-
         public string Status { get; set; }
+
+        // CUSTOMER
+        public long CustID { get; set; }
+        public string CustomerName { get; set; }
+        public byte[] DriversLicensePic { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+
+        // EMPLOYEE
+        public long EmpID { get; set; }
+        public string EmployeeName { get; set; }
+
+        // CAR
+        public long CarID { get; set; }
+        public string CarName { get; set; }
+        public byte[] CarPicture { get; set; }
+        public string PlateNumber { get; set; }
+        public string VIN { get; set; }
+        public decimal ReplacementValue { get; set; }
+
+        // RENTAL PLAN
+        public long PlanID { get; set; }
+        public string PlanName { get; set; }
+        public long MileageLimitPerDay { get; set; }
+        public decimal ExcessFeePerKm { get; set; }
+        public decimal DailyRate { get; set; }
+        public string PlanDescription { get; set; }
+
+        // SECURITY DEPOSIT
+        public decimal DepositAmount { get; set; }
+        public string DepositStatus { get; set; }
+        public DateTime? DepositDate { get; set; }
+
+        // BILLING
+        public decimal? BaseRate { get; set; }
+        public decimal? TotalCharges { get; set; }
+        public decimal? SecurityDepUsed { get; set; }
+        public decimal? TotalAmount { get; set; }
+        public string PaymentStatus { get; set; }
+
     }
 
     public class ContractFactory : IModalFactory<Contracts>
@@ -61,6 +93,10 @@ namespace CarRentalSystem.Code
         {
             return _repo.GetAllContracts();
         }
-    }
 
+        public List<Contracts> GetActiveContracts()
+        {
+            return _repo.GetActiveContractCustomers();
+        }
+    }
 }
