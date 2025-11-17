@@ -18,6 +18,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             InitializeComponent();
             LoadPanels();
+            LoadCustomerDropdown();
         }
 
         private void LoadPanels()
@@ -70,6 +71,52 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblRegisteredEmployee.Text = selected.EmployeeName;
                 lblSecurityDeposit.Text = selected.DepositAmount.ToString("N2");
                 lblBaseRate.Text = (selected.BaseRate ?? 0).ToString("N2");
+
+                // Display customer driver license
+                if (selected.DriversLicensePic != null && selected.DriversLicensePic.Length > 0)
+                {
+                    Image driverImg = ImageHelper.ByteArrayToImage(selected.DriversLicensePic);
+                    picCustomer.Image = ImageHelper.ResizeImage(driverImg, 240, 152);
+                    picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    Image defaultImg = Properties.Resources.SampleDriver_s_License;
+                    picCustomer.Image = ImageHelper.ResizeImage(defaultImg, 240, 152);
+                    picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+
+                // Display car image
+                if (selected.CarPicture != null && selected.CarPicture.Length > 0)
+                {
+                    Image carImg = ImageHelper.ByteArrayToImage(selected.CarPicture);
+                    picCar.Image = ImageHelper.ResizeImage(carImg, 429, 276);
+                    picCar.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    Image defaultCarImg = Properties.Resources.CarSamplePic;
+                    picCar.Image = ImageHelper.ResizeImage(defaultCarImg, 429, 276);
+                    picCar.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+            }
+
+            else
+            {
+                // Reset to defaults if nothing selected
+                lblFullName.Text = "";
+                lblCarName.Text = "";
+                lblRegisteredEmployee.Text = "";
+                lblSecurityDeposit.Text = "0.00";
+                lblBaseRate.Text = "0.00";
+
+                Image defaultDriver = Properties.Resources.SampleDriver_s_License;
+                picCustomer.Image = ImageHelper.ResizeImage(defaultDriver, 240, 152);
+                picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
+
+                Image defaultCar = Properties.Resources.CarSamplePic;
+                picCar.Image = ImageHelper.ResizeImage(defaultCar, 429, 276);
+                picCar.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
     }

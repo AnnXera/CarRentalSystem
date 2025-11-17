@@ -97,12 +97,13 @@ namespace CarRentalSystem.Database
             return newContractID;
         }
 
-        public List<Contracts> GetActiveContractCustomers()
+        public List<Contracts> GetAllContracts()
         {
-            List<Contracts> list = new List<Contracts>();
-            _db.Open();
+            var contracts = new List<Contracts>();
+            string sql = "GetAllContracts";
 
-            using (var cmd = new MySqlCommand("GetActiveContractCustomers", _db.Connection))
+            _db.Open();
+            using (var cmd = new MySqlCommand(sql, _db.Connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -110,26 +111,72 @@ namespace CarRentalSystem.Database
                 {
                     while (reader.Read())
                     {
-                        list.Add(new Contracts
+                        contracts.Add(new Contracts
                         {
                             ContractID = reader.GetInt64("ContractID"),
                             CustID = reader.GetInt64("CustID"),
                             CustomerName = reader.GetString("CustomerName"),
-                            CarName = reader.GetString("CarName"),
+
+                            EmpID = reader.GetInt64("EmpID"),
                             EmployeeName = reader.GetString("EmployeeName"),
-                            DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount"))
-                                ? 0 : reader.GetDecimal("DepositAmount"),
-                            BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate"))
-                                ? 0 : reader.GetDecimal("BaseRate")
+
+                            CarID = reader.GetInt64("CarID"),
+                            CarName = reader.GetString("CarName"),
+
+                            StartDate = reader.GetDateTime("StartDate"),
+                            ReturnDate = reader.GetDateTime("ReturnDate"),
+                            DaysRented = reader.GetInt32("DaysRented"),
+                            StartMileage = reader.GetInt64("StartMileage"),
+                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage"))
+                                        ? (long?)null
+                                        : reader.GetInt64("EndMileage"),
+
+                            Status = reader.GetString("Status")
                         });
                     }
                 }
             }
-
             _db.Close();
-            return list;
+            return contracts;
         }
 
+        public List<Contracts> GetActiveContractCustomers()
+        {
+            List<Contracts> list = new List<Contracts>();
+            try
+            {
+                _db.Open();
 
+                using (var cmd = new MySqlCommand("GetActiveContractCustomers", _db.Connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new Contracts
+                            {
+                                ContractID = reader.GetInt64("ContractID"),
+                                CustID = reader.GetInt64("CustID"),
+                                CustomerName = reader.GetString("CustomerName"),
+                                CarName = reader.GetString("CarName"),
+                                EmployeeName = reader.GetString("EmployeeName"),
+                                DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount"),
+                                BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
+                                CarPicture = reader["CarPicture"] as byte[],                // image from DB
+                                DriversLicensePic = reader["DriversLicensePic"] as byte[]   // image from DB
+                            });
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return list;
+        }
     }
 }

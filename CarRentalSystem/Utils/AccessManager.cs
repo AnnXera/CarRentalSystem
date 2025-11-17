@@ -26,13 +26,13 @@ namespace CarRentalSystem.Utils
                 ShowControlIfExists(form, "pnlAdminOverview", true);
                 ShowControlIfExists(form, "btnRentalPlans", true);
                 ShowControlIfExists(form, "btnSystemLog", true);
-                ShowControlIfExists(form, "btnUserMgmt", true);
+                ShowControlIfExists(form, "btnEmployeeManagement", true);
             }
             else
             {
                 // Hide restricted buttons for non-admin users
                 ShowControlIfExists(form, "pnlAdminOverview", false);
-                ShowControlIfExists(form, "btnUserMgmt", false);
+                ShowControlIfExists(form, "btnEmployeeManagement", false);
                 ShowControlIfExists(form, "btnRentalPlans", false);
                 ShowControlIfExists(form, "btnSystemLog", false);
             }

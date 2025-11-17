@@ -91,7 +91,7 @@ namespace CarRentalSystem.Code
 
         public List<Contracts> ViewAll()
         {
-            throw new NotImplementedException();
+            return _repo.GetAllContracts();
         }
 
         public List<Contracts> GetActiveContracts()
