@@ -45,17 +45,26 @@
             this.pnlPlanName = new System.Windows.Forms.Panel();
             this.txtPlanName = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pnlExcessFee = new System.Windows.Forms.Panel();
+            this.txtExcessLimit = new System.Windows.Forms.TextBox();
             this.pnlAddEditRentalPlan.SuspendLayout();
             this.pnlDailyRate.SuspendLayout();
             this.pnlDescription.SuspendLayout();
             this.pnlMileageLimit.SuspendLayout();
             this.pnlPlanName.SuspendLayout();
+            this.pnlExcessFee.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAddEditRentalPlan
             // 
+            this.pnlAddEditRentalPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlAddEditRentalPlan.BackColor = System.Drawing.Color.White;
+            this.pnlAddEditRentalPlan.Controls.Add(this.label1);
+            this.pnlAddEditRentalPlan.Controls.Add(this.pnlExcessFee);
             this.pnlAddEditRentalPlan.Controls.Add(this.label4);
             this.pnlAddEditRentalPlan.Controls.Add(this.label2);
             this.pnlAddEditRentalPlan.Controls.Add(this.pnlDailyRate);
@@ -68,11 +77,11 @@
             this.pnlAddEditRentalPlan.Controls.Add(this.label3);
             this.pnlAddEditRentalPlan.Controls.Add(this.pnlPlanName);
             this.pnlAddEditRentalPlan.Controls.Add(this.panel2);
-            this.pnlAddEditRentalPlan.Controls.Add(this.label1);
+            this.pnlAddEditRentalPlan.Controls.Add(this.lblTitle);
             this.pnlAddEditRentalPlan.Location = new System.Drawing.Point(16, 14);
             this.pnlAddEditRentalPlan.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAddEditRentalPlan.Name = "pnlAddEditRentalPlan";
-            this.pnlAddEditRentalPlan.Size = new System.Drawing.Size(933, 761);
+            this.pnlAddEditRentalPlan.Size = new System.Drawing.Size(933, 892);
             this.pnlAddEditRentalPlan.TabIndex = 2;
             // 
             // label4
@@ -83,9 +92,9 @@
             this.label4.Location = new System.Drawing.Point(20, 475);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(295, 28);
+            this.label4.Size = new System.Drawing.Size(213, 28);
             this.label4.TabIndex = 86;
-            this.label4.Text = "Enter NULL or 0 for Unlimited";
+            this.label4.Text = "Enter 0 for Unlimited";
             // 
             // label2
             // 
@@ -126,11 +135,11 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(461, 700);
+            this.btnCancel.Location = new System.Drawing.Point(461, 831);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(212, 45);
@@ -140,24 +149,26 @@
             // 
             // btnSaveRentalPlan
             // 
-            this.btnSaveRentalPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveRentalPlan.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSaveRentalPlan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
             this.btnSaveRentalPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveRentalPlan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveRentalPlan.ForeColor = System.Drawing.Color.White;
-            this.btnSaveRentalPlan.Location = new System.Drawing.Point(693, 700);
+            this.btnSaveRentalPlan.Location = new System.Drawing.Point(693, 831);
             this.btnSaveRentalPlan.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.btnSaveRentalPlan.Name = "btnSaveRentalPlan";
             this.btnSaveRentalPlan.Size = new System.Drawing.Size(212, 45);
             this.btnSaveRentalPlan.TabIndex = 81;
             this.btnSaveRentalPlan.Text = "Save Rental Plan";
             this.btnSaveRentalPlan.UseVisualStyleBackColor = false;
+            this.btnSaveRentalPlan.Click += new System.EventHandler(this.btnSaveRentalPlan_Click);
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(20, 516);
+            this.label6.Location = new System.Drawing.Point(20, 647);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(136, 28);
@@ -166,11 +177,10 @@
             // 
             // pnlDescription
             // 
-            this.pnlDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlDescription.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnlDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.pnlDescription.Controls.Add(this.txtDescription);
-            this.pnlDescription.Location = new System.Drawing.Point(27, 553);
+            this.pnlDescription.Location = new System.Drawing.Point(27, 684);
             this.pnlDescription.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlDescription.Name = "pnlDescription";
             this.pnlDescription.Size = new System.Drawing.Size(879, 124);
@@ -274,22 +284,59 @@
             this.panel2.Size = new System.Drawing.Size(880, 1);
             this.panel2.TabIndex = 2;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(295, 30);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(360, 45);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "(Add Edit Rental Plan)";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(295, 30);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(20, 526);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(372, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "(Add Edit Rental Plan)";
+            this.label1.Size = new System.Drawing.Size(216, 28);
+            this.label1.TabIndex = 88;
+            this.label1.Text = "Excess Fee Per Limit *";
+            // 
+            // pnlExcessFee
+            // 
+            this.pnlExcessFee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlExcessFee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.pnlExcessFee.Controls.Add(this.txtExcessLimit);
+            this.pnlExcessFee.Location = new System.Drawing.Point(27, 562);
+            this.pnlExcessFee.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
+            this.pnlExcessFee.Name = "pnlExcessFee";
+            this.pnlExcessFee.Size = new System.Drawing.Size(877, 60);
+            this.pnlExcessFee.TabIndex = 87;
+            // 
+            // txtExcessLimit
+            // 
+            this.txtExcessLimit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExcessLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.txtExcessLimit.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtExcessLimit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExcessLimit.ForeColor = System.Drawing.Color.DimGray;
+            this.txtExcessLimit.Location = new System.Drawing.Point(17, 18);
+            this.txtExcessLimit.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
+            this.txtExcessLimit.Name = "txtExcessLimit";
+            this.txtExcessLimit.Size = new System.Drawing.Size(843, 27);
+            this.txtExcessLimit.TabIndex = 1;
             // 
             // modal_AddEditRentalPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 789);
+            this.ClientSize = new System.Drawing.Size(965, 920);
             this.Controls.Add(this.pnlAddEditRentalPlan);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "modal_AddEditRentalPlan";
@@ -305,6 +352,8 @@
             this.pnlMileageLimit.PerformLayout();
             this.pnlPlanName.ResumeLayout(false);
             this.pnlPlanName.PerformLayout();
+            this.pnlExcessFee.ResumeLayout(false);
+            this.pnlExcessFee.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -328,6 +377,9 @@
         private System.Windows.Forms.Panel pnlPlanName;
         private System.Windows.Forms.TextBox txtPlanName;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlExcessFee;
+        private System.Windows.Forms.TextBox txtExcessLimit;
     }
 }

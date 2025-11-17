@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Car;
 
 namespace CarRentalSystem.WindowsForm.AdminForms.Modals
 {
@@ -25,6 +26,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
             LoadDesign();
             EventChange();
             SetupForNewEmployee();
+            KeyHandlers();
 
             this.Text = "Add New Employee";
             btnSave.Text = "Save";
@@ -117,6 +119,11 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
                 new List<RadioButton> { rdoAdmin, rdoStaff },
                 "role"
             );
+        }
+
+        private void KeyHandlers()
+        {
+            txtFullName.KeyPress += (s, e) => InputHandler.AllowLettersOnly(e);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

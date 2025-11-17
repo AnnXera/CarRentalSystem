@@ -47,5 +47,70 @@ namespace CarRentalSystem.Database
             _db.Close();
             return plans;
         }
+
+        public bool IsPlanNameTaken(string planName)
+        {
+            bool taken = false;
+            try
+            {
+                _db.Open();
+                using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM RentalPlans WHERE PlanName = @PlanName", _db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@PlanName", planName);
+                    taken = Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+            return taken;
+        }
+
+
+        public long AddRentalPlan(RentalPlan plan)
+        {
+            long newPlanId = 0;
+
+            try
+            {
+                _db.Open();
+
+                using (var cmd = new MySqlCommand("AddRentalPlan", _db.Connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Input parameters
+                    cmd.Parameters.AddWithValue("@p_PlanName", plan.PlanName);
+                    cmd.Parameters.AddWithValue("@p_MileageLimitPerDay", plan.MileageLimitPerDay.HasValue ? plan.MileageLimitPerDay.Value : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_ExcessFeePerKm", plan.ExcessFeePerKm);
+                    cmd.Parameters.AddWithValue("@p_DailyRate", plan.DailyRate);
+                    cmd.Parameters.AddWithValue("@p_Description", plan.Description);
+
+                    // Output parameter
+                    var outputParam = new MySqlParameter("@p_NewPlanID", MySqlDbType.Int64)
+                    {
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    // Execute
+                    cmd.ExecuteNonQuery();
+
+                    // Get the newly inserted PlanID
+                    newPlanId = Convert.ToInt64(outputParam.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding rental plan: " + ex.Message);
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return newPlanId;
+        }
     }
 }

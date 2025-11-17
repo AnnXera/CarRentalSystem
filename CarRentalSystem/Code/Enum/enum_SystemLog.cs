@@ -35,6 +35,15 @@ namespace CarRentalSystem.Code.Enum
             [Description("Edit Car")]
             EditCar,
 
+            [Description("Add Rental Plan")]
+            AddRentalPlan,
+
+            [Description("Edit Rental Plan")]
+            EditRentalPlan,
+
+            [Description("Delete Rental Plan")]
+            DeleteRentalPlan,
+
             [Description("Create Contract")]
             CreateContract,
         }
