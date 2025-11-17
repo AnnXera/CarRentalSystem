@@ -216,7 +216,7 @@ namespace CarRentalSystem.WindowsForm
                     // Log logout action
                     SystemLogger.Log(
                         "Logout",
-                        $"Employee {emp.FullName} (ID: {emp.EmpID}) logged out.",
+                        $"{emp.FullName} logged out.",
                         emp.EmpID
                     );
                 }

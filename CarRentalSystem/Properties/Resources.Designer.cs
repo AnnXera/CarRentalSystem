@@ -123,6 +123,16 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EditIcon2 {
+            get {
+                object obj = ResourceManager.GetObject("EditIcon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon___Cars___Default {
             get {
                 object obj = ResourceManager.GetObject("Icon - Cars - Default", resourceCulture);
@@ -316,6 +326,36 @@ namespace CarRentalSystem.Properties {
         internal static System.Drawing.Bitmap IconSearch2 {
             get {
                 object obj = ResourceManager.GetObject("IconSearch2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap KeyIcon {
+            get {
+                object obj = ResourceManager.GetObject("KeyIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap KeyIcon2 {
+            get {
+                object obj = ResourceManager.GetObject("KeyIcon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap KeyIcon2_30x30_ {
+            get {
+                object obj = ResourceManager.GetObject("KeyIcon2(30x30)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

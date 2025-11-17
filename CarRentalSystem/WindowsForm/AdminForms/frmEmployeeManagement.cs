@@ -34,6 +34,15 @@ namespace CarRentalSystem.WindowsForm.AdminForms
                 pnlSearch
             };
             UIHelper.ApplyRoundedPanels(panels, 8);
+
+            UIHelper.SetPlaceholder(
+                txtSearch,
+                "Type to Search...",
+                Color.Gray,
+                new Font("Segoe UI", 12, FontStyle.Italic),
+                Color.Black,
+                new Font("Segoe UI", 12, FontStyle.Regular)
+            );
         }
 
         private void LoadEmployees()
@@ -41,11 +50,11 @@ namespace CarRentalSystem.WindowsForm.AdminForms
             var employeeFactory = new EmployeeFactory();
             var employees = employeeFactory.ViewAll();
 
+            // DataGridView Settings
             dgvEmployees.AllowUserToAddRows = false;
             dgvEmployees.AllowUserToAddRows = false;
             dgvEmployees.RowHeadersVisible = false;
             dgvEmployees.AllowUserToResizeRows = false;
-            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             employeeTable = new DataTable();
             employeeTable.Columns.Add("EmpID", typeof(long));
@@ -70,9 +79,36 @@ namespace CarRentalSystem.WindowsForm.AdminForms
             dgvEmployees.Columns["Username"].HeaderText = "Username";
             dgvEmployees.Columns["Role"].HeaderText = "Role";
 
+            if (dgvEmployees.Columns.Contains("Edit"))
+                dgvEmployees.Columns.Remove("Edit");
+
+            var editColumn = new DataGridViewImageColumn
+            {
+                Name = "Edit",
+                HeaderText = "",
+                Image = Properties.Resources.EditIcon2,
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 40,
+                ToolTipText = "Edit Employee"
+            };
+
+            dgvEmployees.Columns.Add(editColumn);
+
+
+            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvEmployees.Columns["EmpID"].FillWeight = 30;
+            dgvEmployees.Columns["FullName"].FillWeight = 60;
+            dgvEmployees.Columns["Username"].FillWeight = 40;
+            dgvEmployees.Columns["Role"].FillWeight = 30;
+            dgvEmployees.Columns["Edit"].FillWeight = 15;
+
             dgvEmployees.ReadOnly = true;
 
             dgvEmployees.Refresh();
+
+            // Total Employees Count
+            lblTotalEmployees.Text = $"Total Employees: {employees.Count}";
         }
 
         private void dgvEmployees_Paint(object sender, PaintEventArgs e)
@@ -87,6 +123,47 @@ namespace CarRentalSystem.WindowsForm.AdminForms
                 addEmployeeModal.ShowDialog();
                 LoadEmployees();
             }
+        }
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0) return;
+
+            if (dgvEmployees.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                DataGridViewRow selectedRow = dgvEmployees.Rows[e.RowIndex];
+
+                var employee = new Employee
+                {
+                    EmpID = Convert.ToInt64(selectedRow.Cells["EmpID"].Value),
+                    FullName = selectedRow.Cells["FullName"].Value?.ToString(),
+                    Username = selectedRow.Cells["Username"].Value?.ToString(),
+                    Role = selectedRow.Cells["Role"].Value?.ToString()
+                };
+
+                var editForm = new modal_AddEditEmployee(employee);
+                editForm.ShowDialog();
+
+                LoadEmployees();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (employeeTable == null)
+                return;
+
+            string searchValue = txtSearch.Text.Trim().Replace("'", "''");
+
+            DataView dv = employeeTable.DefaultView;
+            dv.RowFilter = string.Format("FullName LIKE '%{0}%'", searchValue);
+
+            dgvEmployees.DataSource = dv;
         }
     }
 }

@@ -34,27 +34,28 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlPassword = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.rdoMale = new System.Windows.Forms.RadioButton();
+            this.rdoStaff = new System.Windows.Forms.RadioButton();
             this.pnlUsername = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.txtContactNumber = new System.Windows.Forms.TextBox();
-            this.rdoFemale = new System.Windows.Forms.RadioButton();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.rdoAdmin = new System.Windows.Forms.RadioButton();
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlFullName = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.btnSetPassword = new System.Windows.Forms.Button();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlAddEditEmployee.SuspendLayout();
             this.pnlPassword.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pnlUsername.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnlFullName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlAddEditEmployee.BackColor = System.Drawing.Color.White;
+            this.pnlAddEditEmployee.Controls.Add(this.btnSetPassword);
             this.pnlAddEditEmployee.Controls.Add(this.label2);
             this.pnlAddEditEmployee.Controls.Add(this.label7);
             this.pnlAddEditEmployee.Controls.Add(this.btnSave);
@@ -71,9 +73,9 @@
             this.pnlAddEditEmployee.Controls.Add(this.pnlPassword);
             this.pnlAddEditEmployee.Controls.Add(this.label5);
             this.pnlAddEditEmployee.Controls.Add(this.panel8);
-            this.pnlAddEditEmployee.Controls.Add(this.rdoMale);
+            this.pnlAddEditEmployee.Controls.Add(this.rdoStaff);
             this.pnlAddEditEmployee.Controls.Add(this.pnlUsername);
-            this.pnlAddEditEmployee.Controls.Add(this.rdoFemale);
+            this.pnlAddEditEmployee.Controls.Add(this.rdoAdmin);
             this.pnlAddEditEmployee.Controls.Add(this.lblEmployeeID);
             this.pnlAddEditEmployee.Controls.Add(this.label1);
             this.pnlAddEditEmployee.Controls.Add(this.pnlFullName);
@@ -120,6 +122,7 @@
             this.btnSave.TabIndex = 27;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -134,6 +137,7 @@
             this.btnCancel.TabIndex = 28;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pnlPassword
             // 
@@ -141,36 +145,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.pnlPassword.Controls.Add(this.pictureBox5);
-            this.pnlPassword.Controls.Add(this.txtAddress);
+            this.pnlPassword.Controls.Add(this.txtPassword);
             this.pnlPassword.Location = new System.Drawing.Point(25, 575);
             this.pnlPassword.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
             this.pnlPassword.Name = "pnlPassword";
-            this.pnlPassword.Size = new System.Drawing.Size(806, 60);
+            this.pnlPassword.Size = new System.Drawing.Size(726, 60);
             this.pnlPassword.TabIndex = 20;
             // 
-            // pictureBox5
+            // txtPassword
             // 
-            this.pictureBox5.Image = global::CarRentalSystem.Properties.Resources.LockIcon2;
-            this.pictureBox5.Location = new System.Drawing.Point(15, 13);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(15);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox5.TabIndex = 0;
-            this.pictureBox5.TabStop = false;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(62, 16);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(729, 27);
-            this.txtAddress.TabIndex = 1;
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(62, 16);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(649, 27);
+            this.txtPassword.TabIndex = 1;
             // 
             // label5
             // 
@@ -194,18 +187,18 @@
             this.panel8.Size = new System.Drawing.Size(806, 1);
             this.panel8.TabIndex = 32;
             // 
-            // rdoMale
+            // rdoStaff
             // 
-            this.rdoMale.AutoSize = true;
-            this.rdoMale.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoMale.Location = new System.Drawing.Point(140, 362);
-            this.rdoMale.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.rdoMale.Name = "rdoMale";
-            this.rdoMale.Size = new System.Drawing.Size(119, 32);
-            this.rdoMale.TabIndex = 17;
-            this.rdoMale.TabStop = true;
-            this.rdoMale.Text = "Employee";
-            this.rdoMale.UseVisualStyleBackColor = true;
+            this.rdoStaff.AutoSize = true;
+            this.rdoStaff.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoStaff.Location = new System.Drawing.Point(140, 362);
+            this.rdoStaff.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.rdoStaff.Name = "rdoStaff";
+            this.rdoStaff.Size = new System.Drawing.Size(72, 32);
+            this.rdoStaff.TabIndex = 17;
+            this.rdoStaff.TabStop = true;
+            this.rdoStaff.Text = "Staff";
+            this.rdoStaff.UseVisualStyleBackColor = true;
             // 
             // pnlUsername
             // 
@@ -213,49 +206,38 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.pnlUsername.Controls.Add(this.pictureBox3);
-            this.pnlUsername.Controls.Add(this.txtContactNumber);
+            this.pnlUsername.Controls.Add(this.txtUsername);
             this.pnlUsername.Location = new System.Drawing.Point(25, 457);
             this.pnlUsername.Margin = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.pnlUsername.Name = "pnlUsername";
             this.pnlUsername.Size = new System.Drawing.Size(806, 60);
             this.pnlUsername.TabIndex = 16;
             // 
-            // pictureBox3
+            // txtUsername
             // 
-            this.pictureBox3.Image = global::CarRentalSystem.Properties.Resources.UserIcon2;
-            this.pictureBox3.Location = new System.Drawing.Point(15, 13);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(15);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            // 
-            // txtContactNumber
-            // 
-            this.txtContactNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContactNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.txtContactNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtContactNumber.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactNumber.Location = new System.Drawing.Point(62, 15);
-            this.txtContactNumber.Margin = new System.Windows.Forms.Padding(15);
-            this.txtContactNumber.Name = "txtContactNumber";
-            this.txtContactNumber.Size = new System.Drawing.Size(724, 27);
-            this.txtContactNumber.TabIndex = 1;
+            this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(62, 15);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(15);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(724, 27);
+            this.txtUsername.TabIndex = 1;
             // 
-            // rdoFemale
+            // rdoAdmin
             // 
-            this.rdoFemale.AutoSize = true;
-            this.rdoFemale.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoFemale.Location = new System.Drawing.Point(25, 362);
-            this.rdoFemale.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.rdoFemale.Name = "rdoFemale";
-            this.rdoFemale.Size = new System.Drawing.Size(91, 32);
-            this.rdoFemale.TabIndex = 18;
-            this.rdoFemale.TabStop = true;
-            this.rdoFemale.Text = "Admin";
-            this.rdoFemale.UseVisualStyleBackColor = true;
+            this.rdoAdmin.AutoSize = true;
+            this.rdoAdmin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoAdmin.Location = new System.Drawing.Point(25, 362);
+            this.rdoAdmin.Margin = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.rdoAdmin.Name = "rdoAdmin";
+            this.rdoAdmin.Size = new System.Drawing.Size(91, 32);
+            this.rdoAdmin.TabIndex = 18;
+            this.rdoAdmin.TabStop = true;
+            this.rdoAdmin.Text = "Admin";
+            this.rdoAdmin.UseVisualStyleBackColor = true;
             // 
             // lblEmployeeID
             // 
@@ -293,17 +275,6 @@
             this.pnlFullName.Size = new System.Drawing.Size(806, 60);
             this.pnlFullName.TabIndex = 14;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CarRentalSystem.Properties.Resources.UserIcon2;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 13);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtFullName
             // 
             this.txtFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -328,6 +299,53 @@
             this.lblEmployeeName.TabIndex = 30;
             this.lblEmployeeName.Text = "John Doe (Preload Name)";
             // 
+            // btnSetPassword
+            // 
+            this.btnSetPassword.BackgroundImage = global::CarRentalSystem.Properties.Resources.KeyIcon2_30x30_;
+            this.btnSetPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
+            this.btnSetPassword.Location = new System.Drawing.Point(771, 575);
+            this.btnSetPassword.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnSetPassword.Name = "btnSetPassword";
+            this.btnSetPassword.Size = new System.Drawing.Size(60, 60);
+            this.btnSetPassword.TabIndex = 34;
+            this.btnSetPassword.UseVisualStyleBackColor = true;
+            this.btnSetPassword.Click += new System.EventHandler(this.btnSetPassword_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::CarRentalSystem.Properties.Resources.LockIcon2;
+            this.pictureBox5.Location = new System.Drawing.Point(15, 13);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(15);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::CarRentalSystem.Properties.Resources.UserIcon2;
+            this.pictureBox3.Location = new System.Drawing.Point(15, 13);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(15);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CarRentalSystem.Properties.Resources.UserIcon2;
+            this.pictureBox1.Location = new System.Drawing.Point(15, 13);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // modal_AddEditEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -342,12 +360,12 @@
             this.pnlAddEditEmployee.PerformLayout();
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pnlUsername.ResumeLayout(false);
             this.pnlUsername.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnlFullName.ResumeLayout(false);
             this.pnlFullName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -362,19 +380,20 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlPassword;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.RadioButton rdoMale;
+        private System.Windows.Forms.RadioButton rdoStaff;
         private System.Windows.Forms.Panel pnlUsername;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.TextBox txtContactNumber;
-        private System.Windows.Forms.RadioButton rdoFemale;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.RadioButton rdoAdmin;
         public System.Windows.Forms.Label lblEmployeeID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlFullName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtFullName;
         public System.Windows.Forms.Label lblEmployeeName;
+        private System.Windows.Forms.Button btnSetPassword;
     }
 }

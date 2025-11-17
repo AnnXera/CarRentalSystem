@@ -77,7 +77,15 @@ namespace CarRentalSystem.Code
         }
         public void Edit(Employee emp)
         {
-            throw new NotImplementedException();
+            _repo.UpdateEmployee(emp);
+        }
+        public long EmployeeIDNext()
+        {
+            return _repo.GetNextEmployeeID();
+        }
+        public int GetCount()
+        {
+            return _repo.GetEmployeeCount();
         }
     }
 }

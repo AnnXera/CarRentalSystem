@@ -164,5 +164,17 @@ namespace CarRentalSystem.Utils
             if (date.Date < DateTime.Today)
                 throw new Exception($"{fieldName} cannot be before today.");
         }
+
+        public static void RequireRadioSelected(List<RadioButton> radioButtons, string fieldName)
+        {
+            if (radioButtons == null || radioButtons.Count == 0)
+                throw new ArgumentException("Radio button list cannot be empty.");
+
+            bool isChecked = radioButtons.Any(rb => rb.Checked);
+
+            if (!isChecked)
+                throw new Exception($"Please select a {fieldName}.");
+        }
+
     }
 }

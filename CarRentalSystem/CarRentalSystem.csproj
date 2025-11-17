@@ -163,6 +163,12 @@
     <Compile Include="WindowsForm\AdminForms\Modals\modal_AddEditRentalPlan.Designer.cs">
       <DependentUpon>modal_AddEditRentalPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\AdminForms\Modals\modal_ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\AdminForms\Modals\modal_ResetPassword.Designer.cs">
+      <DependentUpon>modal_ResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsForm\frmContractsManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     <EmbeddedResource Include="WindowsForm\AdminForms\Modals\modal_AddEditRentalPlan.resx">
       <DependentUpon>modal_AddEditRentalPlan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\AdminForms\Modals\modal_ResetPassword.resx">
+      <DependentUpon>modal_ResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\frmContractsManagement.resx">
       <DependentUpon>frmContractsManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -326,6 +335,7 @@
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />
     <Content Include="Resources\EditIcon.png" />
+    <Content Include="Resources\EditIcon2.png" />
     <Content Include="Resources\Icon - Cars - Default %281%29.png" />
     <Content Include="Resources\Icon - Cars- Active %281%29.png" />
     <Content Include="Resources\Icon - Customer - Active.png" />
@@ -348,6 +358,9 @@
     <Content Include="Resources\Icon Contract - Active.png" />
     <Content Include="Resources\Icon Contract - Inactive.png" />
     <Content Include="Resources\IconSearch2.png" />
+    <Content Include="Resources\KeyIcon.png" />
+    <Content Include="Resources\KeyIcon2%2830x30%29.png" />
+    <Content Include="Resources\KeyIcon2.png" />
     <Content Include="Resources\LocationIcon.png" />
     <Content Include="Resources\LocationIcon2.png" />
     <Content Include="Resources\LockIcon.png" />

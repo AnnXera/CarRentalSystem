@@ -123,7 +123,7 @@ namespace CarRentalSystem.WindowsForm
             {
                 Name = "Edit",
                 HeaderText = "",
-                Image = Properties.Resources.EditIcon,
+                Image = Properties.Resources.EditIcon2,
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
                 Width = 40,
                 ToolTipText = "Edit Customer"
