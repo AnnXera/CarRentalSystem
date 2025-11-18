@@ -27,15 +27,6 @@ namespace CarRentalSystem.WindowsForm.AdminForms
                 pnlSearch
             };
             UIHelper.ApplyRoundedPanels(panels, 8);
-
-            UIHelper.SetPlaceholder(
-                txtSearch,
-                "Type to Search...",
-                Color.Gray,
-                new Font("Segoe UI", 12, FontStyle.Italic),
-                Color.Black,
-                new Font("Segoe UI", 12, FontStyle.Regular)
-            );
         }
 
         private void LoadRentalPlans()
