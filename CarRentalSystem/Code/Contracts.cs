@@ -14,10 +14,12 @@ namespace CarRentalSystem.Code
         public long ContractID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public DateTime? DateProcessed { get; set; }
         public int DaysRented { get; set; }
         public long StartMileage { get; set; }
         public long? EndMileage { get; set; }
         public string Status { get; set; }
+        public bool IsOverdue { get; set; }
 
         // CUSTOMER
         public long CustID { get; set; }
