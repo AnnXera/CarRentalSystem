@@ -52,7 +52,7 @@ namespace CarRentalSystem.PDF
                         .PaddingVertical(1, Unit.Centimetre)
                         .Column(x =>
                         {
-                            x.Spacing(30);
+                            x.Spacing(20);
 
                             x.Item().Text($"Date Created: {DateTime.Now:MMMM dd, yyyy}");
 
