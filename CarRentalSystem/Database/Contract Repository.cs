@@ -130,7 +130,8 @@ namespace CarRentalSystem.Database
                             EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage"))
                                         ? (long?)null
                                         : reader.GetInt64("EndMileage"),
-
+                            DateProcessed = reader.GetDateTime("DateProcessed"),
+                            IsOverdue = reader.GetBoolean("IsOverdue"),
                             Status = reader.GetString("Status")
                         });
                     }
@@ -168,8 +169,8 @@ namespace CarRentalSystem.Database
                                 DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount"),
                                 BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
                                 ReturnDate = reader.GetDateTime("ReturnDate"),
-                                CarPicture = reader["CarPicture"] as byte[],                // image from DB
-                                DriversLicensePic = reader["DriversLicensePic"] as byte[]   // image from DB
+                                CarPicture = reader["CarPicture"] as byte[],
+                                DriversLicensePic = reader["DriversLicensePic"] as byte[]
                             });
                         }
                     }
