@@ -346,8 +346,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                     newContractID
                 );
 
-                MessageBox.Show($"Contract PDF generated:\n{pdfPath}", "PDF Created");
-
                 MessageBox.Show($"Contract created successfully!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

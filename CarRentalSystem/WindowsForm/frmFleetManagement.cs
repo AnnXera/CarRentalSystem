@@ -1,7 +1,7 @@
 ﻿using CarRentalSystem.Code;
+using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
 using CarRentalSystem.WindowsForm.Modal;
-using CarRentalSystem.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Car;
 
 namespace CarRentalSystem.WindowsForm
 {
@@ -20,8 +21,22 @@ namespace CarRentalSystem.WindowsForm
         {
             InitializeComponent();
             LoadCars();
-            LoadRentalPlans();
+            LoadComboboxes();
+            LoadDesign();
         }
+
+        private void LoadDesign()
+        {
+            var panels = new List<Panel>
+            {
+                panel5,
+                pnlCarView,
+                pnlComboBox,
+                pnlRentalPlan,
+                pnlSearch
+            };
+        }
+
         public void LoadCars()
         {
             var factory = new CarFactory();
@@ -99,7 +114,7 @@ namespace CarRentalSystem.WindowsForm
                 {
                     Name = "Edit",
                     HeaderText = "",
-                    Image = Properties.Resources.EditIcon, // your icon
+                    Image = Properties.Resources.EditIcon2, // your icon
                     ImageLayout = DataGridViewImageCellLayout.Zoom,
                     Width = 40,
                     ToolTipText = "Edit Car"
@@ -113,7 +128,7 @@ namespace CarRentalSystem.WindowsForm
             dgvCars.Refresh();
         }
 
-        private void LoadRentalPlans()
+        private void LoadComboboxes()
         {
             try
             {
@@ -130,36 +145,14 @@ namespace CarRentalSystem.WindowsForm
                 MessageBox.Show($"Failed to load rental plans.\n\nDetails: {ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
 
-        private void pnlRentalPlan_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void pnlComboBox_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawBorderInside((Control)sender, e);
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-            UIHelper.DrawRoundedControl(sender, e, 15);
+            cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
+            cbxStatus.SelectedIndex = -1;
         }
 
         private void picCar_Paint(object sender, PaintEventArgs e)
         {
-            UIHelper.DrawRoundedControl(sender, e, 15);
-        }
-
-        private void frmFleetManagement_Load(object sender, EventArgs e)
-        {
-
+            UIHelper.DrawRoundedControl(sender, e, 8);
         }
 
         private void btnAddVehicle_Click(object sender, EventArgs e)
@@ -171,12 +164,16 @@ namespace CarRentalSystem.WindowsForm
             }
         }
 
-        private void dgvCars_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCars_Paint(object sender, PaintEventArgs e)
+        {
+            UIHelper.DrawRoundedControl(sender, e, 8);
+        }
+
+        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvCars.Columns[e.ColumnIndex].Name == "Edit")
             {
                 long carId = Convert.ToInt64(dgvCars.Rows[e.RowIndex].Cells["CarID"].Value);
-
                 using (var editCarForm = new modal_AddEditCar(carId, true))
                 {
                     editCarForm.ShowDialog();
