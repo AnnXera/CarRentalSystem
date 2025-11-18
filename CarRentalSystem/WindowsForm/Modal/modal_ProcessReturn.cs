@@ -71,6 +71,10 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblRegisteredEmployee.Text = selected.EmployeeName;
                 lblSecurityDeposit.Text = selected.DepositAmount.ToString("N2");
                 lblBaseRate.Text = (selected.BaseRate ?? 0).ToString("N2");
+                lblRentalPlan.Text = selected.PlanName;
+                lblMileageLimit.Text = selected.MileageLimitPerDay.ToString("N0") + " km/day";
+                lblRate.Text = selected.ExcessFeePerKm.ToString("N2") + " per km";
+                lblDueDate.Text = selected.ReturnDate.ToString("MMMM dd, yyyy");
 
                 // Display customer driver license
                 if (selected.DriversLicensePic != null && selected.DriversLicensePic.Length > 0)
@@ -109,6 +113,10 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblRegisteredEmployee.Text = "";
                 lblSecurityDeposit.Text = "0.00";
                 lblBaseRate.Text = "0.00";
+                lblRate.Text = "0.00";
+                lblRentalPlan.Text = "";
+                lblMileageLimit.Text = "0 km/day";
+                lblDueDate.Text = "";
 
                 Image defaultDriver = Properties.Resources.SampleDriver_s_License;
                 picCustomer.Image = ImageHelper.ResizeImage(defaultDriver, 240, 152);
