@@ -59,7 +59,7 @@ namespace CarRentalSystem.PDF
                             x.Item().Text(
                                 $"This Car Rental Contract Agreement is made on {DateTime.Now:MMMM dd, yyyy}, between the Rental Company and {customerName} " +
                                 $"(Customer ID: {customerID}), residing at {address}, with contact number {phone}. The customer agrees to rent the vehicle described as {car.CarDescription}, " +
-                                $"bearing plate number {car.PlateNumber}, with {car.Seats} seats, {car.Transmission} transmission, and {car.FuelType} fuel type. The vehicle’s starting mileage at the time of release is {car.CurrentMileage} km.\n\n" +
+                                $"bearing plate number {car.PlateNumber}. The vehicle’s starting mileage at the time of release is {car.CurrentMileage} km.\n\n" +
 
                                 $"The rental period begins on {startDate:MMMM dd, yyyy} and ends on {returnDate:MMMM dd, yyyy}, totaling {daysRented} day(s). " +
                                 $"The rental plan selected is {rentalPlan.PlanName} with a daily rate of {rentalPlan.DailyRate:C}, resulting in a base rate of {baseRate:C}. " +
