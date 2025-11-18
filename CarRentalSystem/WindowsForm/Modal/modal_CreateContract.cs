@@ -1,5 +1,6 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
+using CarRentalSystem.PDF;
 using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
@@ -308,6 +309,44 @@ namespace CarRentalSystem.WindowsForm.Modal
                     SessionManager.LoggedInEmployee.EmpID
                 );
 
+                // Base folder for all contracts
+                string baseFolder = @"C:\Users\ASUS\Documents\CarRentalContracts";
+
+                // Create a subfolder for today's date
+                string dateFolder = Path.Combine(baseFolder, DateTime.Now.ToString("yyyy-MM-dd"));
+
+                // Ensure the folder exists
+                if (!Directory.Exists(dateFolder))
+                {
+                    Directory.CreateDirectory(dateFolder);
+                }
+
+                // Full PDF file path
+                string pdfPath = Path.Combine(dateFolder, $"Contract_{newContractID}.pdf");
+
+                // Generate the PDF
+                var pdf = new pdf_Contract();
+                pdf.GenerateContract(
+                    pdfPath,
+                    lblFullName.Text,
+                    lblCustomerID.Text,
+                    lblAddress.Text,
+                    lblPhoneNumber.Text,
+                    selectedCar,
+                    selectedRentalPlan,
+                    dtpStartDate.Value,
+                    dtpReturnDate.Value,
+                    int.Parse(lblDays.Text),
+                    decimal.Parse(lblBaseRate.Text, System.Globalization.NumberStyles.Currency),
+                    decimal.Parse(txtSecurityDeposit.Text),
+                    cbxPaymentMethod.SelectedItem.ToString(),
+                    lblTotalDue.Text,
+                    SessionManager.LoggedInEmployee.FullName,
+                    SessionManager.LoggedInEmployee.EmpID.ToString(),
+                    newContractID
+                );
+
+                MessageBox.Show($"Contract PDF generated:\n{pdfPath}", "PDF Created");
 
                 MessageBox.Show($"Contract created successfully!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

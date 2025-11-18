@@ -167,6 +167,11 @@ namespace CarRentalSystem.WindowsForm.Modal
                 var repo = new CarRepository();
                 var car = repo.GetCarById(_carId);
 
+                cbxBrand.DataSource = Enum.GetValues(typeof(CarBrand));
+                cbxTransmission.DataSource = Enum.GetValues(typeof(TransmissionType));
+                cbxFuelType.DataSource = Enum.GetValues(typeof(FuelType));
+                cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
+
                 if (car == null)
                 {
                     MessageBox.Show("Car not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -181,12 +186,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 txtVIN.Text = car.VIN;
                 txtReplacementValue.Text = car.ReplacementValue.ToString("N2");
                 txtEngineType.Text = car.EngineType;
-
-                cbxBrand.DataSource = Enum.GetValues(typeof(CarBrand));
-                cbxTransmission.DataSource = Enum.GetValues(typeof(TransmissionType));
-                cbxFuelType.DataSource = Enum.GetValues(typeof(FuelType));
-                cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
-
+                cbxStatus.Text = car.Status;
                 
                 cbxRentalPlan.SelectedValue = car.PlanID;
 
