@@ -40,15 +40,6 @@ namespace CarRentalSystem.WindowsForm
                 pnlCustomerView,
             };
             UIHelper.ApplyRoundedPanels(panels, 8);
-
-            UIHelper.SetPlaceholder(
-                txtSearch,
-                "Type search...",
-                Color.Gray,                                       // Placeholder text color
-                new Font("Segoe UI", 12, FontStyle.Italic),          // Placeholder font
-                Color.Black,                                      // Typing color
-                new Font("Segoe UI", 12, FontStyle.Regular)       // Typing font
-            );
         }
 
         private void EventHandler()
