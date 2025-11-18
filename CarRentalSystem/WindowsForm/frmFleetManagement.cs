@@ -4,12 +4,8 @@ using CarRentalSystem.Utils;
 using CarRentalSystem.WindowsForm.Modal;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CarRentalSystem.Code.Enum.enum_Car;
 
@@ -35,6 +31,7 @@ namespace CarRentalSystem.WindowsForm
                 pnlRentalPlan,
                 pnlSearch
             };
+            UIHelper.ApplyRoundedPanels(panels, 8);
         }
 
         public void LoadCars()
@@ -169,7 +166,7 @@ namespace CarRentalSystem.WindowsForm
             UIHelper.DrawRoundedControl(sender, e, 8);
         }
 
-        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCars_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvCars.Columns[e.ColumnIndex].Name == "Edit")
             {
@@ -179,6 +176,39 @@ namespace CarRentalSystem.WindowsForm
                     editCarForm.ShowDialog();
                     LoadCars();
                 }
+            }
+        }
+
+        private void DisplayCarDetails(DataGridViewRow selectedRow)
+        {
+            if (selectedRow == null) return;
+            
+            lblCarName.Text = selectedRow.Cells["CarDescription"].Value?.ToString();
+            lblStatus.Text = selectedRow.Cells["Status"].Value?.ToString();
+
+            if (selectedRow.Cells["Picture"].Value is Image img && img != null)
+            {
+                picCar.Image = img;
+            }
+            else
+            {
+                string defaultPath = System.IO.Path.Combine(Application.StartupPath, "Assets", "default_car.png");
+
+                if (System.IO.File.Exists(defaultPath))
+                    picCar.Image = Image.FromFile(defaultPath);
+                else
+                    picCar.Image = null;
+            }
+
+            picCar.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // ignore header clicks
+            {
+                DataGridViewRow selectedRow = dgvCars.Rows[e.RowIndex];
+                DisplayCarDetails(selectedRow);
             }
         }
     }

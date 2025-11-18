@@ -33,8 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel5 = new System.Windows.Forms.Panel();
             this.picCar = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblCarName = new System.Windows.Forms.Label();
             this.pnlComboBox = new System.Windows.Forms.Panel();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
             this.btnAddVehicle = new System.Windows.Forms.Button();
@@ -45,6 +45,7 @@
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCar)).BeginInit();
             this.pnlComboBox.SuspendLayout();
@@ -60,9 +61,10 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.lblStatus);
             this.panel5.Controls.Add(this.picCar);
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.lblCarName);
             this.panel5.Location = new System.Drawing.Point(12, 11);
             this.panel5.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.panel5.Name = "panel5";
@@ -81,28 +83,28 @@
             this.picCar.TabStop = false;
             this.picCar.Paint += new System.Windows.Forms.PaintEventHandler(this.picCar_Paint);
             // 
-            // label7
+            // label10
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(323, 83);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(394, 24);
-            this.label7.TabIndex = 64;
-            this.label7.Text = "Status: All/Available/Rented/Maintenance";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.DimGray;
+            this.label10.Location = new System.Drawing.Point(323, 83);
+            this.label10.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 28);
+            this.label10.TabIndex = 64;
+            this.label10.Text = "Status: ";
             // 
-            // label5
+            // lblCarName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(321, 24);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 35);
-            this.label5.TabIndex = 58;
-            this.label5.Text = "Car Name";
+            this.lblCarName.AutoSize = true;
+            this.lblCarName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarName.Location = new System.Drawing.Point(321, 24);
+            this.lblCarName.Margin = new System.Windows.Forms.Padding(4, 12, 4, 12);
+            this.lblCarName.Name = "lblCarName";
+            this.lblCarName.Size = new System.Drawing.Size(156, 41);
+            this.lblCarName.TabIndex = 58;
+            this.lblCarName.Text = "Car Name";
             // 
             // pnlComboBox
             // 
@@ -232,6 +234,7 @@
             this.dgvCars.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvCars.Size = new System.Drawing.Size(1510, 363);
             this.dgvCars.TabIndex = 74;
+            this.dgvCars.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCars_CellClick);
             this.dgvCars.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCars_CellContentClick);
             this.dgvCars.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvCars_Paint);
             // 
@@ -274,6 +277,18 @@
             this.txtSearch.Size = new System.Drawing.Size(391, 27);
             this.txtSearch.TabIndex = 1;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.DimGray;
+            this.lblStatus.Location = new System.Drawing.Point(411, 83);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(10, 12, 4, 12);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(321, 28);
+            this.lblStatus.TabIndex = 67;
+            this.lblStatus.Text = "All/Available/Rented/Maintenance";
+            // 
             // frmFleetManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -304,8 +319,8 @@
 
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox picCar;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblCarName;
         private System.Windows.Forms.Panel pnlComboBox;
         private System.Windows.Forms.ComboBox cbxStatus;
         private System.Windows.Forms.Button btnAddVehicle;
@@ -316,5 +331,6 @@
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

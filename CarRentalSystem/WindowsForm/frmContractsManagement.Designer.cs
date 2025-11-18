@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
             this.btnPayment = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -47,19 +48,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnProcessReturn = new System.Windows.Forms.Button();
             this.btnNewRental = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.pnlComboBox = new System.Windows.Forms.Panel();
             this.cbxStatus = new System.Windows.Forms.ComboBox();
             this.pnlContractsOverview = new System.Windows.Forms.Panel();
+            this.dgvContracts = new System.Windows.Forms.DataGridView();
             this.pnlContractDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pnlComboBox.SuspendLayout();
             this.pnlContractsOverview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContracts)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlContractDetails
@@ -282,38 +283,6 @@
             this.btnNewRental.UseVisualStyleBackColor = true;
             this.btnNewRental.Click += new System.EventHandler(this.btnNewRental_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 98);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 20, 20, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1495, 363);
-            this.dataGridView1.TabIndex = 60;
-            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
-            // 
             // pnlSearch
             // 
             this.pnlSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
@@ -381,7 +350,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContractsOverview.BackColor = System.Drawing.Color.White;
-            this.pnlContractsOverview.Controls.Add(this.dataGridView1);
+            this.pnlContractsOverview.Controls.Add(this.dgvContracts);
             this.pnlContractsOverview.Controls.Add(this.btnNewRental);
             this.pnlContractsOverview.Controls.Add(this.btnProcessReturn);
             this.pnlContractsOverview.Controls.Add(this.pnlSearch);
@@ -390,6 +359,56 @@
             this.pnlContractsOverview.Name = "pnlContractsOverview";
             this.pnlContractsOverview.Size = new System.Drawing.Size(1535, 478);
             this.pnlContractsOverview.TabIndex = 74;
+            // 
+            // dgvContracts
+            // 
+            this.dgvContracts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvContracts.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.dgvContracts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvContracts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvContracts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 10, 0, 10);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvContracts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvContracts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvContracts.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvContracts.EnableHeadersVisualStyles = false;
+            this.dgvContracts.Location = new System.Drawing.Point(18, 101);
+            this.dgvContracts.Margin = new System.Windows.Forms.Padding(5, 0, 20, 20);
+            this.dgvContracts.MultiSelect = false;
+            this.dgvContracts.Name = "dgvContracts";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvContracts.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvContracts.RowHeadersVisible = false;
+            this.dgvContracts.RowHeadersWidth = 51;
+            this.dgvContracts.RowTemplate.DividerHeight = 1;
+            this.dgvContracts.RowTemplate.Height = 40;
+            this.dgvContracts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvContracts.Size = new System.Drawing.Size(1497, 360);
+            this.dgvContracts.TabIndex = 75;
+            this.dgvContracts.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvContracts_Paint);
             // 
             // frmContractsManagement
             // 
@@ -405,12 +424,12 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlContractDetails.ResumeLayout(false);
             this.pnlContractDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlSearch.ResumeLayout(false);
             this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnlComboBox.ResumeLayout(false);
             this.pnlContractsOverview.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContracts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,7 +439,6 @@
         private System.Windows.Forms.Panel pnlContractDetails;
         private System.Windows.Forms.Button btnProcessReturn;
         private System.Windows.Forms.Button btnNewRental;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCar;
@@ -441,5 +459,6 @@
         private System.Windows.Forms.ComboBox cbxStatus;
         private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.Panel pnlContractsOverview;
+        private System.Windows.Forms.DataGridView dgvContracts;
     }
 }

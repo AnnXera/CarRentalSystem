@@ -115,25 +115,21 @@ namespace CarRentalSystem.Database
                         {
                             ContractID = reader.GetInt64("ContractID"),
                             CustID = reader.GetInt64("CustID"),
-                            CustomerName = reader.GetString("CustomerName"),
-
+                            CustomerName = reader.IsDBNull(reader.GetOrdinal("CustomerName")) ? string.Empty : reader.GetString("CustomerName"),  // Handles null FullName
                             EmpID = reader.GetInt64("EmpID"),
-                            EmployeeName = reader.GetString("EmployeeName"),
-
+                            EmployeeName = reader.IsDBNull(reader.GetOrdinal("EmployeeName")) ? string.Empty : reader.GetString("EmployeeName"),  // Handles null FullName
                             CarID = reader.GetInt64("CarID"),
-                            CarName = reader.GetString("CarName"),
-
+                            CarName = reader.IsDBNull(reader.GetOrdinal("CarName")) ? string.Empty : reader.GetString("CarName"),  // Handles null CONCAT result
                             StartDate = reader.GetDateTime("StartDate"),
                             ReturnDate = reader.GetDateTime("ReturnDate"),
                             DaysRented = reader.GetInt32("DaysRented"),
                             StartMileage = reader.GetInt64("StartMileage"),
-                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage"))
-                                        ? (long?)null
-                                        : reader.GetInt64("EndMileage"),
-                            DateProcessed = reader.GetDateTime("DateProcessed"),
+                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage")) ? (long?)null : reader.GetInt64("EndMileage"),
+                            DateProcessed = reader.IsDBNull(reader.GetOrdinal("DateProcessed")) ? (DateTime?)null : reader.GetDateTime("DateProcessed"),
                             IsOverdue = reader.GetBoolean("IsOverdue"),
-                            Status = reader.GetString("Status")
+                            Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? string.Empty : reader.GetString("Status")
                         });
+
                     }
                 }
             }
