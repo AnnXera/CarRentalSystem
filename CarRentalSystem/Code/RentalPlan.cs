@@ -11,7 +11,7 @@ namespace CarRentalSystem.Code
     {
         public long PlanID { get; set; }
         public string PlanName { get; set; }
-        public long? MileageLimitPerDay { get; set; }
+        public long? MileageLimit { get; set; }
         public decimal ExcessFeePerKm { get; set; }
         public decimal DailyRate { get; set; }
         public string Description { get; set; }

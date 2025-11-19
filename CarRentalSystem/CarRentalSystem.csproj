@@ -56,6 +56,9 @@
     <Reference Include="MySql.Data, Version=9.5.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.9.5.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NuGet.Frameworks, Version=6.14.0.116, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\NuGet.Frameworks.6.14.0\lib\net472\NuGet.Frameworks.dll</HintPath>
     </Reference>
@@ -103,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Billing.cs" />
     <Compile Include="Code\BillingLog.cs" />
     <Compile Include="Code\CarParts.cs" />
     <Compile Include="Code\Cars.cs" />
@@ -117,7 +121,9 @@
     <Compile Include="Code\RentalPlan.cs" />
     <Compile Include="Code\SecurityDeposit.cs" />
     <Compile Include="Code\SystemLog.cs" />
+    <Compile Include="Database\AdditionalChargesRepository.cs" />
     <Compile Include="Database\BillingLogRepository.cs" />
+    <Compile Include="Database\BillingRepository.cs" />
     <Compile Include="Database\CarPartsRepository.cs" />
     <Compile Include="Database\CarRepository.cs" />
     <Compile Include="Database\Contract Repository.cs" />
@@ -211,6 +217,12 @@
     <Compile Include="WindowsForm\frmMainDashboardPanel.Designer.cs">
       <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\Modal\frmBilling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\Modal\frmBilling.Designer.cs">
+      <DependentUpon>frmBilling.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsForm\Modal\modal_AddEditCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +311,9 @@
     <EmbeddedResource Include="WindowsForm\frmMainDashboardPanel.resx">
       <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\Modal\frmBilling.resx">
+      <DependentUpon>frmBilling.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\modal_AddEditCar.resx">
       <DependentUpon>modal_AddEditCar.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,10 +355,14 @@
     <Content Include="Resources\Car Logo 24x24.png" />
     <Content Include="Resources\Car rental logo.jpg" />
     <Content Include="Resources\CarSamplePic.jpg" />
+    <Content Include="Resources\CheckIcon - Disabled.png" />
+    <Content Include="Resources\CheckIcon.png" />
     <Content Include="Resources\EditIcon.png" />
     <Content Include="Resources\EditIcon2.png" />
+    <Content Include="Resources\Icon - Billing Logs- Default.png" />
     <Content Include="Resources\Icon - Cars - Default %281%29.png" />
     <Content Include="Resources\Icon - Cars- Active %281%29.png" />
+    <Content Include="Resources\Icon - Contracts- Default.png" />
     <Content Include="Resources\Icon - Customer - Active.png" />
     <Content Include="Resources\Icon - Customers- Default.png" />
     <Content Include="Resources\Icon - Dashboard - Active.png" />
@@ -378,6 +397,8 @@
     <Content Include="Resources\user image mockup.png" />
     <Content Include="Resources\UserIcon.png" />
     <Content Include="Resources\UserIcon2.png" />
+    <Content Include="Resources\XIcon - Disabled.png" />
+    <Content Include="Resources\XIcon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

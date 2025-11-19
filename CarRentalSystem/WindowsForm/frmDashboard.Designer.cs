@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnSystemLog = new System.Windows.Forms.Button();
             this.btnRentalPlans = new System.Windows.Forms.Button();
             this.btnEmployeeManagement = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnReport = new System.Windows.Forms.Button();
+            this.btnBillingLogs = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnFleet = new System.Windows.Forms.Button();
             this.btnTransactions = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlMainDashboard = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlMainDashboard = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +56,7 @@
             this.panel1.Controls.Add(this.btnRentalPlans);
             this.panel1.Controls.Add(this.btnEmployeeManagement);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.btnReport);
+            this.panel1.Controls.Add(this.btnBillingLogs);
             this.panel1.Controls.Add(this.btnCustomer);
             this.panel1.Controls.Add(this.btnFleet);
             this.panel1.Controls.Add(this.btnTransactions);
@@ -69,11 +69,27 @@
             this.panel1.Size = new System.Drawing.Size(269, 768);
             this.panel1.TabIndex = 0;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogout.BackColor = System.Drawing.Color.White;
+            this.btnLogout.BackgroundImage = global::CarRentalSystem.Properties.Resources.Icon___Logout;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(13, 711);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(239, 44);
+            this.btnLogout.TabIndex = 30;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // btnSystemLog
             // 
             this.btnSystemLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSystemLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnSystemLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnSystemLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSystemLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSystemLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -90,7 +106,7 @@
             // 
             this.btnRentalPlans.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRentalPlans.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnRentalPlans.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnRentalPlans.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRentalPlans.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRentalPlans.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -107,7 +123,7 @@
             // 
             this.btnEmployeeManagement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEmployeeManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnEmployeeManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnEmployeeManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnEmployeeManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployeeManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -131,27 +147,28 @@
             this.panel3.Size = new System.Drawing.Size(239, 1);
             this.panel3.TabIndex = 26;
             // 
-            // btnReport
+            // btnBillingLogs
             // 
-            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnBillingLogs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
-            this.btnReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.btnReport.Location = new System.Drawing.Point(13, 343);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(241, 44);
-            this.btnReport.TabIndex = 29;
-            this.btnReport.Text = "Report";
-            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnBillingLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
+            this.btnBillingLogs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnBillingLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBillingLogs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.btnBillingLogs.Location = new System.Drawing.Point(13, 343);
+            this.btnBillingLogs.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBillingLogs.Name = "btnBillingLogs";
+            this.btnBillingLogs.Size = new System.Drawing.Size(241, 44);
+            this.btnBillingLogs.TabIndex = 29;
+            this.btnBillingLogs.Text = "Report";
+            this.btnBillingLogs.UseVisualStyleBackColor = false;
+            this.btnBillingLogs.Click += new System.EventHandler(this.btnBillingLogs_Click);
             // 
             // btnCustomer
             // 
             this.btnCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -168,7 +185,7 @@
             // 
             this.btnFleet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFleet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnFleet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnFleet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFleet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFleet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -185,7 +202,7 @@
             // 
             this.btnTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTransactions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(42)))), ((int)(((byte)(63)))));
+            this.btnTransactions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(108)))), ((int)(((byte)(245)))));
             this.btnTransactions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransactions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -229,34 +246,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "CAR RENTAL";
             // 
-            // pnlMainDashboard
-            // 
-            this.pnlMainDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMainDashboard.BackColor = System.Drawing.Color.White;
-            this.pnlMainDashboard.Location = new System.Drawing.Point(270, 0);
-            this.pnlMainDashboard.Margin = new System.Windows.Forms.Padding(5);
-            this.pnlMainDashboard.Name = "pnlMainDashboard";
-            this.pnlMainDashboard.Size = new System.Drawing.Size(1095, 768);
-            this.pnlMainDashboard.TabIndex = 52;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogout.BackColor = System.Drawing.Color.White;
-            this.btnLogout.BackgroundImage = global::CarRentalSystem.Properties.Resources.Icon___Logout;
-            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(13, 711);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(239, 44);
-            this.btnLogout.TabIndex = 30;
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -268,6 +257,18 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // pnlMainDashboard
+            // 
+            this.pnlMainDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMainDashboard.BackColor = System.Drawing.Color.White;
+            this.pnlMainDashboard.Location = new System.Drawing.Point(270, 0);
+            this.pnlMainDashboard.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlMainDashboard.Name = "pnlMainDashboard";
+            this.pnlMainDashboard.Size = new System.Drawing.Size(1095, 768);
+            this.pnlMainDashboard.TabIndex = 52;
             // 
             // frmDashboard
             // 
@@ -297,7 +298,7 @@
         private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Button btnFleet;
         public System.Windows.Forms.Panel pnlMainDashboard;
-        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.Button btnBillingLogs;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSystemLog;
         private System.Windows.Forms.Button btnRentalPlans;

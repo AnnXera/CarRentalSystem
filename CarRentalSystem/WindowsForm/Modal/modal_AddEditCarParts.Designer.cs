@@ -40,12 +40,8 @@
             this.txtPartName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pnlCarName = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.pnlAddEditPart.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.pnlCarName.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -71,10 +67,10 @@
             this.pnlAddEditPart.Controls.Add(this.txtPartName);
             this.pnlAddEditPart.Controls.Add(this.label5);
             this.pnlAddEditPart.Controls.Add(this.label13);
-            this.pnlAddEditPart.Location = new System.Drawing.Point(20, 165);
+            this.pnlAddEditPart.Location = new System.Drawing.Point(20, 73);
             this.pnlAddEditPart.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAddEditPart.Name = "pnlAddEditPart";
-            this.pnlAddEditPart.Size = new System.Drawing.Size(717, 286);
+            this.pnlAddEditPart.Size = new System.Drawing.Size(720, 378);
             this.pnlAddEditPart.TabIndex = 77;
             // 
             // cbxStatus
@@ -104,7 +100,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(368, 217);
+            this.btnCancel.Location = new System.Drawing.Point(373, 309);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(153, 49);
@@ -120,7 +116,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(542, 217);
+            this.btnSave.Location = new System.Drawing.Point(545, 309);
             this.btnSave.Margin = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(153, 50);
@@ -140,6 +136,7 @@
             // 
             // lblPart
             // 
+            this.lblPart.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblPart.AutoSize = true;
             this.lblPart.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPart.ForeColor = System.Drawing.Color.White;
@@ -157,7 +154,7 @@
             // 
             this.txtCost.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCost.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCost.Location = new System.Drawing.Point(486, 88);
+            this.txtCost.Location = new System.Drawing.Point(488, 88);
             this.txtCost.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(209, 34);
@@ -167,7 +164,7 @@
             // 
             this.txtPartName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPartName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPartName.Location = new System.Drawing.Point(149, 92);
+            this.txtPartName.Location = new System.Drawing.Point(151, 92);
             this.txtPartName.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.txtPartName.Name = "txtPartName";
             this.txtPartName.Size = new System.Drawing.Size(233, 30);
@@ -189,43 +186,12 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(408, 95);
+            this.label13.Location = new System.Drawing.Point(411, 95);
             this.label13.Margin = new System.Windows.Forms.Padding(13, 6, 13, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(52, 24);
             this.label13.TabIndex = 77;
             this.label13.Text = "Cost:";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(18, 17);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 39);
-            this.label2.TabIndex = 78;
-            this.label2.Text = "Car Name";
-            // 
-            // pnlCarName
-            // 
-            this.pnlCarName.BackColor = System.Drawing.Color.White;
-            this.pnlCarName.Controls.Add(this.panel3);
-            this.pnlCarName.Controls.Add(this.label2);
-            this.pnlCarName.Location = new System.Drawing.Point(20, 64);
-            this.pnlCarName.Name = "pnlCarName";
-            this.pnlCarName.Size = new System.Drawing.Size(717, 84);
-            this.pnlCarName.TabIndex = 79;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(25, 59);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(666, 1);
-            this.panel3.TabIndex = 79;
             // 
             // modal_AddEditCarParts
             // 
@@ -235,7 +201,6 @@
             this.AutoScrollMargin = new System.Drawing.Size(10, 10);
             this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
             this.ClientSize = new System.Drawing.Size(765, 476);
-            this.Controls.Add(this.pnlCarName);
             this.Controls.Add(this.pnlAddEditPart);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -247,8 +212,6 @@
             this.pnlAddEditPart.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.pnlCarName.ResumeLayout(false);
-            this.pnlCarName.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,9 +227,6 @@
         private System.Windows.Forms.TextBox txtPartName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblPart;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel pnlCarName;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ComboBox cbxStatus;

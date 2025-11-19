@@ -12,28 +12,28 @@ namespace CarRentalSystem.Code
     {
         // CONTRACT
         public long ContractID { get; set; }
+        public long CustID { get; set; }
+        public long EmpID { get; set; }
+        public long CarID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public long DaysRented { get; set; }
         public DateTime? DateProcessed { get; set; }
-        public int DaysRented { get; set; }
+        public bool IsOverdue { get; set; }
         public long StartMileage { get; set; }
         public long? EndMileage { get; set; }
         public string Status { get; set; }
-        public bool IsOverdue { get; set; }
 
         // CUSTOMER
-        public long CustID { get; set; }
         public string CustomerName { get; set; }
         public byte[] DriversLicensePic { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
 
         // EMPLOYEE
-        public long EmpID { get; set; }
         public string EmployeeName { get; set; }
 
         // CAR
-        public long CarID { get; set; }
         public string CarName { get; set; }
         public byte[] CarPicture { get; set; }
         public string PlateNumber { get; set; }
@@ -43,7 +43,7 @@ namespace CarRentalSystem.Code
         // RENTAL PLAN
         public long PlanID { get; set; }
         public string PlanName { get; set; }
-        public long MileageLimitPerDay { get; set; }
+        public long MileageLimit { get; set; }
         public decimal ExcessFeePerKm { get; set; }
         public decimal DailyRate { get; set; }
         public string PlanDescription { get; set; }
@@ -71,24 +71,59 @@ namespace CarRentalSystem.Code
             _repo = new Contract_Repository();
         }
 
-        public long Add(Contracts entity, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
+        public long Add(Contracts contract, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            if (contract == null)
+                throw new ArgumentNullException(nameof(contract));
+
             if (deposit == null)
                 throw new ArgumentNullException(nameof(deposit));
 
-            return _repo.CreateContract(entity, deposit, baseRate, paymentMethod, customerName);
+            return _repo.CreateContract(contract, deposit, baseRate, paymentMethod, customerName);
         }
 
         public long Add(Contracts entity)
         {
-            throw new NotImplementedException("Use the Add method with deposit, baseRate, paymentMethod, and customerName.");
+            throw new NotImplementedException("Use Add(contract, deposit, baseRate, paymentMethod, customerName) instead.");
+        }
+
+
+        public void Edit(long contractID, string newStatus)
+        {
+            _repo.UpdateContractStatus(contractID, newStatus);
         }
 
         public void Edit(Contracts entity)
         {
             throw new NotImplementedException();
+        }
+
+        public decimal CompleteContractReturn(
+            long contractId,
+            long endMileage,
+            decimal mileageFee,
+            decimal lateFee,
+            decimal lostFee,
+            decimal securityDepositUsed,
+            List<(long PartID, int Quantity, decimal Cost)> damagedParts)
+        {
+            return _repo.CompleteContractReturn(
+                contractId,
+                endMileage,
+                mileageFee,
+                lateFee,
+                lostFee,
+                securityDepositUsed,
+                damagedParts
+            );
+        }
+
+        public void CancelContract(long contractId)
+        {
+            if (contractId <= 0)
+                throw new ArgumentException("Invalid contract ID");
+
+            _repo.CancelContract(contractId);
         }
 
         public List<Contracts> ViewAll()

@@ -33,8 +33,8 @@ namespace CarRentalSystem.Database
                     {
                         PlanID = Convert.ToInt64(reader["PlanID"]),
                         PlanName = reader["PlanName"].ToString(),
-                        MileageLimitPerDay = reader["MileageLimitPerDay"] != DBNull.Value
-                            ? Convert.ToInt64(reader["MileageLimitPerDay"])
+                        MileageLimit = reader["MileageLimit"] != DBNull.Value
+                            ? Convert.ToInt64(reader["MileageLimit"])
                             : (long?)null,
                         ExcessFeePerKm = Convert.ToDecimal(reader["ExcessFeePerKm"]),
                         DailyRate = Convert.ToDecimal(reader["DailyRate"]),
@@ -93,28 +93,28 @@ namespace CarRentalSystem.Database
 
                     // Input parameters
                     cmd.Parameters.AddWithValue("@p_PlanName", plan.PlanName);
-                    cmd.Parameters.AddWithValue("@p_MileageLimitPerDay", plan.MileageLimitPerDay.HasValue ? plan.MileageLimitPerDay.Value : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_MileageLimit", plan.MileageLimit.HasValue ? plan.MileageLimit.Value : (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@p_ExcessFeePerKm", plan.ExcessFeePerKm);
                     cmd.Parameters.AddWithValue("@p_DailyRate", plan.DailyRate);
                     cmd.Parameters.AddWithValue("@p_Description", plan.Description);
 
                     // Output parameter
-                    var outputParam = new MySqlParameter("@p_NewPlanID", MySqlDbType.Int64)
+                    var outParam = new MySqlParameter("@p_NewPlanID", MySqlDbType.Int64)
                     {
                         Direction = System.Data.ParameterDirection.Output
                     };
-                    cmd.Parameters.Add(outputParam);
+                    cmd.Parameters.Add(outParam);
 
-                    // Execute
+                    // Execute the stored procedure
                     cmd.ExecuteNonQuery();
 
-                    // Get the newly inserted PlanID
-                    newPlanId = Convert.ToInt64(outputParam.Value);
+                    // Retrieve the newly inserted PlanID
+                    newPlanId = Convert.ToInt64(outParam.Value);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error adding rental plan: " + ex.Message);
+                throw new Exception("Failed to add rental plan: " + ex.Message);
             }
             finally
             {
@@ -137,7 +137,7 @@ namespace CarRentalSystem.Database
                     // Input parameters
                     cmd.Parameters.AddWithValue("@p_PlanID", plan.PlanID);
                     cmd.Parameters.AddWithValue("@p_PlanName", plan.PlanName);
-                    cmd.Parameters.AddWithValue("@p_MileageLimitPerDay", plan.MileageLimitPerDay.HasValue ? plan.MileageLimitPerDay.Value : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@p_MileageLimit", plan.MileageLimit.HasValue ? plan.MileageLimit.Value : (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@p_ExcessFeePerKm", plan.ExcessFeePerKm);
                     cmd.Parameters.AddWithValue("@p_DailyRate", plan.DailyRate);
                     cmd.Parameters.AddWithValue("@p_Description", plan.Description);

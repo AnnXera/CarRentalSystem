@@ -13,8 +13,7 @@ namespace CarRentalSystem.Code.Enum
             Active,
             Pending,
             Completed,
-            Canceled,
-            Overdue
+            Canceled
         }
     }
 }

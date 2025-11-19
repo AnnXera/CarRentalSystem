@@ -183,7 +183,6 @@ namespace CarRentalSystem.Database
                     cmd.Parameters.AddWithValue("@p_Seats", car.Seats);
                     cmd.Parameters.AddWithValue("@p_EngineType", car.EngineType);
                     cmd.Parameters.AddWithValue("@p_FuelType", car.FuelType);
-                    cmd.Parameters.AddWithValue("@p_CurrentMileage", car.CurrentMileage);
                     cmd.Parameters.AddWithValue("@p_ReplacementValue", car.ReplacementValue);
                     cmd.Parameters.AddWithValue("@p_Status", car.Status);
 

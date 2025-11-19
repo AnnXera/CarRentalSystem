@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
-            this.btnPayment = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDaysRented = new System.Windows.Forms.Label();
             this.lblReturnDate = new System.Windows.Forms.Label();
@@ -68,7 +67,6 @@
             this.pnlContractDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContractDetails.BackColor = System.Drawing.Color.White;
-            this.pnlContractDetails.Controls.Add(this.btnPayment);
             this.pnlContractDetails.Controls.Add(this.lblStatus);
             this.pnlContractDetails.Controls.Add(this.lblDaysRented);
             this.pnlContractDetails.Controls.Add(this.lblReturnDate);
@@ -86,21 +84,6 @@
             this.pnlContractDetails.Name = "pnlContractDetails";
             this.pnlContractDetails.Size = new System.Drawing.Size(1535, 268);
             this.pnlContractDetails.TabIndex = 0;
-            // 
-            // btnPayment
-            // 
-            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
-            this.btnPayment.Location = new System.Drawing.Point(1337, 10);
-            this.btnPayment.Margin = new System.Windows.Forms.Padding(5, 0, 10, 5);
-            this.btnPayment.Name = "btnPayment";
-            this.btnPayment.Size = new System.Drawing.Size(188, 60);
-            this.btnPayment.TabIndex = 74;
-            this.btnPayment.Text = "Payment";
-            this.btnPayment.UseVisualStyleBackColor = true;
-            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
             // lblStatus
             // 
@@ -384,8 +367,8 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvContracts.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvContracts.EnableHeadersVisualStyles = false;
@@ -457,7 +440,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel pnlComboBox;
         private System.Windows.Forms.ComboBox cbxStatus;
-        private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.Panel pnlContractsOverview;
         private System.Windows.Forms.DataGridView dgvContracts;
     }
