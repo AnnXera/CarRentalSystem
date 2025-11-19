@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
@@ -88,7 +88,7 @@
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblTotalFee = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblMileageFee = new System.Windows.Forms.Label();
             this.lblLateFee = new System.Windows.Forms.Label();
             this.blCarPartsCharges = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -438,38 +438,38 @@
             this.dgvCarParts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCarParts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvCarParts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCarParts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCarParts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvCarParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCarParts.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCarParts.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvCarParts.EnableHeadersVisualStyles = false;
             this.dgvCarParts.Location = new System.Drawing.Point(20, 581);
             this.dgvCarParts.Margin = new System.Windows.Forms.Padding(20);
             this.dgvCarParts.MultiSelect = false;
             this.dgvCarParts.Name = "dgvCarParts";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCarParts.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCarParts.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvCarParts.RowHeadersVisible = false;
             this.dgvCarParts.RowHeadersWidth = 51;
             this.dgvCarParts.RowTemplate.DividerHeight = 1;
@@ -616,6 +616,8 @@
             this.txtEndMileage.Name = "txtEndMileage";
             this.txtEndMileage.Size = new System.Drawing.Size(369, 27);
             this.txtEndMileage.TabIndex = 1;
+            this.txtEndMileage.TextChanged += new System.EventHandler(this.txtEndMileage_TextChanged_1);
+            this.txtEndMileage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEndMileage_KeyPress_1);
             // 
             // label4
             // 
@@ -671,7 +673,7 @@
             this.pnlBilling.Controls.Add(this.lblSubTotal);
             this.pnlBilling.Controls.Add(this.lblTotalFee);
             this.pnlBilling.Controls.Add(this.label17);
-            this.pnlBilling.Controls.Add(this.label16);
+            this.pnlBilling.Controls.Add(this.lblMileageFee);
             this.pnlBilling.Controls.Add(this.lblLateFee);
             this.pnlBilling.Controls.Add(this.blCarPartsCharges);
             this.pnlBilling.Controls.Add(this.label15);
@@ -808,6 +810,7 @@
             this.txtSecurityDeposit.Name = "txtSecurityDeposit";
             this.txtSecurityDeposit.Size = new System.Drawing.Size(369, 27);
             this.txtSecurityDeposit.TabIndex = 1;
+            this.txtSecurityDeposit.TextChanged += new System.EventHandler(this.txtSecurityDeposit_TextChanged);
             // 
             // label21
             // 
@@ -867,18 +870,18 @@
             this.label17.TabIndex = 13;
             this.label17.Text = "Total:";
             // 
-            // label16
+            // lblMileageFee
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(195, 238);
-            this.label16.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
-            this.label16.Name = "label16";
-            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label16.Size = new System.Drawing.Size(146, 28);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "(lblMileageFee)";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblMileageFee.AutoSize = true;
+            this.lblMileageFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMileageFee.Location = new System.Drawing.Point(195, 238);
+            this.lblMileageFee.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.lblMileageFee.Name = "lblMileageFee";
+            this.lblMileageFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblMileageFee.Size = new System.Drawing.Size(146, 28);
+            this.lblMileageFee.TabIndex = 12;
+            this.lblMileageFee.Text = "(lblMileageFee)";
+            this.lblMileageFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblLateFee
             // 
@@ -1036,7 +1039,7 @@
         private System.Windows.Forms.DataGridView dgvCarParts;
         private System.Windows.Forms.Panel pnlBilling;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblMileageFee;
         private System.Windows.Forms.Label lblLateFee;
         private System.Windows.Forms.Label blCarPartsCharges;
         private System.Windows.Forms.Label label15;
