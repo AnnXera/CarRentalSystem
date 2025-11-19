@@ -59,5 +59,12 @@ namespace CarRentalSystem.Code.Enum
             Ten = 10
         }
 
+        public enum CarPartStatus
+        {
+            Good,
+            Damaged,
+            Replaced
+        }
+
     }
 }

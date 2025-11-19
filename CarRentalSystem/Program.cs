@@ -20,7 +20,7 @@ namespace CarRentalSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new modal_ProcessReturn());
+            Application.Run(new frmLogin());
         }
     }
 }

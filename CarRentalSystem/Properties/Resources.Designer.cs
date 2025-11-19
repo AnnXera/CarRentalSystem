@@ -113,6 +113,26 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CheckIcon {
+            get {
+                object obj = ResourceManager.GetObject("CheckIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CheckIcon___Disabled {
+            get {
+                object obj = ResourceManager.GetObject("CheckIcon - Disabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EditIcon {
             get {
                 object obj = ResourceManager.GetObject("EditIcon", resourceCulture);
@@ -133,6 +153,16 @@ namespace CarRentalSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Icon___Billing_Logs__Default {
+            get {
+                object obj = ResourceManager.GetObject("Icon - Billing Logs- Default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icon___Cars___Default {
             get {
                 object obj = ResourceManager.GetObject("Icon - Cars - Default", resourceCulture);
@@ -146,6 +176,16 @@ namespace CarRentalSystem.Properties {
         internal static System.Drawing.Bitmap Icon___Cars__Active {
             get {
                 object obj = ResourceManager.GetObject("Icon - Cars- Active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon___Contracts__Default {
+            get {
+                object obj = ResourceManager.GetObject("Icon - Contracts- Default", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +516,26 @@ namespace CarRentalSystem.Properties {
         internal static System.Drawing.Bitmap UserIcon2 {
             get {
                 object obj = ResourceManager.GetObject("UserIcon2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap XIcon {
+            get {
+                object obj = ResourceManager.GetObject("XIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap XIcon___Disabled {
+            get {
+                object obj = ResourceManager.GetObject("XIcon - Disabled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

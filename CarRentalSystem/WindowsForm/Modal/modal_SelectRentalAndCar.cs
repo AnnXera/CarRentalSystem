@@ -17,7 +17,6 @@ namespace CarRentalSystem.WindowsForm.Modal
     public partial class modal_SelectRentalAndCar : Form
     {
         public Cars SelectedCar { get; private set; }
-        private RentalPlan selectedRentalPlan;
 
         private DataTable _carTable;
         private DataView _carView;

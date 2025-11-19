@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Car;
 
 namespace CarRentalSystem.WindowsForm.Modal
 {
@@ -15,6 +16,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_AddEditCarParts(bool isEditMode = false)
         {
             InitializeComponent();
+            LoadComboBoxStatus();
             _isEditMode = isEditMode;
 
             if (_isEditMode)
@@ -41,6 +43,11 @@ namespace CarRentalSystem.WindowsForm.Modal
                 txtCost.Text = NewPart.ReplacementCost.ToString("0.00");
                 cbxStatus.Text = NewPart.Status;
             }
+        }
+
+        private void LoadComboBoxStatus()
+        {
+            cbxStatus.DataSource = Enum.GetValues(typeof(CarPartStatus));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

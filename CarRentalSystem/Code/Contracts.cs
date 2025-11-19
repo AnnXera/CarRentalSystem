@@ -71,24 +71,59 @@ namespace CarRentalSystem.Code
             _repo = new Contract_Repository();
         }
 
-        public long Add(Contracts entity, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
+        public long Add(Contracts contract, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
+            if (contract == null)
+                throw new ArgumentNullException(nameof(contract));
+
             if (deposit == null)
                 throw new ArgumentNullException(nameof(deposit));
 
-            return _repo.CreateContract(entity, deposit, baseRate, paymentMethod, customerName);
+            return _repo.CreateContract(contract, deposit, baseRate, paymentMethod, customerName);
         }
 
         public long Add(Contracts entity)
         {
-            throw new NotImplementedException("Use the Add method with deposit, baseRate, paymentMethod, and customerName.");
+            throw new NotImplementedException("Use Add(contract, deposit, baseRate, paymentMethod, customerName) instead.");
+        }
+
+
+        public void Edit(long contractID, string newStatus)
+        {
+            _repo.UpdateContractStatus(contractID, newStatus);
         }
 
         public void Edit(Contracts entity)
         {
             throw new NotImplementedException();
+        }
+
+        public decimal CompleteContractReturn(
+            long contractId,
+            long endMileage,
+            decimal mileageFee,
+            decimal lateFee,
+            decimal lostFee,
+            decimal securityDepositUsed,
+            List<(long PartID, int Quantity, decimal Cost)> damagedParts)
+        {
+            return _repo.CompleteContractReturn(
+                contractId,
+                endMileage,
+                mileageFee,
+                lateFee,
+                lostFee,
+                securityDepositUsed,
+                damagedParts
+            );
+        }
+
+        public void CancelContract(long contractId)
+        {
+            if (contractId <= 0)
+                throw new ArgumentException("Invalid contract ID");
+
+            _repo.CancelContract(contractId);
         }
 
         public List<Contracts> ViewAll()

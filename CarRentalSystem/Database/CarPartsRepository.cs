@@ -91,5 +91,40 @@ namespace CarRentalSystem.Database
             _db.Close();
             return parts;
         }
+
+        public void UpdateCarStatusAfterReturn(long carID, bool hasDamagedParts, bool isLost)
+        {
+            string status = "Available";
+
+            if (isLost)
+                status = "Lost";
+            else if (hasDamagedParts)
+                status = "Maintenance";
+
+            string query = "UPDATE car SET Status = @Status WHERE CarID = @CarID";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(query, _db.Connection))
+            {
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@CarID", carID);
+                cmd.ExecuteNonQuery();
+            }
+            _db.Close();
+        }
+
+        public void UpdatePartStatus(long partId, string status)
+        {
+            string query = "UPDATE carparts SET Status = @Status WHERE PartsID = @PartsID";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(query, _db.Connection))
+            {
+                cmd.Parameters.AddWithValue("@Status", status);
+                cmd.Parameters.AddWithValue("@PartsID", partId);
+                cmd.ExecuteNonQuery();
+            }
+            _db.Close();
+        }
     }
 }

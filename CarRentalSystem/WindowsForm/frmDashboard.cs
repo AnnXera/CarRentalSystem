@@ -45,7 +45,7 @@ namespace CarRentalSystem.WindowsForm
             btnCustomer.Text = "";
             btnFleet.Text = "";
             btnTransactions.Text = "";
-            btnReport.Text = "";
+            btnBillingLogs.Text = "";
             btnSystemLog.Text = "";
             btnRentalPlans.Text = "";
             btnEmployeeManagement.Text = "";
@@ -88,14 +88,14 @@ namespace CarRentalSystem.WindowsForm
                 new UIHelper.SidebarButtonConfig
                 {
                     Button = btnTransactions,
-                    ActiveIcon = Properties.Resources.Icon___Transaction___Active,
-                    InactiveIcon = Properties.Resources.Icon___Transaction___Default
+                    ActiveIcon = Properties.Resources.Icon___Contracts__Default,
+                    InactiveIcon = Properties.Resources.Icon___Contracts__Default
                 },
                 new UIHelper.SidebarButtonConfig
                 {
-                    Button = btnReport,
-                    ActiveIcon = Properties.Resources.Icon___Reports___Active,
-                    InactiveIcon = Properties.Resources.Icon___Reports___Default
+                    Button = btnBillingLogs,
+                    ActiveIcon = Properties.Resources.Icon___Billing_Logs__Default,
+                    InactiveIcon = Properties.Resources.Icon___Billing_Logs__Default
                 },
                 new UIHelper.SidebarButtonConfig
                 { 
@@ -123,7 +123,7 @@ namespace CarRentalSystem.WindowsForm
         {
             // Reset and highlight active button
             UIHelper.ResetSidebarButtons(sidebarButtons);
-            UIHelper.SetActiveButton(btnTransactions, Properties.Resources.Icon___Transaction___Active);
+            UIHelper.SetActiveButton(btnTransactions, Properties.Resources.Icon___Contracts__Default);
 
             pnlMainDashboard.Controls
                 .OfType<frmContractsManagement>()
