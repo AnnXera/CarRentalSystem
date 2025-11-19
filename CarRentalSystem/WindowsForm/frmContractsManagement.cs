@@ -266,14 +266,6 @@ namespace CarRentalSystem.WindowsForm
             }
         }
 
-        private void btnPayment_Click(object sender, EventArgs e)
-        {
-            using (var Payment = new modal_Payment())
-            {
-                Payment.ShowDialog();
-            }
-        }
-
         private void btnProcessReturn_Click(object sender, EventArgs e)
         {
             using (var ReturnProcess = new modal_ProcessReturn())
