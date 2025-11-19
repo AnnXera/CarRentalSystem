@@ -19,8 +19,7 @@ namespace CarRentalSystem.Code
             set { Status = value ? "Damaged" : "Good"; }
         }
 
-        // For grid binding
-        public int Quantity { get; set; } = 1;
+        public int Quantity { get; set; } = 1; // default quantity
     }
 
     public class CarPartsFactory : IModalFactory<CarParts>
