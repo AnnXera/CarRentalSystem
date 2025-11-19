@@ -84,6 +84,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             Validator.ValidatePositiveDecimal(txtSecurityDeposit.Text, "Security Deposit");
             Validator.ValidateMinimumSecurityDeposit(txtSecurityDeposit.Text);
             Validator.ValidateNotPastDate(dtpStartDate.Value, "Start Date");
+            Validator.ValidateReturnDateAfterStart(dtpStartDate.Value, dtpReturnDate.Value);
             Validator.RequireComboBoxSelected(cbxPaymentMethod, "Payment Method");
         }
 

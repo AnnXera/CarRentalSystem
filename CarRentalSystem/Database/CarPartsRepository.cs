@@ -51,7 +51,7 @@ namespace CarRentalSystem.Database
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@p_PartID", part.PartID);
+                cmd.Parameters.AddWithValue("@p_PartsID", part.PartID);
                 cmd.Parameters.AddWithValue("@p_PartName", part.PartName);
                 cmd.Parameters.AddWithValue("@p_ReplacementCost", part.ReplacementCost);
                 cmd.Parameters.AddWithValue("@p_Status", part.Status);
