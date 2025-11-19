@@ -12,28 +12,28 @@ namespace CarRentalSystem.Code
     {
         // CONTRACT
         public long ContractID { get; set; }
+        public long CustID { get; set; }
+        public long EmpID { get; set; }
+        public long CarID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public long DaysRented { get; set; }
         public DateTime? DateProcessed { get; set; }
-        public int DaysRented { get; set; }
+        public bool IsOverdue { get; set; }
         public long StartMileage { get; set; }
         public long? EndMileage { get; set; }
         public string Status { get; set; }
-        public bool IsOverdue { get; set; }
 
         // CUSTOMER
-        public long CustID { get; set; }
         public string CustomerName { get; set; }
         public byte[] DriversLicensePic { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
 
         // EMPLOYEE
-        public long EmpID { get; set; }
         public string EmployeeName { get; set; }
 
         // CAR
-        public long CarID { get; set; }
         public string CarName { get; set; }
         public byte[] CarPicture { get; set; }
         public string PlateNumber { get; set; }
@@ -43,7 +43,7 @@ namespace CarRentalSystem.Code
         // RENTAL PLAN
         public long PlanID { get; set; }
         public string PlanName { get; set; }
-        public long MileageLimitPerDay { get; set; }
+        public long MileageLimit { get; set; }
         public decimal ExcessFeePerKm { get; set; }
         public decimal DailyRate { get; set; }
         public string PlanDescription { get; set; }

@@ -63,7 +63,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
 
             txtPlanName.Text = _isEditMode.PlanName;
             txtDailyRate.Text = _isEditMode.DailyRate.ToString();
-            txtMileageLimit.Text = _isEditMode.MileageLimitPerDay?.ToString() ?? string.Empty;
+            txtMileageLimit.Text = _isEditMode.MileageLimit?.ToString() ?? string.Empty;
             txtDescription.Text = _isEditMode.Description;
             txtExcessLimit.Text = _isEditMode.ExcessFeePerKm.ToString();
         }
@@ -116,7 +116,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
                     {
                         PlanName = txtPlanName.Text.Trim(),
                         DailyRate = decimal.Parse(txtDailyRate.Text),
-                        MileageLimitPerDay = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text),
+                        MileageLimit = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text),
                         Description = txtDescription.Text.Trim(),
                         ExcessFeePerKm = decimal.Parse(txtExcessLimit.Text)
                     };
@@ -141,7 +141,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms.Modals
 
                     _isEditMode.PlanName = txtPlanName.Text.Trim();
                     _isEditMode.DailyRate = decimal.Parse(txtDailyRate.Text);
-                    _isEditMode.MileageLimitPerDay = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text);
+                    _isEditMode.MileageLimit = string.IsNullOrWhiteSpace(txtMileageLimit.Text) ? (long?)null : long.Parse(txtMileageLimit.Text);
                     _isEditMode.Description = txtDescription.Text.Trim();
                     _isEditMode.ExcessFeePerKm = decimal.Parse(txtExcessLimit.Text);
 

@@ -165,6 +165,12 @@ namespace CarRentalSystem.Utils
                 throw new Exception($"{fieldName} cannot be before today.");
         }
 
+        public static void ValidateReturnDateAfterStart(DateTime startDate, DateTime returnDate, string fieldName = "Return Date")
+        {
+            if (returnDate.Date < startDate.Date)
+                throw new Exception($"{fieldName} cannot be before the Start Date ({startDate:MMMM dd, yyyy}).");
+        }
+
         public static void RequireRadioSelected(List<RadioButton> radioButtons, string fieldName)
         {
             if (radioButtons == null || radioButtons.Count == 0)

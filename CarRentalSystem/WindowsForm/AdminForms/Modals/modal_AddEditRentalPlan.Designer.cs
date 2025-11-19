@@ -80,7 +80,7 @@
             this.pnlAddEditRentalPlan.Location = new System.Drawing.Point(16, 14);
             this.pnlAddEditRentalPlan.Margin = new System.Windows.Forms.Padding(4);
             this.pnlAddEditRentalPlan.Name = "pnlAddEditRentalPlan";
-            this.pnlAddEditRentalPlan.Size = new System.Drawing.Size(810, 879);
+            this.pnlAddEditRentalPlan.Size = new System.Drawing.Size(789, 879);
             this.pnlAddEditRentalPlan.TabIndex = 2;
             // 
             // label1
@@ -103,7 +103,7 @@
             this.pnlExcessFee.Location = new System.Drawing.Point(27, 562);
             this.pnlExcessFee.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlExcessFee.Name = "pnlExcessFee";
-            this.pnlExcessFee.Size = new System.Drawing.Size(754, 60);
+            this.pnlExcessFee.Size = new System.Drawing.Size(733, 60);
             this.pnlExcessFee.TabIndex = 87;
             // 
             // txtExcessLimit
@@ -117,7 +117,7 @@
             this.txtExcessLimit.Location = new System.Drawing.Point(17, 18);
             this.txtExcessLimit.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtExcessLimit.Name = "txtExcessLimit";
-            this.txtExcessLimit.Size = new System.Drawing.Size(720, 27);
+            this.txtExcessLimit.Size = new System.Drawing.Size(699, 27);
             this.txtExcessLimit.TabIndex = 1;
             // 
             // label4
@@ -152,7 +152,7 @@
             this.pnlDailyRate.Location = new System.Drawing.Point(29, 284);
             this.pnlDailyRate.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlDailyRate.Name = "pnlDailyRate";
-            this.pnlDailyRate.Size = new System.Drawing.Size(754, 60);
+            this.pnlDailyRate.Size = new System.Drawing.Size(733, 60);
             this.pnlDailyRate.TabIndex = 84;
             // 
             // txtDailyRate
@@ -166,7 +166,7 @@
             this.txtDailyRate.Location = new System.Drawing.Point(17, 18);
             this.txtDailyRate.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtDailyRate.Name = "txtDailyRate";
-            this.txtDailyRate.Size = new System.Drawing.Size(720, 27);
+            this.txtDailyRate.Size = new System.Drawing.Size(699, 27);
             this.txtDailyRate.TabIndex = 1;
             // 
             // btnCancel
@@ -175,7 +175,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(338, 818);
+            this.btnCancel.Location = new System.Drawing.Point(317, 818);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(212, 45);
@@ -191,7 +191,7 @@
             this.btnSaveRentalPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveRentalPlan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveRentalPlan.ForeColor = System.Drawing.Color.White;
-            this.btnSaveRentalPlan.Location = new System.Drawing.Point(570, 818);
+            this.btnSaveRentalPlan.Location = new System.Drawing.Point(549, 818);
             this.btnSaveRentalPlan.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.btnSaveRentalPlan.Name = "btnSaveRentalPlan";
             this.btnSaveRentalPlan.Size = new System.Drawing.Size(212, 45);
@@ -221,7 +221,7 @@
             this.pnlDescription.Location = new System.Drawing.Point(27, 684);
             this.pnlDescription.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlDescription.Name = "pnlDescription";
-            this.pnlDescription.Size = new System.Drawing.Size(756, 111);
+            this.pnlDescription.Size = new System.Drawing.Size(735, 111);
             this.pnlDescription.TabIndex = 35;
             // 
             // txtDescription
@@ -236,7 +236,7 @@
             this.txtDescription.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(721, 85);
+            this.txtDescription.Size = new System.Drawing.Size(700, 85);
             this.txtDescription.TabIndex = 1;
             // 
             // label5
@@ -246,9 +246,9 @@
             this.label5.Location = new System.Drawing.Point(21, 366);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(223, 28);
+            this.label5.Size = new System.Drawing.Size(157, 28);
             this.label5.TabIndex = 32;
-            this.label5.Text = "Mileage Limit (/Day) *";
+            this.label5.Text = "Mileage Limit *";
             // 
             // pnlMileageLimit
             // 
@@ -259,7 +259,7 @@
             this.pnlMileageLimit.Location = new System.Drawing.Point(28, 402);
             this.pnlMileageLimit.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlMileageLimit.Name = "pnlMileageLimit";
-            this.pnlMileageLimit.Size = new System.Drawing.Size(754, 60);
+            this.pnlMileageLimit.Size = new System.Drawing.Size(733, 60);
             this.pnlMileageLimit.TabIndex = 31;
             // 
             // txtMileageLimit
@@ -273,7 +273,7 @@
             this.txtMileageLimit.Location = new System.Drawing.Point(17, 18);
             this.txtMileageLimit.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtMileageLimit.Name = "txtMileageLimit";
-            this.txtMileageLimit.Size = new System.Drawing.Size(720, 27);
+            this.txtMileageLimit.Size = new System.Drawing.Size(699, 27);
             this.txtMileageLimit.TabIndex = 1;
             // 
             // label3
@@ -296,7 +296,7 @@
             this.pnlPlanName.Location = new System.Drawing.Point(28, 167);
             this.pnlPlanName.Margin = new System.Windows.Forms.Padding(5, 7, 5, 5);
             this.pnlPlanName.Name = "pnlPlanName";
-            this.pnlPlanName.Size = new System.Drawing.Size(754, 60);
+            this.pnlPlanName.Size = new System.Drawing.Size(733, 60);
             this.pnlPlanName.TabIndex = 27;
             // 
             // txtPlanName
@@ -310,7 +310,7 @@
             this.txtPlanName.Location = new System.Drawing.Point(17, 17);
             this.txtPlanName.Margin = new System.Windows.Forms.Padding(17, 5, 17, 5);
             this.txtPlanName.Name = "txtPlanName";
-            this.txtPlanName.Size = new System.Drawing.Size(720, 27);
+            this.txtPlanName.Size = new System.Drawing.Size(699, 27);
             this.txtPlanName.TabIndex = 1;
             // 
             // panel2
@@ -327,7 +327,7 @@
             this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(234, 30);
+            this.lblTitle.Location = new System.Drawing.Point(223, 30);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(360, 45);

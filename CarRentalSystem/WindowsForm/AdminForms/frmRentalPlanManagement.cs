@@ -41,7 +41,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms
             rentalPlanTable = new DataTable();
             rentalPlanTable.Columns.Add("PlanID", typeof(long));
             rentalPlanTable.Columns.Add("PlanName");
-            rentalPlanTable.Columns.Add("MileageLimitPerDay");
+            rentalPlanTable.Columns.Add("MileageLimit");
             rentalPlanTable.Columns.Add("ExcessFeePerKm");
             rentalPlanTable.Columns.Add("DailyRate");
             rentalPlanTable.Columns.Add("Description");
@@ -51,7 +51,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms
                 var row = rentalPlanTable.NewRow();
                 row["PlanID"] = plan.PlanID;
                 row["PlanName"] = plan.PlanName;
-                row["MileageLimitPerDay"] = plan.MileageLimitPerDay;
+                row["MileageLimit"] = plan.MileageLimit;
                 row["ExcessFeePerKm"] = plan.ExcessFeePerKm;
                 row["DailyRate"] = plan.DailyRate;
                 row["Description"] = plan.Description;
@@ -62,7 +62,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms
 
             dgvRentalPlan.Columns["PlanID"].HeaderText = "Plan ID";
             dgvRentalPlan.Columns["PlanName"].HeaderText = "Plan Name";
-            dgvRentalPlan.Columns["MileageLimitPerDay"].HeaderText = "Mileage Limit/Day";
+            dgvRentalPlan.Columns["MileageLimit"].HeaderText = "Mileage Limit";
             dgvRentalPlan.Columns["ExcessFeePerKm"].HeaderText = "Excess Fee/Km";
             dgvRentalPlan.Columns["DailyRate"].HeaderText = "Daily Rate";
             dgvRentalPlan.Columns["Description"].HeaderText = "Description";
@@ -91,7 +91,7 @@ namespace CarRentalSystem.WindowsForm.AdminForms
 
             dgvRentalPlan.Columns["PlanID"].FillWeight = 20;
             dgvRentalPlan.Columns["PlanName"].FillWeight = 40;
-            dgvRentalPlan.Columns["MileageLimitPerDay"].FillWeight = 30;
+            dgvRentalPlan.Columns["MileageLimit"].FillWeight = 30;
             dgvRentalPlan.Columns["ExcessFeePerKm"].FillWeight = 30;
             dgvRentalPlan.Columns["DailyRate"].FillWeight = 30;
             dgvRentalPlan.Columns["Description"].FillWeight = 50;
@@ -127,8 +127,8 @@ namespace CarRentalSystem.WindowsForm.AdminForms
                 {
                     PlanID = Convert.ToInt64(selectedRow.Cells["PlanID"].Value),
                     PlanName = selectedRow.Cells["PlanName"].Value?.ToString(),
-                    MileageLimitPerDay = selectedRow.Cells["MileageLimitPerDay"].Value != DBNull.Value
-                        ? (long?)Convert.ToInt64(selectedRow.Cells["MileageLimitPerDay"].Value)
+                    MileageLimit = selectedRow.Cells["MileageLimit"].Value != DBNull.Value
+                        ? (long?)Convert.ToInt64(selectedRow.Cells["MileageLimit"].Value)
                         : null,
                     ExcessFeePerKm = Convert.ToDecimal(selectedRow.Cells["ExcessFeePerKm"].Value),
                     DailyRate = Convert.ToDecimal(selectedRow.Cells["DailyRate"].Value),

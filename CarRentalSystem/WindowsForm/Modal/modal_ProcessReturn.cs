@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Code;
+using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,18 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_ProcessReturn : Form
     {
+
         private Contracts _selectedContract;
+        private List<Contracts> _activeContracts;
+
 
         public modal_ProcessReturn()
         {
             InitializeComponent();
             LoadPanels();
             LoadCustomerDropdown();
+            SetupCarPartsGrid();
+            dgvCarParts.DataSource = null;
         }
 
         private void LoadPanels()
@@ -46,9 +52,9 @@ namespace CarRentalSystem.WindowsForm.Modal
         private void LoadCustomerDropdown()
         {
             var factory = new ContractFactory();
-            var activeContracts = factory.GetActiveContracts();
+            _activeContracts = factory.GetActiveContracts();
 
-            cbxSearch.DataSource = activeContracts;
+            cbxSearch.DataSource = _activeContracts;
             cbxSearch.DisplayMember = "CustomerName";
             cbxSearch.ValueMember = "ContractID";
             cbxSearch.SelectedIndex = -1;
@@ -58,15 +64,83 @@ namespace CarRentalSystem.WindowsForm.Modal
             cbxSearch.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
-        private void btnFinalizePayment_Click(object sender, EventArgs e)
+        private void LoadCarParts(long carId)
         {
-            var paymentModal = new modal_Payment();
-            paymentModal.ShowDialog();
+            try
+            {
+                var factory = new CarPartsFactory();
+                var parts = factory.ViewByCar(carId) ?? new List<CarParts>();
+
+                dgvCarParts.DataSource = parts;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load car parts: " + ex.Message);
+            }
         }
 
-        private void cbxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetupCarPartsGrid()
         {
-            if (cbxSearch.SelectedItem is Contracts selected)
+            dgvCarParts.AutoGenerateColumns = false;
+            dgvCarParts.Columns.Clear();
+            var colPartID = new DataGridViewTextBoxColumn
+            {
+                Name = "PartsID",
+                DataPropertyName = "PartsID", // Make sure your CarParts class has PartID property
+                Visible = false // Hide from the user
+            };
+            dgvCarParts.Columns.Add(colPartID);
+            // ---------------- Part Name Column ----------------
+            var colName = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Part Name",
+                DataPropertyName = "PartName",
+                ReadOnly = true
+            };
+            dgvCarParts.Columns.Add(colName);
+
+            // ---------------- Damage Checkbox Column ----------------
+            var colDamage = new DataGridViewCheckBoxColumn
+            {
+                Name = "Damage",
+                HeaderText = "Damage",
+                DataPropertyName = "IsDamaged",
+                TrueValue = true,
+                FalseValue = false,
+                ReadOnly = false // Editable
+            };
+            dgvCarParts.Columns.Add(colDamage);
+
+            // ---------------- Quantity Column (temporary, not in DB) ----------------
+            var colQuantity = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Quantity",
+                Name = "Quantity", // Use Name to access it in code
+                ValueType = typeof(int),
+                ReadOnly = false,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+            };
+            dgvCarParts.Columns.Add(colQuantity);
+
+            // ---------------- Replacement Cost Column ----------------
+            var colCost = new DataGridViewTextBoxColumn
+            {
+                Name = "Cost",
+                HeaderText = "Cost",
+                DataPropertyName = "ReplacementCost",
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
+            };
+            dgvCarParts.Columns.Add(colCost);
+
+            dgvCarParts.CellValueChanged += DgvCarParts_CellValueChanged;
+            dgvCarParts.CurrentCellDirtyStateChanged += DgvCarParts_CurrentCellDirtyStateChanged;
+        }
+
+
+        private void DisplayContract(Contracts selected)
+        {
+            if (selected != null)
             {
                 _selectedContract = selected;
 
@@ -76,11 +150,17 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblSecurityDeposit.Text = selected.DepositAmount.ToString("N2");
                 lblBaseRate.Text = (selected.BaseRate ?? 0).ToString("N2");
                 lblRentalPlan.Text = selected.PlanName;
-                lblMileageLimit.Text = selected.MileageLimitPerDay.ToString("N0") + " km/day";
-                lblBaseRate.Text = $"₱{(selected.BaseRate ?? 0):N2}";
+                lblMileageLimit.Text = selected.MileageLimit.ToString("N0") + " km";
+                lblRate.Text = selected.ExcessFeePerKm.ToString("N2") + " per km";
                 lblDueDate.Text = selected.ReturnDate.ToString("MMMM dd, yyyy");
-                lblRate.Text = $"₱{selected.ExcessFeePerKm:N2}";
 
+                chbxLateReturn.Checked = DateTime.Now.Date > selected.ReturnDate.Date;
+
+                LoadCarParts(_selectedContract.CarID);
+
+                UpdateSubtotalAndTotal();
+
+                // Display customer driver license
                 if (selected.DriversLicensePic != null && selected.DriversLicensePic.Length > 0)
                 {
                     Image driverImg = ImageHelper.ByteArrayToImage(selected.DriversLicensePic);
@@ -94,6 +174,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                     picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
                 }
 
+                // Display car image
                 if (selected.CarPicture != null && selected.CarPicture.Length > 0)
                 {
                     Image carImg = ImageHelper.ByteArrayToImage(selected.CarPicture);
@@ -106,14 +187,12 @@ namespace CarRentalSystem.WindowsForm.Modal
                     picCar.Image = ImageHelper.ResizeImage(defaultCarImg, 429, 276);
                     picCar.SizeMode = PictureBoxSizeMode.Zoom;
                 }
-
-                txtEndMileage.Clear();
-                txtEndMileage.Focus();
-                lblMileageFee.Text = "₱0.00";
             }
-
             else
             {
+                // Reset to defaults
+                _selectedContract = null;
+
                 lblFullName.Text = "";
                 lblCarName.Text = "";
                 lblRegisteredEmployee.Text = "";
@@ -121,8 +200,16 @@ namespace CarRentalSystem.WindowsForm.Modal
                 lblBaseRate.Text = "0.00";
                 lblRate.Text = "0.00";
                 lblRentalPlan.Text = "";
-                lblMileageLimit.Text = "0 km/day";
+                lblMileageLimit.Text = "0 km";
                 lblDueDate.Text = "";
+                lblLost.Text = "0.00";
+                lblMileageFee.Text = "0.00";
+                lblCarPartsCharges.Text = "0.00";
+                lblLateFee.Text = "0.00";
+                lblTotalChargeFee.Text = "0.00";
+                lblSubTotal.Text = "0.00";
+                lblTotalAmount.Text = "0.00";
+                chbxLateReturn.Checked = false;
 
                 Image defaultDriver = Properties.Resources.SampleDriver_s_License;
                 picCustomer.Image = ImageHelper.ResizeImage(defaultDriver, 240, 152);
@@ -132,146 +219,213 @@ namespace CarRentalSystem.WindowsForm.Modal
                 picCar.Image = ImageHelper.ResizeImage(defaultCar, 429, 276);
                 picCar.SizeMode = PictureBoxSizeMode.Zoom;
 
-                _selectedContract = null;
+                dgvCarParts.DataSource = null;
             }
         }
 
-        private void CalculateMileageFee()
+        private void UpdateSubtotalAndTotal()
+        {
+            // Helper function to safely convert labels to decimal
+            decimal SafeDecimal(Label lbl)
+            {
+                if (decimal.TryParse(lbl.Text, out decimal val))
+                    return val;
+                return 0m;
+            }
+
+            decimal SafeDecimalTextBox(TextBox txt)
+            {
+                if (decimal.TryParse(txt.Text, out decimal val))
+                    return val;
+                return 0m;
+            }
+
+            decimal baseRate = SafeDecimal(lblBaseRate);
+            decimal mileageFee = SafeDecimal(lblMileageFee);
+            decimal lateFee = SafeDecimal(lblLateFee);
+            decimal partsFee = SafeDecimal(lblCarPartsCharges);
+            decimal lostFee = SafeDecimal(lblLost);
+
+            decimal totalChargeFee = mileageFee + lateFee + partsFee + lostFee;
+            lblTotalChargeFee.Text = totalChargeFee.ToString("N2");
+
+            decimal subtotal = baseRate + totalChargeFee;
+            lblSubTotal.Text = subtotal.ToString("N2");
+
+            decimal securityDeposit = SafeDecimalTextBox(txtSecurityDeposit);
+            decimal total = subtotal - securityDeposit;
+
+            lblTotalAmount.Text = total.ToString("N2");
+        }
+
+        private void cbxSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxSearch.SelectedItem is Contracts selected)
+            {
+                DisplayContract(selected);
+            }
+            else
+            {
+                DisplayContract(null);
+            }
+        }
+
+        private void cbxSearch_TextChanged(object sender, EventArgs e)
+        {
+            string typedText = cbxSearch.Text.Trim();
+
+            var matchedContract = _activeContracts
+                .FirstOrDefault(c => c.CustomerName.Equals(typedText, StringComparison.OrdinalIgnoreCase));
+
+            DisplayContract(matchedContract);
+        }
+
+        private void txtEndMileage_TextChanged(object sender, EventArgs e)
         {
             if (_selectedContract == null)
             {
-                lblMileageFee.Text = "₱0.00";
+                lblMileageFee.Text = "0.00";
                 return;
             }
 
-            if (!long.TryParse(txtEndMileage.Text, out long endMileage) ||
-                endMileage < _selectedContract.StartMileage)
+            if (!long.TryParse(txtEndMileage.Text, out long drivenDistance))
             {
-                lblMileageFee.Text = "₱0.00";
-                UpdateBillingSummary();
+                lblMileageFee.Text = "0.00";
                 return;
             }
 
-            long totalAllowedKm = _selectedContract.MileageLimitPerDay * _selectedContract.DaysRented;
-            long drivenKm = endMileage - _selectedContract.StartMileage;
-            long excessKm = Math.Max(0, drivenKm - totalAllowedKm);
-            decimal mileageFee = excessKm * _selectedContract.ExcessFeePerKm;
+            decimal excessFee = Math.Max(0, (drivenDistance - _selectedContract.MileageLimit) * _selectedContract.ExcessFeePerKm);
+            lblMileageFee.Text = excessFee.ToString("N2");
 
-            lblMileageFee.Text = $"₱{mileageFee:N2}";
-            lblMileageFee.ForeColor = excessKm > 0 ? Color.Red : Color.Green;
-
-            UpdateBillingSummary();
-            UpdateFinalAmountDue();
-        }
-        // CheckBox and DateTimePicker reset
-        private void dtpReturnDate_ValueChanged(object sender, EventArgs e)
-        {
-            if (chbxLateReturn.Checked)
-            {
-                CalculateLateFee();
-                UpdateBillingSummary();
-            }
-        }
-        private void UpdateBillingSummary()
-        {
-            if (_selectedContract == null) return;
-
-            decimal baseRate = _selectedContract.BaseRate ?? 0m;
-
-            decimal carParts = decimal.TryParse(txtPartsSearch?.Text, out decimal cp) ? cp : 0m;
-            decimal lostItems = decimal.TryParse(chbxLost?.Text, out decimal lost) ? lost : 0m;
-            decimal lateFee = decimal.TryParse(lblLateFee?.Text.Replace("₱", "").Replace(",", ""), out decimal lf) ? lf : 0m;
-            decimal mileageFee = decimal.TryParse(lblMileageLimit?.Text.Replace("₱", "").Replace(",", ""), out decimal mf) ? mf : 0m;
-            decimal totalAdditional = carParts + lateFee + mileageFee + lostItems;
-
-            blCarPartsCharges.Text = $"₱{carParts:N2}";
-            lblLateFee.Text = $"₱{lateFee:N2}";
-            lblLost.Text = $"₱{lostItems:N2}";
-            lblTotalFee.Text = $"₱{totalAdditional:N2}";
-
-            decimal subtotal = baseRate + totalAdditional;
-            lblSubTotal.Text = $"₱{subtotal:N2}";
-            lblTotalFee.Text = $"₱{totalAdditional:N2}";
-
-            txtSecurityDeposit.Text = $"₱{_selectedContract.DepositAmount:N2}";
-
-            UpdateFinalAmountDue();
-        }
-        private void UpdateFinalAmountDue()
-        {
-            if (_selectedContract == null) return;
-
-            decimal subtotal = 0m;
-            if (!decimal.TryParse(lblSubTotal.Text.Replace("₱", "").Replace(",", ""), out subtotal))
-                subtotal = 0m;
-
-            decimal depositUsed = 0m;
-            if (!decimal.TryParse(txtSecurityDeposit.Text.Replace("₱", "").Replace(",", ""), out depositUsed))
-                depositUsed = 0m;
-
-            depositUsed = Math.Min(depositUsed, _selectedContract.DepositAmount);
-            decimal amountDue = Math.Max(0, subtotal - depositUsed);
-
-            txtSecurityDeposit.Text = $"₱{depositUsed:N2}";
-            lblTotalAmount.Text = $"₱{amountDue:N2}";
-
-            lblTotalAmount.ForeColor = amountDue > 0 ? Color.Red : Color.Green;
-            lblTotalAmount.Font = new Font(lblTotalAmount.Font, amountDue > 0 ? FontStyle.Bold : FontStyle.Regular);
-        }
-        private void CalculateLateFee()
-        {
-            if (_selectedContract == null)
-            {
-                lblLateFee.Text = "₱0.00";
-                return;
-            }
-
-            if (!chbxLateReturn.Checked)
-            {
-                lblLateFee.Text = "₱0.00";
-                return;
-            }
-        }
-
-        private void txtPartsSearch_TextChanged(object sender, EventArgs e)
-        {
-            UpdateBillingSummary();
-        }
-
-        private void chbxLost_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateBillingSummary();
-        }
-        private void txtSecurityDepositUsed_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-                e.Handled = true;
-
-            if (e.KeyChar == '.' && txtSecurityDeposit.Text.Contains('.'))
-                e.Handled = true;
+            UpdateSubtotalAndTotal();
         }
 
         private void chbxLateReturn_CheckedChanged(object sender, EventArgs e)
         {
-            CalculateLateFee();
-            UpdateBillingSummary();
+            if (_selectedContract == null)
+            {
+                lblLateFee.Text = "0.00";
+                UpdateSubtotalAndTotal();
+                return;
+            }
+
+            decimal lateFeePerDay = 50.00m;
+            int overdueDays = 0;
+
+            if (DateTime.Now.Date > _selectedContract.ReturnDate.Date)
+            {
+                overdueDays = (DateTime.Now.Date - _selectedContract.ReturnDate.Date).Days;
+            }
+
+            decimal lateFee = chbxLateReturn.Checked ? lateFeePerDay * overdueDays : 0m;
+            lblLateFee.Text = lateFee.ToString("N2");
+
+            UpdateSubtotalAndTotal();
         }
 
-        private void txtEndMileage_TextChanged_1(object sender, EventArgs e)
+        private void DgvCarParts_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            CalculateMileageFee();
+            if (dgvCarParts.IsCurrentCellDirty)
+                dgvCarParts.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
-        private void txtEndMileage_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void DgvCarParts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
 
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                e.Handled = true;
+            if (e.ColumnIndex == dgvCarParts.Columns["Damage"].Index ||
+                e.ColumnIndex == dgvCarParts.Columns["Quantity"].Index)
+            {
+                UpdateCarPartsCharges();
+            }
+        }
+
+        private void UpdateCarPartsCharges()
+        {
+            decimal total = 0m;
+
+            foreach (DataGridViewRow row in dgvCarParts.Rows)
+            {
+                bool isDamaged = false;
+                int quantity = 1;
+
+                if (row.Cells["Damage"].Value != null)
+                    isDamaged = Convert.ToBoolean(row.Cells["Damage"].Value);
+
+                if (row.Cells["Quantity"].Value != null && int.TryParse(row.Cells["Quantity"].Value.ToString(), out int q))
+                    quantity = Math.Max(1, q);
+
+                if (isDamaged)
+                {
+                    decimal cost = Convert.ToDecimal(row.Cells["Cost"].Value);
+                    total += cost * quantity;
+                }
+            }
+
+            lblCarPartsCharges.Text = total.ToString("N2");
+            UpdateSubtotalAndTotal(); 
+        }
+
+        private void chbxLost_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_selectedContract == null) return;
+
+            if (chbxLost.Checked)
+            {
+                // Disable car parts grid
+                dgvCarParts.Enabled = false;
+
+                // Show car lost fee — car replacement value
+                decimal replacementValue = _selectedContract.ReplacementValue;
+                lblLost.Text = replacementValue.ToString("N2");
+
+                // When lost, no need to compute car parts
+                lblCarPartsCharges.Text = "0.00";
+            }
+            else
+            {
+                // Re-enable the grid
+                dgvCarParts.Enabled = true;
+
+                // Remove the lost fee
+                lblLost.Text = "0.00";
+
+                // Recalculate parts again
+                UpdateCarPartsCharges();
+            }
+
+            // Always refresh totals
+            UpdateSubtotalAndTotal();
         }
 
         private void txtSecurityDeposit_TextChanged(object sender, EventArgs e)
         {
-            UpdateFinalAmountDue();
+            // If empty or invalid, treat as 0
+            if (string.IsNullOrWhiteSpace(txtSecurityDeposit.Text))
+            {
+                txtSecurityDeposit.SelectionStart = txtSecurityDeposit.Text.Length;
+            }
+
+            // Validate input
+            if (!decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
+            {
+                lblTotalAmount.Text = "0.00";
+                return;
+            }
+
+            // Recalculate totals
+            UpdateSubtotalAndTotal();
+        }
+
+        private void txtSecurityDeposit_Leave(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
+                txtSecurityDeposit.Text = deposit.ToString("N2");
+        }
+
+        private void btnFinalizePayment_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

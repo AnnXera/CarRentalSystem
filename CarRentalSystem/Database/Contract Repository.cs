@@ -156,17 +156,31 @@ namespace CarRentalSystem.Database
                             {
                                 ContractID = reader.GetInt64("ContractID"),
                                 CustID = reader.GetInt64("CustID"),
-                                CustomerName = reader.GetString("CustomerName"),
-                                CarName = reader.GetString("CarName"),
-                                EmployeeName = reader.GetString("EmployeeName"),
-                                PlanName = reader.GetString("PlanName"),
-                                MileageLimitPerDay = reader.GetInt64("MileageLimitPerDay"),
-                                ExcessFeePerKm = reader.IsDBNull(reader.GetOrdinal("ExcessFeePerKm")) ? 0 : reader.GetDecimal("ExcessFeePerKm"),
-                                DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount"),
-                                BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
+                                EmpID = reader.GetInt64("EmpID"),
+                                CarID = reader.GetInt64("CarID"),
+                                StartDate = reader.GetDateTime("StartDate"),
                                 ReturnDate = reader.GetDateTime("ReturnDate"),
+                                DaysRented = reader.GetInt64("DaysRented"),
+                                DateProcessed = reader.IsDBNull(reader.GetOrdinal("DateProcessed")) ? null : (DateTime?)reader.GetDateTime("DateProcessed"),
+                                IsOverdue = reader.GetBoolean("IsOverdue"),
+                                StartMileage = reader.GetInt64("StartMileage"),
+                                EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage")) ? null : (long?)reader.GetInt64("EndMileage"),
+                                Status = reader.GetString("Status"),
+
+                                CustomerName = reader.GetString("CustomerName"),
+                                DriversLicensePic = reader["DriversLicensePic"] as byte[],
+
+                                CarName = reader.GetString("CarName"),
+                                ReplacementValue = reader.GetDecimal("ReplacementValue"),
                                 CarPicture = reader["CarPicture"] as byte[],
-                                DriversLicensePic = reader["DriversLicensePic"] as byte[]
+
+                                EmployeeName = reader.GetString("EmployeeName"),
+
+                                PlanName = reader.GetString("PlanName"),
+                                MileageLimit = reader.IsDBNull(reader.GetOrdinal("MileageLimit")) ? 0 : reader.GetInt64("MileageLimit"),
+                                ExcessFeePerKm = reader.IsDBNull(reader.GetOrdinal("ExcessFeePerKm")) ? 0 : reader.GetDecimal("ExcessFeePerKm"),
+                                BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
+                                DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount")
                             });
                         }
                     }
@@ -179,5 +193,6 @@ namespace CarRentalSystem.Database
 
             return list;
         }
+
     }
 }

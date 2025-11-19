@@ -117,6 +117,7 @@
     <Compile Include="Code\RentalPlan.cs" />
     <Compile Include="Code\SecurityDeposit.cs" />
     <Compile Include="Code\SystemLog.cs" />
+    <Compile Include="Database\AdditionalChargesRepository.cs" />
     <Compile Include="Database\BillingLogRepository.cs" />
     <Compile Include="Database\CarPartsRepository.cs" />
     <Compile Include="Database\CarRepository.cs" />

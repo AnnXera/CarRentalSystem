@@ -56,7 +56,6 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvContracts.RowHeadersVisible = false;
             dgvContracts.AllowUserToResizeRows = false;
-            dgvContracts.RowTemplate.Height = 160;
 
             contractTable = new DataTable();
             contractTable.Columns.Add("ContractID", typeof(long));
@@ -135,6 +134,7 @@ namespace CarRentalSystem.WindowsForm
             using (var CreateContract = new modal_CreateContract())
             {
                 CreateContract.ShowDialog();
+                LoadContracts();
             }
         }
 
@@ -151,6 +151,7 @@ namespace CarRentalSystem.WindowsForm
             using (var ReturnProcess = new modal_ProcessReturn())
             {
                 ReturnProcess.ShowDialog();
+                LoadContracts();
             }
         }
 
