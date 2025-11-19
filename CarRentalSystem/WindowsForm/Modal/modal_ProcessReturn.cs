@@ -30,6 +30,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             LoadCustomerDropdown();
             SetupCarPartsGrid();
             dgvCarParts.DataSource = null;
+            txtSecurityDeposit.KeyPress += TxtSecurityDeposit_KeyPress;
         }
 
         private void LoadPanels()
@@ -433,20 +434,27 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void txtSecurityDeposit_TextChanged(object sender, EventArgs e)
         {
-            // If empty or invalid, treat as 0
-            if (string.IsNullOrWhiteSpace(txtSecurityDeposit.Text))
-            {
-                txtSecurityDeposit.SelectionStart = txtSecurityDeposit.Text.Length;
-            }
+            if (_selectedContract == null) return;
 
-            // Validate input
             if (!decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
+                deposit = 0;
+
+            decimal subtotal = decimal.TryParse(lblTotalChargeFee.Text, out var sub) ? sub : 0;
+
+            if (deposit > subtotal)
             {
-                lblTotalAmount.Text = "0.00";
-                return;
+                MessageBox.Show(
+                    "Security deposit cannot exceed the total charges.",
+                    "Invalid Amount",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                txtSecurityDeposit.Text = subtotal.ToString("N2");
+                txtSecurityDeposit.SelectionStart = txtSecurityDeposit.Text.Length;
+                deposit = subtotal;
             }
 
-            // Recalculate totals
             UpdateSubtotalAndTotal();
         }
 
@@ -469,6 +477,53 @@ namespace CarRentalSystem.WindowsForm.Modal
             if (totalFee <= 0)
                 txtSecurityDeposit.Text = "0.00";
         }
+
+        private void TxtSecurityDeposit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (_selectedContract == null) return;
+
+            // Allow digits, control chars (backspace), and decimal point
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            TextBox tb = sender as TextBox;
+            string newText;
+
+            if (char.IsControl(e.KeyChar))
+            {
+                newText = tb.Text;
+            }
+            else
+            {
+                int selStart = tb.SelectionStart;
+                string before = tb.Text.Substring(0, selStart);
+                string after = tb.Text.Substring(selStart + tb.SelectionLength);
+                newText = before + e.KeyChar + after;
+            }
+
+            if (decimal.TryParse(newText, out decimal value))
+            {
+                if (value > _selectedContract.DepositAmount)
+                {
+                    e.Handled = true; // prevent typing
+                    System.Media.SystemSounds.Beep.Play();
+                    MessageBox.Show(
+                        $"The deposit cannot exceed the original security deposit of {_selectedContract.DepositAmount:C2}.",
+                        "Invalid Amount",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
+            else if (!string.IsNullOrEmpty(newText))
+            {
+                e.Handled = true; // invalid number
+            }
+        }
+
 
         private void btnFinalizePayment_Click(object sender, EventArgs e)
         {
