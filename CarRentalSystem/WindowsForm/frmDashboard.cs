@@ -1,5 +1,6 @@
 ﻿using CarRentalSystem.Utils;
 using CarRentalSystem.WindowsForm.AdminForms;
+using CarRentalSystem.WindowsForm.Modal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -312,6 +313,28 @@ namespace CarRentalSystem.WindowsForm
             pnlMainDashboard.Controls.Add(systemLogForm);
             systemLogForm.BringToFront();
             systemLogForm.Show();
+        }
+
+        private void btnBillingLogs_Click(object sender, EventArgs e)
+        {
+            UIHelper.ResetSidebarButtons(sidebarButtons);
+            UIHelper.SetActiveButton(btnBillingLogs, Properties.Resources.Icon___Billing_Logs__Default);
+
+            pnlMainDashboard.Controls
+                .OfType<frmSystemLog>()
+                .ToList()
+                .ForEach(f => pnlMainDashboard.Controls.Remove(f));
+
+            frmBilling billingForm = new frmBilling
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            pnlMainDashboard.Controls.Add (billingForm);
+            billingForm.BringToFront();
+            billingForm.Show();
         }
     }
 }

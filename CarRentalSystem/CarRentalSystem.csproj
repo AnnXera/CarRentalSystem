@@ -106,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Billing.cs" />
     <Compile Include="Code\BillingLog.cs" />
     <Compile Include="Code\CarParts.cs" />
     <Compile Include="Code\Cars.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Code\SystemLog.cs" />
     <Compile Include="Database\AdditionalChargesRepository.cs" />
     <Compile Include="Database\BillingLogRepository.cs" />
+    <Compile Include="Database\BillingRepository.cs" />
     <Compile Include="Database\CarPartsRepository.cs" />
     <Compile Include="Database\CarRepository.cs" />
     <Compile Include="Database\Contract Repository.cs" />
@@ -215,6 +217,12 @@
     <Compile Include="WindowsForm\frmMainDashboardPanel.Designer.cs">
       <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\Modal\frmBilling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\Modal\frmBilling.Designer.cs">
+      <DependentUpon>frmBilling.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsForm\Modal\modal_AddEditCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\frmMainDashboardPanel.resx">
       <DependentUpon>frmMainDashboardPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\Modal\frmBilling.resx">
+      <DependentUpon>frmBilling.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\modal_AddEditCar.resx">
       <DependentUpon>modal_AddEditCar.cs</DependentUpon>

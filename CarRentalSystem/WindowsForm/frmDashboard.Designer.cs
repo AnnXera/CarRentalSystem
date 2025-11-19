@@ -162,6 +162,7 @@
             this.btnBillingLogs.TabIndex = 29;
             this.btnBillingLogs.Text = "Report";
             this.btnBillingLogs.UseVisualStyleBackColor = false;
+            this.btnBillingLogs.Click += new System.EventHandler(this.btnBillingLogs_Click);
             // 
             // btnCustomer
             // 
