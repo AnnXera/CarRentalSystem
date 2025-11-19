@@ -115,24 +115,21 @@ namespace CarRentalSystem.Database
                         {
                             ContractID = reader.GetInt64("ContractID"),
                             CustID = reader.GetInt64("CustID"),
-                            CustomerName = reader.GetString("CustomerName"),
-
+                            CustomerName = reader.IsDBNull(reader.GetOrdinal("CustomerName")) ? string.Empty : reader.GetString("CustomerName"),  // Handles null FullName
                             EmpID = reader.GetInt64("EmpID"),
-                            EmployeeName = reader.GetString("EmployeeName"),
-
+                            EmployeeName = reader.IsDBNull(reader.GetOrdinal("EmployeeName")) ? string.Empty : reader.GetString("EmployeeName"),  // Handles null FullName
                             CarID = reader.GetInt64("CarID"),
-                            CarName = reader.GetString("CarName"),
-
+                            CarName = reader.IsDBNull(reader.GetOrdinal("CarName")) ? string.Empty : reader.GetString("CarName"),  // Handles null CONCAT result
                             StartDate = reader.GetDateTime("StartDate"),
                             ReturnDate = reader.GetDateTime("ReturnDate"),
                             DaysRented = reader.GetInt32("DaysRented"),
                             StartMileage = reader.GetInt64("StartMileage"),
-                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage"))
-                                        ? (long?)null
-                                        : reader.GetInt64("EndMileage"),
-
-                            Status = reader.GetString("Status")
+                            EndMileage = reader.IsDBNull(reader.GetOrdinal("EndMileage")) ? (long?)null : reader.GetInt64("EndMileage"),
+                            DateProcessed = reader.IsDBNull(reader.GetOrdinal("DateProcessed")) ? (DateTime?)null : reader.GetDateTime("DateProcessed"),
+                            IsOverdue = reader.GetBoolean("IsOverdue"),
+                            Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? string.Empty : reader.GetString("Status")
                         });
+
                     }
                 }
             }
@@ -168,8 +165,8 @@ namespace CarRentalSystem.Database
                                 DepositAmount = reader.IsDBNull(reader.GetOrdinal("DepositAmount")) ? 0 : reader.GetDecimal("DepositAmount"),
                                 BaseRate = reader.IsDBNull(reader.GetOrdinal("BaseRate")) ? 0 : reader.GetDecimal("BaseRate"),
                                 ReturnDate = reader.GetDateTime("ReturnDate"),
-                                CarPicture = reader["CarPicture"] as byte[],                // image from DB
-                                DriversLicensePic = reader["DriversLicensePic"] as byte[]   // image from DB
+                                CarPicture = reader["CarPicture"] as byte[],
+                                DriversLicensePic = reader["DriversLicensePic"] as byte[]
                             });
                         }
                     }

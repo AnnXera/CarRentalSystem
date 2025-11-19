@@ -30,14 +30,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             LoadCars();
             EventChanges();
 
-            UIHelper.ApplyBorderInsideToPanels(new List<Panel>
-            {
-                pnlAvailableCar,
-                pnlRentalPlan,
-                pnlSearch,
-                pnlSeats,
-                pnlTransmission
-            });
+            this.Text = "Select Rental Plan and Car";
         }
 
         private void EventChanges()
@@ -46,7 +39,22 @@ namespace CarRentalSystem.WindowsForm.Modal
             cbxTransmission.SelectedIndexChanged += (s, e) => ApplyCarFilters();
             cbxSeats.SelectedIndexChanged += (s, e) => ApplyCarFilters();
             cbxRentalPlan.SelectedIndexChanged += (s, e) => ApplyCarFilters();
-            dgvCars.CellClick += dgvCars_CellClick;
+            dgvCars.CellContentClick += dgvCars_CellContentClick;
+        }
+
+        private void LoadDesign()
+        {
+            var panels = new List<Panel>
+            {
+                pnlSearchBox,
+                pnlAvailableCar,
+                pnlRentalPlan,
+                pnlSearch,
+                pnlSeats,
+                pnlTransmission
+            };
+
+            UIHelper.ApplyRoundedPanels(panels, 8);
         }
 
         private void LoadComboboxes()
@@ -216,7 +224,30 @@ namespace CarRentalSystem.WindowsForm.Modal
             ApplyCarFilters();
         }
 
-        private void dgvCars_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (SelectedCar != null)
+            {
+                this.DialogResult = DialogResult.OK; // <-- signals that a car was selected
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a car first.");
+            }
+        }
+
+        private void dgvCars_Paint(object sender, PaintEventArgs e)
+        {
+            UIHelper.DrawRoundedControl(sender, e, 8);
+        }
+
+        private void dgvCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
@@ -242,24 +273,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblRentalPlan.Text = $"Rental Plan: {SelectedCar.PlanName}";
             if (row.Cells["Picture"].Value is Image img)
                 picCar.Image = img;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (SelectedCar != null)
-            {
-                this.DialogResult = DialogResult.OK; // <-- signals that a car was selected
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Please select a car first.");
-            }
         }
     }
 }

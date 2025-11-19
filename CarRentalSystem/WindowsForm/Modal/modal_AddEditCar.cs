@@ -1,6 +1,7 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,6 +28,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             SetupDgvCarParts();
             LoadRentalPlans();
             KeyHandlers();
+            LoadDesigns();
 
             if (_isEditMode)
             {
@@ -40,6 +42,17 @@ namespace CarRentalSystem.WindowsForm.Modal
                 btnSave.Text = "Add";
                 this.Text = "Add New Car";
             }
+        }
+
+        private void LoadDesigns()
+        {
+            var panels = new List<Panel>
+            {
+                panel1,
+                panel2,
+                panel3,
+            };
+            UIHelper.ApplyRoundedPanels(panels, 8);
         }
 
         private void KeyHandlers()
@@ -61,8 +74,11 @@ namespace CarRentalSystem.WindowsForm.Modal
             cbxBrand.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cbxTransmission.DataSource = Enum.GetValues(typeof(TransmissionType));
+            cbxTransmission.SelectedIndex = -1;
             cbxFuelType.DataSource = Enum.GetValues(typeof(FuelType));
+            cbxFuelType.SelectedIndex = -1;
             cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
+            cbxStatus.SelectedIndex = -1;
         }
 
         private void ValidateCarForm()
@@ -167,6 +183,11 @@ namespace CarRentalSystem.WindowsForm.Modal
                 var repo = new CarRepository();
                 var car = repo.GetCarById(_carId);
 
+                cbxBrand.DataSource = Enum.GetValues(typeof(CarBrand));
+                cbxTransmission.DataSource = Enum.GetValues(typeof(TransmissionType));
+                cbxFuelType.DataSource = Enum.GetValues(typeof(FuelType));
+                cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
+
                 if (car == null)
                 {
                     MessageBox.Show("Car not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -181,12 +202,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 txtVIN.Text = car.VIN;
                 txtReplacementValue.Text = car.ReplacementValue.ToString("N2");
                 txtEngineType.Text = car.EngineType;
-
-                cbxBrand.DataSource = Enum.GetValues(typeof(CarBrand));
-                cbxTransmission.DataSource = Enum.GetValues(typeof(TransmissionType));
-                cbxFuelType.DataSource = Enum.GetValues(typeof(FuelType));
-                cbxStatus.DataSource = Enum.GetValues(typeof(CarStatus));
-
+                cbxStatus.Text = car.Status;
                 
                 cbxRentalPlan.SelectedValue = car.PlanID;
 
@@ -437,6 +453,11 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void dgvCarParts_Paint(object sender, PaintEventArgs e)
+        {
+            UIHelper.DrawRoundedControl(sender, e, 8);
         }
     }
 }
