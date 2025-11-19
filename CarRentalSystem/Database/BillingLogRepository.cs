@@ -14,6 +14,7 @@ namespace CarRentalSystem.Database
         private readonly SQLDBHelper _db;
         public BillingLogRepository()
         {
+
             _db = SQLDBHelper.Instance;
         }
     }
