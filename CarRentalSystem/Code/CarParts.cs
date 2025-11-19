@@ -12,11 +12,15 @@ namespace CarRentalSystem.Code
         public string PartName { get; set; }
         public decimal ReplacementCost { get; set; }
         public string Status { get; set; }
+
         public bool IsDamaged
         {
-            get { return Status == "Damage"; }
-            set { Status = value ? "Damage" : "Good"; }
+            get { return Status == "Damaged"; }
+            set { Status = value ? "Damaged" : "Good"; }
         }
+
+        // For grid binding
+        public int Quantity { get; set; } = 1;
     }
 
     public class CarPartsFactory : IModalFactory<CarParts>

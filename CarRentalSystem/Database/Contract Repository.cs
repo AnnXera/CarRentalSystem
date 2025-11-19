@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace CarRentalSystem.Database
 {
@@ -194,5 +195,154 @@ namespace CarRentalSystem.Database
             return list;
         }
 
+        public decimal CompleteContractReturn(long contractId, long endMileage, decimal mileageFee, decimal lateFee, decimal lostFee, decimal securityDepositUsed, List<(long PartID, int Quantity, decimal Cost)> damagedParts)
+        {
+            if (contractId <= 0) throw new ArgumentException("Invalid contract ID");
+
+            decimal totalAmount = 0m;
+
+            _db.Open();
+            using (var transaction = _db.Connection.BeginTransaction())
+            {
+                try
+                {
+                    // 1️⃣ Update Contract
+                    string updateContract = @"
+                        UPDATE contracts
+                        SET EndMileage = @EndMileage,
+                            Status = 'Completed',
+                            DateProcessed = NOW(),
+                            IsOverdue = IF(DATEDIFF(NOW(), ReturnDate) > 0, 1, 0)
+                        WHERE ContractID = @ContractID";
+                    using (var cmd = new MySqlCommand(updateContract, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@EndMileage", endMileage);
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 2️⃣ Insert Additional Charges
+                    string insertCharge = @"
+                        INSERT INTO additionalcharges (ContractID, PartsID, ChargeType, Amount, Quantity, ChargeDate, Notes)
+                        VALUES (@ContractID, @PartsID, @ChargeType, @Amount, @Quantity, CURDATE(), @Notes)";
+                    using (var cmd = new MySqlCommand(insertCharge, _db.Connection, transaction))
+                    {
+                        foreach (var part in damagedParts)
+                        {
+                            if (part.PartID <= 0 || part.Quantity <= 0) continue;
+
+                            // Verify the part exists in DB
+                            using (var checkCmd = new MySqlCommand("SELECT COUNT(*) FROM carparts WHERE PartsID=@PartsID", _db.Connection, transaction))
+                            {
+                                checkCmd.Parameters.AddWithValue("@PartsID", part.PartID);
+                                int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                                if (count == 0) continue; // skip invalid
+                            }
+
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@ContractID", contractId);
+                            cmd.Parameters.AddWithValue("@PartsID", part.PartID);
+                            cmd.Parameters.AddWithValue("@ChargeType", "Part Damage");
+                            cmd.Parameters.AddWithValue("@Amount", part.Cost);
+                            cmd.Parameters.AddWithValue("@Quantity", part.Quantity);
+                            cmd.Parameters.AddWithValue("@Notes", "Damaged during rental");
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Non-part charges
+                        void InsertNonPartCharge(string type, decimal amount, string notes)
+                        {
+                            if (amount <= 0) return;
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@ContractID", contractId);
+                            cmd.Parameters.AddWithValue("@PartsID", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@ChargeType", type);
+                            cmd.Parameters.AddWithValue("@Amount", amount);
+                            cmd.Parameters.AddWithValue("@Quantity", 1);
+                            cmd.Parameters.AddWithValue("@Notes", notes);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        InsertNonPartCharge("Exceed Mileage", mileageFee, "Excess mileage fee");
+                        InsertNonPartCharge("LateFee", lateFee, "Late return fee");
+                        InsertNonPartCharge("Lost", lostFee, "Car lost");
+                    }
+
+                    // 3️⃣ Get total charges for billing
+                    decimal totalCharges = 0m;
+                    using (var cmd = new MySqlCommand("SELECT SUM(Amount * IFNULL(Quantity,1)) FROM additionalcharges WHERE ContractID=@ContractID", _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        totalCharges = Convert.ToDecimal(cmd.ExecuteScalar() ?? 0m);
+                    }
+
+                    // 4️⃣ Update Billing
+                    string updateBilling = @"
+                        UPDATE billing
+                        SET TotalCharges = @TotalCharges,
+                            SecurityDepUsed = @SecurityDepositUsed,
+                            TotalAmount = BaseRate + @TotalCharges - @SecurityDepositUsed,
+                            RemainingBalance = (BaseRate + @TotalCharges - @SecurityDepositUsed) - AmountPaid,
+                            PaymentStatus = CASE 
+                                WHEN (BaseRate + @TotalCharges - @SecurityDepositUsed - AmountPaid) = 0 THEN 'Paid'
+                                WHEN (BaseRate + @TotalCharges - @SecurityDepositUsed - AmountPaid) < (BaseRate + @TotalCharges - @SecurityDepositUsed) THEN 'Partial'
+                                ELSE 'Pending'
+                            END
+                        WHERE ContractID = @ContractID";
+                    using (var cmd = new MySqlCommand(updateBilling, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        cmd.Parameters.AddWithValue("@TotalCharges", totalCharges);
+                        cmd.Parameters.AddWithValue("@SecurityDepositUsed", securityDepositUsed);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    totalAmount = totalCharges; // return to form for lblTotalAmount update
+
+                    // 5️⃣ Update Security Deposit
+                    string updateDeposit = @"
+                        UPDATE securitydeposit
+                        SET Status = CASE 
+                            WHEN @SecurityDepositUsed > 0 AND @SecurityDepositUsed < DepositAmount THEN 'PartialRefunded'
+                            WHEN @SecurityDepositUsed >= DepositAmount THEN 'Forfeited'
+                            ELSE 'Refunded'
+                        END
+                        WHERE ContractID = @ContractID";
+                    using (var cmd = new MySqlCommand(updateDeposit, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        cmd.Parameters.AddWithValue("@SecurityDepositUsed", securityDepositUsed);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 6️⃣ Update Car Status
+                    bool hasDamages = damagedParts.Any(p => p.PartID > 0 && p.Quantity > 0) || lostFee > 0;
+                    string updateCar = @"
+                        UPDATE car c
+                        JOIN contracts co ON co.CarID = c.CarID
+                        SET c.Status = @CarStatus
+                        WHERE co.ContractID = @ContractID";
+                    using (var cmd = new MySqlCommand(updateCar, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        cmd.Parameters.AddWithValue("@CarStatus", hasDamages ? "Maintenance" : "Available");
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    try { transaction.Rollback(); } catch { }
+                    throw new Exception("Error completing contract return: " + ex.Message, ex);
+                }
+                finally
+                {
+                    _db.Close();
+                }
+
+                return totalAmount;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private Contracts _selectedContract;
         private List<Contracts> _activeContracts;
+        private List<(long PartID, int Quantity, decimal Cost)> _currentDamagedParts = new List<(long, int, decimal)>();
 
 
         public modal_ProcessReturn()
@@ -66,77 +68,64 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void LoadCarParts(long carId)
         {
-            try
-            {
-                var factory = new CarPartsFactory();
-                var parts = factory.ViewByCar(carId) ?? new List<CarParts>();
+            var factory = new CarPartsFactory();
+            var parts = factory.ViewByCar(carId);
 
-                dgvCarParts.DataSource = parts;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to load car parts: " + ex.Message);
-            }
+            // Set default quantity = 1
+            foreach (var part in parts)
+                part.Quantity = 1;
+
+            dgvCarParts.DataSource = parts;
         }
 
         private void SetupCarPartsGrid()
         {
             dgvCarParts.AutoGenerateColumns = false;
             dgvCarParts.Columns.Clear();
-            var colPartID = new DataGridViewTextBoxColumn
+
+            dgvCarParts.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "PartsID",
-                DataPropertyName = "PartsID", // Make sure your CarParts class has PartID property
-                Visible = false // Hide from the user
-            };
-            dgvCarParts.Columns.Add(colPartID);
-            // ---------------- Part Name Column ----------------
-            var colName = new DataGridViewTextBoxColumn
+                DataPropertyName = "PartID",
+                Visible = false
+            });
+
+            dgvCarParts.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Part Name",
                 DataPropertyName = "PartName",
                 ReadOnly = true
-            };
-            dgvCarParts.Columns.Add(colName);
+            });
 
-            // ---------------- Damage Checkbox Column ----------------
-            var colDamage = new DataGridViewCheckBoxColumn
+            dgvCarParts.Columns.Add(new DataGridViewCheckBoxColumn
             {
                 Name = "Damage",
                 HeaderText = "Damage",
                 DataPropertyName = "IsDamaged",
                 TrueValue = true,
-                FalseValue = false,
-                ReadOnly = false // Editable
-            };
-            dgvCarParts.Columns.Add(colDamage);
+                FalseValue = false
+            });
 
-            // ---------------- Quantity Column (temporary, not in DB) ----------------
-            var colQuantity = new DataGridViewTextBoxColumn
+            dgvCarParts.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "Quantity",
                 HeaderText = "Quantity",
-                Name = "Quantity", // Use Name to access it in code
-                ValueType = typeof(int),
-                ReadOnly = false,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
-            };
-            dgvCarParts.Columns.Add(colQuantity);
+                DataPropertyName = "Quantity",
+                ValueType = typeof(int)
+            });
 
-            // ---------------- Replacement Cost Column ----------------
-            var colCost = new DataGridViewTextBoxColumn
+            dgvCarParts.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Cost",
                 HeaderText = "Cost",
                 DataPropertyName = "ReplacementCost",
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "N2" }
-            };
-            dgvCarParts.Columns.Add(colCost);
+            });
 
             dgvCarParts.CellValueChanged += DgvCarParts_CellValueChanged;
             dgvCarParts.CurrentCellDirtyStateChanged += DgvCarParts_CurrentCellDirtyStateChanged;
         }
-
 
         private void DisplayContract(Contracts selected)
         {
@@ -225,7 +214,6 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void UpdateSubtotalAndTotal()
         {
-            // Helper function to safely convert labels to decimal
             decimal SafeDecimal(Label lbl)
             {
                 if (decimal.TryParse(lbl.Text, out decimal val))
@@ -246,17 +234,18 @@ namespace CarRentalSystem.WindowsForm.Modal
             decimal partsFee = SafeDecimal(lblCarPartsCharges);
             decimal lostFee = SafeDecimal(lblLost);
 
-            decimal totalChargeFee = mileageFee + lateFee + partsFee + lostFee;
-            lblTotalChargeFee.Text = totalChargeFee.ToString("N2");
+            decimal totalCharges = mileageFee + lateFee + partsFee + lostFee;
+            lblTotalChargeFee.Text = totalCharges.ToString("N2");
 
-            decimal subtotal = baseRate + totalChargeFee;
+            decimal subtotal = baseRate + totalCharges;
             lblSubTotal.Text = subtotal.ToString("N2");
 
             decimal securityDeposit = SafeDecimalTextBox(txtSecurityDeposit);
-            decimal total = subtotal - securityDeposit;
+            decimal totalAmount = subtotal - securityDeposit;
 
-            lblTotalAmount.Text = total.ToString("N2");
+            lblTotalAmount.Text = totalAmount.ToString("N2");
         }
+
 
         private void cbxSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -326,44 +315,56 @@ namespace CarRentalSystem.WindowsForm.Modal
         private void DgvCarParts_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvCarParts.IsCurrentCellDirty)
+            {
                 dgvCarParts.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
         }
 
         private void DgvCarParts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0 || dgvCarParts.Columns[e.ColumnIndex].Name != "Damage")
+                return;
 
-            if (e.ColumnIndex == dgvCarParts.Columns["Damage"].Index ||
-                e.ColumnIndex == dgvCarParts.Columns["Quantity"].Index)
-            {
-                UpdateCarPartsCharges();
-            }
+            var row = dgvCarParts.Rows[e.RowIndex];
+            long partId = Convert.ToInt64(row.Cells["PartsID"].Value);
+            bool isDamaged = row.Cells["Damage"].Value != null && Convert.ToBoolean(row.Cells["Damage"].Value);
+
+            // Update the database
+            var repo = new CarPartsRepository();
+            repo.UpdatePartStatus(partId, isDamaged ? "Damaged" : "Good");
+
+            // Update car parts charges
+            UpdateCarPartsCharges();
         }
 
         private void UpdateCarPartsCharges()
         {
-            decimal total = 0m;
+            decimal totalPartsFee = 0m;
+            var damagedPartsList = new List<(long PartID, int Quantity, decimal Cost)>();
 
             foreach (DataGridViewRow row in dgvCarParts.Rows)
             {
-                bool isDamaged = false;
+                bool isDamaged = row.Cells["Damage"].Value != null && Convert.ToBoolean(row.Cells["Damage"].Value);
                 int quantity = 1;
-
-                if (row.Cells["Damage"].Value != null)
-                    isDamaged = Convert.ToBoolean(row.Cells["Damage"].Value);
-
                 if (row.Cells["Quantity"].Value != null && int.TryParse(row.Cells["Quantity"].Value.ToString(), out int q))
                     quantity = Math.Max(1, q);
 
+                decimal cost = Convert.ToDecimal(row.Cells["Cost"].Value);
+                long partId = Convert.ToInt64(row.Cells["PartsID"].Value);
+
                 if (isDamaged)
                 {
-                    decimal cost = Convert.ToDecimal(row.Cells["Cost"].Value);
-                    total += cost * quantity;
+                    totalPartsFee += cost * quantity;
+                    damagedPartsList.Add((partId, quantity, cost));
                 }
             }
 
-            lblCarPartsCharges.Text = total.ToString("N2");
-            UpdateSubtotalAndTotal(); 
+            lblCarPartsCharges.Text = totalPartsFee.ToString("N2");
+
+            // Update the global list for saving to database later
+            _currentDamagedParts = damagedPartsList;
+
+            UpdateSubtotalAndTotal();
         }
 
         private void chbxLost_CheckedChanged(object sender, EventArgs e)
@@ -425,7 +426,65 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnFinalizePayment_Click(object sender, EventArgs e)
         {
-            
+            if (_selectedContract == null) return;
+
+            // Prepare damaged parts list using value tuples
+            var damagedParts = new List<(long PartID, int Quantity, decimal Cost)>();
+
+            foreach (DataGridViewRow row in dgvCarParts.Rows)
+            {
+                if (row.Cells["Damage"].Value != null && Convert.ToBoolean(row.Cells["Damage"].Value))
+                {
+                    long partId = Convert.ToInt64(row.Cells["PartsID"].Value);
+                    int qty = 1;
+                    if (row.Cells["Quantity"].Value != null)
+                        int.TryParse(row.Cells["Quantity"].Value.ToString(), out qty);
+
+                    decimal cost = Convert.ToDecimal(row.Cells["Cost"].Value);
+
+                    damagedParts.Add((partId, qty, cost));
+
+                    // Update car part status to "Damaged"
+                    var carPartsRepo = new CarPartsRepository();
+                    carPartsRepo.UpdateCarPart(new CarParts
+                    {
+                        PartID = partId,
+                        CarID = _selectedContract.CarID,
+                        Status = "Damaged"
+                    });
+                }
+            }
+
+            // Compute fees
+            decimal mileageFee = decimal.Parse(lblMileageFee.Text);
+            decimal lateFee = decimal.Parse(lblLateFee.Text);
+            decimal lostFee = decimal.Parse(lblLost.Text);
+            decimal securityDepositUsed = string.IsNullOrEmpty(txtSecurityDeposit.Text) ? 0 : decimal.Parse(txtSecurityDeposit.Text);
+
+            // Complete contract
+            var contractRepo = new Contract_Repository();
+            contractRepo.CompleteContractReturn(
+                _selectedContract.ContractID,
+                string.IsNullOrEmpty(txtEndMileage.Text) ? _selectedContract.StartMileage : long.Parse(txtEndMileage.Text),
+                mileageFee,
+                lateFee,
+                lostFee,
+                securityDepositUsed,
+                damagedParts // value tuples now
+            );
+
+            // Update car status
+            var carPartsRepo2 = new CarPartsRepository();
+            carPartsRepo2.UpdateCarStatusAfterReturn(_selectedContract.CarID, damagedParts.Count > 0, chbxLost.Checked);
+
+            // Show message for returned security deposit
+            decimal returnedDeposit = _selectedContract.DepositAmount - securityDepositUsed;
+            MessageBox.Show($"Security Deposit Returned: {returnedDeposit:C2}", "Deposit Returned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            MessageBox.Show("Contract successfully completed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Optionally, refresh UI
+            DisplayContract(null);
         }
     }
 }
