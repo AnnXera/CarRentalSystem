@@ -17,6 +17,11 @@ namespace CarRentalSystem.Database
             _db = SQLDBHelper.Instance;
         }
 
+        public void EditBilling()
+        {
+
+        }
+
         public List<Billing>ViewAll()
         {
             var billingList = new List<Billing>();
