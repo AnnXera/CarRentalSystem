@@ -84,8 +84,5 @@ namespace CarRentalSystem.Database
 
             return billingList;
         }
-
-
-
     }
 }

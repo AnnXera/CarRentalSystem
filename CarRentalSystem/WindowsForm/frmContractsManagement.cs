@@ -54,7 +54,6 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.CellClick += dgvContracts_CellClick;
         }
 
-
         private void LoadContracts()
         {
             var factory = new ContractFactory();
@@ -159,6 +158,8 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.Columns["Status"].HeaderText = "Status";
 
             dgvContracts.ReadOnly = true;
+
+            dgvContracts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dgvContracts.Refresh();
         }

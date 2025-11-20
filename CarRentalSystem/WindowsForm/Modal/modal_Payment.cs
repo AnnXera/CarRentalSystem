@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Code;
+using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -40,6 +41,16 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblPrevAmountPaid.Text = _billing.AmountPaid.ToString("N2");
             lblCurrentAmountDue.Text = _billing.RemainingBalance.ToString("N2");
             lblTextChangeRemainingBalance.Text = _billing.RemainingBalance.ToString("N2");
+
+            var repo = new AdditionalChargesRepository();
+
+            var charges = repo.GetChargeBreakdown(_billing.ContractId);
+
+            lblCarPartsCharges.Text = charges.PartsTotal.ToString("N2");
+            lblLost.Text = charges.LostTotal.ToString("N2");
+            lblMileageFee.Text = charges.MileageTotal.ToString("N2");
+            lblLateFee.Text = charges.LateFeeTotal.ToString("N2");
+
         }
 
         private void LoadComboBoxes()

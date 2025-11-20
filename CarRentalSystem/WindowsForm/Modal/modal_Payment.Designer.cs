@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.pnlPayment = new System.Windows.Forms.Panel();
-            this.lblPrevAmountPaid = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -44,7 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblCurrentAmountDue = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblPrevAmountPaid = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblBillNo = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblContractNo = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.lblBaseRate = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lblBillNo = new System.Windows.Forms.Label();
             this.pnlPayment.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -109,29 +109,6 @@
             this.pnlPayment.Name = "pnlPayment";
             this.pnlPayment.Size = new System.Drawing.Size(558, 779);
             this.pnlPayment.TabIndex = 1;
-            // 
-            // lblPrevAmountPaid
-            // 
-            this.lblPrevAmountPaid.AutoSize = true;
-            this.lblPrevAmountPaid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrevAmountPaid.Location = new System.Drawing.Point(217, 734);
-            this.lblPrevAmountPaid.Name = "lblPrevAmountPaid";
-            this.lblPrevAmountPaid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblPrevAmountPaid.Size = new System.Drawing.Size(154, 28);
-            this.lblPrevAmountPaid.TabIndex = 93;
-            this.lblPrevAmountPaid.Text = "(lblAmountPaid)";
-            this.lblPrevAmountPaid.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(15, 734);
-            this.label11.Margin = new System.Windows.Forms.Padding(20, 0, 3, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(181, 28);
-            this.label11.TabIndex = 92;
-            this.label11.Text = "Amount Prev Paid:";
             // 
             // panel5
             // 
@@ -275,6 +252,29 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Current Amount Due:";
             // 
+            // lblPrevAmountPaid
+            // 
+            this.lblPrevAmountPaid.AutoSize = true;
+            this.lblPrevAmountPaid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrevAmountPaid.Location = new System.Drawing.Point(217, 734);
+            this.lblPrevAmountPaid.Name = "lblPrevAmountPaid";
+            this.lblPrevAmountPaid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblPrevAmountPaid.Size = new System.Drawing.Size(154, 28);
+            this.lblPrevAmountPaid.TabIndex = 93;
+            this.lblPrevAmountPaid.Text = "(lblAmountPaid)";
+            this.lblPrevAmountPaid.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(15, 734);
+            this.label11.Margin = new System.Windows.Forms.Padding(20, 0, 3, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(181, 28);
+            this.label11.TabIndex = 92;
+            this.label11.Text = "Amount Prev Paid:";
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -312,6 +312,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(435, 779);
             this.panel1.TabIndex = 83;
+            // 
+            // lblBillNo
+            // 
+            this.lblBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBillNo.AutoSize = true;
+            this.lblBillNo.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillNo.Location = new System.Drawing.Point(315, 301);
+            this.lblBillNo.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
+            this.lblBillNo.Name = "lblBillNo";
+            this.lblBillNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblBillNo.Size = new System.Drawing.Size(110, 31);
+            this.lblBillNo.TabIndex = 98;
+            this.lblBillNo.Text = "lblBillNo";
+            this.lblBillNo.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // panel3
             // 
@@ -632,18 +646,6 @@
             this.panel4.Size = new System.Drawing.Size(1008, 65);
             this.panel4.TabIndex = 84;
             // 
-            // lblBillNo
-            // 
-            this.lblBillNo.AutoSize = true;
-            this.lblBillNo.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillNo.Location = new System.Drawing.Point(315, 301);
-            this.lblBillNo.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
-            this.lblBillNo.Name = "lblBillNo";
-            this.lblBillNo.Size = new System.Drawing.Size(110, 31);
-            this.lblBillNo.TabIndex = 98;
-            this.lblBillNo.Text = "lblBillNo";
-            this.lblBillNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // modal_Payment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -651,7 +653,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 15);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1060, 678);
+            this.ClientSize = new System.Drawing.Size(1081, 678);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlPayment);
