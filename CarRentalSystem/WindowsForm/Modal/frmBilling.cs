@@ -121,6 +121,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             dgvBilling.Columns["Remarks"].HeaderText = "Remarks";
 
             dgvBilling.Columns["ContractStatus"].Visible = false;
+            dgvBilling.Columns["Remarks"].Visible = false;
 
             dgvBilling.ReadOnly = true;
 

@@ -224,6 +224,12 @@
     <Compile Include="WindowsForm\Modal\frmBilling.Designer.cs">
       <DependentUpon>frmBilling.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\Modal\frmBillingLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\Modal\frmBillingLog.Designer.cs">
+      <DependentUpon>frmBillingLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowsForm\Modal\modal_AddEditCar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\frmBilling.resx">
       <DependentUpon>frmBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\Modal\frmBillingLog.resx">
+      <DependentUpon>frmBillingLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\modal_AddEditCar.resx">
       <DependentUpon>modal_AddEditCar.cs</DependentUpon>

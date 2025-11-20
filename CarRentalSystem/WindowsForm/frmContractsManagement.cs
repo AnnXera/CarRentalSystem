@@ -22,6 +22,7 @@ namespace CarRentalSystem.WindowsForm
         public frmContractsManagement()
         {
             InitializeComponent();
+            ClearLabels();
             LoadDesign();
             EventHandlers();
             LoadContracts();
@@ -52,6 +53,18 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.CellMouseLeave += dgvContracts_CellMouseLeave;
             dgvContracts.CellToolTipTextNeeded += dgvContracts_CellToolTipTextNeeded;
             dgvContracts.CellClick += dgvContracts_CellClick;
+            txtSearch.TextChanged += FilterContracts;
+            cbxStatus.SelectedIndexChanged += FilterContracts;
+        }
+
+        private void ClearLabels()
+        {
+            lblCar.Text = "";
+            lblDaysRented.Text = "";
+            lblRentalPlanName.Text = "";
+            lblReturnDate.Text = "";
+            lblStarDate.Text = "";
+            lblStatus.Text = "";
         }
 
         private void LoadContracts()
@@ -125,7 +138,7 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.DataSource = contractTable;
 
             DataView dv = contractTable.DefaultView;
-            dv.Sort = "StartDate DESC";
+            dv.Sort = "ContractID DESC";
 
             dgvContracts.DataSource = dv;
 
@@ -156,6 +169,9 @@ namespace CarRentalSystem.WindowsForm
             dgvContracts.Columns["DateProcessed"].HeaderText = "Date Processed";
             dgvContracts.Columns["IsOverdue"].HeaderText = "Is Overdue?";
             dgvContracts.Columns["Status"].HeaderText = "Status";
+
+            dgvContracts.Columns["EmployeeName"].Visible = false;
+            dgvContracts.Columns["StartMileage"].Visible = false;
 
             dgvContracts.ReadOnly = true;
 
@@ -290,5 +306,35 @@ namespace CarRentalSystem.WindowsForm
         {
             UIHelper.DrawRoundedControl(sender, e, 8);
         }
+
+        private void FilterContracts(object sender, EventArgs e)
+        {
+            if (contractTable == null) return;
+
+            string search = txtSearch.Text.Trim().Replace("'", "''");
+            string status = cbxStatus.SelectedItem?.ToString() ?? "";
+
+            List<string> filters = new List<string>();
+
+            // Search filter (Customer, Car, ContractID)
+            if (!string.IsNullOrEmpty(search))
+            {
+                filters.Add($@"
+                    CustomerName LIKE '%{search}%'
+                ");
+            }
+
+            // Status filter
+            if (!string.IsNullOrEmpty(status))
+            {
+                filters.Add($"Status = '{status}'");
+            }
+
+            string finalFilter = string.Join(" AND ", filters);
+
+            (dgvContracts.DataSource as DataView).RowFilter = finalFilter;
+        }
+
+
     }
 }

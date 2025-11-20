@@ -26,6 +26,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_ProcessReturn()
         {
             InitializeComponent();
+            ClearLabels();
             LoadPanels();
             LoadCustomerDropdown();
             SetupCarPartsGrid();
@@ -49,6 +50,26 @@ namespace CarRentalSystem.WindowsForm.Modal
                 pnlMileage,
                 pnlSecurityDeposit,
             });
+        }
+
+        private void ClearLabels()
+        {
+            lblFullName.Text = "";
+            lblCarName.Text = "";
+            lblRegisteredEmployee.Text = "";
+            lblSecurityDeposit.Text = "";
+            lblDueDate.Text = "";
+            lblRentalPlan.Text = "";
+            lblRate.Text = "";
+            lblMileageFee.Text = "";
+            lblBaseRate.Text = "";
+            lblCarPartsCharges.Text = "";
+            lblLateFee.Text = "";
+            lblMileageFee.Text = "";
+            lblLost.Text = "";
+            lblTotalChargeFee.Text = "";
+            lblSubTotal.Text = "";
+            lblTotalAmount.Text = "";
         }
 
         private void LoadCustomerDropdown()
@@ -449,9 +470,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
-
-                txtSecurityDeposit.Text = subtotal.ToString("N2");
-                txtSecurityDeposit.SelectionStart = txtSecurityDeposit.Text.Length;
                 deposit = subtotal;
             }
 
@@ -460,8 +478,16 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void txtSecurityDeposit_Leave(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
-                txtSecurityDeposit.Text = deposit.ToString("N2");
+            if (!decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
+                deposit = 0;
+
+            if (decimal.TryParse(lblTotalChargeFee.Text, out var totalCharge))
+            {
+                if (deposit > totalCharge)
+                    deposit = totalCharge;
+            }
+
+            txtSecurityDeposit.Text = deposit.ToString("N2");
         }
 
         private void UpdateSecurityDepositState()
@@ -475,7 +501,12 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             // If no charges, reset to 0
             if (totalFee <= 0)
-                txtSecurityDeposit.Text = "0.00";
+            {
+                txtSecurityDeposit.Enabled = false;
+                return;
+            }
+
+            txtSecurityDeposit.Enabled = true;
         }
 
         private void TxtSecurityDeposit_KeyPress(object sender, KeyPressEventArgs e)
@@ -529,6 +560,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             try
             {
+                // Basic validation
                 Validator.RequireNotEmpty(txtEndMileage.Text, "End Mileage");
                 Validator.ValidatePositiveInteger(txtEndMileage.Text, "End Mileage");
 
@@ -543,31 +575,62 @@ namespace CarRentalSystem.WindowsForm.Modal
 
                 empId = SessionManager.LoggedInEmployee.EmpID;
 
-                var repo = new CarPartsRepository();
+                // Calculate total charges
+                // Calculate total charges
+                decimal partsFee = decimal.TryParse(lblCarPartsCharges.Text, out var pf) ? pf : 0m;
+                decimal lostFee = decimal.TryParse(lblLost.Text, out var lf) ? lf : 0m;
+                decimal mileageFee = decimal.TryParse(lblMileageFee.Text, out var mf) ? mf : 0m;
+                decimal lateFee = decimal.TryParse(lblLateFee.Text, out var lf2) ? lf2 : 0m;
+                decimal totalCharges = partsFee + lostFee + mileageFee + lateFee;
 
-                foreach (var part in _currentDamagedParts)
+                // Ensure deposit is entered if there are charges
+                if (totalCharges > 0)
                 {
-                    repo.UpdatePartStatus(part.PartID, "Damaged");
+                    if (!decimal.TryParse(txtSecurityDeposit.Text, out decimal enteredDeposit))
+                    {
+                        MessageBox.Show(
+                            "Charges exist. Please enter a valid security deposit before finalizing.",
+                            "Deposit Required",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        txtSecurityDeposit.Focus();
+                        return;
+                    }
                 }
+
+                var repo = new CarPartsRepository();
+                foreach (var part in _currentDamagedParts)
+                    repo.UpdatePartStatus(part.PartID, "Damaged");
 
                 var contractFactory = new ContractFactory();
                 contractFactory.CompleteContractReturn(
                     _selectedContract.ContractID,
                     string.IsNullOrEmpty(txtEndMileage.Text) ? _selectedContract.StartMileage : long.Parse(txtEndMileage.Text),
-                    decimal.Parse(lblMileageFee.Text),
-                    decimal.Parse(lblLateFee.Text),
-                    decimal.Parse(lblLost.Text),
+                    mileageFee,
+                    lateFee,
+                    lostFee,
                     string.IsNullOrEmpty(txtSecurityDeposit.Text) ? 0 : decimal.Parse(txtSecurityDeposit.Text),
                     _currentDamagedParts
                 );
 
+                // Update car status
                 repo.UpdateCarStatusAfterReturn(_selectedContract.CarID, _currentDamagedParts.Count > 0, chbxLost.Checked);
 
-                decimal returnedDeposit = _selectedContract.DepositAmount - (string.IsNullOrEmpty(txtSecurityDeposit.Text) ? 0 : decimal.Parse(txtSecurityDeposit.Text));
+                // Calculate summary
+                decimal securityDepositRegistered = _selectedContract.DepositAmount;
+                decimal depositApplied = Math.Min(securityDepositRegistered, string.IsNullOrEmpty(txtSecurityDeposit.Text) ? 0 : decimal.Parse(txtSecurityDeposit.Text));
+                decimal remainingBalance = totalCharges - depositApplied;
+                if (remainingBalance < 0) remainingBalance = 0m;
+                decimal returnedDeposit = securityDepositRegistered - depositApplied;
 
-                MessageBox.Show($"Security Deposit Returned: {returnedDeposit:C2}", "Deposit Returned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var summary = new StringBuilder();
+                summary.AppendLine($"Security Deposit Applied: {depositApplied:C2}");
+                if (remainingBalance > 0)
+                    summary.AppendLine($"Remaining Balance to Collect: {remainingBalance:C2}");
+                summary.AppendLine($"Security Deposit Returned: {returnedDeposit:C2}");
 
-                MessageBox.Show("Contract successfully completed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(summary.ToString(), "Payment Summary", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 SystemLogger.Log(
                     "Process Contract",
@@ -576,7 +639,10 @@ namespace CarRentalSystem.WindowsForm.Modal
                 );
 
                 DisplayContract(null);
+
+                this.Close();
             }
+            
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

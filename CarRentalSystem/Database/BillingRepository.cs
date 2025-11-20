@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalSystem.Database
 {
@@ -15,11 +16,6 @@ namespace CarRentalSystem.Database
         public BillingRepository()
         {
             _db = SQLDBHelper.Instance;
-        }
-
-        public void EditBilling()
-        {
-
         }
 
         public List<Billing>ViewAll()
@@ -102,50 +98,81 @@ namespace CarRentalSystem.Database
                 {
                     try
                     {
-                        // 1. Update billing
+                        // 1. Get current RemainingBalance and AmountPaid
+                        decimal remainingBalance = 0m;
+                        decimal currentAmountPaid = 0m;
+                        string selectQuery = "SELECT RemainingBalance, AmountPaid FROM billing WHERE BillingID = @BillingID FOR UPDATE;";
+                        using (var selectCmd = new MySqlCommand(selectQuery, _db.Connection, transaction))
+                        {
+                            selectCmd.Parameters.AddWithValue("@BillingID", billingId);
+                            using (var reader = selectCmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    remainingBalance = reader.GetDecimal("RemainingBalance");
+                                    currentAmountPaid = reader.GetDecimal("AmountPaid");
+                                }
+                                else
+                                {
+                                    throw new Exception("Billing record not found.");
+                                }
+                            }
+                        }
+
+                        // 2. Determine the actual amount to apply (cap at remaining balance)
+                        decimal amountToApply = Math.Min(amountPaid, remainingBalance);
+                        decimal newRemaining = remainingBalance - amountToApply;
+                        decimal newAmountPaid = currentAmountPaid + amountToApply;
+
+                        // 3. Update billing
                         string updateBillingQuery = @"
                             UPDATE billing
-                            SET AmountPaid = AmountPaid + @AmountPaid,
-                                RemainingBalance = TotalAmount - (AmountPaid + @AmountPaid),
-                                PaymentStatus = CASE 
-                                    WHEN TotalAmount - (AmountPaid + @AmountPaid) <= 0 THEN 'Paid'
-                                    WHEN AmountPaid + @AmountPaid > 0 THEN 'Partial'
-                                    ELSE 'Pending'
+                            SET 
+                                AmountPaid = @NewAmountPaid,
+                                RemainingBalance = @NewRemaining,
+                                PaymentStatus = CASE
+                                    WHEN @NewRemaining <= 0 THEN 'Paid'
+                                    ELSE 'Partial'
                                 END
                             WHERE BillingID = @BillingID;
-                        ";
-
+";
                         using (var cmd = new MySqlCommand(updateBillingQuery, _db.Connection, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@AmountPaid", amountPaid);
+                            cmd.Parameters.AddWithValue("@NewAmountPaid", newAmountPaid);
+                            cmd.Parameters.AddWithValue("@NewRemaining", newRemaining);
                             cmd.Parameters.AddWithValue("@BillingID", billingId);
                             cmd.ExecuteNonQuery();
                         }
 
-                        // 2. Insert into billing log
+                        // 4. Insert into billing log
                         string insertLogQuery = @"
                             INSERT INTO billinglog
                             (BillingID, TransactionDate, PaymentMethod, TransactionType, Amount, Notes)
                             VALUES
                             (@BillingID, NOW(), @PaymentMethod, @TransactionType, @Amount, @Notes);
-                        ";
-
+";
                         using (var cmd = new MySqlCommand(insertLogQuery, _db.Connection, transaction))
                         {
                             cmd.Parameters.AddWithValue("@BillingID", billingId);
                             cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
                             cmd.Parameters.AddWithValue("@TransactionType", transactionType);
-                            cmd.Parameters.AddWithValue("@Amount", amountPaid);
+                            cmd.Parameters.AddWithValue("@Amount", amountToApply);
                             cmd.Parameters.AddWithValue("@Notes", notes);
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Commit if all went well
+                        // Commit transaction
                         transaction.Commit();
+
+                        // 5. Return change if customer overpaid
+                        decimal change = amountPaid - amountToApply;
+                        if (change > 0)
+                        {
+                            MessageBox.Show($"Change to return: {change:N2}", "Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     catch
                     {
-                        // Rollback if any error occurs
                         transaction.Rollback();
                         throw;
                     }
@@ -156,7 +183,6 @@ namespace CarRentalSystem.Database
                 _db.Close();
             }
         }
-
 
     }
 }

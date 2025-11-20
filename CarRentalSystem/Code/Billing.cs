@@ -45,6 +45,20 @@ namespace CarRentalSystem.Code
             throw new NotImplementedException();
         }
 
+        public void Edit(Billing billing, string paymentMethod, decimal amountReceived)
+        {
+            if (billing == null) throw new ArgumentNullException(nameof(billing));
+
+            try
+            {
+                _repo.UpdateBillingPayment(billing.BillingId, amountReceived, paymentMethod);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update billing: " + ex.Message);
+            }
+        }
+
         public List<Billing> ViewAll() 
         { 
             return _repo.ViewAll();

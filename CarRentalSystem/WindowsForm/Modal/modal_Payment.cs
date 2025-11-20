@@ -17,15 +17,25 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_Payment : Form
     {
+        BillingFactory billingFactory = new BillingFactory();
+
         private Billing _billing;
+
+        decimal amountReceived;
+        decimal amountToApply;
+        decimal change;
+        long empId;
 
         public modal_Payment(Billing billing)
         {
             InitializeComponent();
-            ClearLabels();
+
             _billing = billing;
+
+            ClearLabels();
             LoadComboBoxes();
             LoadBillingDetails();
+            KeyHandlers();
         }
         private void LoadBillingDetails()
         {
@@ -68,6 +78,8 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblBillNo.Text = "";
         }
 
+
+
         private void ValidatePaymentForm()
         {
             try
@@ -83,6 +95,11 @@ namespace CarRentalSystem.WindowsForm.Modal
             }
         }
 
+        private void KeyHandlers()
+        {
+            txtAmountReceived.KeyPress += (s, e) => InputHandler.AllowDecimal(e, txtAmountReceived);
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -90,13 +107,48 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
+            if (_billing == null) return;
+
             try
             {
+                if (!SessionManager.IsLoggedIn)
+                    throw new Exception("No employee is logged in.");
+
+                empId = SessionManager.LoggedInEmployee.EmpID;
+
+                // 1. Validate form
                 ValidatePaymentForm();
+
+                // 2. Parse amount received
+                decimal amountReceived = decimal.Parse(txtAmountReceived.Text);
+
+                // 3. Calculate amount to apply (cannot exceed remaining balance)
+                decimal amountToApply = Math.Min(amountReceived, _billing.RemainingBalance);
+
+                // 4. Update billing via repository/factory
+                var billingFactory = new BillingFactory();
+                billingFactory.Edit(_billing, cbxPaymentMethod.SelectedItem.ToString(), amountToApply);
+
+                // 5. Calculate change to give back
+                change = amountReceived - amountToApply;
+                if (change > 0)
+                {
+                    MessageBox.Show($"Change to return: {change:N2}", "Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                SystemLogger.Log(
+                    "Process Payment",
+                    $"{SessionManager.LoggedInEmployee.FullName} processed payment of {_billing.CustomerName}.",
+                    SessionManager.LoggedInEmployee.EmpID
+                );
+
+                // 6. Close modal
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Payment failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

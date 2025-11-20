@@ -80,7 +80,7 @@ namespace CarRentalSystem.Code
             if (deposit == null)
                 throw new ArgumentNullException(nameof(deposit));
 
-            return _repo.CreateContract(contract, deposit, baseRate, paymentMethod, customerName);
+            return _repo.CreateFullContract(contract, deposit, baseRate, paymentMethod, customerName);
         }
         public long Add(Contracts entity)
         {

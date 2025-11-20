@@ -40,7 +40,7 @@ namespace CarRentalSystem.Code
 
         public List<BillingLog> ViewAll()
         {
-            throw new NotImplementedException();
+            return _repo.GetAllBillingLogs();
         }
 
         public decimal GetRevenueMTD()

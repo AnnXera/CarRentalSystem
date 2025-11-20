@@ -18,6 +18,46 @@ namespace CarRentalSystem.Database
             _db = SQLDBHelper.Instance;
         }
 
+        public List<BillingLog> GetAllBillingLogs()
+        {
+            var logs = new List<BillingLog>();
+
+            try
+            {
+                _db.Open();
+                string sql = @"
+                    SELECT bl.BillLogID, bl.BillingID, bl.TransactionDate, bl.PaymentMethod, bl.TransactionType, bl.Amount, bl.Notes
+                    FROM billinglog bl
+                    JOIN billing b ON bl.BillingID = b.BillingID
+                    WHERE bl.TransactionType IN ('Payment', 'Refund')
+                    ORDER BY bl.TransactionDate DESC;";
+
+                using (var cmd = new MySqlCommand(sql, _db.Connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        logs.Add(new BillingLog
+                        {
+                            BillLogID = reader.GetInt64("BillLogID"),
+                            BillingID = reader.GetInt64("BillingID"),
+                            TransactionDate = reader.GetDateTime("TransactionDate"),
+                            PaymentMethod = reader.GetString("PaymentMethod"),
+                            TransactionType = reader.GetString("TransactionType"),
+                            Amount = reader.GetDecimal("Amount"),
+                            Notes = reader.IsDBNull(reader.GetOrdinal("Notes")) ? "" : reader.GetString("Notes")
+                        });
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return logs;
+        }
+
         public decimal GetRevenueMTD()
         {
             decimal revenue = 0m;

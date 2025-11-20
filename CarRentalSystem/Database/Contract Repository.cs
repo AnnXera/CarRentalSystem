@@ -19,7 +19,7 @@ namespace CarRentalSystem.Database
             _db = SQLDBHelper.Instance;
         }
 
-        public long CreateContract(Contracts contract, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
+        public long CreateFullContract(Contracts contract, SecurityDeposit deposit, decimal baseRate, string paymentMethod, string customerName)
         {
             if (contract == null) throw new ArgumentNullException(nameof(contract));
             if (deposit == null) throw new ArgumentNullException(nameof(deposit));
@@ -32,62 +32,109 @@ namespace CarRentalSystem.Database
             {
                 try
                 {
-                    using (var cmd = new MySqlCommand("CreateFullContract", _db.Connection, transaction))
+                    // 1. Get current mileage of the car
+                    long carCurrentMileage = 0;
+                    string selectMileageQuery = "SELECT CurrentMileage FROM Car WHERE CarID = @CarID FOR UPDATE;";
+                    using (var cmd = new MySqlCommand(selectMileageQuery, _db.Connection, transaction))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Contract parameters
-                        cmd.Parameters.AddWithValue("@p_CustID", contract.CustID);
-                        cmd.Parameters.AddWithValue("@p_EmpID", contract.EmpID);
-                        cmd.Parameters.AddWithValue("@p_CarID", contract.CarID);
-                        cmd.Parameters.AddWithValue("@p_StartDate", contract.StartDate);
-                        cmd.Parameters.AddWithValue("@p_ReturnDate", contract.ReturnDate);
-                        cmd.Parameters.AddWithValue("@p_DaysRented", contract.DaysRented);
-                        cmd.Parameters.AddWithValue("@p_StartMileage", contract.StartMileage);
-                        cmd.Parameters.AddWithValue("@p_Status", contract.Status);
-
-                        // Deposit parameters
-                        cmd.Parameters.AddWithValue("@p_DepositAmount", deposit.Amount);
-                        cmd.Parameters.AddWithValue("@p_DepositStatus", deposit.Status);
-
-                        // Billing parameters
-                        cmd.Parameters.AddWithValue("@p_PaymentMethod", paymentMethod);
-                        cmd.Parameters.AddWithValue("@p_BaseRate", baseRate);
-                        cmd.Parameters.AddWithValue("@p_CustomerName", customerName);
-
-                        // Output parameter
-                        var outParam = new MySqlParameter("@p_NewContractID", MySqlDbType.Int64)
+                        cmd.Parameters.AddWithValue("@CarID", contract.CarID);
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            Direction = ParameterDirection.Output
-                        };
-                        cmd.Parameters.Add(outParam);
-
-                        // Execute
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected <= 0)
-                            throw new Exception("No rows were inserted. Check stored procedure or input parameters.");
-
-                        // Commit the transaction
-                        transaction.Commit();
-
-                        // Get the new ContractID
-                        if (outParam.Value != DBNull.Value)
-                            newContractID = Convert.ToInt64(outParam.Value);
+                            if (reader.Read())
+                            {
+                                carCurrentMileage = reader.GetInt64("CurrentMileage");
+                            }
+                            else
+                            {
+                                throw new Exception("Car not found.");
+                            }
+                        }
                     }
+
+                    // 2. Insert Contract
+                    string insertContractQuery = @"
+                        INSERT INTO Contracts
+                        (CustID, EmpID, CarID, StartDate, ReturnDate, DaysRented, StartMileage, Status)
+                        VALUES
+                        (@CustID, @EmpID, @CarID, @StartDate, @ReturnDate, @DaysRented, @StartMileage, @Status);
+                        SELECT LAST_INSERT_ID();
+                        ";
+                    using (var cmd = new MySqlCommand(insertContractQuery, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@CustID", contract.CustID);
+                        cmd.Parameters.AddWithValue("@EmpID", contract.EmpID);
+                        cmd.Parameters.AddWithValue("@CarID", contract.CarID);
+                        cmd.Parameters.AddWithValue("@StartDate", contract.StartDate);
+                        cmd.Parameters.AddWithValue("@ReturnDate", contract.ReturnDate);
+                        cmd.Parameters.AddWithValue("@DaysRented", contract.DaysRented);
+                        cmd.Parameters.AddWithValue("@StartMileage", carCurrentMileage);
+                        cmd.Parameters.AddWithValue("@Status", contract.Status);
+
+                        newContractID = Convert.ToInt64(cmd.ExecuteScalar());
+                    }
+
+                    // 3. Insert Security Deposit
+                    string insertDepositQuery = @"
+                        INSERT INTO SecurityDeposit
+                        (ContractID, DepositAmount, Status, DepositDate)
+                        VALUES
+                        (@ContractID, @DepositAmount, @DepositStatus, CURDATE());
+                        ";
+                    using (var cmd = new MySqlCommand(insertDepositQuery, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", newContractID);
+                        cmd.Parameters.AddWithValue("@DepositAmount", deposit.Amount);
+                        cmd.Parameters.AddWithValue("@DepositStatus", deposit.Status);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 4. Insert Billing
+                    long newBillingID = 0;
+                    string insertBillingQuery = @"
+                        INSERT INTO Billing
+                        (ContractID, BaseRate, TotalCharges, SecurityDepUsed, TotalAmount, AmountPaid, RemainingBalance, PaymentStatus, BillingDate, Remarks)
+                        VALUES
+                        (@ContractID, @BaseRate, 0, 0, @BaseRate, 0, @BaseRate, 'Pending', CURDATE(), 'Initial billing');
+                        SELECT LAST_INSERT_ID();
+                        ";
+                    using (var cmd = new MySqlCommand(insertBillingQuery, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ContractID", newContractID);
+                        cmd.Parameters.AddWithValue("@BaseRate", baseRate);
+
+                        newBillingID = Convert.ToInt64(cmd.ExecuteScalar());
+                    }
+
+                    // 5. Insert Billing Log for Deposit
+                    string insertBillingLogQuery = @"
+                        INSERT INTO BillingLog
+                        (BillingID, TransactionDate, PaymentMethod, TransactionType, Amount, Notes)
+                        VALUES
+                        (@BillingID, NOW(), @PaymentMethod, 'Deposit', @Amount, @Notes);
+                        ";
+                    using (var cmd = new MySqlCommand(insertBillingLogQuery, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@BillingID", newBillingID);
+                        cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+                        cmd.Parameters.AddWithValue("@Amount", deposit.Amount);
+                        cmd.Parameters.AddWithValue("@Notes", $"{customerName} deposit");
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // 6. Update Car status to Rented
+                    string updateCarStatusQuery = "UPDATE Car SET Status = 'Rented' WHERE CarID = @CarID;";
+                    using (var cmd = new MySqlCommand(updateCarStatusQuery, _db.Connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@CarID", contract.CarID);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    try
-                    {
-                        transaction.Rollback();
-                    }
-                    catch
-                    {
-                        // ignore rollback errors
-                    }
-
-                    throw new Exception("Error creating contract: " + ex.Message, ex);
+                    transaction.Rollback();
+                    throw;
                 }
                 finally
                 {

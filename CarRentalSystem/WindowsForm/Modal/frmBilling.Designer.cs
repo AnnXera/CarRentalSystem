@@ -51,6 +51,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
+            this.btnViewBillingLog = new System.Windows.Forms.Button();
             this.pnlContractsOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilling)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -64,6 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContractsOverview.BackColor = System.Drawing.Color.White;
+            this.pnlContractsOverview.Controls.Add(this.btnViewBillingLog);
             this.pnlContractsOverview.Controls.Add(this.dgvBilling);
             this.pnlContractsOverview.Controls.Add(this.pnlSearch);
             this.pnlContractsOverview.Location = new System.Drawing.Point(12, 299);
@@ -346,6 +348,21 @@
             this.lblCustomerName.TabIndex = 61;
             this.lblCustomerName.Text = "Customer Name";
             // 
+            // btnViewBillingLog
+            // 
+            this.btnViewBillingLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewBillingLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnViewBillingLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewBillingLog.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewBillingLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
+            this.btnViewBillingLog.Location = new System.Drawing.Point(1289, 21);
+            this.btnViewBillingLog.Margin = new System.Windows.Forms.Padding(0, 20, 10, 0);
+            this.btnViewBillingLog.Name = "btnViewBillingLog";
+            this.btnViewBillingLog.Size = new System.Drawing.Size(226, 60);
+            this.btnViewBillingLog.TabIndex = 74;
+            this.btnViewBillingLog.Text = "View Billing Log";
+            this.btnViewBillingLog.UseVisualStyleBackColor = true;
+            // 
             // frmBilling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,5 +407,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCustomerName;
+        private System.Windows.Forms.Button btnViewBillingLog;
     }
 }
