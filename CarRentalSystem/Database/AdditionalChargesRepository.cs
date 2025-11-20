@@ -29,7 +29,7 @@ namespace CarRentalSystem.Database
             string query = @"
                 SELECT 
                     ChargeType,
-                    IFNULL(SUM(Amount), 0) AS TotalAmount
+                    IFNULL(SUM(Amount * IFNULL(Quantity, 1)), 0) AS TotalAmount
                 FROM additionalcharges
                 WHERE ContractID = @ContractID
                 GROUP BY ChargeType;

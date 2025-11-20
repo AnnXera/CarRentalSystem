@@ -140,7 +140,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(73, 722);
+            this.btnCancel.Location = new System.Drawing.Point(74, 717);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(219, 44);
@@ -156,8 +156,8 @@
             this.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmPayment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmPayment.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(307, 722);
-            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
+            this.btnConfirmPayment.Location = new System.Drawing.Point(307, 717);
+            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(20, 6, 4, 4);
             this.btnConfirmPayment.Name = "btnConfirmPayment";
             this.btnConfirmPayment.Size = new System.Drawing.Size(230, 44);
             this.btnConfirmPayment.TabIndex = 50;
@@ -318,14 +318,14 @@
             this.lblBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBillNo.AutoSize = true;
             this.lblBillNo.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillNo.Location = new System.Drawing.Point(315, 301);
+            this.lblBillNo.Location = new System.Drawing.Point(153, 301);
             this.lblBillNo.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
             this.lblBillNo.Name = "lblBillNo";
-            this.lblBillNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblBillNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblBillNo.Size = new System.Drawing.Size(110, 31);
             this.lblBillNo.TabIndex = 98;
             this.lblBillNo.Text = "lblBillNo";
-            this.lblBillNo.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblBillNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel3
             // 
@@ -429,9 +429,9 @@
             this.label8.Location = new System.Drawing.Point(10, 301);
             this.label8.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(165, 31);
+            this.label8.Size = new System.Drawing.Size(129, 31);
             this.label8.TabIndex = 90;
-            this.label8.Text = "Billing Details";
+            this.label8.Text = "Billing No.";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblLost
@@ -653,7 +653,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 15);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1081, 678);
+            this.ClientSize = new System.Drawing.Size(1060, 678);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlPayment);

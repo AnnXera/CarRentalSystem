@@ -194,5 +194,26 @@ namespace CarRentalSystem.Database
                 _db.Close();
             }
         }
+
+        public int GetAllAvaiableCars()
+        {
+
+            string query = @"SELECT COUNT(*) FROM car where status = 'Available'";
+            int count = 0;
+
+            try
+            {
+                _db.Open();
+
+            }
+
+            catch
+            {
+
+            }
+
+            return count;
+
+        }
     }
 }

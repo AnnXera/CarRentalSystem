@@ -97,7 +97,7 @@
             this.pnlQuickActions.Controls.Add(this.lblUserName);
             this.pnlQuickActions.Location = new System.Drawing.Point(788, 20);
             this.pnlQuickActions.Name = "pnlQuickActions";
-            this.pnlQuickActions.Size = new System.Drawing.Size(716, 137);
+            this.pnlQuickActions.Size = new System.Drawing.Size(695, 137);
             this.pnlQuickActions.TabIndex = 0;
             // 
             // btnProcessContract
@@ -151,7 +151,7 @@
             this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(529, 59);
+            this.lblRole.Location = new System.Drawing.Point(508, 59);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(50, 23);
             this.lblRole.TabIndex = 1;
@@ -162,7 +162,7 @@
             this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(528, 26);
+            this.lblUserName.Location = new System.Drawing.Point(507, 26);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(126, 27);
             this.lblUserName.TabIndex = 0;
@@ -210,7 +210,7 @@
             this.pnlOverView.Controls.Add(this.label13);
             this.pnlOverView.Location = new System.Drawing.Point(788, 187);
             this.pnlOverView.Name = "pnlOverView";
-            this.pnlOverView.Size = new System.Drawing.Size(716, 841);
+            this.pnlOverView.Size = new System.Drawing.Size(695, 841);
             this.pnlOverView.TabIndex = 4;
             // 
             // pnlSearchActiveRentals
@@ -223,7 +223,7 @@
             this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
             this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
-            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(677, 55);
+            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(656, 55);
             this.pnlSearchActiveRentals.TabIndex = 76;
             // 
             // pictureBox4
@@ -248,7 +248,7 @@
             this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
             this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
             this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
-            this.txtSearchActiveRentals.Size = new System.Drawing.Size(596, 28);
+            this.txtSearchActiveRentals.Size = new System.Drawing.Size(575, 28);
             this.txtSearchActiveRentals.TabIndex = 1;
             // 
             // dgvActiveRentals
@@ -297,7 +297,7 @@
             this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
             this.dgvActiveRentals.RowTemplate.Height = 40;
             this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvActiveRentals.Size = new System.Drawing.Size(677, 690);
+            this.dgvActiveRentals.Size = new System.Drawing.Size(656, 690);
             this.dgvActiveRentals.TabIndex = 75;
             this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
             // 

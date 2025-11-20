@@ -81,7 +81,6 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             try
             {
-                //Validator.RequireNotEmpty(cbxBrand.Text, "Brand");
                 Validator.RequireComboBoxSelected(cbxPaymentMethod, "Payment Method");
 
                 Validator.RequireNotEmpty(txtAmountReceived.Text, "Amount");
@@ -100,7 +99,14 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            ValidatePaymentForm();
+            try
+            {
+                ValidatePaymentForm();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
