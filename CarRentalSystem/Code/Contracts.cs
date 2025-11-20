@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,12 +82,10 @@ namespace CarRentalSystem.Code
 
             return _repo.CreateContract(contract, deposit, baseRate, paymentMethod, customerName);
         }
-
         public long Add(Contracts entity)
         {
             throw new NotImplementedException("Use Add(contract, deposit, baseRate, paymentMethod, customerName) instead.");
         }
-
 
         public void Edit(long contractID, string newStatus)
         {
@@ -134,6 +133,26 @@ namespace CarRentalSystem.Code
         public List<Contracts> GetActiveContracts()
         {
             return _repo.GetActiveContractCustomers();
+        }
+
+        public List<Contracts> GetActiveRentalsSimple()
+        {
+            return  _repo.GetActiveRentalsSimple();
+        }
+
+        public int GetRentalsDueToday()
+        {
+            return _repo.GetRentalsDueToday();
+        }
+
+        public int GetReturnsDueToday()
+        {
+            return _repo.GetReturnsDueToday();
+        }
+
+        public int GetOverdueVehicles()
+        {
+            return  _repo.GetOverdueVehicles();
         }
     }
 }

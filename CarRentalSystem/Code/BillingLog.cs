@@ -18,4 +18,39 @@ namespace CarRentalSystem.Code
         public decimal Amount { get; set; }
         public string Notes { get; set; }
     }
+
+    public class BillingLogFactory : IModalFactory<BillingLog>
+    {
+        private readonly BillingLogRepository _repo;
+
+        public BillingLogFactory()
+        {
+            _repo = new BillingLogRepository();
+        }
+
+        public long Add(BillingLog billinglog)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(BillingLog billinglog)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<BillingLog> ViewAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal GetRevenueMTD()
+        {
+            return _repo.GetRevenueMTD();
+        }
+
+        public decimal GetAvgDailyRate()
+        {
+            return _repo.GetAvgDailyRate();
+        }
+    }
 }

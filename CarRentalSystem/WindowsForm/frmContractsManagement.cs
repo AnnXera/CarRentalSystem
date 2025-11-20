@@ -226,10 +226,16 @@ namespace CarRentalSystem.WindowsForm
         {
             if (e.RowIndex < 0) return;
 
-            string status = dgvContracts.Rows[e.RowIndex].Cells["Status"].Value?.ToString() ?? string.Empty;
+            var row = dgvContracts.Rows[e.RowIndex];
+            string status = row.Cells["Status"].Value?.ToString() ?? string.Empty;
+
+            // Only allow actions on pending contracts
             if (status != "Pending") return;
 
-            long contractID = Convert.ToInt64(dgvContracts.Rows[e.RowIndex].Cells["ContractID"].Value);
+            long contractID = Convert.ToInt64(row.Cells["ContractID"].Value);
+            string customerName = row.Cells["CustomerName"].Value?.ToString() ?? "Unknown";
+            string carName = row.Cells["CarName"].Value?.ToString() ?? "Unknown";
+
             var factory = new ContractFactory();
 
             if (dgvContracts.Columns[e.ColumnIndex].Name == "Activate")
@@ -238,6 +244,12 @@ namespace CarRentalSystem.WindowsForm
                 {
                     factory.Edit(contractID, "Active");
                     LoadContracts();
+
+                    SystemLogger.Log(
+                        "Activate Contract",
+                        $"{SessionManager.LoggedInEmployee.FullName} activated contract {contractID} for {customerName} ({carName})",
+                        SessionManager.LoggedInEmployee.EmpID
+                    );
                 }
             }
             else if (dgvContracts.Columns[e.ColumnIndex].Name == "Cancel")
@@ -246,6 +258,12 @@ namespace CarRentalSystem.WindowsForm
                 {
                     factory.CancelContract(contractID);
                     LoadContracts();
+
+                    SystemLogger.Log(
+                        "Cancel Contract",
+                        $"{SessionManager.LoggedInEmployee.FullName} canceled contract {contractID} for {customerName} ({carName})",
+                        SessionManager.LoggedInEmployee.EmpID
+                    );
                 }
             }
         }

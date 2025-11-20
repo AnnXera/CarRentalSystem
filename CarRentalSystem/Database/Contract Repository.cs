@@ -195,6 +195,50 @@ namespace CarRentalSystem.Database
             return list;
         }
 
+        public List<Contracts> GetActiveRentalsSimple()
+        {
+            var list = new List<Contracts>();
+
+            try
+            {
+                _db.Open();
+                string sql = @"
+                    SELECT 
+                        ct.ContractID AS ContractNum,
+                        c.CarID AS CarNo,
+                        cust.FullName AS CustomerName,
+                        ct.ReturnDate
+                    FROM contracts ct
+                    INNER JOIN car c ON ct.CarID = c.CarID
+                    INNER JOIN customers cust ON ct.CustID = cust.CustID
+                    WHERE ct.Status = 'Active'
+                    ORDER BY ct.ReturnDate ASC;
+                ";
+
+                using (var cmd = new MySqlCommand(sql, _db.Connection))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Contracts
+                        {
+                            ContractID = reader.GetInt64("ContractNum"),
+                            CarID = reader.GetInt64("CarNo"),
+                            CustomerName = reader.GetString("CustomerName"),
+                            ReturnDate = reader.GetDateTime("ReturnDate")
+                        });
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return list;
+        }
+
+
         public decimal CompleteContractReturn(long contractId, long extraMileage, decimal mileageFee, decimal lateFee, decimal lostFee, decimal securityDepositUsed, List<(long PartID, int Quantity, decimal Cost)> damagedParts)
         {
             if (contractId <= 0) throw new ArgumentException("Invalid contract ID");
@@ -512,5 +556,55 @@ namespace CarRentalSystem.Database
                 }
             }
         }
+
+        public int GetRentalsDueToday()
+        {
+            string sql = @"SELECT COUNT(*) 
+                   FROM contracts 
+                   WHERE StartDate = CURDATE()
+                     AND Status = 'Pending'";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(sql, _db.Connection))
+            {
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                _db.Close();
+                return count;
+            }
+        }
+
+        public int GetReturnsDueToday()
+        {
+            string sql = @"SELECT COUNT(*) 
+                   FROM contracts 
+                   WHERE ReturnDate = CURDATE()
+                     AND Status = 'Active'";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(sql, _db.Connection))
+            {
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                _db.Close();
+                return count;
+            }
+        }
+
+        public int GetOverdueVehicles()
+        {
+            string sql = @"SELECT COUNT(*) 
+                   FROM contracts
+                   WHERE ReturnDate < CURDATE()
+                     AND Status = 'Active'";
+
+            _db.Open();
+            using (var cmd = new MySqlCommand(sql, _db.Connection))
+            {
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                _db.Close();
+                return count;
+            }
+        }
+
+
     }
 }

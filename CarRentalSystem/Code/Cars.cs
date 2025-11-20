@@ -50,6 +50,16 @@ namespace CarRentalSystem.Code
             _repo.UpdateCar(entity); 
         }
 
+        public int GetCountAvailableCars()
+        {
+            return _repo.GetAvailableCarsToday();
+        }
+
+        public decimal GetFleetUtilization()
+        {
+            return _repo.GetFleetUtilization();
+        }
+
         public List<Cars> ViewAll()
         {
             return _repo.GetAllCars();

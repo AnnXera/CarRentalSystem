@@ -127,33 +127,40 @@ namespace CarRentalSystem.Database
             try
             {
                 _db.Open();
-                using (var cmd = new MySqlCommand("AddCar", _db.Connection))
+                using (var cmd = new MySqlCommand())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = _db.Connection;
 
-                    cmd.Parameters.AddWithValue("@p_PlanID", car.PlanID);
-                    cmd.Parameters.AddWithValue("@p_CarPicture", car.CarPicture ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@p_VIN", car.VIN);
-                    cmd.Parameters.AddWithValue("@p_PlateNumber", car.PlateNumber);
-                    cmd.Parameters.AddWithValue("@p_Brand", car.Brand);
-                    cmd.Parameters.AddWithValue("@p_Model", car.Model);
-                    cmd.Parameters.AddWithValue("@p_Year", car.Year);
-                    cmd.Parameters.AddWithValue("@p_Transmission", car.Transmission);
-                    cmd.Parameters.AddWithValue("@p_Seats", car.Seats);
-                    cmd.Parameters.AddWithValue("@p_EngineType", car.EngineType);
-                    cmd.Parameters.AddWithValue("@p_FuelType", car.FuelType);
-                    cmd.Parameters.AddWithValue("@p_CurrentMileage", car.CurrentMileage);
-                    cmd.Parameters.AddWithValue("@p_ReplacementValue", car.ReplacementValue);
-                    cmd.Parameters.AddWithValue("@p_Status", car.Status);
+                    // Inline query with Status explicitly set to 'Available'
+                    cmd.CommandText = @"
+                INSERT INTO Car
+                    (PlanID, CarPicture, VIN, PlateNumber, Brand, Model, Year,
+                     Transmission, Seats, EngineType, FuelType, CurrentMileage,
+                     ReplacementValue, Status)
+                VALUES
+                    (@PlanID, @CarPicture, @VIN, @PlateNumber, @Brand, @Model, @Year,
+                     @Transmission, @Seats, @EngineType, @FuelType, @CurrentMileage,
+                     @ReplacementValue, 'Available');
+                SELECT LAST_INSERT_ID();
+            ";
 
-                    var outParam = new MySqlParameter("@p_NewCarID", MySqlDbType.Int64)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(outParam);
+                    cmd.Parameters.AddWithValue("@PlanID", car.PlanID);
+                    cmd.Parameters.AddWithValue("@CarPicture", car.CarPicture ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@VIN", car.VIN);
+                    cmd.Parameters.AddWithValue("@PlateNumber", car.PlateNumber);
+                    cmd.Parameters.AddWithValue("@Brand", car.Brand);
+                    cmd.Parameters.AddWithValue("@Model", car.Model);
+                    cmd.Parameters.AddWithValue("@Year", car.Year);
+                    cmd.Parameters.AddWithValue("@Transmission", car.Transmission);
+                    cmd.Parameters.AddWithValue("@Seats", car.Seats);
+                    cmd.Parameters.AddWithValue("@EngineType", car.EngineType);
+                    cmd.Parameters.AddWithValue("@FuelType", car.FuelType);
+                    cmd.Parameters.AddWithValue("@CurrentMileage", car.CurrentMileage);
+                    cmd.Parameters.AddWithValue("@ReplacementValue", car.ReplacementValue);
 
-                    cmd.ExecuteNonQuery();
-                    return (long)outParam.Value;
+                    // ExecuteScalar returns the last inserted ID
+                    var result = cmd.ExecuteScalar();
+                    return Convert.ToInt64(result);
                 }
             }
             finally
@@ -195,25 +202,77 @@ namespace CarRentalSystem.Database
             }
         }
 
-        public int GetAllAvaiableCars()
+        public int GetAvailableCarsToday()
         {
-
-            string query = @"SELECT COUNT(*) FROM car where status = 'Available'";
             int count = 0;
+
+            string query = @"
+                SELECT COUNT(*) AS AvailableCars
+                FROM Car c
+                WHERE c.Status = 'Available'
+                AND c.CarID NOT IN (
+                        SELECT ct.CarID
+                        FROM Contracts ct
+                        WHERE CURDATE() BETWEEN ct.StartDate AND ct.ReturnDate
+                        AND ct.Status = 'Active')";
 
             try
             {
                 _db.Open();
-
+                using (var cmd = new MySqlCommand(query, _db.Connection))
+                {
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        count = Convert.ToInt32(result);
+                    }
+                }
             }
-
-            catch
+            finally
             {
-
+                _db.Close();
             }
 
             return count;
+        }
 
+        public decimal GetFleetUtilization()
+        {
+            decimal utilization = 0m;
+
+            try
+            {
+                _db.Open();
+                string sql = @"
+                    SELECT 
+                        COUNT(DISTINCT ct.CarID) AS RentedCars,
+                        (SELECT COUNT(*) FROM car) AS TotalCars
+                    FROM contracts ct
+                    WHERE (ct.Status = 'Completed' OR ct.Status = 'Active')
+                      AND CURDATE() BETWEEN ct.StartDate AND ct.ReturnDate;
+                ";
+
+                using (var cmd = new MySqlCommand(sql, _db.Connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int rentedCars = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                            int totalCars = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+
+                            if (totalCars > 0)
+                                utilization = ((decimal)rentedCars / totalCars) * 100m;
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _db.Close();
+            }
+
+            return Math.Round(utilization, 2);
         }
     }
 }

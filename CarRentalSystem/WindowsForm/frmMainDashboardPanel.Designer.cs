@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlQuickActions = new System.Windows.Forms.Panel();
             this.btnProcessContract = new System.Windows.Forms.Button();
             this.btnNewContract = new System.Windows.Forms.Button();
@@ -70,6 +70,13 @@
             this.pnlRevenue = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblAvailableCars = new System.Windows.Forms.Label();
+            this.lblRentalsDueToday = new System.Windows.Forms.Label();
+            this.lblReturnsDueToday = new System.Windows.Forms.Label();
+            this.lblOverdueVehicles = new System.Windows.Forms.Label();
+            this.lblRevenueMTD = new System.Windows.Forms.Label();
+            this.lblFleetUtilization = new System.Windows.Forms.Label();
+            this.lblDailyAvgRate = new System.Windows.Forms.Label();
             this.pnlQuickActions.SuspendLayout();
             this.pnlOverView.SuspendLayout();
             this.pnlSearchActiveRentals.SuspendLayout();
@@ -97,7 +104,7 @@
             this.pnlQuickActions.Controls.Add(this.lblUserName);
             this.pnlQuickActions.Location = new System.Drawing.Point(788, 20);
             this.pnlQuickActions.Name = "pnlQuickActions";
-            this.pnlQuickActions.Size = new System.Drawing.Size(695, 137);
+            this.pnlQuickActions.Size = new System.Drawing.Size(674, 137);
             this.pnlQuickActions.TabIndex = 0;
             // 
             // btnProcessContract
@@ -151,7 +158,7 @@
             this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(508, 59);
+            this.lblRole.Location = new System.Drawing.Point(487, 59);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(50, 23);
             this.lblRole.TabIndex = 1;
@@ -162,7 +169,7 @@
             this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(507, 26);
+            this.lblUserName.Location = new System.Drawing.Point(486, 26);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(126, 27);
             this.lblUserName.TabIndex = 0;
@@ -210,7 +217,7 @@
             this.pnlOverView.Controls.Add(this.label13);
             this.pnlOverView.Location = new System.Drawing.Point(788, 187);
             this.pnlOverView.Name = "pnlOverView";
-            this.pnlOverView.Size = new System.Drawing.Size(695, 841);
+            this.pnlOverView.Size = new System.Drawing.Size(674, 841);
             this.pnlOverView.TabIndex = 4;
             // 
             // pnlSearchActiveRentals
@@ -223,7 +230,7 @@
             this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
             this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
-            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(656, 55);
+            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(635, 55);
             this.pnlSearchActiveRentals.TabIndex = 76;
             // 
             // pictureBox4
@@ -248,8 +255,9 @@
             this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
             this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
             this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
-            this.txtSearchActiveRentals.Size = new System.Drawing.Size(575, 28);
+            this.txtSearchActiveRentals.Size = new System.Drawing.Size(554, 28);
             this.txtSearchActiveRentals.TabIndex = 1;
+            this.txtSearchActiveRentals.TextChanged += new System.EventHandler(this.txtSearchActiveRentals_TextChanged);
             // 
             // dgvActiveRentals
             // 
@@ -260,44 +268,44 @@
             this.dgvActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvActiveRentals.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvActiveRentals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActiveRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5, 10, 0, 10);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvActiveRentals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvActiveRentals.EnableHeadersVisualStyles = false;
             this.dgvActiveRentals.Location = new System.Drawing.Point(20, 132);
             this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(5);
             this.dgvActiveRentals.MultiSelect = false;
             this.dgvActiveRentals.Name = "dgvActiveRentals";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvActiveRentals.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvActiveRentals.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvActiveRentals.RowHeadersVisible = false;
             this.dgvActiveRentals.RowHeadersWidth = 51;
             this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
             this.dgvActiveRentals.RowTemplate.Height = 40;
             this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvActiveRentals.Size = new System.Drawing.Size(656, 690);
+            this.dgvActiveRentals.Size = new System.Drawing.Size(635, 690);
             this.dgvActiveRentals.TabIndex = 75;
             this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
             // 
@@ -324,6 +332,7 @@
             // pnlVehiclesAvailable
             // 
             this.pnlVehiclesAvailable.BackColor = System.Drawing.Color.White;
+            this.pnlVehiclesAvailable.Controls.Add(this.lblAvailableCars);
             this.pnlVehiclesAvailable.Controls.Add(this.panel3);
             this.pnlVehiclesAvailable.Controls.Add(this.label5);
             this.pnlVehiclesAvailable.Location = new System.Drawing.Point(19, 219);
@@ -357,6 +366,7 @@
             // pnlRentalsDue
             // 
             this.pnlRentalsDue.BackColor = System.Drawing.Color.White;
+            this.pnlRentalsDue.Controls.Add(this.lblRentalsDueToday);
             this.pnlRentalsDue.Controls.Add(this.panel4);
             this.pnlRentalsDue.Controls.Add(this.label6);
             this.pnlRentalsDue.Location = new System.Drawing.Point(404, 219);
@@ -390,6 +400,7 @@
             // pnlReturnsDueToday
             // 
             this.pnlReturnsDueToday.BackColor = System.Drawing.Color.White;
+            this.pnlReturnsDueToday.Controls.Add(this.lblReturnsDueToday);
             this.pnlReturnsDueToday.Controls.Add(this.panel6);
             this.pnlReturnsDueToday.Controls.Add(this.label7);
             this.pnlReturnsDueToday.Location = new System.Drawing.Point(19, 409);
@@ -423,6 +434,7 @@
             // pnlOverviewVehicles
             // 
             this.pnlOverviewVehicles.BackColor = System.Drawing.Color.White;
+            this.pnlOverviewVehicles.Controls.Add(this.lblOverdueVehicles);
             this.pnlOverviewVehicles.Controls.Add(this.panel8);
             this.pnlOverviewVehicles.Controls.Add(this.label8);
             this.pnlOverviewVehicles.Location = new System.Drawing.Point(404, 409);
@@ -471,6 +483,7 @@
             this.pnlAdminOverview.Controls.Add(this.pnlRevenue);
             this.pnlAdminOverview.Controls.Add(this.label9);
             this.pnlAdminOverview.Location = new System.Drawing.Point(-1, 607);
+            this.pnlAdminOverview.Margin = new System.Windows.Forms.Padding(0);
             this.pnlAdminOverview.Name = "pnlAdminOverview";
             this.pnlAdminOverview.Size = new System.Drawing.Size(790, 437);
             this.pnlAdminOverview.TabIndex = 32;
@@ -478,6 +491,7 @@
             // pnlAvgDailyRate
             // 
             this.pnlAvgDailyRate.BackColor = System.Drawing.Color.White;
+            this.pnlAvgDailyRate.Controls.Add(this.lblDailyAvgRate);
             this.pnlAvgDailyRate.Controls.Add(this.panel9);
             this.pnlAvgDailyRate.Controls.Add(this.label12);
             this.pnlAvgDailyRate.Location = new System.Drawing.Point(405, 254);
@@ -504,13 +518,14 @@
             this.label12.ForeColor = System.Drawing.Color.Gray;
             this.label12.Location = new System.Drawing.Point(12, 15);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(146, 24);
+            this.label12.Size = new System.Drawing.Size(220, 24);
             this.label12.TabIndex = 7;
-            this.label12.Text = "Avg Daily Rate";
+            this.label12.Text = "Avg Daily Rate(Month)";
             // 
             // pnlFleetUtilization
             // 
             this.pnlFleetUtilization.BackColor = System.Drawing.Color.White;
+            this.pnlFleetUtilization.Controls.Add(this.lblFleetUtilization);
             this.pnlFleetUtilization.Controls.Add(this.panel7);
             this.pnlFleetUtilization.Controls.Add(this.label11);
             this.pnlFleetUtilization.Location = new System.Drawing.Point(20, 254);
@@ -544,6 +559,7 @@
             // pnlRevenue
             // 
             this.pnlRevenue.BackColor = System.Drawing.Color.White;
+            this.pnlRevenue.Controls.Add(this.lblRevenueMTD);
             this.pnlRevenue.Controls.Add(this.panel2);
             this.pnlRevenue.Controls.Add(this.label10);
             this.pnlRevenue.Location = new System.Drawing.Point(20, 52);
@@ -573,6 +589,83 @@
             this.label10.Size = new System.Drawing.Size(150, 24);
             this.label10.TabIndex = 7;
             this.label10.Text = "Revenue(MTD)";
+            // 
+            // lblAvailableCars
+            // 
+            this.lblAvailableCars.AutoSize = true;
+            this.lblAvailableCars.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvailableCars.Location = new System.Drawing.Point(40, 80);
+            this.lblAvailableCars.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblAvailableCars.Name = "lblAvailableCars";
+            this.lblAvailableCars.Size = new System.Drawing.Size(40, 46);
+            this.lblAvailableCars.TabIndex = 28;
+            this.lblAvailableCars.Text = "0";
+            // 
+            // lblRentalsDueToday
+            // 
+            this.lblRentalsDueToday.AutoSize = true;
+            this.lblRentalsDueToday.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRentalsDueToday.Location = new System.Drawing.Point(40, 80);
+            this.lblRentalsDueToday.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblRentalsDueToday.Name = "lblRentalsDueToday";
+            this.lblRentalsDueToday.Size = new System.Drawing.Size(40, 46);
+            this.lblRentalsDueToday.TabIndex = 29;
+            this.lblRentalsDueToday.Text = "0";
+            // 
+            // lblReturnsDueToday
+            // 
+            this.lblReturnsDueToday.AutoSize = true;
+            this.lblReturnsDueToday.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReturnsDueToday.Location = new System.Drawing.Point(40, 87);
+            this.lblReturnsDueToday.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblReturnsDueToday.Name = "lblReturnsDueToday";
+            this.lblReturnsDueToday.Size = new System.Drawing.Size(40, 46);
+            this.lblReturnsDueToday.TabIndex = 30;
+            this.lblReturnsDueToday.Text = "0";
+            // 
+            // lblOverdueVehicles
+            // 
+            this.lblOverdueVehicles.AutoSize = true;
+            this.lblOverdueVehicles.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOverdueVehicles.Location = new System.Drawing.Point(40, 87);
+            this.lblOverdueVehicles.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblOverdueVehicles.Name = "lblOverdueVehicles";
+            this.lblOverdueVehicles.Size = new System.Drawing.Size(40, 46);
+            this.lblOverdueVehicles.TabIndex = 31;
+            this.lblOverdueVehicles.Text = "0";
+            // 
+            // lblRevenueMTD
+            // 
+            this.lblRevenueMTD.AutoSize = true;
+            this.lblRevenueMTD.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRevenueMTD.Location = new System.Drawing.Point(40, 87);
+            this.lblRevenueMTD.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblRevenueMTD.Name = "lblRevenueMTD";
+            this.lblRevenueMTD.Size = new System.Drawing.Size(40, 46);
+            this.lblRevenueMTD.TabIndex = 31;
+            this.lblRevenueMTD.Text = "0";
+            // 
+            // lblFleetUtilization
+            // 
+            this.lblFleetUtilization.AutoSize = true;
+            this.lblFleetUtilization.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFleetUtilization.Location = new System.Drawing.Point(40, 85);
+            this.lblFleetUtilization.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblFleetUtilization.Name = "lblFleetUtilization";
+            this.lblFleetUtilization.Size = new System.Drawing.Size(40, 46);
+            this.lblFleetUtilization.TabIndex = 32;
+            this.lblFleetUtilization.Text = "0";
+            // 
+            // lblDailyAvgRate
+            // 
+            this.lblDailyAvgRate.AutoSize = true;
+            this.lblDailyAvgRate.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDailyAvgRate.Location = new System.Drawing.Point(40, 85);
+            this.lblDailyAvgRate.Margin = new System.Windows.Forms.Padding(40, 0, 3, 0);
+            this.lblDailyAvgRate.Name = "lblDailyAvgRate";
+            this.lblDailyAvgRate.Size = new System.Drawing.Size(40, 46);
+            this.lblDailyAvgRate.TabIndex = 33;
+            this.lblDailyAvgRate.Text = "0";
             // 
             // frmMainDashboardPanel
             // 
@@ -666,5 +759,12 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.TextBox txtSearchActiveRentals;
         private System.Windows.Forms.Button btnProcessContract;
+        private System.Windows.Forms.Label lblAvailableCars;
+        private System.Windows.Forms.Label lblRentalsDueToday;
+        private System.Windows.Forms.Label lblReturnsDueToday;
+        private System.Windows.Forms.Label lblOverdueVehicles;
+        private System.Windows.Forms.Label lblDailyAvgRate;
+        private System.Windows.Forms.Label lblFleetUtilization;
+        private System.Windows.Forms.Label lblRevenueMTD;
     }
 }

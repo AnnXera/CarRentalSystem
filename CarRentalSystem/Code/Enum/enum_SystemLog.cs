@@ -46,6 +46,12 @@ namespace CarRentalSystem.Code.Enum
 
             [Description("Create Contract")]
             CreateContract,
+
+            [Description("Activate Contract")]
+            ActivateContract,
+
+            [Description("Cancel Contract")]
+            CancelContract,
         }
     }
 }

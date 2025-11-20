@@ -35,12 +35,14 @@ namespace CarRentalSystem.WindowsForm.Modal
                 LoadCarData(); // Load existing car info
                 btnSave.Text = "Update";
                 this.Text = "Edit Car";
+                cbxStatus.Enabled = true;
             }
             else
             {
                 ClearForm();
                 btnSave.Text = "Add";
                 this.Text = "Add New Car";
+                cbxStatus.Enabled = false;
             }
         }
 
@@ -98,7 +100,6 @@ namespace CarRentalSystem.WindowsForm.Modal
                 Validator.RequireComboBoxSelected(cbxBrand, "Brand");
                 Validator.RequireComboBoxSelected(cbxTransmission, "Transmission");
                 Validator.RequireComboBoxSelected(cbxFuelType, "Fuel Type");
-                Validator.RequireComboBoxSelected(cbxStatus, "Status");
                 Validator.RequireComboBoxSelected(cbxRentalPlan, "Rental Plan");
 
                 // Numeric validations
@@ -317,36 +318,60 @@ namespace CarRentalSystem.WindowsForm.Modal
                 // 1. Validate form
                 ValidateCarForm();
 
-                // 2. Prepare car object
-                var car = new Cars
-                {
-                    CarID = _carId,
-                    Model = txtModel.Text.Trim(),
-                    Year = int.Parse(txtYear.Text),
-                    Seats = int.Parse(cbxSeats.Text),
-                    PlateNumber = txtPlateNumber.Text.Trim(),
-                    VIN = txtVIN.Text.Trim(),
-                    ReplacementValue = decimal.Parse(txtReplacementValue.Text),
-                    EngineType = txtEngineType.Text.Trim(),
-                    PlanID = (long)cbxRentalPlan.SelectedValue,
-                    CurrentMileage = 0,
-                    CarPicture = ImageHelper.ImageToByteArray(picCar.Image),
-                    Transmission = cbxTransmission.SelectedItem.ToString(),
-                    FuelType = cbxFuelType.SelectedItem.ToString(),
-                    Status = cbxStatus.SelectedItem.ToString(),
-                    Brand = cbxBrand.SelectedItem.ToString()
-                };
+                // 2. Parse numeric fields safely
+                if (!int.TryParse(txtYear.Text, out int year))
+                    throw new Exception("Invalid year.");
+                if (!int.TryParse(cbxSeats.Text, out int seats))
+                    throw new Exception("Invalid seats.");
+                if (!decimal.TryParse(txtReplacementValue.Text, out decimal replacementValue))
+                    throw new Exception("Invalid replacement value.");
 
-                var carFactory = new CarFactory();
+                // 3. Prepare car object
+                var repo = new CarRepository();
                 long carId;
+                Cars car;
 
-                // 3. Add or Update car
                 if (_isEditMode)
                 {
-                    carFactory.Edit(car);
-                    carId = _carId;
+                    car = repo.GetCarById(_carId) ?? throw new Exception("Car not found.");
 
-                    // Log edit action
+                    // Update properties
+                    car.Model = txtModel.Text.Trim();
+                    car.Year = year;
+                    car.Seats = seats;
+                    car.PlateNumber = txtPlateNumber.Text.Trim();
+                    car.VIN = txtVIN.Text.Trim();
+                    car.ReplacementValue = replacementValue;
+                    car.EngineType = txtEngineType.Text.Trim();
+                    car.PlanID = (long)cbxRentalPlan.SelectedValue;
+                    car.CarPicture = ImageHelper.ImageToByteArray(picCar.Image);
+                    car.Transmission = cbxTransmission.SelectedItem?.ToString() ?? "";
+                    car.FuelType = cbxFuelType.SelectedItem?.ToString() ?? "";
+                    car.Brand = cbxBrand.SelectedItem?.ToString() ?? "";
+
+                    // Status validation
+                    if (cbxStatus.SelectedItem is CarStatus status)
+                    {
+                        if (status == CarStatus.Available && HasDamagedParts())
+                        {
+                            MessageBox.Show(
+                                "Cannot set car status to Available while it has damaged parts. Please repair or remove damaged parts first.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        car.Status = status.ToString();
+                    }
+                    else
+                    {
+                        throw new Exception("Car status must be selected.");
+                    }
+
+                    // Edit car
+                    var carFactory = new CarFactory();
+                    carFactory.Edit(car);
+                    carId = car.CarID;
+
+                    // Log edit
                     SystemLogger.Log(
                         "Edit Car",
                         $"{SessionManager.LoggedInEmployee.FullName} edited car {car.Brand} {car.Model} (ID: {car.CarID})",
@@ -355,9 +380,28 @@ namespace CarRentalSystem.WindowsForm.Modal
                 }
                 else
                 {
+                    car = new Cars
+                    {
+                        Model = txtModel.Text.Trim(),
+                        Year = year,
+                        Seats = seats,
+                        PlateNumber = txtPlateNumber.Text.Trim(),
+                        VIN = txtVIN.Text.Trim(),
+                        ReplacementValue = replacementValue,
+                        EngineType = txtEngineType.Text.Trim(),
+                        PlanID = (long)cbxRentalPlan.SelectedValue,
+                        CurrentMileage = 0,
+                        CarPicture = ImageHelper.ImageToByteArray(picCar.Image),
+                        Transmission = cbxTransmission.SelectedItem?.ToString() ?? "",
+                        FuelType = cbxFuelType.SelectedItem?.ToString() ?? "",
+                        Brand = cbxBrand.SelectedItem?.ToString() ?? "",
+                        Status = CarStatus.Available.ToString() // Default for new car
+                    };
+
+                    var carFactory = new CarFactory();
                     carId = carFactory.Add(car);
 
-                    // Log add action
+                    // Log add
                     SystemLogger.Log(
                         "Add Car",
                         $"{SessionManager.LoggedInEmployee.FullName} added new car {car.Brand} {car.Model} (ID: {carId})",
@@ -365,40 +409,8 @@ namespace CarRentalSystem.WindowsForm.Modal
                     );
                 }
 
-                // 4. Handle car parts (existing code)
-                var partsFactory = new CarPartsFactory();
-                var existingParts = partsFactory.ViewByCar(carId);
-                var currentParts = new List<CarParts>();
-
-                foreach (DataGridViewRow row in dgvCarParts.Rows)
-                {
-                    if (row.IsNewRow) continue;
-
-                    if (row.Cells["PartName"].Value == null || row.Cells["ReplacementCost"].Value == null)
-                        continue;
-
-                    long partId = 0;
-                    if (row.Cells["PartID"].Value != null && long.TryParse(row.Cells["PartID"].Value.ToString(), out long parsedId))
-                        partId = parsedId;
-
-                    var part = new CarParts
-                    {
-                        PartID = partId,
-                        CarID = carId,
-                        PartName = row.Cells["PartName"].Value.ToString(),
-                        ReplacementCost = Convert.ToDecimal(row.Cells["ReplacementCost"].Value),
-                        Status = row.Cells["Status"].Value?.ToString() ?? "Good"
-                    };
-                    currentParts.Add(part);
-                }
-
-                foreach (var part in currentParts)
-                {
-                    if (part.PartID > 0)
-                        partsFactory.Edit(part);
-                    else
-                        partsFactory.Add(part);
-                }
+                // 4. Handle car parts
+                SaveCarParts(carId);
 
                 MessageBox.Show(_isEditMode ? "Car updated successfully!" : "Car added successfully!",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -409,6 +421,50 @@ namespace CarRentalSystem.WindowsForm.Modal
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving car: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool HasDamagedParts()
+        {
+            foreach (DataGridViewRow row in dgvCarParts.Rows)
+            {
+                if (row.IsNewRow) continue;
+                if (row.Cells["Status"].Value?.ToString().Equals("Damaged", StringComparison.OrdinalIgnoreCase) == true)
+                    return true;
+            }
+            return false;
+        }
+
+        private void SaveCarParts(long carId)
+        {
+            var partsFactory = new CarPartsFactory();
+            var currentParts = new List<CarParts>();
+
+            foreach (DataGridViewRow row in dgvCarParts.Rows)
+            {
+                if (row.IsNewRow) continue;
+                if (row.Cells["PartName"].Value == null || row.Cells["ReplacementCost"].Value == null) continue;
+
+                long partId = 0;
+                if (row.Cells["PartID"].Value != null && long.TryParse(row.Cells["PartID"].Value.ToString(), out long parsedId))
+                    partId = parsedId;
+
+                currentParts.Add(new CarParts
+                {
+                    PartID = partId,
+                    CarID = carId,
+                    PartName = row.Cells["PartName"].Value.ToString(),
+                    ReplacementCost = Convert.ToDecimal(row.Cells["ReplacementCost"].Value),
+                    Status = row.Cells["Status"].Value?.ToString() ?? "Good"
+                });
+            }
+
+            foreach (var part in currentParts)
+            {
+                if (part.PartID > 0)
+                    partsFactory.Edit(part);
+                else
+                    partsFactory.Add(part);
             }
         }
 
