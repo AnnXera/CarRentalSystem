@@ -22,6 +22,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         public modal_Payment(Billing billing)
         {
             InitializeComponent();
+            ClearLabels();
             _billing = billing;
             LoadComboBoxes();
             LoadBillingDetails();
@@ -65,16 +66,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblCustomerName.Text = "";
             lblCarName.Text = "";
             lblBillNo.Text = "";
-            lblBaseRate.Text = "";
-            lblCarPartsCharges.Text = "";
-            lblLateFee.Text = "";
-            lblMileageFee.Text = "";
-            lblLost.Text = "";
-            lblSecurityDepUsed.Text = "";
-            lblTotalAmount.Text = "";
-            lblPrevAmountPaid.Text = "";
-            lblCurrentAmountDue.Text = "";
-            lblTextChangeRemainingBalance.Text = "";
         }
 
         private void ValidatePaymentForm()
@@ -106,6 +97,27 @@ namespace CarRentalSystem.WindowsForm.Modal
             catch(Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtAmountReceived_TextChanged(object sender, EventArgs e)
+        {
+            if (_billing == null) return;
+
+            decimal amountReceived = 0;
+            decimal.TryParse(txtAmountReceived.Text, out amountReceived);
+
+            decimal remainingBalance = _billing.RemainingBalance - amountReceived;
+
+            if (remainingBalance < 0)
+            {
+                lblBalance.Text = "Change:";
+                lblTextChangeRemainingBalance.Text = Math.Abs(remainingBalance).ToString("N2");
+            }
+            else
+            {
+                lblBalance.Text = "Remaining:";
+                lblTextChangeRemainingBalance.Text = remainingBalance.ToString("N2");
             }
         }
     }

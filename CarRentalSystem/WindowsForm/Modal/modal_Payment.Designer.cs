@@ -35,7 +35,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirmPayment = new System.Windows.Forms.Button();
             this.lblTextChangeRemainingBalance = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblBalance = new System.Windows.Forms.Label();
             this.txtAmountReceived = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxPaymentMethod = new System.Windows.Forms.ComboBox();
@@ -97,7 +97,7 @@
             this.pnlPayment.Controls.Add(this.btnCancel);
             this.pnlPayment.Controls.Add(this.btnConfirmPayment);
             this.pnlPayment.Controls.Add(this.lblTextChangeRemainingBalance);
-            this.pnlPayment.Controls.Add(this.label5);
+            this.pnlPayment.Controls.Add(this.lblBalance);
             this.pnlPayment.Controls.Add(this.txtAmountReceived);
             this.pnlPayment.Controls.Add(this.label4);
             this.pnlPayment.Controls.Add(this.cbxPaymentMethod);
@@ -172,21 +172,22 @@
             this.lblTextChangeRemainingBalance.Location = new System.Drawing.Point(260, 220);
             this.lblTextChangeRemainingBalance.Name = "lblTextChangeRemainingBalance";
             this.lblTextChangeRemainingBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTextChangeRemainingBalance.Size = new System.Drawing.Size(204, 28);
+            this.lblTextChangeRemainingBalance.Size = new System.Drawing.Size(49, 28);
             this.lblTextChangeRemainingBalance.TabIndex = 7;
-            this.lblTextChangeRemainingBalance.Text = "(lblRemainingBalance)";
+            this.lblTextChangeRemainingBalance.Text = "0.00";
             this.lblTextChangeRemainingBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label5
+            // lblBalance
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 220);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 28);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Remaining Balance:";
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBalance.Location = new System.Drawing.Point(24, 220);
+            this.lblBalance.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new System.Drawing.Size(179, 28);
+            this.lblBalance.TabIndex = 6;
+            this.lblBalance.Text = "Remaining Balance:";
+            this.lblBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtAmountReceived
             // 
@@ -196,6 +197,7 @@
             this.txtAmountReceived.Name = "txtAmountReceived";
             this.txtAmountReceived.Size = new System.Drawing.Size(278, 34);
             this.txtAmountReceived.TabIndex = 5;
+            this.txtAmountReceived.TextChanged += new System.EventHandler(this.txtAmountReceived_TextChanged);
             // 
             // label4
             // 
@@ -236,9 +238,9 @@
             this.lblCurrentAmountDue.Location = new System.Drawing.Point(260, 76);
             this.lblCurrentAmountDue.Name = "lblCurrentAmountDue";
             this.lblCurrentAmountDue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCurrentAmountDue.Size = new System.Drawing.Size(117, 28);
+            this.lblCurrentAmountDue.Size = new System.Drawing.Size(49, 28);
             this.lblCurrentAmountDue.TabIndex = 1;
-            this.lblCurrentAmountDue.Text = "(lblAmount)";
+            this.lblCurrentAmountDue.Text = "0.00";
             this.lblCurrentAmountDue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
@@ -259,9 +261,9 @@
             this.lblPrevAmountPaid.Location = new System.Drawing.Point(217, 734);
             this.lblPrevAmountPaid.Name = "lblPrevAmountPaid";
             this.lblPrevAmountPaid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblPrevAmountPaid.Size = new System.Drawing.Size(154, 28);
+            this.lblPrevAmountPaid.Size = new System.Drawing.Size(49, 28);
             this.lblPrevAmountPaid.TabIndex = 93;
-            this.lblPrevAmountPaid.Text = "(lblAmountPaid)";
+            this.lblPrevAmountPaid.Text = "0.00";
             this.lblPrevAmountPaid.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
@@ -441,9 +443,9 @@
             this.lblLost.Location = new System.Drawing.Point(192, 552);
             this.lblLost.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
             this.lblLost.Name = "lblLost";
-            this.lblLost.Size = new System.Drawing.Size(82, 28);
+            this.lblLost.Size = new System.Drawing.Size(49, 28);
             this.lblLost.TabIndex = 51;
-            this.lblLost.Text = "(lblLost)";
+            this.lblLost.Text = "0.00";
             this.lblLost.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label20
@@ -466,9 +468,9 @@
             this.lblTotalAmount.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTotalAmount.Size = new System.Drawing.Size(159, 28);
+            this.lblTotalAmount.Size = new System.Drawing.Size(49, 28);
             this.lblTotalAmount.TabIndex = 48;
-            this.lblTotalAmount.Text = "(lblTotalAmount)";
+            this.lblTotalAmount.Text = "0.00";
             this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label24
@@ -501,9 +503,9 @@
             this.lblSecurityDepUsed.Margin = new System.Windows.Forms.Padding(20, 0, 20, 20);
             this.lblSecurityDepUsed.Name = "lblSecurityDepUsed";
             this.lblSecurityDepUsed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblSecurityDepUsed.Size = new System.Drawing.Size(126, 28);
+            this.lblSecurityDepUsed.Size = new System.Drawing.Size(49, 28);
             this.lblSecurityDepUsed.TabIndex = 44;
-            this.lblSecurityDepUsed.Text = "(lblDepUsed)";
+            this.lblSecurityDepUsed.Text = "0.00";
             this.lblSecurityDepUsed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotalChargeFee
@@ -514,9 +516,9 @@
             this.lblTotalChargeFee.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
             this.lblTotalChargeFee.Name = "lblTotalChargeFee";
             this.lblTotalChargeFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTotalChargeFee.Size = new System.Drawing.Size(118, 28);
+            this.lblTotalChargeFee.Size = new System.Drawing.Size(49, 28);
             this.lblTotalChargeFee.TabIndex = 14;
-            this.lblTotalChargeFee.Text = "(lblTotalFee)";
+            this.lblTotalChargeFee.Text = "0.00";
             this.lblTotalChargeFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label30
@@ -537,9 +539,9 @@
             this.lblMileageFee.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
             this.lblMileageFee.Name = "lblMileageFee";
             this.lblMileageFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblMileageFee.Size = new System.Drawing.Size(146, 28);
+            this.lblMileageFee.Size = new System.Drawing.Size(49, 28);
             this.lblMileageFee.TabIndex = 12;
-            this.lblMileageFee.Text = "(lblMileageFee)";
+            this.lblMileageFee.Text = "0.00";
             this.lblMileageFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblLateFee
@@ -550,9 +552,9 @@
             this.lblLateFee.Margin = new System.Windows.Forms.Padding(20, 0, 3, 10);
             this.lblLateFee.Name = "lblLateFee";
             this.lblLateFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblLateFee.Size = new System.Drawing.Size(112, 28);
+            this.lblLateFee.Size = new System.Drawing.Size(49, 28);
             this.lblLateFee.TabIndex = 11;
-            this.lblLateFee.Text = "(lblLateFee)";
+            this.lblLateFee.Text = "0.00";
             this.lblLateFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblCarPartsCharges
@@ -563,9 +565,9 @@
             this.lblCarPartsCharges.Margin = new System.Windows.Forms.Padding(20, 0, 3, 10);
             this.lblCarPartsCharges.Name = "lblCarPartsCharges";
             this.lblCarPartsCharges.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCarPartsCharges.Size = new System.Drawing.Size(187, 28);
+            this.lblCarPartsCharges.Size = new System.Drawing.Size(49, 28);
             this.lblCarPartsCharges.TabIndex = 10;
-            this.lblCarPartsCharges.Text = "(lblCarPartsCharges)";
+            this.lblCarPartsCharges.Text = "0.00";
             this.lblCarPartsCharges.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label34
@@ -620,9 +622,9 @@
             this.lblBaseRate.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
             this.lblBaseRate.Name = "lblBaseRate";
             this.lblBaseRate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblBaseRate.Size = new System.Drawing.Size(124, 28);
+            this.lblBaseRate.Size = new System.Drawing.Size(49, 28);
             this.lblBaseRate.TabIndex = 5;
-            this.lblBaseRate.Text = "(lblBaseRate)";
+            this.lblBaseRate.Text = "0.00";
             this.lblBaseRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label39
@@ -677,7 +679,7 @@
         private System.Windows.Forms.Panel pnlPayment;
         private System.Windows.Forms.Label lblCurrentAmountDue;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblBalance;
         private System.Windows.Forms.TextBox txtAmountReceived;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbxPaymentMethod;

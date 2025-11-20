@@ -58,6 +58,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             billingTable.Columns.Add("ContractID", typeof(long));
             billingTable.Columns.Add("CustomerName");
             billingTable.Columns.Add("CarName");
+            billingTable.Columns.Add("ContractStatus");
             billingTable.Columns.Add("BaseRate", typeof(decimal));
             billingTable.Columns.Add("TotalCharges", typeof(decimal));
             billingTable.Columns.Add("SecurityDepUsed", typeof(decimal));
@@ -75,6 +76,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 row["ContractID"] = b.ContractId;
                 row["CustomerName"] = b.CustomerName;
                 row["CarName"] = b.CarName;
+                row["ContractStatus"] = b.ContractStatus;
                 row["BaseRate"] = b.BaseRate;
                 row["TotalCharges"] = b.TotalCharges ?? (object)DBNull.Value;
                 row["SecurityDepUsed"] = b.SecurityDepUsed ?? (object)DBNull.Value;
@@ -117,6 +119,8 @@ namespace CarRentalSystem.WindowsForm.Modal
             dgvBilling.Columns["PaymentStatus"].HeaderText = "Payment Status";
             dgvBilling.Columns["BillingDate"].HeaderText = "Billing Date";
             dgvBilling.Columns["Remarks"].HeaderText = "Remarks";
+
+            dgvBilling.Columns["ContractStatus"].Visible = false;
 
             dgvBilling.ReadOnly = true;
 
@@ -198,8 +202,18 @@ namespace CarRentalSystem.WindowsForm.Modal
                 DataGridViewRow selectedRow = dgvBilling.Rows[e.RowIndex];
                 DisplayBillingDetails(selectedRow);
 
-                btnPayment.Enabled = true;
-                btnPayment.ForeColor = Color.FromArgb(4, 126, 175);
+                string contractStatus = selectedRow.Cells["ContractStatus"].Value?.ToString() ?? "";
+
+                if (contractStatus.Equals("Completed", StringComparison.OrdinalIgnoreCase))
+                {
+                    btnPayment.Enabled = true;
+                    btnPayment.ForeColor = Color.FromArgb(4, 126, 175);
+                }
+                else
+                {
+                    btnPayment.Enabled = false;
+                    btnPayment.ForeColor = Color.Gray;
+                }
             }
         }
     }

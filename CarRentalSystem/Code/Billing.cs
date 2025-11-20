@@ -14,6 +14,7 @@ namespace CarRentalSystem.Code
         public long CustID { get; set; }
         public string CustomerName { get; set; }
         public string CarName { get; set; }
+        public string ContractStatus { get; set; }
         public decimal BaseRate { get; set; }
         public decimal? TotalCharges { get; set; }
         public decimal? SecurityDepUsed { get; set; }
