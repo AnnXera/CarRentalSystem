@@ -18,6 +18,10 @@ namespace CarRentalSystem.WindowsForm.Modal
         private Cars selectedCar;
         private RentalPlan selectedRentalPlan;
 
+        CustomerFactory customerFactory = new CustomerFactory();
+        ContractFactory contractFactory = new ContractFactory();
+        BillingFactory billingFactory = new BillingFactory();
+
         public modal_CreateContract()
         {
             InitializeComponent();
@@ -90,20 +94,27 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void LoadComboBox()
         {
-            // Get all customers
-            var customerFactory = new CustomerFactory();
-            var allCustomers = customerFactory.ViewAll();
-
             // Get all contracts that are pending or active
-            var contractFactory = new ContractFactory();
             var activeContracts = contractFactory.ViewAll()
                                                  .Where(c => c.Status == "Pending" || c.Status == "Active")
                                                  .Select(c => c.CustID)
                                                  .ToList();
 
+            var customersWithPendingBilling = billingFactory.ViewAll()
+                                                            .Where(b => b.PaymentStatus == "Pending" || b.PaymentStatus == "Partial")
+                                                            .Select(b => b.CustID)
+                                                            .ToList();
+
             // Filter out customers with pending/active contracts
+            var allCustomers = customerFactory.ViewAll();
+
+            var unavailableCustomers = activeContracts
+                                       .Concat(customersWithPendingBilling)
+                                       .Distinct()
+                                       .ToList();
+
             var availableCustomers = allCustomers
-                                     .Where(c => !activeContracts.Contains(c.CustID))
+                                     .Where(c => !unavailableCustomers.Contains(c.CustID))
                                      .ToList();
 
             // Bind filtered list to ComboBox
@@ -300,8 +311,7 @@ namespace CarRentalSystem.WindowsForm.Modal
                 string customerName = lblFullName.Text;
 
                 // Call ContractFactory to insert
-                var factory = new ContractFactory();
-                long newContractID = factory.Add(contract, deposit, baseRate, paymentMethod, customerName);
+                long newContractID = contractFactory.Add(contract, deposit, baseRate, paymentMethod, customerName);
 
                 // Log contract creation
                 SystemLogger.Log(

@@ -13,6 +13,8 @@ namespace CarRentalSystem.WindowsForm
 {
     public partial class frmFleetManagement : Form
     {
+        CarFactory carFactory = new CarFactory();
+
         public frmFleetManagement()
         {
             InitializeComponent();
@@ -36,14 +38,13 @@ namespace CarRentalSystem.WindowsForm
 
         public void LoadCars()
         {
-            var factory = new CarFactory();
-            var cars = factory.ViewAll();
+            var cars = carFactory.ViewAll();
 
             dgvCars.AllowUserToAddRows = false;
             dgvCars.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvCars.RowHeadersVisible = false;
             dgvCars.AllowUserToResizeRows = false;
-            dgvCars.RowTemplate.Height = 123; // match image height
+            dgvCars.RowTemplate.Height = 123;
 
             var carTable = new DataTable();
 
@@ -65,13 +66,13 @@ namespace CarRentalSystem.WindowsForm
                 if (car.CarPicture != null)
                 {
                     img = ImageHelper.ByteArrayToImage(car.CarPicture);
-                    img = ImageHelper.ResizeImage(img, 208, 123); // fixed size
+                    img = ImageHelper.ResizeImage(img, 208, 123);
                 }
 
                 var row = carTable.NewRow();
                 row["CarID"] = car.CarID;
                 row["Picture"] = img;
-                row["CarDescription"] = car.CarDescription; // only description
+                row["CarDescription"] = car.CarDescription;
                 row["PlateNumber"] = car.PlateNumber;
                 row["VIN"] = car.VIN;
                 row["Seats"] = car.Seats;

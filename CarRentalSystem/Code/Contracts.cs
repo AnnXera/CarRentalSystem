@@ -100,7 +100,7 @@ namespace CarRentalSystem.Code
 
         public decimal CompleteContractReturn(
             long contractId,
-            long endMileage,
+            long extraMileage,
             decimal mileageFee,
             decimal lateFee,
             decimal lostFee,
@@ -109,7 +109,7 @@ namespace CarRentalSystem.Code
         {
             return _repo.CompleteContractReturn(
                 contractId,
-                endMileage,
+                extraMileage,
                 mileageFee,
                 lateFee,
                 lostFee,

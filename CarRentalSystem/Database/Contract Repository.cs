@@ -195,7 +195,7 @@ namespace CarRentalSystem.Database
             return list;
         }
 
-        public decimal CompleteContractReturn(long contractId, long endMileage, decimal mileageFee, decimal lateFee, decimal lostFee, decimal securityDepositUsed, List<(long PartID, int Quantity, decimal Cost)> damagedParts)
+        public decimal CompleteContractReturn(long contractId, long extraMileage, decimal mileageFee, decimal lateFee, decimal lostFee, decimal securityDepositUsed, List<(long PartID, int Quantity, decimal Cost)> damagedParts)
         {
             if (contractId <= 0) throw new ArgumentException("Invalid contract ID");
 
@@ -206,7 +206,7 @@ namespace CarRentalSystem.Database
             {
                 try
                 {
-                    // 1️⃣ Get current start mileage and car info
+                    // 1️⃣ Get contract and car info
                     long startMileage = 0;
                     long currentCarMileage = 0;
                     long carID = 0;
@@ -233,30 +233,33 @@ namespace CarRentalSystem.Database
                         }
                     }
 
-                    long distanceTraveled = Math.Max(0, endMileage - startMileage);
+                    // 2️⃣ Calculate mileage
+                    long distanceTraveled = Math.Max(0, extraMileage);
+                    long endMileage = startMileage + distanceTraveled;
                     long newCarMileage = currentCarMileage + distanceTraveled;
 
-                    // 2️⃣ Update contract
+                    // 3️⃣ Update contract
                     string updateContract = @"
                         UPDATE contracts
-                        SET EndMileage = StartMileage + @DistanceTraveled,
+                        SET EndMileage = @EndMileage,
                             Status = 'Completed',
                             DateProcessed = NOW(),
                             IsOverdue = IF(DATEDIFF(NOW(), ReturnDate) > 0, 1, 0)
                         WHERE ContractID = @ContractID";
+
                     using (var cmd = new MySqlCommand(updateContract, _db.Connection, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@DistanceTraveled", distanceTraveled);
+                        cmd.Parameters.AddWithValue("@EndMileage", endMileage);
                         cmd.Parameters.AddWithValue("@ContractID", contractId);
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 3️⃣ Insert damaged parts charges
+                    // 4️⃣ Insert damaged parts charges
                     if (damagedParts != null && damagedParts.Count > 0)
                     {
                         string insertCharge = @"
                             INSERT INTO additionalcharges (ContractID, PartsID, ChargeType, Amount, Quantity, ChargeDate, Notes)
-                            VALUES (@ContractID, @PartsID, @ChargeType, @Amount, @Quantity, CURDATE(), @Notes)";
+                            VALUES (@ContractID, @PartsID, 'Part Damage', @Amount, @Quantity, CURDATE(), @Notes)";
 
                         using (var cmd = new MySqlCommand(insertCharge, _db.Connection, transaction))
                         {
@@ -267,7 +270,6 @@ namespace CarRentalSystem.Database
                                 cmd.Parameters.Clear();
                                 cmd.Parameters.AddWithValue("@ContractID", contractId);
                                 cmd.Parameters.AddWithValue("@PartsID", part.PartID);
-                                cmd.Parameters.AddWithValue("@ChargeType", "Part Damage");
                                 cmd.Parameters.AddWithValue("@Amount", part.Cost * part.Quantity);
                                 cmd.Parameters.AddWithValue("@Quantity", part.Quantity);
                                 cmd.Parameters.AddWithValue("@Notes", $"Damaged PartID {part.PartID}, Qty {part.Quantity}");
@@ -276,10 +278,10 @@ namespace CarRentalSystem.Database
                         }
                     }
 
-                    // 4️⃣ Insert non-part charges
+                    // 5️⃣ Insert non-part charges
                     void InsertNonPartCharge(string type, decimal amount, string notes)
                     {
-                        if (amount <= 0) return; // skip if no charge
+                        if (amount <= 0) return;
                         using (var cmd = new MySqlCommand(@"
                             INSERT INTO additionalcharges (ContractID, PartsID, ChargeType, Amount, Quantity, ChargeDate, Notes)
                             VALUES (@ContractID, NULL, @ChargeType, @Amount, 1, CURDATE(), @Notes)", _db.Connection, transaction))
@@ -296,7 +298,7 @@ namespace CarRentalSystem.Database
                     InsertNonPartCharge("LateFee", lateFee, "Late return fee");
                     InsertNonPartCharge("Lost", lostFee, "Car lost");
 
-                    // 5️⃣ Compute total charges (handle NULL safely)
+                    // 6️⃣ Compute total charges
                     decimal totalCharges = 0m;
                     using (var cmd = new MySqlCommand(
                         "SELECT IFNULL(SUM(Amount * IFNULL(Quantity,1)), 0) FROM additionalcharges WHERE ContractID=@ContractID",
@@ -306,7 +308,7 @@ namespace CarRentalSystem.Database
                         totalCharges = Convert.ToDecimal(cmd.ExecuteScalar());
                     }
 
-                    // 6️⃣ Update billing
+                    // 7️⃣ Update billing
                     string updateBilling = @"
                         UPDATE billing
                         SET TotalCharges = @TotalCharges,
@@ -319,6 +321,7 @@ namespace CarRentalSystem.Database
                                 ELSE 'Pending'
                             END
                         WHERE ContractID = @ContractID";
+
                     using (var cmd = new MySqlCommand(updateBilling, _db.Connection, transaction))
                     {
                         cmd.Parameters.AddWithValue("@ContractID", contractId);
@@ -329,29 +332,33 @@ namespace CarRentalSystem.Database
 
                     totalAmount = totalCharges;
 
-                    // 7️⃣ Update security deposit
+                    // 8️⃣ Update security deposit
                     string updateDeposit = @"
                         UPDATE securitydeposit
                         SET Status = CASE 
+                            WHEN @TotalCharges <= 0 THEN 'Forfeited'
+                            WHEN @SecurityDepositUsed = DepositAmount THEN 'AllUsed'
                             WHEN @SecurityDepositUsed > 0 AND @SecurityDepositUsed < DepositAmount THEN 'PartialRefunded'
-                            WHEN @SecurityDepositUsed >= DepositAmount THEN 'Forfeited'
                             ELSE 'Refunded'
                         END
                         WHERE ContractID = @ContractID";
+
                     using (var cmd = new MySqlCommand(updateDeposit, _db.Connection, transaction))
                     {
-                        cmd.Parameters.AddWithValue("@ContractID", contractId);
+                        cmd.Parameters.AddWithValue("@TotalCharges", totalCharges);
                         cmd.Parameters.AddWithValue("@SecurityDepositUsed", securityDepositUsed);
+                        cmd.Parameters.AddWithValue("@ContractID", contractId);
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 8️⃣ Update car mileage and status
+                    // 9️⃣ Update car mileage and status
                     bool hasDamages = (damagedParts != null && damagedParts.Count > 0) || lostFee > 0;
                     string updateCar = @"
                         UPDATE car
                         SET CurrentMileage = @NewMileage,
                             Status = CASE WHEN @HasDamages = 1 THEN 'Maintenance' ELSE 'Available' END
                         WHERE CarID = @CarID";
+
                     using (var cmd = new MySqlCommand(updateCar, _db.Connection, transaction))
                     {
                         cmd.Parameters.AddWithValue("@CarID", carID);

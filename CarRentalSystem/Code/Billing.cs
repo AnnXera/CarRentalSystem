@@ -11,14 +11,16 @@ namespace CarRentalSystem.Code
     {
         public long BillingId { get; set; }
         public long ContractId { get; set; }
+        public long CustID { get; set; }
         public string CustomerName { get; set; }
+        public string CarName { get; set; }
         public decimal BaseRate { get; set; }
-        public decimal TotalCharges { get; set; }
-        public decimal SecurityDepUsed { get; set; }
+        public decimal? TotalCharges { get; set; }
+        public decimal? SecurityDepUsed { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal AmountPaid { get; set; }
         public decimal RemainingBalance { get; set; }
-        public string PaymentStaus { get; set; }
+        public string PaymentStatus { get; set; }
         public DateTime BillingDate { get; set; }
         public string Remarks { get; set; }
     }

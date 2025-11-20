@@ -23,8 +23,8 @@ namespace CarRentalSystem.WindowsForm
         {
             InitializeComponent();
             LoadDesign();
-            LoadContracts();
             EventHandlers();
+            LoadContracts();
         }
 
         private void LoadDesign()
@@ -47,10 +47,143 @@ namespace CarRentalSystem.WindowsForm
         {
             dgvContracts.ShowCellToolTips = true;
 
+            dgvContracts.DataBindingComplete += dgvContracts_DataBindingComplete;
             dgvContracts.CellMouseEnter += dgvContracts_CellMouseEnter;
             dgvContracts.CellMouseLeave += dgvContracts_CellMouseLeave;
             dgvContracts.CellToolTipTextNeeded += dgvContracts_CellToolTipTextNeeded;
             dgvContracts.CellClick += dgvContracts_CellClick;
+        }
+
+
+        private void LoadContracts()
+        {
+            var factory = new ContractFactory();
+            var contracts = factory.ViewAll();
+
+            dgvContracts.AllowUserToAddRows = false;
+            dgvContracts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvContracts.RowHeadersVisible = false;
+            dgvContracts.AllowUserToResizeRows = false;
+
+            contractTable = new DataTable();
+            contractTable.Columns.Add("ContractID", typeof(long));
+            contractTable.Columns.Add("CustomerName");
+            contractTable.Columns.Add("EmployeeName");
+            contractTable.Columns.Add("CarName");
+            contractTable.Columns.Add("StartDate", typeof(DateTime));
+            contractTable.Columns.Add("ReturnDate", typeof(DateTime));
+            contractTable.Columns.Add("DaysRented", typeof(int));
+            contractTable.Columns.Add("StartMileage", typeof(int));
+            contractTable.Columns.Add("EndMileage", typeof(long));
+            contractTable.Columns.Add("DateProcessed", typeof(DateTime));
+            contractTable.Columns.Add("IsOverdue", typeof(bool));
+            contractTable.Columns.Add("Status");
+
+            foreach (var c in contracts)
+            {
+                var row = contractTable.NewRow();
+                row["ContractID"] = c.ContractID;
+                row["CustomerName"] = c.CustomerName ?? string.Empty;
+                row["EmployeeName"] = c.EmployeeName ?? string.Empty;
+                row["CarName"] = c.CarName ?? string.Empty;
+                row["StartDate"] = c.StartDate;
+                row["ReturnDate"] = c.ReturnDate;
+                row["DaysRented"] = c.DaysRented;
+                row["StartMileage"] = c.StartMileage;
+                row["EndMileage"] = c.EndMileage ?? (object)DBNull.Value;
+                row["DateProcessed"] = c.DateProcessed ?? (object)DBNull.Value;
+                row["IsOverdue"] = c.IsOverdue;
+                row["Status"] = c.Status ?? string.Empty;
+                contractTable.Rows.Add(row);
+            }
+
+            if (dgvContracts.Columns.Contains("Activate"))
+                dgvContracts.Columns.Remove("Activate");
+
+            if (dgvContracts.Columns.Contains("Cancel"))
+                dgvContracts.Columns.Remove("Cancel");
+
+            var activateColumn = new DataGridViewImageColumn
+            {
+                Name = "Activate",
+                HeaderText = "",
+                Image = Properties.Resources.CheckIcon,
+                ImageLayout = DataGridViewImageCellLayout.Zoom,
+                Width = 40
+            };
+
+            var cancelColumn = new DataGridViewImageColumn
+            {
+                Name = "Cancel",
+                HeaderText = "",
+                Image = Properties.Resources.XIcon,
+                Width = 40
+            };
+
+            dgvContracts.Columns.Insert(0, cancelColumn);
+            dgvContracts.Columns.Insert(0, activateColumn);
+
+            dgvContracts.DataSource = contractTable;
+
+            DataView dv = contractTable.DefaultView;
+            dv.Sort = "StartDate DESC";
+
+            dgvContracts.DataSource = dv;
+
+            dgvContracts.DefaultCellStyle.NullValue = "NULL";
+
+            DataGridViewCheckBoxColumn chkCol = new DataGridViewCheckBoxColumn
+            {
+                Name = "IsOverdue",
+                HeaderText = "Is Overdue?",
+                DataPropertyName = "IsOverdue",
+                ReadOnly = true
+            };
+
+            int index = dgvContracts.Columns["IsOverdue"].Index;
+            dgvContracts.Columns.Remove("IsOverdue");
+            dgvContracts.Columns.Insert(index, chkCol);
+
+            // Rename columns
+            dgvContracts.Columns["ContractID"].HeaderText = "Contract ID";
+            dgvContracts.Columns["CustomerName"].HeaderText = "Customer Name";
+            dgvContracts.Columns["EmployeeName"].HeaderText = "Created By";
+            dgvContracts.Columns["CarName"].HeaderText = "Car Name";
+            dgvContracts.Columns["StartDate"].HeaderText = "Start Date";
+            dgvContracts.Columns["ReturnDate"].HeaderText = "Return Date";
+            dgvContracts.Columns["DaysRented"].HeaderText = "Days Rented";
+            dgvContracts.Columns["StartMileage"].HeaderText = "Start Mileage";
+            dgvContracts.Columns["EndMileage"].HeaderText = "End Mileage";
+            dgvContracts.Columns["DateProcessed"].HeaderText = "Date Processed";
+            dgvContracts.Columns["IsOverdue"].HeaderText = "Is Overdue?";
+            dgvContracts.Columns["Status"].HeaderText = "Status";
+
+            dgvContracts.ReadOnly = true;
+
+            dgvContracts.Refresh();
+        }
+
+        private void dgvContracts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvContracts.Rows)
+            {
+                string status = row.Cells["Status"].Value?.ToString() ?? string.Empty;
+
+                if (status != "Pending")
+                {
+                    row.Cells["Activate"].Value = Properties.Resources.CheckIcon___Disabled;
+                    row.Cells["Cancel"].Value = Properties.Resources.XIcon___Disabled;
+                    row.Cells["Activate"].ReadOnly = true;
+                    row.Cells["Cancel"].ReadOnly = true;
+                }
+                else
+                {
+                    row.Cells["Activate"].Value = Properties.Resources.CheckIcon;
+                    row.Cells["Cancel"].Value = Properties.Resources.XIcon;
+                    row.Cells["Activate"].ReadOnly = false;
+                    row.Cells["Cancel"].ReadOnly = false;
+                }
+            }
         }
 
         private void dgvContracts_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -114,147 +247,6 @@ namespace CarRentalSystem.WindowsForm
                     LoadContracts();
                 }
             }
-        }
-
-        private void LoadContracts()
-        {
-            var factory = new ContractFactory();
-            var contracts = factory.ViewAll();
-
-            dgvContracts.AllowUserToAddRows = false;
-            dgvContracts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvContracts.RowHeadersVisible = false;
-            dgvContracts.AllowUserToResizeRows = false;
-
-            contractTable = new DataTable();
-            contractTable.Columns.Add("ContractID", typeof(long));
-            contractTable.Columns.Add("CustomerName");
-            contractTable.Columns.Add("EmployeeName");
-            contractTable.Columns.Add("CarName");
-            contractTable.Columns.Add("StartDate", typeof(DateTime));
-            contractTable.Columns.Add("ReturnDate", typeof(DateTime));
-            contractTable.Columns.Add("DaysRented", typeof(int));
-            contractTable.Columns.Add("StartMileage", typeof(int));
-            contractTable.Columns.Add("EndMileage", typeof(long));
-            contractTable.Columns.Add("DateProcessed", typeof(DateTime));
-            contractTable.Columns.Add("IsOverdue", typeof(bool));
-            contractTable.Columns.Add("Status");
-
-            foreach (var c in contracts)
-            {
-                var row = contractTable.NewRow();
-                row["ContractID"] = c.ContractID;
-                row["CustomerName"] = c.CustomerName ?? string.Empty;
-                row["EmployeeName"] = c.EmployeeName ?? string.Empty;
-                row["CarName"] = c.CarName ?? string.Empty;
-                row["StartDate"] = c.StartDate;
-                row["ReturnDate"] = c.ReturnDate;
-                row["DaysRented"] = c.DaysRented;
-                row["StartMileage"] = c.StartMileage;
-                row["EndMileage"] = c.EndMileage ?? (object)DBNull.Value;
-                row["DateProcessed"] = c.DateProcessed ?? (object)DBNull.Value;
-                row["IsOverdue"] = c.IsOverdue;
-                row["Status"] = c.Status ?? string.Empty;
-                contractTable.Rows.Add(row);
-            }
-
-            dgvContracts.DataSource = contractTable;
-
-            // ✔ Only ONE DataView declaration
-            DataView dv = contractTable.DefaultView;
-            dv.Sort = "StartDate DESC";
-
-            dgvContracts.DataSource = dv;
-
-            dgvContracts.DefaultCellStyle.NullValue = "NULL";
-
-            DataGridViewCheckBoxColumn chkCol = new DataGridViewCheckBoxColumn
-            {
-                Name = "IsOverdue",
-                HeaderText = "Is Overdue?",
-                DataPropertyName = "IsOverdue",
-                ReadOnly = true
-            };
-
-            int index = dgvContracts.Columns["IsOverdue"].Index;
-            dgvContracts.Columns.Remove("IsOverdue");
-            dgvContracts.Columns.Insert(index, chkCol);
-
-            // Rename columns
-            dgvContracts.Columns["ContractID"].HeaderText = "Contract ID";
-            dgvContracts.Columns["CustomerName"].HeaderText = "Customer Name";
-            dgvContracts.Columns["EmployeeName"].HeaderText = "Created By";
-            dgvContracts.Columns["CarName"].HeaderText = "Car Name";
-            dgvContracts.Columns["StartDate"].HeaderText = "Start Date";
-            dgvContracts.Columns["ReturnDate"].HeaderText = "Return Date";
-            dgvContracts.Columns["DaysRented"].HeaderText = "Days Rented";
-            dgvContracts.Columns["StartMileage"].HeaderText = "Start Mileage";
-            dgvContracts.Columns["EndMileage"].HeaderText = "End Mileage";
-            dgvContracts.Columns["DateProcessed"].HeaderText = "Date Processed";
-            dgvContracts.Columns["IsOverdue"].HeaderText = "Is Overdue?";
-            dgvContracts.Columns["Status"].HeaderText = "Status";
-
-            if (dgvContracts.Columns.Contains("Activate"))
-                dgvContracts.Columns.Remove("Activate");
-
-            if (dgvContracts.Columns.Contains("Cancel"))
-                dgvContracts.Columns.Remove("Cancel");
-
-            var activateColumn = new DataGridViewImageColumn
-            {
-                Name = "Activate",
-                HeaderText = "",
-                Image = Properties.Resources.CheckIcon,
-                ImageLayout = DataGridViewImageCellLayout.Zoom,
-                Width = 40,
-                ToolTipText = "Activate Contract"
-            };
-
-            var cancelColumn = new DataGridViewImageColumn
-            {
-                Name = "Cancel",
-                HeaderText = "",
-                Image = Properties.Resources.XIcon,
-                Width = 40,
-                ToolTipText = "Cancel Contract"
-            };
-
-            dgvContracts.Columns.Insert(0, cancelColumn);
-            dgvContracts.Columns.Insert(0, activateColumn);
-
-            foreach (DataGridViewRow row in dgvContracts.Rows)
-            {
-                string status = row.Cells["Status"].Value?.ToString() ?? string.Empty;
-
-                if (status != "Pending")
-                {
-                    // Gray out icons
-                    row.Cells["Activate"].Value = Properties.Resources.CheckIcon___Disabled;
-                    row.Cells["Cancel"].Value = Properties.Resources.XIcon___Disabled;
-
-                    // Make them read-only
-                    row.Cells["Activate"].ReadOnly = true;
-                    row.Cells["Cancel"].ReadOnly = true;
-
-                    // Optional: show tooltip
-                    row.Cells["Activate"].ToolTipText = "Cannot activate (status is not pending)";
-                    row.Cells["Cancel"].ToolTipText = "Cannot cancel (status is not pending)";
-                }
-                else
-                {
-                    // Set normal icons
-                    row.Cells["Activate"].Value = Properties.Resources.CheckIcon;
-                    row.Cells["Cancel"].Value = Properties.Resources.XIcon;
-                    row.Cells["Activate"].ReadOnly = false;
-                    row.Cells["Cancel"].ReadOnly = false;
-                    row.Cells["Activate"].ToolTipText = "Activate this contract";
-                    row.Cells["Cancel"].ToolTipText = "Cancel this contract";
-                }
-            }
-
-            dgvContracts.ReadOnly = true;
-
-            dgvContracts.Refresh();
         }
 
         private void btnNewRental_Click(object sender, EventArgs e)

@@ -29,7 +29,9 @@ namespace CarRentalSystem.Database
                     SELECT 
                         b.BillingID,
                         b.ContractID,
+                        con.CustID,
                         c.FullName AS CustomerName,
+                        CONCAT(car.Year, ' ', car.Brand, ' ', car.Model) AS CarName,
                         b.BaseRate,
                         b.TotalCharges,
                         b.SecurityDepUsed,
@@ -42,6 +44,7 @@ namespace CarRentalSystem.Database
                     FROM billing b
                     JOIN contracts con ON b.ContractID = con.ContractID
                     JOIN customers c ON con.CustID = c.CustID
+                    JOIN car ON con.CarID = car.CarID  
                     ORDER BY b.BillingDate DESC;
                 ";
 
@@ -55,14 +58,16 @@ namespace CarRentalSystem.Database
                             {
                                 BillingId = reader.GetInt64("BillingID"),
                                 ContractId = reader.GetInt64("ContractID"),
+                                CustID = reader.GetInt64("CustID"),
                                 CustomerName = reader.GetString("CustomerName"),
+                                CarName = reader.GetString("CarName"),
                                 BaseRate = reader.GetDecimal("BaseRate"),
                                 TotalCharges = reader.IsDBNull(reader.GetOrdinal("TotalCharges")) ? 0 : reader.GetDecimal("TotalCharges"),
                                 SecurityDepUsed = reader.IsDBNull(reader.GetOrdinal("SecurityDepUsed")) ? 0 : reader.GetDecimal("SecurityDepUsed"),
                                 TotalAmount = reader.GetDecimal("TotalAmount"),
                                 AmountPaid = reader.GetDecimal("AmountPaid"),
                                 RemainingBalance = reader.GetDecimal("RemainingBalance"),
-                                PaymentStaus = reader.GetString("PaymentStatus"),
+                                PaymentStatus = reader.GetString("PaymentStatus"),
                                 BillingDate = reader.GetDateTime("BillingDate"),
                                 Remarks = reader.IsDBNull(reader.GetOrdinal("Remarks")) ? "" : reader.GetString("Remarks")
                             };
@@ -79,6 +84,8 @@ namespace CarRentalSystem.Database
 
             return billingList;
         }
+
+
 
     }
 }
