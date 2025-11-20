@@ -59,7 +59,6 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             // Hide BillingID if you want
             dgvBillingLog.Columns["BillingID"].Visible = false;
-            dgvBillingLog.Columns["Notes"].Visible = false;
 
             DataView dv = billingLogTable.DefaultView;
             dv.Sort = "TransactionDate DESC";
@@ -84,5 +83,30 @@ namespace CarRentalSystem.WindowsForm.Modal
             dgvBillingLog.Refresh();
         }
 
+        private void ApplyBillingLogDateFilter()
+        {
+            if (billingLogTable == null) return;
+
+            DataView dv = billingLogTable.DefaultView;
+
+            DateTime start = dtpStartDate.Value.Date;
+            DateTime end = dtpEndDate.Value.Date;
+
+            // Filter by TransactionDate between start and end (inclusive)
+            dv.RowFilter = $"TransactionDate >= #{start:yyyy-MM-dd}# AND TransactionDate <= #{end:yyyy-MM-dd}#";
+
+            dgvBillingLog.DataSource = dv;
+        }
+
+
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            ApplyBillingLogDateFilter();
+        }
+
+        private void dtpEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            ApplyBillingLogDateFilter();
+        }
     }
 }

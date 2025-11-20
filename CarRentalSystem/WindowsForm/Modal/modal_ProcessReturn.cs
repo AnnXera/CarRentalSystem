@@ -460,17 +460,18 @@ namespace CarRentalSystem.WindowsForm.Modal
             if (!decimal.TryParse(txtSecurityDeposit.Text, out decimal deposit))
                 deposit = 0;
 
-            decimal subtotal = decimal.TryParse(lblTotalChargeFee.Text, out var sub) ? sub : 0;
+            // Total charges from label
+            decimal totalCharges = decimal.TryParse(lblTotalChargeFee.Text, out var total) ? total : 0m;
 
-            if (deposit > subtotal)
+            // Max allowed is either total charges or original deposit, whichever is smaller
+            decimal maxAllowed = Math.Min(_selectedContract.DepositAmount, totalCharges);
+
+            if (deposit > maxAllowed)
             {
-                MessageBox.Show(
-                    "Security deposit cannot exceed the total charges.",
-                    "Invalid Amount",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                deposit = subtotal;
+                deposit = maxAllowed;
+                txtSecurityDeposit.Text = deposit.ToString("N2"); // automatically correct
+                txtSecurityDeposit.SelectionStart = txtSecurityDeposit.Text.Length; // move cursor to end
+                System.Media.SystemSounds.Beep.Play(); // optional beep
             }
 
             UpdateSubtotalAndTotal();

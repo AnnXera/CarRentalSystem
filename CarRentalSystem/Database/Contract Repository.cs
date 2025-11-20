@@ -285,8 +285,14 @@ namespace CarRentalSystem.Database
             return list;
         }
 
-
-        public decimal CompleteContractReturn(long contractId, long extraMileage, decimal mileageFee, decimal lateFee, decimal lostFee, decimal securityDepositUsed, List<(long PartID, int Quantity, decimal Cost)> damagedParts)
+        public decimal CompleteContractReturn(
+            long contractId,
+            long extraMileage,
+            decimal mileageFee,
+            decimal lateFee,
+            decimal lostFee,
+            decimal securityDepUsed,
+            List<(long PartID, int Quantity, decimal Cost)> damagedParts)
         {
             if (contractId <= 0) throw new ArgumentException("Invalid contract ID");
 
@@ -399,16 +405,16 @@ namespace CarRentalSystem.Database
                         totalCharges = Convert.ToDecimal(cmd.ExecuteScalar());
                     }
 
-                    // 7️⃣ Update billing
+                    // 7️⃣ Update billing (use correct column SecurityDepUsed)
                     string updateBilling = @"
                         UPDATE billing
                         SET TotalCharges = @TotalCharges,
-                            SecurityDepUsed = @SecurityDepositUsed,
-                            TotalAmount = BaseRate + @TotalCharges - @SecurityDepositUsed,
-                            RemainingBalance = (BaseRate + @TotalCharges - @SecurityDepositUsed) - AmountPaid,
+                            SecurityDepUsed = @SecurityDepUsed,
+                            TotalAmount = BaseRate + @TotalCharges - @SecurityDepUsed,
+                            RemainingBalance = (BaseRate + @TotalCharges - @SecurityDepUsed) - AmountPaid,
                             PaymentStatus = CASE 
-                                WHEN (BaseRate + @TotalCharges - @SecurityDepositUsed - AmountPaid) = 0 THEN 'Paid'
-                                WHEN (BaseRate + @TotalCharges - @SecurityDepositUsed - AmountPaid) < (BaseRate + @TotalCharges - @SecurityDepositUsed) THEN 'Partial'
+                                WHEN (BaseRate + @TotalCharges - @SecurityDepUsed - AmountPaid) = 0 THEN 'Paid'
+                                WHEN (BaseRate + @TotalCharges - @SecurityDepUsed - AmountPaid) < (BaseRate + @TotalCharges - @SecurityDepUsed) THEN 'Partial'
                                 ELSE 'Pending'
                             END
                         WHERE ContractID = @ContractID";
@@ -417,19 +423,19 @@ namespace CarRentalSystem.Database
                     {
                         cmd.Parameters.AddWithValue("@ContractID", contractId);
                         cmd.Parameters.AddWithValue("@TotalCharges", totalCharges);
-                        cmd.Parameters.AddWithValue("@SecurityDepositUsed", securityDepositUsed);
+                        cmd.Parameters.AddWithValue("@SecurityDepUsed", securityDepUsed);
                         cmd.ExecuteNonQuery();
                     }
 
                     totalAmount = totalCharges;
 
-                    // 8️⃣ Update security deposit
+                    // 8️⃣ Update security deposit table
                     string updateDeposit = @"
                         UPDATE securitydeposit
                         SET Status = CASE 
                             WHEN @TotalCharges <= 0 THEN 'Forfeited'
-                            WHEN @SecurityDepositUsed = DepositAmount THEN 'AllUsed'
-                            WHEN @SecurityDepositUsed > 0 AND @SecurityDepositUsed < DepositAmount THEN 'PartialRefunded'
+                            WHEN @SecurityDepUsed = DepositAmount THEN 'AllUsed'
+                            WHEN @SecurityDepUsed > 0 AND @SecurityDepUsed < DepositAmount THEN 'PartialRefunded'
                             ELSE 'Refunded'
                         END
                         WHERE ContractID = @ContractID";
@@ -437,12 +443,29 @@ namespace CarRentalSystem.Database
                     using (var cmd = new MySqlCommand(updateDeposit, _db.Connection, transaction))
                     {
                         cmd.Parameters.AddWithValue("@TotalCharges", totalCharges);
-                        cmd.Parameters.AddWithValue("@SecurityDepositUsed", securityDepositUsed);
+                        cmd.Parameters.AddWithValue("@SecurityDepUsed", securityDepUsed);
                         cmd.Parameters.AddWithValue("@ContractID", contractId);
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 9️⃣ Update car mileage and status
+                    // 9️⃣ Optionally insert billing log for security deposit usage
+                    if (securityDepUsed > 0)
+                    {
+                        string insertBillingLog = @"
+                            INSERT INTO billinglog (BillingID, TransactionDate, PaymentMethod, TransactionType, Amount, Notes)
+                            SELECT BillingID, NOW(), 'Cash', 'Deposit', @AmountUsed, 'Security deposit applied'
+                            FROM billing
+                            WHERE ContractID = @ContractID";
+
+                        using (var cmd = new MySqlCommand(insertBillingLog, _db.Connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@ContractID", contractId);
+                            cmd.Parameters.AddWithValue("@AmountUsed", securityDepUsed);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    // 10️⃣ Update car mileage and status
                     bool hasDamages = (damagedParts != null && damagedParts.Count > 0) || lostFee > 0;
                     string updateCar = @"
                         UPDATE car
@@ -473,6 +496,7 @@ namespace CarRentalSystem.Database
                 return totalAmount;
             }
         }
+
 
         public void UpdateContractStatus(long contractID, string newStatus)
         {

@@ -29,7 +29,6 @@ namespace CarRentalSystem.Database
                     SELECT bl.BillLogID, bl.BillingID, bl.TransactionDate, bl.PaymentMethod, bl.TransactionType, bl.Amount, bl.Notes
                     FROM billinglog bl
                     JOIN billing b ON bl.BillingID = b.BillingID
-                    WHERE bl.TransactionType IN ('Payment', 'Refund')
                     ORDER BY bl.TransactionDate DESC;";
 
                 using (var cmd = new MySqlCommand(sql, _db.Connection))

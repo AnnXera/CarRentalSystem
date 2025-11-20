@@ -34,7 +34,6 @@
             this.pnlContractsOverview = new System.Windows.Forms.Panel();
             this.dgvBilling = new System.Windows.Forms.DataGridView();
             this.pnlSearch = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnPayment = new System.Windows.Forms.Button();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
@@ -52,11 +51,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.btnViewBillingLog = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pnlContractsOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilling)).BeginInit();
             this.pnlSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pnlContractDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlContractsOverview
@@ -133,17 +133,6 @@
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(476, 60);
             this.pnlSearch.TabIndex = 72;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
-            this.pictureBox4.Location = new System.Drawing.Point(10, 14);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
             // 
             // txtSearch
             // 
@@ -362,6 +351,18 @@
             this.btnViewBillingLog.TabIndex = 74;
             this.btnViewBillingLog.Text = "View Billing Log";
             this.btnViewBillingLog.UseVisualStyleBackColor = true;
+            this.btnViewBillingLog.Click += new System.EventHandler(this.btnViewBillingLog_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
+            this.pictureBox4.Location = new System.Drawing.Point(10, 14);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
             // 
             // frmBilling
             // 
@@ -378,9 +379,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilling)).EndInit();
             this.pnlSearch.ResumeLayout(false);
             this.pnlSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnlContractDetails.ResumeLayout(false);
             this.pnlContractDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }

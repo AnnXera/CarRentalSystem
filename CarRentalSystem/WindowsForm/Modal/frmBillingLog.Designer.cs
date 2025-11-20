@@ -56,7 +56,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(938, 76);
+            this.panel1.Size = new System.Drawing.Size(963, 76);
             this.panel1.TabIndex = 0;
             // 
             // panel2
@@ -72,7 +72,7 @@
             this.panel2.Controls.Add(this.dgvBillingLog);
             this.panel2.Location = new System.Drawing.Point(12, 108);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(938, 656);
+            this.panel2.Size = new System.Drawing.Size(963, 656);
             this.panel2.TabIndex = 1;
             // 
             // label1
@@ -80,7 +80,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(345, 14);
+            this.label1.Location = new System.Drawing.Point(357, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(279, 46);
             this.label1.TabIndex = 0;
@@ -132,7 +132,7 @@
             this.dgvBillingLog.RowTemplate.DividerHeight = 1;
             this.dgvBillingLog.RowTemplate.Height = 40;
             this.dgvBillingLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvBillingLog.Size = new System.Drawing.Size(901, 517);
+            this.dgvBillingLog.Size = new System.Drawing.Size(926, 517);
             this.dgvBillingLog.TabIndex = 77;
             // 
             // label14
@@ -140,7 +140,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Gray;
-            this.label14.Location = new System.Drawing.Point(475, 11);
+            this.label14.Location = new System.Drawing.Point(501, 11);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(103, 28);
@@ -163,7 +163,7 @@
             // 
             this.pnlEndDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.pnlEndDate.Controls.Add(this.dtpEndDate);
-            this.pnlEndDate.Location = new System.Drawing.Point(480, 49);
+            this.pnlEndDate.Location = new System.Drawing.Point(506, 49);
             this.pnlEndDate.Margin = new System.Windows.Forms.Padding(0, 4, 20, 4);
             this.pnlEndDate.Name = "pnlEndDate";
             this.pnlEndDate.Size = new System.Drawing.Size(440, 55);
@@ -181,6 +181,7 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(401, 34);
             this.dtpEndDate.TabIndex = 1;
+            this.dtpEndDate.ValueChanged += new System.EventHandler(this.dtpEndDate_ValueChanged);
             // 
             // pnlStartDate
             // 
@@ -204,13 +205,14 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(401, 34);
             this.dtpStartDate.TabIndex = 1;
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // frmBillingLog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(962, 776);
+            this.ClientSize = new System.Drawing.Size(987, 776);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

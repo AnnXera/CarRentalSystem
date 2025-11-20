@@ -217,5 +217,11 @@ namespace CarRentalSystem.WindowsForm.Modal
                 }
             }
         }
+
+        private void btnViewBillingLog_Click(object sender, EventArgs e)
+        {
+            frmBillingLog frmBillingLog = new frmBillingLog();
+            frmBillingLog.ShowDialog();
+        }
     }
 }

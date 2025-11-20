@@ -52,6 +52,9 @@ namespace CarRentalSystem.Code.Enum
 
             [Description("Cancel Contract")]
             CancelContract,
+
+            [Description("Process Payment")]
+            ProcessPayment,
         }
     }
 }
