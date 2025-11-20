@@ -1,4 +1,5 @@
 ﻿using CarRentalSystem.Code;
+using CarRentalSystem.Code.Enum;
 using CarRentalSystem.Database;
 using CarRentalSystem.Utils;
 using Org.BouncyCastle.Asn1.Cmp;
@@ -17,40 +18,50 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class modal_Payment : Form
     {
-        private Billing _billing;
+        private readonly Billing _billing;
+        private readonly BillingFactory _billingFactory;
 
         public modal_Payment(Billing billing)
         {
             InitializeComponent();
-            _billing = billing;
+            _billing = billing ?? throw new ArgumentNullException(nameof(billing));
+
+            _billingFactory = new BillingFactory();
+            _billingFactory.SetCurrentBilling(_billing);
+
             LoadComboBoxes();
             LoadBillingDetails();
         }
+
         private void LoadBillingDetails()
         {
             if (_billing == null) return;
 
-            lblBillNo.Text = _billing.BillingId.ToString();
             lblContractNo.Text = _billing.ContractId.ToString();
-            lblCustomerName.Text = _billing.CustomerName;
-            lblCarName.Text = _billing.CarName;
+            lblCustomerName.Text = _billing.CustomerName ?? "N/A";
+            lblCarName.Text = _billing.CarName ?? "N/A";
+
+            lblBillNo.Text = _billing.BillingId.ToString();
             lblBaseRate.Text = _billing.BaseRate.ToString("N2");
-            lblTotalAmount.Text = _billing.TotalAmount.ToString("N2");
-            lblTotalChargeFee.Text = (_billing.TotalCharges ?? 0).ToString("N2");
-            lblSecurityDepUsed.Text = (_billing.SecurityDepUsed ?? 0).ToString("N2");
-            lblPrevAmountPaid.Text = _billing.AmountPaid.ToString("N2");
-            lblCurrentAmountDue.Text = _billing.RemainingBalance.ToString("N2");
-            lblTextChangeRemainingBalance.Text = _billing.RemainingBalance.ToString("N2");
 
             var repo = new AdditionalChargesRepository();
-
             var charges = repo.GetChargeBreakdown(_billing.ContractId);
 
             lblCarPartsCharges.Text = charges.PartsTotal.ToString("N2");
-            lblLost.Text = charges.LostTotal.ToString("N2");
-            lblMileageFee.Text = charges.MileageTotal.ToString("N2");
             lblLateFee.Text = charges.LateFeeTotal.ToString("N2");
+            lblMileageFee.Text = charges.MileageTotal.ToString("N2");
+            lblLost.Text = charges.LostTotal.ToString("N2");
+            lblTotalChargeFee.Text = (charges.PartsTotal + charges.LostTotal + charges.MileageTotal + charges.LateFeeTotal).ToString("N2");
 
+            lblSecurityDepUsed.Text = (_billing.SecurityDepUsed ?? 0).ToString("N2");
+            lblTotalAmount.Text = _billing.TotalAmount.ToString("N2");
+            lblPrevAmountPaid.Text = _billing.AmountPaid.ToString("N2");
+
+            lblCurrentAmountDue.Text = _billing.RemainingBalance.ToString("N2");
+            lblTextChangeRemainingBalance.Text = _billing.RemainingBalance.ToString("N2"); 
+
+            txtAmountReceived.Focus();
+            txtAmountReceived.Select();
         }
 
         private void LoadComboBoxes()
@@ -81,7 +92,6 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             try
             {
-                //Validator.RequireNotEmpty(cbxBrand.Text, "Brand");
                 Validator.RequireComboBoxSelected(cbxPaymentMethod, "Payment Method");
 
                 Validator.RequireNotEmpty(txtAmountReceived.Text, "Amount");
@@ -100,7 +110,58 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void btnConfirmPayment_Click(object sender, EventArgs e)
         {
-            ValidatePaymentForm();
+            try
+            {
+                ValidatePaymentForm();
+
+                if (!decimal.TryParse(txtAmountReceived.Text, out decimal amountReceived) || amountReceived <= 0)
+                    throw new Exception("Please enter a valid amount greater than zero.");
+
+                if (amountReceived > _billing.RemainingBalance)
+                {
+                    var result = MessageBox.Show(
+                        $"Customer paid {amountReceived:N2}, but only {_billing.RemainingBalance:N2} is due.\n\n" +
+                        "Accept overpayment and issue change?",
+                        "Overpayment", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No) return;
+                }
+
+                var billing = new Billing
+                {
+                    BillingId = _billing.BillingId,
+                    ContractId = _billing.ContractId,
+                    AmountPaid = amountReceived,
+                    PaymentMethod = (enum_Payment.PaymentMethod)cbxPaymentMethod.SelectedValue,
+                    BillingDate = DateTime.Now,
+                    //emarks = txtRemarks?.Text.Trim() ?? ""
+                };
+
+                bool success = _billingFactory.RecordPayment(billing);
+
+                if (success)
+                {
+                    MessageBox.Show("Payment recorded successfully!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to record payment. Please try again.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void modal_Payment_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

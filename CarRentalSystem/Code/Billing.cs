@@ -1,4 +1,5 @@
-﻿using CarRentalSystem.Database;
+﻿using CarRentalSystem.Code.Enum;
+using CarRentalSystem.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,14 @@ namespace CarRentalSystem.Code
         public string PaymentStatus { get; set; }
         public DateTime BillingDate { get; set; }
         public string Remarks { get; set; }
+
+        // Add
+        public enum_Payment.PaymentMethod PaymentMethod { get; set; }
     }
 
     public class BillingFactory : IModalFactory<Billing>
     {
         private readonly BillingRepository _repo;
-
         public BillingFactory()
         {
             _repo = new BillingRepository();
@@ -47,6 +50,28 @@ namespace CarRentalSystem.Code
         public List<Billing> ViewAll() 
         { 
             return _repo.ViewAll();
+        }
+        private Billing _currentBilling;  // To remember which billing we're paying
+
+        public void SetCurrentBilling(Billing billing)
+        {
+            _currentBilling = billing;
+        }
+
+        public bool RecordPayment(Billing billing)
+        {
+            if (_currentBilling == null) return false;
+
+            decimal newRemaining = _currentBilling.RemainingBalance - billing.RemainingBalance;
+            string newStatus = newRemaining <= 0 ? "Paid" : "Partially Paid";
+
+            var repo = new BillingRepository();
+            return repo.UpdatePayment(
+                billingId: billing.BillingId,
+                amountToAdd: billing.RemainingBalance,
+                newRemainingBalance: newRemaining > 0 ? newRemaining : 0m,
+                paymentStatus: newStatus
+            );
         }
     }
 }

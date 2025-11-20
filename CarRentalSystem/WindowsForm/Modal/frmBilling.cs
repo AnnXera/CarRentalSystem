@@ -160,34 +160,30 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             if (dgvBilling.SelectedRows.Count == 0) return;
 
-            // Get selected billing row
             var selectedRow = dgvBilling.SelectedRows[0];
 
-            // Create a Billing object from selected row
             var billing = new Billing
             {
                 BillingId = Convert.ToInt64(selectedRow.Cells["BillingID"].Value),
                 ContractId = Convert.ToInt64(selectedRow.Cells["ContractID"].Value),
-                CustomerName = selectedRow.Cells["CustomerName"].Value?.ToString(),
-                CarName = selectedRow.Cells["CarName"].Value?.ToString(),
+                CustomerName = selectedRow.Cells["CustomerName"].Value?.ToString() ?? "",
+                CarName = selectedRow.Cells["CarName"].Value?.ToString() ?? "",
                 BaseRate = Convert.ToDecimal(selectedRow.Cells["BaseRate"].Value),
-                TotalCharges = selectedRow.Cells["TotalCharges"].Value != DBNull.Value
-                    ? Convert.ToDecimal(selectedRow.Cells["TotalCharges"].Value)
-                    : 0m,
-                SecurityDepUsed = selectedRow.Cells["SecurityDepUsed"].Value != DBNull.Value
-                    ? Convert.ToDecimal(selectedRow.Cells["SecurityDepUsed"].Value)
-                    : 0m,
+                TotalCharges = selectedRow.Cells["TotalCharges"].Value == DBNull.Value ? (decimal?)null : Convert.ToDecimal(selectedRow.Cells["TotalCharges"].Value),
+                SecurityDepUsed = selectedRow.Cells["SecurityDepUsed"].Value == DBNull.Value ? (decimal?)null : Convert.ToDecimal(selectedRow.Cells["SecurityDepUsed"].Value),
                 TotalAmount = Convert.ToDecimal(selectedRow.Cells["TotalAmount"].Value),
                 AmountPaid = Convert.ToDecimal(selectedRow.Cells["AmountPaid"].Value),
                 RemainingBalance = Convert.ToDecimal(selectedRow.Cells["RemainingBalance"].Value),
                 PaymentStatus = selectedRow.Cells["PaymentStatus"].Value?.ToString()
             };
 
-            // Open modal and pass billing
             using (var modalPayment = new modal_Payment(billing))
             {
-                modalPayment.ShowDialog();
-                LoadBillingTable(); // refresh table after payment
+                var result = modalPayment.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    LoadBillingTable(); // Refresh grid after successful payment
+                }
             }
         }
 

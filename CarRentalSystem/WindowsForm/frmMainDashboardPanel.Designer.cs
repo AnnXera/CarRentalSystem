@@ -95,9 +95,10 @@
             this.pnlQuickActions.Controls.Add(this.label1);
             this.pnlQuickActions.Controls.Add(this.lblRole);
             this.pnlQuickActions.Controls.Add(this.lblUserName);
-            this.pnlQuickActions.Location = new System.Drawing.Point(788, 20);
+            this.pnlQuickActions.Location = new System.Drawing.Point(591, 16);
+            this.pnlQuickActions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlQuickActions.Name = "pnlQuickActions";
-            this.pnlQuickActions.Size = new System.Drawing.Size(716, 137);
+            this.pnlQuickActions.Size = new System.Drawing.Size(520, 111);
             this.pnlQuickActions.TabIndex = 0;
             // 
             // btnProcessContract
@@ -107,10 +108,10 @@
             this.btnProcessContract.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProcessContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
             this.btnProcessContract.Image = global::CarRentalSystem.Properties.Resources.AddIcon;
-            this.btnProcessContract.Location = new System.Drawing.Point(255, 67);
-            this.btnProcessContract.Margin = new System.Windows.Forms.Padding(5);
+            this.btnProcessContract.Location = new System.Drawing.Point(191, 54);
+            this.btnProcessContract.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnProcessContract.Name = "btnProcessContract";
-            this.btnProcessContract.Size = new System.Drawing.Size(226, 48);
+            this.btnProcessContract.Size = new System.Drawing.Size(170, 39);
             this.btnProcessContract.TabIndex = 74;
             this.btnProcessContract.Text = "Process Contract";
             this.btnProcessContract.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -125,10 +126,10 @@
             this.btnNewContract.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewContract.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
             this.btnNewContract.Image = global::CarRentalSystem.Properties.Resources.AddIcon;
-            this.btnNewContract.Location = new System.Drawing.Point(20, 67);
-            this.btnNewContract.Margin = new System.Windows.Forms.Padding(5);
+            this.btnNewContract.Location = new System.Drawing.Point(15, 54);
+            this.btnNewContract.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNewContract.Name = "btnNewContract";
-            this.btnNewContract.Size = new System.Drawing.Size(225, 48);
+            this.btnNewContract.Size = new System.Drawing.Size(169, 39);
             this.btnNewContract.TabIndex = 73;
             this.btnNewContract.Text = "New Contract";
             this.btnNewContract.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -140,9 +141,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 20);
+            this.label1.Location = new System.Drawing.Point(10, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 33);
+            this.label1.Size = new System.Drawing.Size(141, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "Quick Action";
             // 
@@ -151,9 +153,10 @@
             this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(529, 59);
+            this.lblRole.Location = new System.Drawing.Point(380, 48);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(50, 23);
+            this.lblRole.Size = new System.Drawing.Size(40, 18);
             this.lblRole.TabIndex = 1;
             this.lblRole.Text = "Role";
             // 
@@ -162,9 +165,10 @@
             this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(528, 26);
+            this.lblUserName.Location = new System.Drawing.Point(379, 21);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(126, 27);
+            this.lblUserName.Size = new System.Drawing.Size(105, 22);
             this.lblUserName.TabIndex = 0;
             this.lblUserName.Text = "UserName";
             // 
@@ -172,9 +176,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 20);
+            this.label2.Location = new System.Drawing.Point(9, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(307, 38);
+            this.label2.Size = new System.Drawing.Size(258, 32);
             this.label2.TabIndex = 1;
             this.label2.Text = "Car Rental System";
             // 
@@ -183,9 +188,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(14, 70);
+            this.label3.Location = new System.Drawing.Point(10, 57);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 26);
+            this.label3.Size = new System.Drawing.Size(142, 22);
             this.label3.TabIndex = 2;
             this.label3.Text = "Today Statistics";
             // 
@@ -194,9 +200,10 @@
             this.lblTodayDate.AutoSize = true;
             this.lblTodayDate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTodayDate.ForeColor = System.Drawing.Color.Gray;
-            this.lblTodayDate.Location = new System.Drawing.Point(15, 112);
+            this.lblTodayDate.Location = new System.Drawing.Point(11, 91);
+            this.lblTodayDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTodayDate.Name = "lblTodayDate";
-            this.lblTodayDate.Size = new System.Drawing.Size(106, 23);
+            this.lblTodayDate.Size = new System.Drawing.Size(84, 18);
             this.lblTodayDate.TabIndex = 3;
             this.lblTodayDate.Text = "Date, Time";
             // 
@@ -208,9 +215,10 @@
             this.pnlOverView.Controls.Add(this.pnlSearchActiveRentals);
             this.pnlOverView.Controls.Add(this.dgvActiveRentals);
             this.pnlOverView.Controls.Add(this.label13);
-            this.pnlOverView.Location = new System.Drawing.Point(788, 187);
+            this.pnlOverView.Location = new System.Drawing.Point(591, 152);
+            this.pnlOverView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlOverView.Name = "pnlOverView";
-            this.pnlOverView.Size = new System.Drawing.Size(716, 841);
+            this.pnlOverView.Size = new System.Drawing.Size(520, 683);
             this.pnlOverView.TabIndex = 4;
             // 
             // pnlSearchActiveRentals
@@ -220,19 +228,19 @@
             this.pnlSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlSearchActiveRentals.Controls.Add(this.pictureBox4);
             this.pnlSearchActiveRentals.Controls.Add(this.txtSearchActiveRentals);
-            this.pnlSearchActiveRentals.Location = new System.Drawing.Point(20, 58);
-            this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlSearchActiveRentals.Location = new System.Drawing.Point(15, 47);
+            this.pnlSearchActiveRentals.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlSearchActiveRentals.Name = "pnlSearchActiveRentals";
-            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(677, 55);
+            this.pnlSearchActiveRentals.Size = new System.Drawing.Size(491, 45);
             this.pnlSearchActiveRentals.TabIndex = 76;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
-            this.pictureBox4.Location = new System.Drawing.Point(11, 9);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Location = new System.Drawing.Point(8, 7);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(40, 37);
+            this.pictureBox4.Size = new System.Drawing.Size(30, 30);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
@@ -245,10 +253,10 @@
             this.txtSearchActiveRentals.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtSearchActiveRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSearchActiveRentals.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchActiveRentals.Location = new System.Drawing.Point(64, 13);
-            this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(17, 15, 17, 15);
+            this.txtSearchActiveRentals.Location = new System.Drawing.Point(48, 11);
+            this.txtSearchActiveRentals.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.txtSearchActiveRentals.Name = "txtSearchActiveRentals";
-            this.txtSearchActiveRentals.Size = new System.Drawing.Size(596, 28);
+            this.txtSearchActiveRentals.Size = new System.Drawing.Size(430, 22);
             this.txtSearchActiveRentals.TabIndex = 1;
             // 
             // dgvActiveRentals
@@ -280,8 +288,8 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvActiveRentals.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvActiveRentals.EnableHeadersVisualStyles = false;
-            this.dgvActiveRentals.Location = new System.Drawing.Point(20, 132);
-            this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvActiveRentals.Location = new System.Drawing.Point(15, 107);
+            this.dgvActiveRentals.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvActiveRentals.MultiSelect = false;
             this.dgvActiveRentals.Name = "dgvActiveRentals";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -297,7 +305,7 @@
             this.dgvActiveRentals.RowTemplate.DividerHeight = 1;
             this.dgvActiveRentals.RowTemplate.Height = 40;
             this.dgvActiveRentals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvActiveRentals.Size = new System.Drawing.Size(677, 690);
+            this.dgvActiveRentals.Size = new System.Drawing.Size(491, 561);
             this.dgvActiveRentals.TabIndex = 75;
             this.dgvActiveRentals.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvActiveRentals_Paint);
             // 
@@ -305,9 +313,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(16, 21);
+            this.label13.Location = new System.Drawing.Point(12, 17);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(145, 24);
+            this.label13.Size = new System.Drawing.Size(118, 19);
             this.label13.TabIndex = 33;
             this.label13.Text = "Active Rentals";
             // 
@@ -315,9 +324,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 187);
+            this.label4.Location = new System.Drawing.Point(11, 152);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(257, 24);
+            this.label4.Size = new System.Drawing.Size(207, 19);
             this.label4.TabIndex = 5;
             this.label4.Text = "Fleet and Rental Overview";
             // 
@@ -326,9 +336,10 @@
             this.pnlVehiclesAvailable.BackColor = System.Drawing.Color.White;
             this.pnlVehiclesAvailable.Controls.Add(this.panel3);
             this.pnlVehiclesAvailable.Controls.Add(this.label5);
-            this.pnlVehiclesAvailable.Location = new System.Drawing.Point(19, 219);
+            this.pnlVehiclesAvailable.Location = new System.Drawing.Point(14, 178);
+            this.pnlVehiclesAvailable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlVehiclesAvailable.Name = "pnlVehiclesAvailable";
-            this.pnlVehiclesAvailable.Size = new System.Drawing.Size(361, 167);
+            this.pnlVehiclesAvailable.Size = new System.Drawing.Size(271, 136);
             this.pnlVehiclesAvailable.TabIndex = 6;
             // 
             // panel3
@@ -337,10 +348,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Gray;
             this.panel3.ForeColor = System.Drawing.Color.Silver;
-            this.panel3.Location = new System.Drawing.Point(16, 50);
-            this.panel3.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel3.Location = new System.Drawing.Point(12, 41);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(322, 1);
+            this.panel3.Size = new System.Drawing.Size(242, 1);
             this.panel3.TabIndex = 27;
             // 
             // label5
@@ -348,9 +359,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(12, 15);
+            this.label5.Location = new System.Drawing.Point(9, 12);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(176, 24);
+            this.label5.Size = new System.Drawing.Size(144, 19);
             this.label5.TabIndex = 7;
             this.label5.Text = "Vehicles Available";
             // 
@@ -359,9 +371,10 @@
             this.pnlRentalsDue.BackColor = System.Drawing.Color.White;
             this.pnlRentalsDue.Controls.Add(this.panel4);
             this.pnlRentalsDue.Controls.Add(this.label6);
-            this.pnlRentalsDue.Location = new System.Drawing.Point(404, 219);
+            this.pnlRentalsDue.Location = new System.Drawing.Point(303, 178);
+            this.pnlRentalsDue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlRentalsDue.Name = "pnlRentalsDue";
-            this.pnlRentalsDue.Size = new System.Drawing.Size(361, 167);
+            this.pnlRentalsDue.Size = new System.Drawing.Size(271, 136);
             this.pnlRentalsDue.TabIndex = 28;
             // 
             // panel4
@@ -370,10 +383,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.Gray;
             this.panel4.ForeColor = System.Drawing.Color.Silver;
-            this.panel4.Location = new System.Drawing.Point(16, 50);
-            this.panel4.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel4.Location = new System.Drawing.Point(12, 41);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(322, 1);
+            this.panel4.Size = new System.Drawing.Size(242, 1);
             this.panel4.TabIndex = 27;
             // 
             // label6
@@ -381,9 +394,10 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(12, 15);
+            this.label6.Location = new System.Drawing.Point(9, 12);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 24);
+            this.label6.Size = new System.Drawing.Size(153, 19);
             this.label6.TabIndex = 7;
             this.label6.Text = "Rentals Due Today";
             // 
@@ -392,9 +406,10 @@
             this.pnlReturnsDueToday.BackColor = System.Drawing.Color.White;
             this.pnlReturnsDueToday.Controls.Add(this.panel6);
             this.pnlReturnsDueToday.Controls.Add(this.label7);
-            this.pnlReturnsDueToday.Location = new System.Drawing.Point(19, 409);
+            this.pnlReturnsDueToday.Location = new System.Drawing.Point(14, 332);
+            this.pnlReturnsDueToday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlReturnsDueToday.Name = "pnlReturnsDueToday";
-            this.pnlReturnsDueToday.Size = new System.Drawing.Size(361, 167);
+            this.pnlReturnsDueToday.Size = new System.Drawing.Size(271, 136);
             this.pnlReturnsDueToday.TabIndex = 29;
             // 
             // panel6
@@ -403,10 +418,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.Gray;
             this.panel6.ForeColor = System.Drawing.Color.Silver;
-            this.panel6.Location = new System.Drawing.Point(16, 50);
-            this.panel6.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel6.Location = new System.Drawing.Point(12, 41);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(322, 1);
+            this.panel6.Size = new System.Drawing.Size(242, 1);
             this.panel6.TabIndex = 27;
             // 
             // label7
@@ -414,9 +429,10 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Gray;
-            this.label7.Location = new System.Drawing.Point(12, 15);
+            this.label7.Location = new System.Drawing.Point(9, 12);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(192, 24);
+            this.label7.Size = new System.Drawing.Size(156, 19);
             this.label7.TabIndex = 7;
             this.label7.Text = "Returns Due Today";
             // 
@@ -425,9 +441,10 @@
             this.pnlOverviewVehicles.BackColor = System.Drawing.Color.White;
             this.pnlOverviewVehicles.Controls.Add(this.panel8);
             this.pnlOverviewVehicles.Controls.Add(this.label8);
-            this.pnlOverviewVehicles.Location = new System.Drawing.Point(404, 409);
+            this.pnlOverviewVehicles.Location = new System.Drawing.Point(303, 332);
+            this.pnlOverviewVehicles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlOverviewVehicles.Name = "pnlOverviewVehicles";
-            this.pnlOverviewVehicles.Size = new System.Drawing.Size(361, 167);
+            this.pnlOverviewVehicles.Size = new System.Drawing.Size(271, 136);
             this.pnlOverviewVehicles.TabIndex = 30;
             // 
             // panel8
@@ -436,10 +453,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.Gray;
             this.panel8.ForeColor = System.Drawing.Color.Silver;
-            this.panel8.Location = new System.Drawing.Point(16, 50);
-            this.panel8.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel8.Location = new System.Drawing.Point(12, 41);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(322, 1);
+            this.panel8.Size = new System.Drawing.Size(242, 1);
             this.panel8.TabIndex = 27;
             // 
             // label8
@@ -447,9 +464,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(12, 15);
+            this.label8.Location = new System.Drawing.Point(9, 12);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(175, 24);
+            this.label8.Size = new System.Drawing.Size(142, 19);
             this.label8.TabIndex = 7;
             this.label8.Text = "Overdue Vehicles";
             // 
@@ -457,9 +475,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 16);
+            this.label9.Location = new System.Drawing.Point(12, 13);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(163, 24);
+            this.label9.Size = new System.Drawing.Size(133, 19);
             this.label9.TabIndex = 31;
             this.label9.Text = "Admin Overview";
             // 
@@ -470,9 +489,10 @@
             this.pnlAdminOverview.Controls.Add(this.pnlFleetUtilization);
             this.pnlAdminOverview.Controls.Add(this.pnlRevenue);
             this.pnlAdminOverview.Controls.Add(this.label9);
-            this.pnlAdminOverview.Location = new System.Drawing.Point(-1, 607);
+            this.pnlAdminOverview.Location = new System.Drawing.Point(-1, 493);
+            this.pnlAdminOverview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlAdminOverview.Name = "pnlAdminOverview";
-            this.pnlAdminOverview.Size = new System.Drawing.Size(790, 437);
+            this.pnlAdminOverview.Size = new System.Drawing.Size(592, 355);
             this.pnlAdminOverview.TabIndex = 32;
             // 
             // pnlAvgDailyRate
@@ -480,9 +500,10 @@
             this.pnlAvgDailyRate.BackColor = System.Drawing.Color.White;
             this.pnlAvgDailyRate.Controls.Add(this.panel9);
             this.pnlAvgDailyRate.Controls.Add(this.label12);
-            this.pnlAvgDailyRate.Location = new System.Drawing.Point(405, 254);
+            this.pnlAvgDailyRate.Location = new System.Drawing.Point(304, 206);
+            this.pnlAvgDailyRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlAvgDailyRate.Name = "pnlAvgDailyRate";
-            this.pnlAvgDailyRate.Size = new System.Drawing.Size(361, 167);
+            this.pnlAvgDailyRate.Size = new System.Drawing.Size(271, 136);
             this.pnlAvgDailyRate.TabIndex = 32;
             // 
             // panel9
@@ -491,10 +512,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.Gray;
             this.panel9.ForeColor = System.Drawing.Color.Silver;
-            this.panel9.Location = new System.Drawing.Point(16, 50);
-            this.panel9.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel9.Location = new System.Drawing.Point(12, 41);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(322, 1);
+            this.panel9.Size = new System.Drawing.Size(242, 1);
             this.panel9.TabIndex = 27;
             // 
             // label12
@@ -502,9 +523,10 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(12, 15);
+            this.label12.Location = new System.Drawing.Point(9, 12);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(146, 24);
+            this.label12.Size = new System.Drawing.Size(119, 19);
             this.label12.TabIndex = 7;
             this.label12.Text = "Avg Daily Rate";
             // 
@@ -513,9 +535,10 @@
             this.pnlFleetUtilization.BackColor = System.Drawing.Color.White;
             this.pnlFleetUtilization.Controls.Add(this.panel7);
             this.pnlFleetUtilization.Controls.Add(this.label11);
-            this.pnlFleetUtilization.Location = new System.Drawing.Point(20, 254);
+            this.pnlFleetUtilization.Location = new System.Drawing.Point(15, 206);
+            this.pnlFleetUtilization.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlFleetUtilization.Name = "pnlFleetUtilization";
-            this.pnlFleetUtilization.Size = new System.Drawing.Size(361, 167);
+            this.pnlFleetUtilization.Size = new System.Drawing.Size(271, 136);
             this.pnlFleetUtilization.TabIndex = 31;
             // 
             // panel7
@@ -524,10 +547,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.Gray;
             this.panel7.ForeColor = System.Drawing.Color.Silver;
-            this.panel7.Location = new System.Drawing.Point(16, 50);
-            this.panel7.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel7.Location = new System.Drawing.Point(12, 41);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(322, 1);
+            this.panel7.Size = new System.Drawing.Size(242, 1);
             this.panel7.TabIndex = 27;
             // 
             // label11
@@ -535,9 +558,10 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(12, 15);
+            this.label11.Location = new System.Drawing.Point(9, 12);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(155, 24);
+            this.label11.Size = new System.Drawing.Size(126, 19);
             this.label11.TabIndex = 7;
             this.label11.Text = "Fleet Utilization";
             // 
@@ -546,9 +570,10 @@
             this.pnlRevenue.BackColor = System.Drawing.Color.White;
             this.pnlRevenue.Controls.Add(this.panel2);
             this.pnlRevenue.Controls.Add(this.label10);
-            this.pnlRevenue.Location = new System.Drawing.Point(20, 52);
+            this.pnlRevenue.Location = new System.Drawing.Point(15, 42);
+            this.pnlRevenue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlRevenue.Name = "pnlRevenue";
-            this.pnlRevenue.Size = new System.Drawing.Size(746, 182);
+            this.pnlRevenue.Size = new System.Drawing.Size(560, 148);
             this.pnlRevenue.TabIndex = 30;
             // 
             // panel2
@@ -557,10 +582,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Gray;
             this.panel2.ForeColor = System.Drawing.Color.Silver;
-            this.panel2.Location = new System.Drawing.Point(16, 50);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 22, 5, 5);
+            this.panel2.Location = new System.Drawing.Point(12, 41);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 18, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(707, 1);
+            this.panel2.Size = new System.Drawing.Size(530, 1);
             this.panel2.TabIndex = 27;
             // 
             // label10
@@ -568,19 +593,20 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Gray;
-            this.label10.Location = new System.Drawing.Point(12, 15);
+            this.label10.Location = new System.Drawing.Point(9, 12);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 24);
+            this.label10.Size = new System.Drawing.Size(122, 19);
             this.label10.TabIndex = 7;
             this.label10.Text = "Revenue(MTD)";
             // 
             // frmMainDashboardPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1558, 724);
+            this.ClientSize = new System.Drawing.Size(1168, 588);
             this.Controls.Add(this.pnlAdminOverview);
             this.Controls.Add(this.pnlOverviewVehicles);
             this.Controls.Add(this.pnlReturnsDueToday);
@@ -593,6 +619,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlQuickActions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMainDashboardPanel";
             this.Text = "z";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

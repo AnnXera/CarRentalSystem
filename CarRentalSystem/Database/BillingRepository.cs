@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalSystem.Database
 {
@@ -88,6 +89,41 @@ namespace CarRentalSystem.Database
             }
 
             return billingList;
+        }
+        // Add this method inside BillingRepository class
+        public bool UpdatePayment(long billingId, decimal amountToAdd, decimal newRemainingBalance, string paymentStatus)
+        {
+            try
+            {
+                _db.Open();
+                string query = @"
+            UPDATE billing 
+            SET AmountPaid = AmountPaid + @AmountToAdd,
+                RemainingBalance = @NewRemaining,
+                PaymentStatus = @PaymentStatus,
+                BillingDate = NOW()
+            WHERE BillingID = @BillingID";
+
+                using (var cmd = new MySqlCommand(query, _db.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@AmountToAdd", amountToAdd);
+                    cmd.Parameters.AddWithValue("@NewRemaining", newRemainingBalance);
+                    cmd.Parameters.AddWithValue("@PaymentStatus", paymentStatus);
+                    cmd.Parameters.AddWithValue("@BillingID", billingId);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                _db.Close();
+            }
         }
     }
 }

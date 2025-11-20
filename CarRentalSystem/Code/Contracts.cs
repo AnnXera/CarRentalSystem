@@ -59,7 +59,7 @@ namespace CarRentalSystem.Code
         public decimal? SecurityDepUsed { get; set; }
         public decimal? TotalAmount { get; set; }
         public string PaymentStatus { get; set; }
-
+        public long MileageLimitPerDay { get; internal set; }
     }
 
     public class ContractFactory : IModalFactory<Contracts>

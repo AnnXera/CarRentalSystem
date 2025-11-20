@@ -82,10 +82,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(418, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(10, 10, 10, 20);
+            this.label1.Location = new System.Drawing.Point(314, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 38);
+            this.label1.Size = new System.Drawing.Size(104, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Payment";
             // 
@@ -104,10 +104,10 @@
             this.pnlPayment.Controls.Add(this.label3);
             this.pnlPayment.Controls.Add(this.lblCurrentAmountDue);
             this.pnlPayment.Controls.Add(this.label2);
-            this.pnlPayment.Location = new System.Drawing.Point(469, 99);
-            this.pnlPayment.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.pnlPayment.Location = new System.Drawing.Point(352, 80);
+            this.pnlPayment.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
             this.pnlPayment.Name = "pnlPayment";
-            this.pnlPayment.Size = new System.Drawing.Size(558, 779);
+            this.pnlPayment.Size = new System.Drawing.Size(418, 633);
             this.pnlPayment.TabIndex = 1;
             // 
             // panel5
@@ -115,20 +115,20 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel5.Location = new System.Drawing.Point(10, 55);
-            this.panel5.Margin = new System.Windows.Forms.Padding(10, 9, 10, 20);
+            this.panel5.Location = new System.Drawing.Point(8, 45);
+            this.panel5.Margin = new System.Windows.Forms.Padding(8, 7, 8, 16);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(538, 1);
+            this.panel5.Size = new System.Drawing.Size(404, 1);
             this.panel5.TabIndex = 85;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(10, 15);
-            this.label7.Margin = new System.Windows.Forms.Padding(10, 15, 4, 0);
+            this.label7.Location = new System.Drawing.Point(8, 12);
+            this.label7.Margin = new System.Windows.Forms.Padding(8, 12, 3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(193, 31);
+            this.label7.Size = new System.Drawing.Size(162, 25);
             this.label7.TabIndex = 91;
             this.label7.Text = "Process Payment";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -140,10 +140,10 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(113)))), ((int)(((byte)(177)))));
-            this.btnCancel.Location = new System.Drawing.Point(73, 722);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
+            this.btnCancel.Location = new System.Drawing.Point(55, 587);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(219, 44);
+            this.btnCancel.Size = new System.Drawing.Size(164, 36);
             this.btnCancel.TabIndex = 51;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -156,10 +156,10 @@
             this.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmPayment.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmPayment.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmPayment.Location = new System.Drawing.Point(307, 722);
-            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(4, 6, 4, 4);
+            this.btnConfirmPayment.Location = new System.Drawing.Point(230, 587);
+            this.btnConfirmPayment.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.btnConfirmPayment.Name = "btnConfirmPayment";
-            this.btnConfirmPayment.Size = new System.Drawing.Size(230, 44);
+            this.btnConfirmPayment.Size = new System.Drawing.Size(172, 36);
             this.btnConfirmPayment.TabIndex = 50;
             this.btnConfirmPayment.Text = "CONFIRM PAYMENT";
             this.btnConfirmPayment.UseVisualStyleBackColor = false;
@@ -169,10 +169,11 @@
             // 
             this.lblTextChangeRemainingBalance.AutoSize = true;
             this.lblTextChangeRemainingBalance.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTextChangeRemainingBalance.Location = new System.Drawing.Point(260, 220);
+            this.lblTextChangeRemainingBalance.Location = new System.Drawing.Point(195, 179);
+            this.lblTextChangeRemainingBalance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTextChangeRemainingBalance.Name = "lblTextChangeRemainingBalance";
             this.lblTextChangeRemainingBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTextChangeRemainingBalance.Size = new System.Drawing.Size(204, 28);
+            this.lblTextChangeRemainingBalance.Size = new System.Drawing.Size(165, 21);
             this.lblTextChangeRemainingBalance.TabIndex = 7;
             this.lblTextChangeRemainingBalance.Text = "(lblRemainingBalance)";
             this.lblTextChangeRemainingBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -181,10 +182,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 220);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.label5.Location = new System.Drawing.Point(15, 179);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 28);
+            this.label5.Size = new System.Drawing.Size(145, 21);
             this.label5.TabIndex = 6;
             this.label5.Text = "Remaining Balance:";
             // 
@@ -192,19 +193,20 @@
             // 
             this.txtAmountReceived.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAmountReceived.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountReceived.Location = new System.Drawing.Point(259, 170);
+            this.txtAmountReceived.Location = new System.Drawing.Point(194, 138);
+            this.txtAmountReceived.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAmountReceived.Name = "txtAmountReceived";
-            this.txtAmountReceived.Size = new System.Drawing.Size(278, 34);
+            this.txtAmountReceived.Size = new System.Drawing.Size(209, 29);
             this.txtAmountReceived.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 172);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
+            this.label4.Location = new System.Drawing.Point(15, 140);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 28);
+            this.label4.Size = new System.Drawing.Size(135, 21);
             this.label4.TabIndex = 4;
             this.label4.Text = "Amount Received:";
             // 
@@ -212,20 +214,20 @@
             // 
             this.cbxPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxPaymentMethod.FormattingEnabled = true;
-            this.cbxPaymentMethod.Location = new System.Drawing.Point(260, 121);
-            this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cbxPaymentMethod.Location = new System.Drawing.Point(195, 98);
+            this.cbxPaymentMethod.Margin = new System.Windows.Forms.Padding(2, 2, 15, 2);
             this.cbxPaymentMethod.Name = "cbxPaymentMethod";
-            this.cbxPaymentMethod.Size = new System.Drawing.Size(278, 36);
+            this.cbxPaymentMethod.Size = new System.Drawing.Size(210, 29);
             this.cbxPaymentMethod.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 124);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 20);
+            this.label3.Location = new System.Drawing.Point(15, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 28);
+            this.label3.Size = new System.Drawing.Size(131, 21);
             this.label3.TabIndex = 2;
             this.label3.Text = "Payment Method:";
             // 
@@ -233,10 +235,11 @@
             // 
             this.lblCurrentAmountDue.AutoSize = true;
             this.lblCurrentAmountDue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAmountDue.Location = new System.Drawing.Point(260, 76);
+            this.lblCurrentAmountDue.Location = new System.Drawing.Point(195, 62);
+            this.lblCurrentAmountDue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCurrentAmountDue.Name = "lblCurrentAmountDue";
             this.lblCurrentAmountDue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCurrentAmountDue.Size = new System.Drawing.Size(117, 28);
+            this.lblCurrentAmountDue.Size = new System.Drawing.Size(93, 21);
             this.lblCurrentAmountDue.TabIndex = 1;
             this.lblCurrentAmountDue.Text = "(lblAmount)";
             this.lblCurrentAmountDue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -245,10 +248,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 76);
-            this.label2.Margin = new System.Windows.Forms.Padding(20, 0, 3, 20);
+            this.label2.Location = new System.Drawing.Point(15, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(15, 0, 2, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 28);
+            this.label2.Size = new System.Drawing.Size(158, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "Current Amount Due:";
             // 
@@ -256,10 +259,11 @@
             // 
             this.lblPrevAmountPaid.AutoSize = true;
             this.lblPrevAmountPaid.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrevAmountPaid.Location = new System.Drawing.Point(217, 734);
+            this.lblPrevAmountPaid.Location = new System.Drawing.Point(163, 596);
+            this.lblPrevAmountPaid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrevAmountPaid.Name = "lblPrevAmountPaid";
             this.lblPrevAmountPaid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblPrevAmountPaid.Size = new System.Drawing.Size(154, 28);
+            this.lblPrevAmountPaid.Size = new System.Drawing.Size(122, 21);
             this.lblPrevAmountPaid.TabIndex = 93;
             this.lblPrevAmountPaid.Text = "(lblAmountPaid)";
             this.lblPrevAmountPaid.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -268,10 +272,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(15, 734);
-            this.label11.Margin = new System.Windows.Forms.Padding(20, 0, 3, 20);
+            this.label11.Location = new System.Drawing.Point(11, 596);
+            this.label11.Margin = new System.Windows.Forms.Padding(15, 0, 2, 16);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(181, 28);
+            this.label11.Size = new System.Drawing.Size(144, 21);
             this.label11.TabIndex = 92;
             this.label11.Text = "Amount Prev Paid:";
             // 
@@ -307,10 +311,10 @@
             this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.lblBaseRate);
             this.panel1.Controls.Add(this.label39);
-            this.panel1.Location = new System.Drawing.Point(19, 99);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 15, 3);
+            this.panel1.Location = new System.Drawing.Point(14, 80);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 0, 11, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(435, 779);
+            this.panel1.Size = new System.Drawing.Size(326, 633);
             this.panel1.TabIndex = 83;
             // 
             // lblBillNo
@@ -318,11 +322,11 @@
             this.lblBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBillNo.AutoSize = true;
             this.lblBillNo.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillNo.Location = new System.Drawing.Point(315, 301);
-            this.lblBillNo.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
+            this.lblBillNo.Location = new System.Drawing.Point(236, 245);
+            this.lblBillNo.Margin = new System.Windows.Forms.Padding(8, 12, 3, 16);
             this.lblBillNo.Name = "lblBillNo";
             this.lblBillNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblBillNo.Size = new System.Drawing.Size(110, 31);
+            this.lblBillNo.Size = new System.Drawing.Size(88, 25);
             this.lblBillNo.TabIndex = 98;
             this.lblBillNo.Text = "lblBillNo";
             this.lblBillNo.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -332,21 +336,21 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Location = new System.Drawing.Point(10, 283);
-            this.panel3.Margin = new System.Windows.Forms.Padding(10, 9, 10, 20);
+            this.panel3.Location = new System.Drawing.Point(8, 230);
+            this.panel3.Margin = new System.Windows.Forms.Padding(8, 7, 8, 16);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(415, 1);
+            this.panel3.Size = new System.Drawing.Size(311, 1);
             this.panel3.TabIndex = 85;
             // 
             // lblContractNo
             // 
             this.lblContractNo.AutoSize = true;
             this.lblContractNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContractNo.Location = new System.Drawing.Point(156, 66);
-            this.lblContractNo.Margin = new System.Windows.Forms.Padding(10, 0, 0, 20);
+            this.lblContractNo.Location = new System.Drawing.Point(117, 54);
+            this.lblContractNo.Margin = new System.Windows.Forms.Padding(8, 0, 0, 16);
             this.lblContractNo.Name = "lblContractNo";
             this.lblContractNo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblContractNo.Size = new System.Drawing.Size(148, 28);
+            this.lblContractNo.Size = new System.Drawing.Size(117, 21);
             this.lblContractNo.TabIndex = 97;
             this.lblContractNo.Text = "(lblContractNo)";
             this.lblContractNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -355,10 +359,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(20, 66);
-            this.label13.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.label13.Location = new System.Drawing.Point(15, 54);
+            this.label13.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(126, 28);
+            this.label13.Size = new System.Drawing.Size(103, 21);
             this.label13.TabIndex = 96;
             this.label13.Text = "Contract No:";
             // 
@@ -366,11 +370,11 @@
             // 
             this.lblCarName.AutoSize = true;
             this.lblCarName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarName.Location = new System.Drawing.Point(20, 228);
-            this.lblCarName.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.lblCarName.Location = new System.Drawing.Point(15, 185);
+            this.lblCarName.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.lblCarName.Name = "lblCarName";
             this.lblCarName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCarName.Size = new System.Drawing.Size(127, 28);
+            this.lblCarName.Size = new System.Drawing.Size(103, 21);
             this.lblCarName.TabIndex = 95;
             this.lblCarName.Text = "(lblCarName)";
             this.lblCarName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -379,10 +383,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(20, 190);
-            this.label12.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.label12.Location = new System.Drawing.Point(15, 154);
+            this.label12.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 28);
+            this.label12.Size = new System.Drawing.Size(39, 21);
             this.label12.TabIndex = 94;
             this.label12.Text = "Car:";
             // 
@@ -390,11 +394,11 @@
             // 
             this.lblCustomerName.AutoSize = true;
             this.lblCustomerName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerName.Location = new System.Drawing.Point(20, 142);
-            this.lblCustomerName.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.lblCustomerName.Location = new System.Drawing.Point(15, 115);
+            this.lblCustomerName.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.lblCustomerName.Name = "lblCustomerName";
             this.lblCustomerName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCustomerName.Size = new System.Drawing.Size(182, 28);
+            this.lblCustomerName.Size = new System.Drawing.Size(147, 21);
             this.lblCustomerName.TabIndex = 93;
             this.lblCustomerName.Text = "(lblCustomerName)";
             this.lblCustomerName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -403,10 +407,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 104);
-            this.label10.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.label10.Location = new System.Drawing.Point(15, 84);
+            this.label10.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(171, 28);
+            this.label10.Size = new System.Drawing.Size(136, 21);
             this.label10.TabIndex = 92;
             this.label10.Text = "Customer Name: ";
             // 
@@ -414,10 +418,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(10, 15);
-            this.label9.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
+            this.label9.Location = new System.Drawing.Point(8, 12);
+            this.label9.Margin = new System.Windows.Forms.Padding(8, 12, 3, 16);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(197, 31);
+            this.label9.Size = new System.Drawing.Size(162, 25);
             this.label9.TabIndex = 91;
             this.label9.Text = "Customer Details";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -426,10 +430,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 301);
-            this.label8.Margin = new System.Windows.Forms.Padding(10, 15, 4, 20);
+            this.label8.Location = new System.Drawing.Point(8, 245);
+            this.label8.Margin = new System.Windows.Forms.Padding(8, 12, 3, 16);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(165, 31);
+            this.label8.Size = new System.Drawing.Size(132, 25);
             this.label8.TabIndex = 90;
             this.label8.Text = "Billing Details";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -438,10 +442,10 @@
             // 
             this.lblLost.AutoSize = true;
             this.lblLost.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLost.Location = new System.Drawing.Point(192, 552);
-            this.lblLost.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.lblLost.Location = new System.Drawing.Point(144, 448);
+            this.lblLost.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.lblLost.Name = "lblLost";
-            this.lblLost.Size = new System.Drawing.Size(82, 28);
+            this.lblLost.Size = new System.Drawing.Size(66, 21);
             this.lblLost.TabIndex = 51;
             this.lblLost.Text = "(lblLost)";
             this.lblLost.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -450,10 +454,10 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(117, 552);
-            this.label20.Margin = new System.Windows.Forms.Padding(3, 0, 3, 10);
+            this.label20.Location = new System.Drawing.Point(88, 448);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 8);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 28);
+            this.label20.Size = new System.Drawing.Size(42, 21);
             this.label20.TabIndex = 50;
             this.label20.Text = "Lost:";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -462,11 +466,11 @@
             // 
             this.lblTotalAmount.AutoSize = true;
             this.lblTotalAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalAmount.Location = new System.Drawing.Point(217, 686);
-            this.lblTotalAmount.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.lblTotalAmount.Location = new System.Drawing.Point(163, 557);
+            this.lblTotalAmount.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTotalAmount.Size = new System.Drawing.Size(159, 28);
+            this.lblTotalAmount.Size = new System.Drawing.Size(125, 21);
             this.lblTotalAmount.TabIndex = 48;
             this.lblTotalAmount.Text = "(lblTotalAmount)";
             this.lblTotalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -475,10 +479,10 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(14, 686);
-            this.label24.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.label24.Location = new System.Drawing.Point(10, 557);
+            this.label24.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(183, 28);
+            this.label24.Size = new System.Drawing.Size(145, 21);
             this.label24.TabIndex = 47;
             this.label24.Text = "Total Amount Due:";
             // 
@@ -486,10 +490,10 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(14, 638);
-            this.label27.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.label27.Location = new System.Drawing.Point(10, 518);
+            this.label27.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(139, 28);
+            this.label27.Size = new System.Drawing.Size(112, 21);
             this.label27.TabIndex = 45;
             this.label27.Text = "Deposit Used:";
             // 
@@ -497,11 +501,11 @@
             // 
             this.lblSecurityDepUsed.AutoSize = true;
             this.lblSecurityDepUsed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecurityDepUsed.Location = new System.Drawing.Point(173, 638);
-            this.lblSecurityDepUsed.Margin = new System.Windows.Forms.Padding(20, 0, 20, 20);
+            this.lblSecurityDepUsed.Location = new System.Drawing.Point(130, 518);
+            this.lblSecurityDepUsed.Margin = new System.Windows.Forms.Padding(15, 0, 15, 16);
             this.lblSecurityDepUsed.Name = "lblSecurityDepUsed";
             this.lblSecurityDepUsed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblSecurityDepUsed.Size = new System.Drawing.Size(126, 28);
+            this.lblSecurityDepUsed.Size = new System.Drawing.Size(100, 21);
             this.lblSecurityDepUsed.TabIndex = 44;
             this.lblSecurityDepUsed.Text = "(lblDepUsed)";
             this.lblSecurityDepUsed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -510,11 +514,11 @@
             // 
             this.lblTotalChargeFee.AutoSize = true;
             this.lblTotalChargeFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalChargeFee.Location = new System.Drawing.Point(192, 590);
-            this.lblTotalChargeFee.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.lblTotalChargeFee.Location = new System.Drawing.Point(144, 479);
+            this.lblTotalChargeFee.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.lblTotalChargeFee.Name = "lblTotalChargeFee";
             this.lblTotalChargeFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblTotalChargeFee.Size = new System.Drawing.Size(118, 28);
+            this.lblTotalChargeFee.Size = new System.Drawing.Size(93, 21);
             this.lblTotalChargeFee.TabIndex = 14;
             this.lblTotalChargeFee.Text = "(lblTotalFee)";
             this.lblTotalChargeFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -523,9 +527,10 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(111, 590);
+            this.label30.Location = new System.Drawing.Point(83, 479);
+            this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(58, 28);
+            this.label30.Size = new System.Drawing.Size(45, 21);
             this.label30.TabIndex = 13;
             this.label30.Text = "Total:";
             // 
@@ -533,11 +538,11 @@
             // 
             this.lblMileageFee.AutoSize = true;
             this.lblMileageFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMileageFee.Location = new System.Drawing.Point(189, 514);
-            this.lblMileageFee.Margin = new System.Windows.Forms.Padding(20, 0, 0, 10);
+            this.lblMileageFee.Location = new System.Drawing.Point(142, 418);
+            this.lblMileageFee.Margin = new System.Windows.Forms.Padding(15, 0, 0, 8);
             this.lblMileageFee.Name = "lblMileageFee";
             this.lblMileageFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblMileageFee.Size = new System.Drawing.Size(146, 28);
+            this.lblMileageFee.Size = new System.Drawing.Size(116, 21);
             this.lblMileageFee.TabIndex = 12;
             this.lblMileageFee.Text = "(lblMileageFee)";
             this.lblMileageFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -546,11 +551,11 @@
             // 
             this.lblLateFee.AutoSize = true;
             this.lblLateFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLateFee.Location = new System.Drawing.Point(189, 476);
-            this.lblLateFee.Margin = new System.Windows.Forms.Padding(20, 0, 3, 10);
+            this.lblLateFee.Location = new System.Drawing.Point(142, 387);
+            this.lblLateFee.Margin = new System.Windows.Forms.Padding(15, 0, 2, 8);
             this.lblLateFee.Name = "lblLateFee";
             this.lblLateFee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblLateFee.Size = new System.Drawing.Size(112, 28);
+            this.lblLateFee.Size = new System.Drawing.Size(90, 21);
             this.lblLateFee.TabIndex = 11;
             this.lblLateFee.Text = "(lblLateFee)";
             this.lblLateFee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -559,11 +564,11 @@
             // 
             this.lblCarPartsCharges.AutoSize = true;
             this.lblCarPartsCharges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarPartsCharges.Location = new System.Drawing.Point(189, 438);
-            this.lblCarPartsCharges.Margin = new System.Windows.Forms.Padding(20, 0, 3, 10);
+            this.lblCarPartsCharges.Location = new System.Drawing.Point(142, 356);
+            this.lblCarPartsCharges.Margin = new System.Windows.Forms.Padding(15, 0, 2, 8);
             this.lblCarPartsCharges.Name = "lblCarPartsCharges";
             this.lblCarPartsCharges.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblCarPartsCharges.Size = new System.Drawing.Size(187, 28);
+            this.lblCarPartsCharges.Size = new System.Drawing.Size(152, 21);
             this.lblCarPartsCharges.TabIndex = 10;
             this.lblCarPartsCharges.Text = "(lblCarPartsCharges)";
             this.lblCarPartsCharges.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -572,10 +577,10 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(36, 514);
-            this.label34.Margin = new System.Windows.Forms.Padding(3, 0, 0, 10);
+            this.label34.Location = new System.Drawing.Point(27, 418);
+            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 0, 8);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(133, 28);
+            this.label34.Size = new System.Drawing.Size(105, 21);
             this.label34.TabIndex = 9;
             this.label34.Text = "Mileage (KM):";
             // 
@@ -583,10 +588,10 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(55, 476);
-            this.label35.Margin = new System.Windows.Forms.Padding(3, 0, 0, 10);
+            this.label35.Location = new System.Drawing.Point(41, 387);
+            this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 0, 8);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(114, 28);
+            this.label35.Size = new System.Drawing.Size(93, 21);
             this.label35.TabIndex = 8;
             this.label35.Text = "Late Return:";
             // 
@@ -594,10 +599,10 @@
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(77, 438);
-            this.label36.Margin = new System.Windows.Forms.Padding(3, 0, 0, 10);
+            this.label36.Location = new System.Drawing.Point(58, 356);
+            this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 0, 8);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(92, 28);
+            this.label36.Size = new System.Drawing.Size(75, 21);
             this.label36.TabIndex = 7;
             this.label36.Text = "Car Parts:";
             // 
@@ -605,10 +610,10 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(14, 400);
-            this.label37.Margin = new System.Windows.Forms.Padding(20, 0, 3, 10);
+            this.label37.Location = new System.Drawing.Point(10, 325);
+            this.label37.Margin = new System.Windows.Forms.Padding(15, 0, 2, 8);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(189, 28);
+            this.label37.Size = new System.Drawing.Size(153, 21);
             this.label37.TabIndex = 6;
             this.label37.Text = "Additional Charges:";
             // 
@@ -616,11 +621,11 @@
             // 
             this.lblBaseRate.AutoSize = true;
             this.lblBaseRate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBaseRate.Location = new System.Drawing.Point(207, 351);
-            this.lblBaseRate.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.lblBaseRate.Location = new System.Drawing.Point(155, 285);
+            this.lblBaseRate.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.lblBaseRate.Name = "lblBaseRate";
             this.lblBaseRate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblBaseRate.Size = new System.Drawing.Size(124, 28);
+            this.lblBaseRate.Size = new System.Drawing.Size(100, 21);
             this.lblBaseRate.TabIndex = 5;
             this.lblBaseRate.Text = "(lblBaseRate)";
             this.lblBaseRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -629,10 +634,10 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(14, 352);
-            this.label39.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.label39.Location = new System.Drawing.Point(10, 286);
+            this.label39.Margin = new System.Windows.Forms.Padding(15, 0, 0, 16);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(166, 28);
+            this.label39.Size = new System.Drawing.Size(132, 21);
             this.label39.TabIndex = 4;
             this.label39.Text = "Base Rate (days):";
             // 
@@ -640,27 +645,29 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(19, 19);
-            this.panel4.Margin = new System.Windows.Forms.Padding(10, 10, 10, 15);
+            this.panel4.Location = new System.Drawing.Point(14, 15);
+            this.panel4.Margin = new System.Windows.Forms.Padding(8, 8, 8, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1008, 65);
+            this.panel4.Size = new System.Drawing.Size(756, 53);
             this.panel4.TabIndex = 84;
             // 
             // modal_Payment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 15);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1081, 678);
+            this.ClientSize = new System.Drawing.Size(811, 752);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlPayment);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "modal_Payment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "modal_Payment";
+            this.Load += new System.EventHandler(this.modal_Payment_Load);
             this.pnlPayment.ResumeLayout(false);
             this.pnlPayment.PerformLayout();
             this.panel1.ResumeLayout(false);
