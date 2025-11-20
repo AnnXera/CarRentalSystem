@@ -3,12 +3,7 @@ using CarRentalSystem.WindowsForm.Modal;
 using CarRentalSystem.Code;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CarRentalSystem.Code.Enum.enum_Contracts;
 
@@ -243,6 +238,18 @@ namespace CarRentalSystem.WindowsForm
             if (e.RowIndex < 0) return;
 
             var row = dgvContracts.Rows[e.RowIndex];
+
+            lblCar.Text = row.Cells["CarName"].Value?.ToString() ?? "";
+            lblDaysRented.Text = row.Cells["DaysRented"].Value?.ToString() ?? "";
+            lblRentalPlanName.Text = row.Cells["EmployeeName"].Value?.ToString() ?? ""; // Adjust if needed
+            lblReturnDate.Text = row.Cells["ReturnDate"].Value != DBNull.Value
+                ? Convert.ToDateTime(row.Cells["ReturnDate"].Value).ToString("yyyy-MM-dd")
+                : "";
+            lblStarDate.Text = row.Cells["StartDate"].Value != DBNull.Value
+                ? Convert.ToDateTime(row.Cells["StartDate"].Value).ToString("yyyy-MM-dd")
+                : "";
+            lblStatus.Text = row.Cells["Status"].Value?.ToString() ?? "";
+
             string status = row.Cells["Status"].Value?.ToString() ?? string.Empty;
 
             // Only allow actions on pending contracts

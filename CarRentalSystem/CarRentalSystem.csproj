@@ -272,6 +272,12 @@
     <Compile Include="WindowsForm\Modal\modal_SelectRentalAndCar.Designer.cs">
       <DependentUpon>modal_SelectRentalAndCar.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowsForm\Modal\modal_ViewDepAdditonalCharges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowsForm\Modal\modal_ViewDepAdditonalCharges.Designer.cs">
+      <DependentUpon>modal_ViewDepAdditonalCharges.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowsForm\Modal\modal_SelectRentalAndCar.resx">
       <DependentUpon>modal_SelectRentalAndCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsForm\Modal\modal_ViewDepAdditonalCharges.resx">
+      <DependentUpon>modal_ViewDepAdditonalCharges.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

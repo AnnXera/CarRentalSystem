@@ -21,6 +21,10 @@ namespace CarRentalSystem.WindowsForm
             LoadCars();
             LoadComboboxes();
             LoadDesign();
+
+            txtSearch.TextChanged += FilterCars;
+            cbxStatus.SelectedIndexChanged += FilterCars;
+            cbxRentalPlan.SelectedIndexChanged += FilterCars;
         }
 
         private void LoadDesign()
@@ -183,7 +187,7 @@ namespace CarRentalSystem.WindowsForm
         private void DisplayCarDetails(DataGridViewRow selectedRow)
         {
             if (selectedRow == null) return;
-            
+
             lblCarName.Text = selectedRow.Cells["CarDescription"].Value?.ToString();
             lblStatus.Text = selectedRow.Cells["Status"].Value?.ToString();
 
@@ -212,5 +216,35 @@ namespace CarRentalSystem.WindowsForm
                 DisplayCarDetails(selectedRow);
             }
         }
+
+        private void FilterCars(object sender, EventArgs e)
+        {
+            if (dgvCars.DataSource == null) return;
+
+            DataView dv = dgvCars.DataSource as DataView ?? ((DataTable)dgvCars.DataSource).DefaultView;
+
+            string searchText = txtSearch.Text.Trim().Replace("'", "''");
+            string selectedStatus = cbxStatus.SelectedItem?.ToString() ?? "";
+            string selectedPlan = cbxRentalPlan.SelectedItem != null
+                ? cbxRentalPlan.Text
+                : "";
+
+            List<string> filters = new List<string>();
+
+            // Search filter (CarDescription or PlateNumber)
+            if (!string.IsNullOrEmpty(searchText))
+                filters.Add($"CarDescription LIKE '%{searchText}%' OR PlateNumber LIKE '%{searchText}%'");
+
+            // Status filter
+            if (!string.IsNullOrEmpty(selectedStatus))
+                filters.Add($"Status = '{selectedStatus}'");
+
+            // Rental Plan filter
+            if (!string.IsNullOrEmpty(selectedPlan))
+                filters.Add($"PlanName = '{selectedPlan}'");
+
+            dv.RowFilter = string.Join(" AND ", filters);
+        }
+
     }
 }

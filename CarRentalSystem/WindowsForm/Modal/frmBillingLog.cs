@@ -22,6 +22,8 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             InitializeComponent();
             LoadBillingLog();
+
+            this.Text = "Billing Log";
         }
 
         private void LoadBillingLog()

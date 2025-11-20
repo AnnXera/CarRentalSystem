@@ -30,6 +30,9 @@ namespace CarRentalSystem.WindowsForm.Modal
             LoadPanels();
             LoadCustomerDropdown();
             SetupCarPartsGrid();
+
+            this.Text = "Process Return";
+
             dgvCarParts.DataSource = null;
             txtSecurityDeposit.KeyPress += TxtSecurityDeposit_KeyPress;
         }

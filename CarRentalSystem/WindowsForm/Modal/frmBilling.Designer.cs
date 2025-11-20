@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlContractsOverview = new System.Windows.Forms.Panel();
+            this.btnViewBillingLog = new System.Windows.Forms.Button();
             this.dgvBilling = new System.Windows.Forms.DataGridView();
             this.pnlSearch = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnPayment = new System.Windows.Forms.Button();
             this.pnlContractDetails = new System.Windows.Forms.Panel();
@@ -50,13 +52,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
-            this.btnViewBillingLog = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.btnViewChargesandDeposit = new System.Windows.Forms.Button();
             this.pnlContractsOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilling)).BeginInit();
             this.pnlSearch.SuspendLayout();
-            this.pnlContractDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.pnlContractDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContractsOverview
@@ -73,6 +74,22 @@
             this.pnlContractsOverview.Size = new System.Drawing.Size(1535, 478);
             this.pnlContractsOverview.TabIndex = 76;
             // 
+            // btnViewBillingLog
+            // 
+            this.btnViewBillingLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewBillingLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnViewBillingLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewBillingLog.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewBillingLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
+            this.btnViewBillingLog.Location = new System.Drawing.Point(1289, 21);
+            this.btnViewBillingLog.Margin = new System.Windows.Forms.Padding(0, 20, 10, 0);
+            this.btnViewBillingLog.Name = "btnViewBillingLog";
+            this.btnViewBillingLog.Size = new System.Drawing.Size(226, 60);
+            this.btnViewBillingLog.TabIndex = 74;
+            this.btnViewBillingLog.Text = "View Billing Logs";
+            this.btnViewBillingLog.UseVisualStyleBackColor = true;
+            this.btnViewBillingLog.Click += new System.EventHandler(this.btnViewBillingLog_Click);
+            // 
             // dgvBilling
             // 
             this.dgvBilling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -82,38 +99,38 @@
             this.dgvBilling.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBilling.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvBilling.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 10, 0, 10);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBilling.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 10, 0, 10);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBilling.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBilling.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBilling.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBilling.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBilling.EnableHeadersVisualStyles = false;
             this.dgvBilling.Location = new System.Drawing.Point(18, 101);
             this.dgvBilling.Margin = new System.Windows.Forms.Padding(5, 0, 20, 20);
             this.dgvBilling.MultiSelect = false;
             this.dgvBilling.Name = "dgvBilling";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBilling.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBilling.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvBilling.RowHeadersVisible = false;
             this.dgvBilling.RowHeadersWidth = 51;
             this.dgvBilling.RowTemplate.DividerHeight = 1;
@@ -133,6 +150,17 @@
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(476, 60);
             this.pnlSearch.TabIndex = 72;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
+            this.pictureBox4.Location = new System.Drawing.Point(10, 14);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
             // 
             // txtSearch
             // 
@@ -169,6 +197,7 @@
             this.pnlContractDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlContractDetails.BackColor = System.Drawing.Color.White;
+            this.pnlContractDetails.Controls.Add(this.btnViewChargesandDeposit);
             this.pnlContractDetails.Controls.Add(this.lblStatus);
             this.pnlContractDetails.Controls.Add(this.btnPayment);
             this.pnlContractDetails.Controls.Add(this.lblTotalCharges);
@@ -337,32 +366,21 @@
             this.lblCustomerName.TabIndex = 61;
             this.lblCustomerName.Text = "Customer Name";
             // 
-            // btnViewBillingLog
+            // btnViewChargesandDeposit
             // 
-            this.btnViewBillingLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnViewBillingLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnViewBillingLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewBillingLog.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewBillingLog.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
-            this.btnViewBillingLog.Location = new System.Drawing.Point(1289, 21);
-            this.btnViewBillingLog.Margin = new System.Windows.Forms.Padding(0, 20, 10, 0);
-            this.btnViewBillingLog.Name = "btnViewBillingLog";
-            this.btnViewBillingLog.Size = new System.Drawing.Size(226, 60);
-            this.btnViewBillingLog.TabIndex = 74;
-            this.btnViewBillingLog.Text = "View Billing Log";
-            this.btnViewBillingLog.UseVisualStyleBackColor = true;
-            this.btnViewBillingLog.Click += new System.EventHandler(this.btnViewBillingLog_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CarRentalSystem.Properties.Resources.IconSearch2;
-            this.pictureBox4.Location = new System.Drawing.Point(10, 14);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
+            this.btnViewChargesandDeposit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewChargesandDeposit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnViewChargesandDeposit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewChargesandDeposit.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewChargesandDeposit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(126)))), ((int)(((byte)(175)))));
+            this.btnViewChargesandDeposit.Location = new System.Drawing.Point(1289, 100);
+            this.btnViewChargesandDeposit.Margin = new System.Windows.Forms.Padding(0, 20, 10, 0);
+            this.btnViewChargesandDeposit.Name = "btnViewChargesandDeposit";
+            this.btnViewChargesandDeposit.Size = new System.Drawing.Size(226, 68);
+            this.btnViewChargesandDeposit.TabIndex = 74;
+            this.btnViewChargesandDeposit.Text = "View Charges and  Deposit";
+            this.btnViewChargesandDeposit.UseVisualStyleBackColor = true;
+            this.btnViewChargesandDeposit.Click += new System.EventHandler(this.btnViewChargesandDeposit_Click);
             // 
             // frmBilling
             // 
@@ -379,9 +397,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBilling)).EndInit();
             this.pnlSearch.ResumeLayout(false);
             this.pnlSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnlContractDetails.ResumeLayout(false);
             this.pnlContractDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,5 +427,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.Button btnViewBillingLog;
+        private System.Windows.Forms.Button btnViewChargesandDeposit;
     }
 }

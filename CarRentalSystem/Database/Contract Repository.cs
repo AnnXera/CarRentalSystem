@@ -675,7 +675,5 @@ namespace CarRentalSystem.Database
                 return count;
             }
         }
-
-
     }
 }

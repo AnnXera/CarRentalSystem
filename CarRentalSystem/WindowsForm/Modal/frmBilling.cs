@@ -26,6 +26,10 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             btnPayment.Enabled = false;
             btnPayment.ForeColor = Color.Gray;
+
+            btnViewChargesandDeposit.Enabled = false;
+            btnViewChargesandDeposit.ForeColor = Color.Gray;
+            
         }
 
         private void LoadPanel()
@@ -198,14 +202,17 @@ namespace CarRentalSystem.WindowsForm.Modal
 
         private void dgvBilling_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // ignore header clicks
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgvBilling.Rows[e.RowIndex];
                 DisplayBillingDetails(selectedRow);
 
                 string contractStatus = selectedRow.Cells["ContractStatus"].Value?.ToString() ?? "";
+                string paymentStatus = selectedRow.Cells["PaymentStatus"].Value?.ToString() ?? "";
 
-                if (contractStatus.Equals("Completed", StringComparison.OrdinalIgnoreCase))
+                // Payment button rules
+                if (contractStatus.Equals("Completed", StringComparison.OrdinalIgnoreCase) &&
+                    !paymentStatus.Equals("Paid", StringComparison.OrdinalIgnoreCase))
                 {
                     btnPayment.Enabled = true;
                     btnPayment.ForeColor = Color.FromArgb(4, 126, 175);
@@ -215,6 +222,18 @@ namespace CarRentalSystem.WindowsForm.Modal
                     btnPayment.Enabled = false;
                     btnPayment.ForeColor = Color.Gray;
                 }
+
+                // View Charges & Deposit rules
+                if (contractStatus == "Active" || contractStatus == "Completed" || paymentStatus == "Refunded")
+                {
+                    btnViewChargesandDeposit.Enabled = true;
+                    btnViewChargesandDeposit.ForeColor = Color.FromArgb(4, 126, 175);
+                }
+                else
+                {
+                    btnViewChargesandDeposit.Enabled = false;
+                    btnViewChargesandDeposit.ForeColor = Color.Gray;
+                }
             }
         }
 
@@ -222,6 +241,19 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             frmBillingLog frmBillingLog = new frmBillingLog();
             frmBillingLog.ShowDialog();
+        }
+
+        private void btnViewChargesandDeposit_Click(object sender, EventArgs e)
+        {
+            if (dgvBilling.SelectedRows.Count == 0)
+                return;
+
+            var selectedRow = dgvBilling.SelectedRows[0];
+            long billingId = Convert.ToInt64(selectedRow.Cells["BillingID"].Value);
+
+            var modal = new modal_ViewDepAdditonalCharges();
+            modal.BillingID = billingId;
+            modal.ShowDialog();
         }
     }
 }

@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,6 @@ namespace CarRentalSystem.Code
         // CUSTOMER
         public string CustomerName { get; set; }
         public byte[] DriversLicensePic { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
 
         // EMPLOYEE
         public string EmployeeName { get; set; }
@@ -37,8 +36,6 @@ namespace CarRentalSystem.Code
         // CAR
         public string CarName { get; set; }
         public byte[] CarPicture { get; set; }
-        public string PlateNumber { get; set; }
-        public string VIN { get; set; }
         public decimal ReplacementValue { get; set; }
 
         // RENTAL PLAN
@@ -46,21 +43,12 @@ namespace CarRentalSystem.Code
         public string PlanName { get; set; }
         public long MileageLimit { get; set; }
         public decimal ExcessFeePerKm { get; set; }
-        public decimal DailyRate { get; set; }
-        public string PlanDescription { get; set; }
 
         // SECURITY DEPOSIT
         public decimal DepositAmount { get; set; }
-        public string DepositStatus { get; set; }
-        public DateTime? DepositDate { get; set; }
 
         // BILLING
         public decimal? BaseRate { get; set; }
-        public decimal? TotalCharges { get; set; }
-        public decimal? SecurityDepUsed { get; set; }
-        public decimal? TotalAmount { get; set; }
-        public string PaymentStatus { get; set; }
-
     }
 
     public class ContractFactory : IModalFactory<Contracts>
