@@ -194,10 +194,11 @@
             this.txtAmountReceived.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAmountReceived.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountReceived.Location = new System.Drawing.Point(194, 138);
-            this.txtAmountReceived.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmountReceived.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmountReceived.Name = "txtAmountReceived";
             this.txtAmountReceived.Size = new System.Drawing.Size(209, 29);
             this.txtAmountReceived.TabIndex = 5;
+            this.txtAmountReceived.TextChanged += new System.EventHandler(this.txtAmountReceived_TextChanged);
             // 
             // label4
             // 
@@ -663,7 +664,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlPayment);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "modal_Payment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "modal_Payment";

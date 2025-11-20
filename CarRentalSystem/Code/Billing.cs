@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalSystem.Code
 {
@@ -42,36 +43,53 @@ namespace CarRentalSystem.Code
             throw new NotImplementedException();
         }
 
-        public void Edit(Billing billing) 
+        public void Edit(Billing billing)
         {
             throw new NotImplementedException();
         }
 
-        public List<Billing> ViewAll() 
-        { 
+        public List<Billing> ViewAll()
+        {
             return _repo.ViewAll();
         }
-        private Billing _currentBilling;  // To remember which billing we're paying
+        private Billing _currentBilling;
 
         public void SetCurrentBilling(Billing billing)
         {
             _currentBilling = billing;
         }
 
-        public bool RecordPayment(Billing billing)
+        public bool RecordPayment(Billing payment)
         {
             if (_currentBilling == null) return false;
 
-            decimal newRemaining = _currentBilling.RemainingBalance - billing.RemainingBalance;
+            decimal newRemaining = _currentBilling.RemainingBalance - payment.AmountPaid;
             string newStatus = newRemaining <= 0 ? "Paid" : "Partially Paid";
 
             var repo = new BillingRepository();
-            return repo.UpdatePayment(
-                billingId: billing.BillingId,
-                amountToAdd: billing.RemainingBalance,
-                newRemainingBalance: newRemaining > 0 ? newRemaining : 0m,
+
+            bool success = repo.UpdatePayment(
+                billingId: payment.BillingId,
+                amountToAdd: payment.AmountPaid,
+                newRemainingBalance: Math.Max(0, newRemaining),
                 paymentStatus: newStatus
             );
+
+            if (success)
+            {
+                var log = new BillingLog
+                {
+                    BillingID = payment.BillingId,
+                    TransactionDate = payment.BillingDate,
+                    PaymentMethod = payment.PaymentMethod.ToString(),
+                    TransactionType = "Payment",
+                    Amount = payment.AmountPaid,
+                    Notes = $"Payment received from {_currentBilling.CustomerName}"
+                };
+                //repo.SaveToBillingLog(log);  // Optional but recommended
+            }
+
+            return success;
         }
     }
 }

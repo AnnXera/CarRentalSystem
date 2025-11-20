@@ -62,6 +62,9 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             txtAmountReceived.Focus();
             txtAmountReceived.Select();
+
+            txtAmountReceived.Text = "";
+            lblTextChangeRemainingBalance.Text = _billing.RemainingBalance.ToString("N2");
         }
 
         private void LoadComboBoxes()
@@ -115,53 +118,79 @@ namespace CarRentalSystem.WindowsForm.Modal
                 ValidatePaymentForm();
 
                 if (!decimal.TryParse(txtAmountReceived.Text, out decimal amountReceived) || amountReceived <= 0)
-                    throw new Exception("Please enter a valid amount greater than zero.");
+                    throw new Exception("Enter valid amount.");
 
-                if (amountReceived > _billing.RemainingBalance)
-                {
-                    var result = MessageBox.Show(
-                        $"Customer paid {amountReceived:N2}, but only {_billing.RemainingBalance:N2} is due.\n\n" +
-                        "Accept overpayment and issue change?",
-                        "Overpayment", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.No) return;
-                }
-
-                var billing = new Billing
+                var payment = new Billing
                 {
                     BillingId = _billing.BillingId,
                     ContractId = _billing.ContractId,
                     AmountPaid = amountReceived,
                     PaymentMethod = (enum_Payment.PaymentMethod)cbxPaymentMethod.SelectedValue,
                     BillingDate = DateTime.Now,
-                    //emarks = txtRemarks?.Text.Trim() ?? ""
+                    //Remarks = txtRemarks.Text
                 };
 
-                bool success = _billingFactory.RecordPayment(billing);
+                bool success = _billingFactory.RecordPayment(payment);
 
                 if (success)
                 {
-                    MessageBox.Show("Payment recorded successfully!", "Success",
+                    MessageBox.Show("Payment successfull!", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to record payment. Please try again.", "Error",
+                    MessageBox.Show("Failed to save payment to database!", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void modal_Payment_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtAmountReceived_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtAmountReceived.Text, out decimal received))
+            {
+                decimal newRemaining = _billing.RemainingBalance - received;
+                lblTextChangeRemainingBalance.Text = newRemaining.ToString("N2");
+
+                if (newRemaining < 0)
+                {
+                    lblTextChangeRemainingBalance.ForeColor = Color.Red;
+                    lblTextChangeRemainingBalance.Text = newRemaining.ToString("N2") + "  ← Change Due";
+                }
+                else
+                {
+                    lblTextChangeRemainingBalance.ForeColor = Color.Black;
+                    lblTextChangeRemainingBalance.Text = newRemaining.ToString("N2");
+                }
+
+                
+                if (received > _billing.RemainingBalance)
+                {
+                    txtAmountReceived.TextChanged -= txtAmountReceived_TextChanged;
+                    txtAmountReceived.Text = _billing.RemainingBalance.ToString("F2");
+                    txtAmountReceived.SelectAll();
+                    txtAmountReceived.TextChanged += txtAmountReceived_TextChanged;
+                    MessageBox.Show("Amount cannot exceed total due.", "Input Limit", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+            }
+            else if (string.IsNullOrWhiteSpace(txtAmountReceived.Text))
+            {
+                lblTextChangeRemainingBalance.Text = _billing.RemainingBalance.ToString("N2");
+                lblTextChangeRemainingBalance.ForeColor = Color.Black;
+            }
         }
     }
 }

@@ -14,8 +14,7 @@ namespace CarRentalSystem.WindowsForm.Modal
 {
     public partial class frmBilling : Form
     {
-        BillingFactory billingFactory = new BillingFactory();
-
+        private readonly BillingFactory billingFactory = new BillingFactory();
         private DataTable billingTable;
 
         public frmBilling()
@@ -23,9 +22,7 @@ namespace CarRentalSystem.WindowsForm.Modal
             InitializeComponent();
             ClearBillingLabels();
             LoadBillingTable();
-
-            btnPayment.Enabled = false;
-            btnPayment.ForeColor = Color.Gray;
+            UpdatePaymentButton();
         }
 
         private void LoadPanel()
@@ -47,149 +44,137 @@ namespace CarRentalSystem.WindowsForm.Modal
         private void LoadBillingTable()
         {
             var billings = billingFactory.ViewAll();
-
-            dgvBilling.AllowUserToAddRows = false;
-            dgvBilling.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvBilling.RowHeadersVisible = false;
-            dgvBilling.AllowUserToResizeRows = false;
-
             billingTable = new DataTable();
+
+            // Add columns
             billingTable.Columns.Add("BillingID", typeof(long));
             billingTable.Columns.Add("ContractID", typeof(long));
-            billingTable.Columns.Add("CustomerName");
-            billingTable.Columns.Add("CarName");
+            billingTable.Columns.Add("CustomerName", typeof(string));
+            billingTable.Columns.Add("CarName", typeof(string));
             billingTable.Columns.Add("BaseRate", typeof(decimal));
             billingTable.Columns.Add("TotalCharges", typeof(decimal));
             billingTable.Columns.Add("SecurityDepUsed", typeof(decimal));
             billingTable.Columns.Add("TotalAmount", typeof(decimal));
-            billingTable.Columns.Add("AmountPaid", typeof (decimal));
+            billingTable.Columns.Add("AmountPaid", typeof(decimal));
             billingTable.Columns.Add("RemainingBalance", typeof(decimal));
-            billingTable.Columns.Add("PaymentStatus");
+            billingTable.Columns.Add("PaymentStatus", typeof(string));
             billingTable.Columns.Add("BillingDate", typeof(DateTime));
-            billingTable.Columns.Add("Remarks");
+            billingTable.Columns.Add("Remarks", typeof(string));
 
             foreach (var b in billings)
             {
-                var row = billingTable.NewRow();
-                row["BillingID"] = b.BillingId;
-                row["ContractID"] = b.ContractId;
-                row["CustomerName"] = b.CustomerName;
-                row["CarName"] = b.CarName;
-                row["BaseRate"] = b.BaseRate;
-                row["TotalCharges"] = b.TotalCharges ?? (object)DBNull.Value;
-                row["SecurityDepUsed"] = b.SecurityDepUsed ?? (object)DBNull.Value;
-                row["TotalAmount"] = b.TotalAmount;
-                row["AmountPaid"] = b.AmountPaid;
-                row["RemainingBalance"] = b.RemainingBalance;
-                row["PaymentStatus"] = b.PaymentStatus;
-                row["BillingDate"] = b.BillingDate;
-                row["Remarks"] = b.Remarks ?? string.Empty;
-                billingTable.Rows.Add(row);
+                billingTable.Rows.Add(
+                    b.BillingId,
+                    b.ContractId,
+                    b.CustomerName ?? "",
+                    b.CarName ?? "",
+                    b.BaseRate,
+                    b.TotalCharges ?? 0m,
+                    b.SecurityDepUsed ?? 0m,
+                    b.TotalAmount,
+                    b.AmountPaid,
+                    b.RemainingBalance,
+                    b.PaymentStatus ?? "Pending",
+                    b.BillingDate,
+                    b.Remarks ?? ""
+                );
             }
 
-            dgvBilling.DataSource = billingTable;
+            var view = billingTable.DefaultView;
+            view.Sort = "BillingID DESC";
+            dgvBilling.DataSource = view;
 
+            // Format
             dgvBilling.Columns["ContractID"].Visible = false;
             dgvBilling.Columns["CarName"].Visible = false;
-
-            DataView dv = billingTable.DefaultView;
-            dv.Sort = "BillingID DESC";
-
-            dgvBilling.DataSource = dv;
-
-            dgvBilling.DefaultCellStyle.NullValue = "NULL";
-
-            dgvBilling.Columns["BaseRate"].DefaultCellStyle.Format = "N2";
-            dgvBilling.Columns["TotalCharges"].DefaultCellStyle.Format = "N2";
-            dgvBilling.Columns["SecurityDepUsed"].DefaultCellStyle.Format = "N2";
-            dgvBilling.Columns["TotalAmount"].DefaultCellStyle.Format = "N2";
-            dgvBilling.Columns["AmountPaid"].DefaultCellStyle.Format = "N2";
-            dgvBilling.Columns["RemainingBalance"].DefaultCellStyle.Format = "N2";
+            foreach (DataGridViewColumn col in dgvBilling.Columns)
+            {
+                if (col.ValueType == typeof(decimal))
+                    col.DefaultCellStyle.Format = "N2";
+            }
 
             dgvBilling.Columns["BillingID"].HeaderText = "Billing ID";
-            dgvBilling.Columns["CustomerName"].HeaderText = "Customer Name";
-            dgvBilling.Columns["BaseRate"].HeaderText = "Base Rate";
-            dgvBilling.Columns["TotalCharges"].HeaderText = "Total Charges";
-            dgvBilling.Columns["SecurityDepUsed"].HeaderText = "Security Dep Used";
-            dgvBilling.Columns["TotalAmount"].HeaderText = "Total Amount";
-            dgvBilling.Columns["AmountPaid"].HeaderText = "Amount Paid";
-            dgvBilling.Columns["RemainingBalance"].HeaderText = "Remainig Balance";
-            dgvBilling.Columns["PaymentStatus"].HeaderText = "Payment Status";
-            dgvBilling.Columns["BillingDate"].HeaderText = "Billing Date";
-            dgvBilling.Columns["Remarks"].HeaderText = "Remarks";
-
-            dgvBilling.ReadOnly = true;
+            dgvBilling.Columns["CustomerName"].HeaderText = "Customer";
+            dgvBilling.Columns["RemainingBalance"].HeaderText = "Balance";
+            dgvBilling.Columns["PaymentStatus"].HeaderText = "Status";
 
             dgvBilling.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvBilling.Refresh();
+            dgvBilling.ReadOnly = true;
         }
 
         private void DisplayBillingDetails(DataGridViewRow selectedRow)
         {
             if (selectedRow == null) return;
 
+            lblCustomerName.Text = selectedRow.Cells["CustomerName"].Value?.ToString() ?? "";
+            lblBillingID.Text = selectedRow.Cells["BillingID"].Value?.ToString() ?? "";
+            lblBaseRate.Text = Convert.ToDecimal(selectedRow.Cells["BaseRate"].Value).ToString("N2");
+            lblTotalAmount.Text = Convert.ToDecimal(selectedRow.Cells["TotalAmount"].Value).ToString("N2");
 
-            lblCustomerName.Text = selectedRow.Cells["CustomerName"].Value?.ToString();
-            lblBillingID.Text = selectedRow.Cells["BillingID"].Value?.ToString();
+            // Handle possible DBNull for TotalCharges
+            var totalChargesCell = selectedRow.Cells["TotalCharges"].Value;
+            lblTotalCharges.Text = (totalChargesCell == null || totalChargesCell == DBNull.Value)
+                ? "0.00"
+                : Convert.ToDecimal(totalChargesCell).ToString("N2");
 
-            decimal baseRate = selectedRow.Cells["BaseRate"].Value != DBNull.Value
-                ? Convert.ToDecimal(selectedRow.Cells["BaseRate"].Value)
-                : 0m;
-            lblBaseRate.Text = baseRate.ToString("N2");
-
-            decimal remainingBalance = selectedRow.Cells["RemainingBalance"].Value != DBNull.Value
-                ? Convert.ToDecimal(selectedRow.Cells["RemainingBalance"].Value)
-                : 0m;
-            lblRemainingBalance.Text = remainingBalance.ToString("N2");
-
-            decimal totalAmount = selectedRow.Cells["TotalAmount"].Value != DBNull.Value
-                ? Convert.ToDecimal(selectedRow.Cells["TotalAmount"].Value)
-                : 0m;
-            lblTotalAmount.Text = totalAmount.ToString("N2");
-
-            decimal totalCharges = selectedRow.Cells["TotalCharges"].Value != DBNull.Value
-                ? Convert.ToDecimal(selectedRow.Cells["TotalCharges"].Value)
-                : 0m;
-            lblTotalCharges.Text = totalCharges.ToString("N2");
-
-            lblStatus.Text = selectedRow.Cells["PaymentStatus"].Value?.ToString();
+            lblRemainingBalance.Text = Convert.ToDecimal(selectedRow.Cells["RemainingBalance"].Value).ToString("N2");
+            lblStatus.Text = selectedRow.Cells["PaymentStatus"].Value?.ToString() ?? "Pending";
         }
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
             if (dgvBilling.SelectedRows.Count == 0) return;
 
-            var selectedRow = dgvBilling.SelectedRows[0];
+            var row = dgvBilling.SelectedRows[0];
+            long billingId = Convert.ToInt64(row.Cells["BillingID"].Value);
 
             var billing = new Billing
             {
-                BillingId = Convert.ToInt64(selectedRow.Cells["BillingID"].Value),
-                ContractId = Convert.ToInt64(selectedRow.Cells["ContractID"].Value),
-                CustomerName = selectedRow.Cells["CustomerName"].Value?.ToString() ?? "",
-                CarName = selectedRow.Cells["CarName"].Value?.ToString() ?? "",
-                BaseRate = Convert.ToDecimal(selectedRow.Cells["BaseRate"].Value),
-                TotalCharges = selectedRow.Cells["TotalCharges"].Value == DBNull.Value ? (decimal?)null : Convert.ToDecimal(selectedRow.Cells["TotalCharges"].Value),
-                SecurityDepUsed = selectedRow.Cells["SecurityDepUsed"].Value == DBNull.Value ? (decimal?)null : Convert.ToDecimal(selectedRow.Cells["SecurityDepUsed"].Value),
-                TotalAmount = Convert.ToDecimal(selectedRow.Cells["TotalAmount"].Value),
-                AmountPaid = Convert.ToDecimal(selectedRow.Cells["AmountPaid"].Value),
-                RemainingBalance = Convert.ToDecimal(selectedRow.Cells["RemainingBalance"].Value),
-                PaymentStatus = selectedRow.Cells["PaymentStatus"].Value?.ToString()
+                BillingId = billingId,
+                ContractId = Convert.ToInt64(row.Cells["ContractID"].Value),
+                CustomerName = row.Cells["CustomerName"].Value?.ToString(),
+                CarName = row.Cells["CarName"].Value?.ToString(),
+                BaseRate = Convert.ToDecimal(row.Cells["BaseRate"].Value),
+                TotalCharges = row.Cells["TotalCharges"].Value == DBNull.Value ? null : (decimal?)Convert.ToDecimal(row.Cells["TotalCharges"].Value),
+                SecurityDepUsed = row.Cells["SecurityDepUsed"].Value == DBNull.Value ? null : (decimal?)Convert.ToDecimal(row.Cells["SecurityDepUsed"].Value),
+                TotalAmount = Convert.ToDecimal(row.Cells["TotalAmount"].Value),
+                AmountPaid = Convert.ToDecimal(row.Cells["AmountPaid"].Value),
+                RemainingBalance = Convert.ToDecimal(row.Cells["RemainingBalance"].Value),
+                PaymentStatus = row.Cells["PaymentStatus"].Value?.ToString()
             };
 
-            using (var modalPayment = new modal_Payment(billing))
+            using (var modal = new modal_Payment(billing))
             {
-                var result = modalPayment.ShowDialog();
-                if (result == DialogResult.OK)
+                if (modal.ShowDialog() == DialogResult.OK)
                 {
-                    LoadBillingTable(); // Refresh grid after successful payment
+                    LoadBillingTable();
+                    ReselectRow(billingId);
                 }
             }
+        }
+        private void ReselectRow(long billingId)
+        {
+            foreach (DataGridViewRow row in dgvBilling.Rows)
+            {
+                if (Convert.ToInt64(row.Cells["BillingID"].Value) == billingId)
+                {
+                    dgvBilling.ClearSelection();
+                    row.Selected = true;
+                    dgvBilling.CurrentCell = row.Cells[0];
+                    DisplayBillingDetails(row);
+                    UpdatePaymentButton();
+                    break;
+                }
+            }
+        }
+        private void frmBilling_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void dgvBilling_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // ignore header clicks
+            if (e.RowIndex >= 0) 
             {
                 DataGridViewRow selectedRow = dgvBilling.Rows[e.RowIndex];
                 DisplayBillingDetails(selectedRow);
@@ -197,6 +182,40 @@ namespace CarRentalSystem.WindowsForm.Modal
                 btnPayment.Enabled = true;
                 btnPayment.ForeColor = Color.FromArgb(4, 126, 175);
             }
+        }
+        private void dgvBilling_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBilling.SelectedRows.Count > 0)
+            {
+                DisplayBillingDetails(dgvBilling.SelectedRows[0]);
+                UpdatePaymentButton();
+            }
+        }
+        private void dgvBilling_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            return;
+        }
+
+        private void UpdatePaymentButton()
+        {
+            if (dgvBilling.SelectedRows.Count == 0)
+            {
+                btnPayment.Enabled = false;
+                btnPayment.Text = "Payment";
+                return;
+            }
+
+            string status = dgvBilling.SelectedRows[0].Cells["PaymentStatus"].Value?.ToString() ?? "";
+            bool isPaid = status.Equals("Paid", StringComparison.OrdinalIgnoreCase);
+
+            btnPayment.Enabled = !isPaid;
+            btnPayment.Text = isPaid ? "Already Paid" : "Payment";
+        }
+
+        private void frmBilling_Load_1(object sender, EventArgs e)
+        {
+            LoadBillingTable();
+            UpdatePaymentButton();
         }
     }
 }
