@@ -270,7 +270,7 @@ namespace CarRentalSystem.Database
                                 cmd.Parameters.Clear();
                                 cmd.Parameters.AddWithValue("@ContractID", contractId);
                                 cmd.Parameters.AddWithValue("@PartsID", part.PartID);
-                                cmd.Parameters.AddWithValue("@Amount", part.Cost * part.Quantity);
+                                cmd.Parameters.AddWithValue("@Amount", part.Cost);
                                 cmd.Parameters.AddWithValue("@Quantity", part.Quantity);
                                 cmd.Parameters.AddWithValue("@Notes", $"Damaged PartID {part.PartID}, Qty {part.Quantity}");
                                 cmd.ExecuteNonQuery();
