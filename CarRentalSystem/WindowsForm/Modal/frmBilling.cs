@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Payment;
 
 namespace CarRentalSystem.WindowsForm.Modal
 {
@@ -22,6 +23,7 @@ namespace CarRentalSystem.WindowsForm.Modal
         {
             InitializeComponent();
             ClearBillingLabels();
+            LoadDesign();
             LoadBillingTable();
 
             btnPayment.Enabled = false;
@@ -29,12 +31,15 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             btnViewChargesandDeposit.Enabled = false;
             btnViewChargesandDeposit.ForeColor = Color.Gray;
-            
+
+            txtSearch.TextChanged += FilterBillingTable;
+            cbxStatus.SelectedIndexChanged += FilterBillingTable;
         }
 
-        private void LoadPanel()
+        private void LoadDesign()
         {
-
+            cbxStatus.DataSource = Enum.GetValues(typeof(PaymentStatus));
+            cbxStatus.SelectedIndex = -1;
         }
 
         private void ClearBillingLabels()
@@ -45,6 +50,36 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblTotalAmount.Text = "";
             lblTotalCharges.Text = "";
             lblStatus.Text = "";
+        }
+
+        private void FilterBillingTable(object sender, EventArgs e)
+        {
+            if (billingTable == null) return;
+
+            DataView dv = billingTable.DefaultView;
+
+            // Get search text
+            string searchText = txtSearch.Text.Trim().Replace("'", "''"); // escape single quotes
+
+            // Get selected status
+            string selectedStatus = cbxStatus.SelectedItem?.ToString() ?? "";
+
+            // Build filter string
+            List<string> filters = new List<string>();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                filters.Add($"CustomerName LIKE '%{searchText}%'");
+            }
+
+            if (!string.IsNullOrEmpty(selectedStatus))
+            {
+                filters.Add($"PaymentStatus = '{selectedStatus}'");
+            }
+
+            dv.RowFilter = string.Join(" AND ", filters);
+
+            dgvBilling.DataSource = dv;
         }
 
 

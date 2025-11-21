@@ -105,15 +105,23 @@ namespace CarRentalSystem.Database
                     contractId = Convert.ToInt64(res);
                 }
 
-                // 2️⃣ Get Security Deposit
+                // 2️⃣ Get Security Deposit and Used Deposit in one query
                 using (var cmd = new MySqlCommand(
-                    "SELECT DepositAmount FROM securitydeposit WHERE ContractID = @ContractID",
-                    _db.Connection))
+                    @"SELECT sd.DepositAmount, b.SecurityDepUsed
+                      FROM securitydeposit sd
+                      JOIN billing b ON sd.ContractID = b.ContractID
+                      WHERE sd.ContractID = @ContractID", _db.Connection))
                 {
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
 
-                    object dep = cmd.ExecuteScalar();
-                    result.SecurityDeposit = dep != null ? Convert.ToDecimal(dep) : 0m;
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            result.SecurityDeposit = reader.GetDecimal("DepositAmount");
+                            result.SecurityDepUsed = reader.GetDecimal("SecurityDepUsed");
+                        }
+                    }
                 }
 
                 // 3️⃣ Get Additional Charges
@@ -147,5 +155,6 @@ namespace CarRentalSystem.Database
 
             return result;
         }
+
     }
 }

@@ -10,6 +10,7 @@ namespace CarRentalSystem.Code
     public class AdditionalCharges
     {
         public decimal SecurityDeposit { get; set; }
+        public decimal SecurityDepUsed { get; set; }
         public DataTable AdditionalChargesTable { get; set; }
     }
 }

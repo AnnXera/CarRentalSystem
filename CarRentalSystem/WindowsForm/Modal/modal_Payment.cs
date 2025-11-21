@@ -78,15 +78,15 @@ namespace CarRentalSystem.WindowsForm.Modal
             lblBillNo.Text = "";
         }
 
-
-
         private void ValidatePaymentForm()
         {
             try
             {
                 Validator.RequireComboBoxSelected(cbxPaymentMethod, "Payment Method");
+                Validator.ValidateLettersOnly(cbxPaymentMethod.Text, "Payment Method");
 
                 Validator.RequireNotEmpty(txtAmountReceived.Text, "Amount");
+                Validator.ValidateInteger(txtAmountReceived.Text, "Amount");
 
             }
             catch (Exception ex)

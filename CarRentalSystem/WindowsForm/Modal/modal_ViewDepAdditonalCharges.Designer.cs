@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblDepositAmount = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.dgvAdditionalCharges = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblDepositAmount = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSecurityDepUsed = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdditionalCharges)).BeginInit();
             this.panel1.SuspendLayout();
@@ -49,6 +51,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.lblSecurityDepUsed);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lblDepositAmount);
             this.panel2.Controls.Add(this.label24);
@@ -58,76 +62,17 @@
             this.panel2.Size = new System.Drawing.Size(963, 656);
             this.panel2.TabIndex = 2;
             // 
-            // dgvAdditionalCharges
+            // label2
             // 
-            this.dgvAdditionalCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvAdditionalCharges.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.dgvAdditionalCharges.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvAdditionalCharges.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgvAdditionalCharges.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAdditionalCharges.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvAdditionalCharges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAdditionalCharges.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvAdditionalCharges.EnableHeadersVisualStyles = false;
-            this.dgvAdditionalCharges.Location = new System.Drawing.Point(20, 109);
-            this.dgvAdditionalCharges.Margin = new System.Windows.Forms.Padding(20);
-            this.dgvAdditionalCharges.MultiSelect = false;
-            this.dgvAdditionalCharges.Name = "dgvAdditionalCharges";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAdditionalCharges.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvAdditionalCharges.RowHeadersVisible = false;
-            this.dgvAdditionalCharges.RowHeadersWidth = 51;
-            this.dgvAdditionalCharges.RowTemplate.DividerHeight = 1;
-            this.dgvAdditionalCharges.RowTemplate.Height = 40;
-            this.dgvAdditionalCharges.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvAdditionalCharges.Size = new System.Drawing.Size(926, 527);
-            this.dgvAdditionalCharges.TabIndex = 77;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(963, 76);
-            this.panel1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(559, 45);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "View Security Deposit and Charges";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(15, 117);
+            this.label2.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(183, 28);
+            this.label2.TabIndex = 82;
+            this.label2.Text = "Additional Charges:";
             // 
             // lblDepositAmount
             // 
@@ -152,17 +97,100 @@
             this.label24.TabIndex = 80;
             this.label24.Text = "Security Deposit Held:";
             // 
-            // label2
+            // dgvAdditionalCharges
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(20, 69);
-            this.label2.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 28);
-            this.label2.TabIndex = 82;
-            this.label2.Text = "Additional Charges:";
+            this.dgvAdditionalCharges.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAdditionalCharges.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.dgvAdditionalCharges.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAdditionalCharges.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvAdditionalCharges.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdditionalCharges.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAdditionalCharges.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAdditionalCharges.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAdditionalCharges.EnableHeadersVisualStyles = false;
+            this.dgvAdditionalCharges.Location = new System.Drawing.Point(20, 176);
+            this.dgvAdditionalCharges.Margin = new System.Windows.Forms.Padding(20);
+            this.dgvAdditionalCharges.MultiSelect = false;
+            this.dgvAdditionalCharges.Name = "dgvAdditionalCharges";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAdditionalCharges.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvAdditionalCharges.RowHeadersVisible = false;
+            this.dgvAdditionalCharges.RowHeadersWidth = 51;
+            this.dgvAdditionalCharges.RowTemplate.DividerHeight = 1;
+            this.dgvAdditionalCharges.RowTemplate.Height = 40;
+            this.dgvAdditionalCharges.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvAdditionalCharges.Size = new System.Drawing.Size(926, 460);
+            this.dgvAdditionalCharges.TabIndex = 77;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(963, 76);
+            this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(214, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(559, 45);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "View Security Deposit and Charges";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.Location = new System.Drawing.Point(20, 69);
+            this.label3.Margin = new System.Windows.Forms.Padding(20, 0, 0, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(208, 28);
+            this.label3.TabIndex = 83;
+            this.label3.Text = "Security Deposit Used:";
+            // 
+            // lblSecurityDepUsed
+            // 
+            this.lblSecurityDepUsed.AutoSize = true;
+            this.lblSecurityDepUsed.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecurityDepUsed.Location = new System.Drawing.Point(241, 69);
+            this.lblSecurityDepUsed.Margin = new System.Windows.Forms.Padding(10, 0, 10, 20);
+            this.lblSecurityDepUsed.Name = "lblSecurityDepUsed";
+            this.lblSecurityDepUsed.Size = new System.Drawing.Size(203, 28);
+            this.lblSecurityDepUsed.TabIndex = 84;
+            this.lblSecurityDepUsed.Text = "(lblSecurityDepUsed)";
             // 
             // modal_ViewDepAdditonalCharges
             // 
@@ -193,5 +221,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblDepositAmount;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblSecurityDepUsed;
+        private System.Windows.Forms.Label label3;
     }
 }

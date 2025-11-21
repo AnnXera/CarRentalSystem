@@ -1,5 +1,6 @@
 ﻿using CarRentalSystem.Code;
 using CarRentalSystem.Database;
+using CarRentalSystem.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CarRentalSystem.Code.Enum.enum_Contracts;
 
 namespace CarRentalSystem.WindowsForm.Modal
 {
@@ -23,9 +25,21 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             //lblDepositAmount and dgvAdditionalCharges
             InitializeComponent();
+            LoadDesign();
 
             this.Text = "View Security Deposit and Additonal Charges";
 
+        }
+
+        private void LoadDesign()
+        {
+            var panels = new List<Panel>
+            {
+                panel1,
+                panel2,
+            };
+
+            UIHelper.ApplyRoundedPanels(panels, 8);
         }
 
         private void modal_ViewDepAdditonalCharges_Load(object sender, EventArgs e)
@@ -35,10 +49,9 @@ namespace CarRentalSystem.WindowsForm.Modal
 
             var info = AditionalRepo.GetContractChargesInfo(BillingID);
 
-            // SET LABEL
             lblDepositAmount.Text = info.SecurityDeposit.ToString("N2");
+            lblSecurityDepUsed.Text = info.SecurityDepUsed.ToString("N2");
 
-            // SET DATAGRID
             dgvAdditionalCharges.DataSource = info.AdditionalChargesTable;
 
             dgvAdditionalCharges.AllowUserToAddRows = false;
@@ -84,6 +97,6 @@ namespace CarRentalSystem.WindowsForm.Modal
             dgvAdditionalCharges.Refresh();
         }
 
-
+        
     }
 }
